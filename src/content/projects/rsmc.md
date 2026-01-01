@@ -2,7 +2,6 @@
 name: "rsmc"
 description: "A multi threaded multiplayer voxel engine written in Rust. Evolution of my TypeScript Minecraft clones into a performant, multiplayer-focused implementation."
 tags: ["rust", "voxel", "multiplayer", "client-server", "graphics", "networking", "typescript", "wasm", "threejs", "glsl"]
-heroImage: "/src/assets/projects/rsmc.webp"
 ---
 
 # RSMC
@@ -27,8 +26,6 @@ The project is heavily developed through pull requests. Most features are docume
 Make sure to check out [the blog post](/blog/exploring-rust) for more details about the rust project.
 
 Repository: [https://github.com/cb341/rsmc](https://github.com/cb341/rsmc)
-
-![RSMC voxel engine with custom terrain generation and client-server architecture](../../assets/projects/rsmc.webp)
 
 ## Features
 

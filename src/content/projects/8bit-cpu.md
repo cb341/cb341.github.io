@@ -2,7 +2,6 @@
 name: "8bit-cpu"
 description: "A minimal abstraction 8Bit CPU and 64 Byte RAM built entirely from single bit logic gates to understand computer architecture from first principles."
 tags: ["cpu", "ram", "logic-gates", "computer-architecture", "education", "hardware"]
-heroImage: "/src/assets/projects/8bit-cpu.webp"
 ---
 
 # Minimal Abstraction 8Bit CPU

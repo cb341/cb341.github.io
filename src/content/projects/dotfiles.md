@@ -2,7 +2,6 @@
 name: "dotfiles"
 description: "I use Neovim btw. My personal configuration files for arch/nvim/git/tmux/zj/ghostty and more."
 tags: ["neovim", "dotfiles", "linux", "terminal", "productivity", "arch"]
-heroImage: "/src/assets/projects/dotfiles.webp"
 ---
 
 # DOTFILES!!!
