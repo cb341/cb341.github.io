@@ -12,7 +12,7 @@ Some rely entirely on Docker Compose.
 Defining global aliases for commands such as `rspec` or `rubocop` can quickly cause conflicts between projects:
 
 ```bash
-alias rubocop='docker compose exec app bundle exec rubocop -a' 
+alias rubocop='docker compose exec app bundle exec rubocop -a'
 ```
 
 Creating complex Bash functions to detect the correct environment is possible, but usually not worth the time.

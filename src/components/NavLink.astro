@@ -4,10 +4,16 @@ interface Props {
   external?: boolean;
   target?: string;
   rel?: string;
-  'aria-label'?: string;
+  "aria-label"?: string;
 }
 
-const { href, external = false, target, rel, 'aria-label': ariaLabel } = Astro.props;
+const {
+  href,
+  external = false,
+  target,
+  rel,
+  "aria-label": ariaLabel,
+} = Astro.props;
 
 let isActive = !external && Astro.url.pathname.startsWith(href);
 if (isActive && href === "/" && Astro.url.pathname !== "/") {
@@ -17,11 +23,19 @@ if (isActive && href === "/" && Astro.url.pathname !== "/") {
 const linkProps = {
   href,
   ...(external && { target, rel }),
-  ...(ariaLabel && { 'aria-label': ariaLabel }),
-  ...(isActive && !external && { 'aria-current': 'page' as const }),
+  ...(ariaLabel && { "aria-label": ariaLabel }),
+  ...(isActive && !external && { "aria-current": "page" as const }),
 };
 ---
 
 <a {...linkProps}>
-  {isActive && !external ? <b><slot /></b> : <slot />}
+  {
+    isActive && !external ? (
+      <b>
+        <slot />
+      </b>
+    ) : (
+      <slot />
+    )
+  }
 </a>

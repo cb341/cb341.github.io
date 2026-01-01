@@ -4,8 +4,5 @@
  * @returns Formatted date string in dd.mm.yyyy format
  */
 export function formatDate(date: Date | string | number): string {
-  return new Date(date)
-    .toLocaleDateString("en-GB")
-    .split("/")
-    .join(".");
+  return new Date(date).toLocaleDateString("en-GB").split("/").join(".");
 }

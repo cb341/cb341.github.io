@@ -14,7 +14,7 @@ I chose Rails with custom Sass stylesheets because of the abundance of unique st
 As you can see in the box model view, the layout contains many irregular spacings, varying element sizes, and non-uniform alignments. These characteristics made it difficult to implement using flexbox or grid with simple gaps, margins, and paddings, and required precise, element by element positioning.
 
 ![hackts.ch homepage with debug rendering](../../assets/blog/hackts_debug.webp)  
-*A draft of the hackts.ch page with box model inspection, showing the irregular spacing and alignment requirements.*
+_A draft of the hackts.ch page with box model inspection, showing the irregular spacing and alignment requirements._
 
 I also experimented with Figma to code tools such as [Builder.io’s Figma plugin](https://www.builder.io/c/docs/figma-to-builder) but the results were disappointing. The generated markup was verbose and composed of inline styles, with font styling defined multiple times instead of integrating with the existing font definitions. There was no clear component structure or hierarchy, which made the output unpleasant to read.
 
@@ -22,10 +22,10 @@ I also experimented with Figma to code tools such as [Builder.io’s Figma plugi
 
 Looking back, several methods might have eased the process:
 
-- Rendering sections as images with defined clickable areas using [`<area>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/area) elements  
-- Using background images with text overlays  
-- Exporting directly from Figma as SVGs to keep both vector shapes and text, applying CSS classes to [SVG elements](https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/style) for consistent styling ([MDN: Styling SVG with CSS](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/SVG_and_CSS))  
-- Adding overlays for pixel accurate alignment adjustments  
+- Rendering sections as images with defined clickable areas using [`<area>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/area) elements
+- Using background images with text overlays
+- Exporting directly from Figma as SVGs to keep both vector shapes and text, applying CSS classes to [SVG elements](https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/style) for consistent styling ([MDN: Styling SVG with CSS](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/SVG_and_CSS))
+- Adding overlays for pixel accurate alignment adjustments
 
 While using images and clickable areas may allow for faster development, it compromises accessibility, responsiveness, and maintainability, ultimately leading to a poorer user experience and not aligning with best practices in web development.
 

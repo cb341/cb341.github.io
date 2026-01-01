@@ -153,19 +153,28 @@ const structuredData = {
         overflow-x: auto;
       }
 
-      h1, h2, h3 {
+      h1,
+      h2,
+      h3 {
         line-height: 1.2;
       }
 
-      table td, table th {
+      table td,
+      table th {
         border-bottom: 1px solid #ddd;
       }
 
       @media (max-width: 768px) {
-        .mobile-table thead { display: none; }
-        .mobile-table tr { display: block; border-bottom: 1px solid #ddd }
+        .mobile-table thead {
+          display: none;
+        }
+        .mobile-table tr {
+          display: block;
+          border-bottom: 1px solid #ddd;
+        }
         .mobile-table td {
-          display: block; border-bottom: none;
+          display: block;
+          border-bottom: none;
         }
         .mobile-table td:before {
           content: attr(data-label) ": ";
@@ -178,7 +187,11 @@ const structuredData = {
     <a href="#main-content" class="skip-nav">Skip to main content</a>
 
     <header role="banner">
-      <h1><center><NavLink href="/" aria-label="CB341.DEV - Home">CB341.DEV</NavLink></center></h1>
+      <h1>
+        <center
+          ><NavLink href="/" aria-label="CB341.DEV - Home">CB341.DEV</NavLink
+          ></center>
+      </h1>
       <nav role="navigation" aria-label="Main navigation">
         <center>
           <NavLink href="/">Home</NavLink>
@@ -196,11 +209,29 @@ const structuredData = {
       </nav>
       <nav class="social-nav" role="navigation" aria-label="Social media links">
         <center>
-          <NavLink href="https://www.codewars.com/users/cb341" external target="_blank" rel="noopener noreferrer" aria-label="Codewars profile (opens in new tab)">Codewars</NavLink>
+          <NavLink
+            href="https://www.codewars.com/users/cb341"
+            external
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Codewars profile (opens in new tab)">Codewars</NavLink
+          >
           |
-          <NavLink href="https://www.linkedin.com/in/daniel-bengl" external target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile (opens in new tab)">LinkedIn</NavLink>
+          <NavLink
+            href="https://www.linkedin.com/in/daniel-bengl"
+            external
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn profile (opens in new tab)">LinkedIn</NavLink
+          >
           |
-          <NavLink href="https://github.com/cb341" external target="_blank" rel="noopener noreferrer" aria-label="GitHub profile (opens in new tab)">GitHub</NavLink>
+          <NavLink
+            href="https://github.com/cb341"
+            external
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub profile (opens in new tab)">GitHub</NavLink
+          >
         </center>
       </nav>
     </header>
@@ -219,10 +250,12 @@ const structuredData = {
           if (table.hasAttribute("data-responsive")) return;
           table.setAttribute("data-responsive", "true");
 
-          const headers = Array.from(table.querySelectorAll("thead th")).map(th => th.textContent?.trim() || "");
-          
+          const headers = Array.from(table.querySelectorAll("thead th")).map(
+            (th) => th.textContent?.trim() || "",
+          );
+
           table.classList.add("mobile-table");
-          
+
           const rows = table.querySelectorAll("tbody tr");
           rows.forEach((row) => {
             const cells = row.querySelectorAll("td");
