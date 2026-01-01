@@ -17,6 +17,8 @@ The project is heavily developed through pull requests. Most features are docume
 
 Repository: [https://github.com/cb341/rsmc](https://github.com/cb341/rsmc)
 
+![RSMC voxel engine with custom terrain generation and client-server architecture](../../assets/projects/rsmc.webp)
+
 ## Features
 
 - Perlin based 3D noise terrain generation using a density function
@@ -30,3 +32,7 @@ Repository: [https://github.com/cb341/rsmc](https://github.com/cb341/rsmc)
 - Extensive debug and visualization feature flags
 - Custom occlusion based geometry builder
 - Multithreaded terrain generation and meshing pipeline inspired by learnings from Zurich School of Engineering
+
+## Development
+
+![Early stage of development in RSMC. Renet visualiser for simultaneous client/server connections.](../../assets/blog/rsmc-early-development.webp)
