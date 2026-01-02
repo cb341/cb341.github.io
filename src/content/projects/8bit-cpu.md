@@ -1,7 +1,15 @@
 ---
 name: "8bit-cpu"
 description: "A minimal abstraction 8Bit CPU and 64 Byte RAM built entirely from single bit logic gates to understand computer architecture from first principles."
-tags: ["cpu", "ram", "logic-gates", "computer-architecture", "education", "hardware"]
+tags:
+  [
+    "cpu",
+    "ram",
+    "logic-gates",
+    "computer-architecture",
+    "education",
+    "hardware",
+  ]
 ---
 
 # Minimal Abstraction 8Bit CPU
@@ -31,21 +39,27 @@ Because everything is built from single bit components, the design could theoret
 ## Architecture Images
 
 ### Register Close Up
+
 ![8Bit register built from individual latches](../../assets/projects/8-bit-cpu/cpu_register_closeup.webp)
 
 ### Architecture Overview
+
 ![Complete OVERTURE CPU architecture showing all components](../../assets/projects/8-bit-cpu/cpu_architecture_overview.webp)
 
 ### Adder and Inverter Circuit
+
 ![Custom adder and inverter logic circuits](../../assets/projects/8-bit-cpu/cpu_adder_invertor_circuit.webp)
 
 ### Opcode and Logic Unit
+
 ![Opcode decoding and control logic unit](../../assets/projects/8-bit-cpu/cpu_opcode_logic_unit.webp)
 
 ### ALU Boolean Operations
+
 ![Arithmetic Logic Unit performing boolean operations](../../assets/projects/8-bit-cpu/cpu_alu_boolean.webp)
 
 ### Program Counter
+
 ![Program counter and instruction flow control](../../assets/projects/8-bit-cpu/cpu_program_counter.webp)
 
 ## 64 Byte RAM Module
@@ -67,10 +81,13 @@ More info on [Reddit](https://www.reddit.com/r/TuringComplete/comments/1mvqjvt/6
 - Row and column selection logic for efficient addressing
 
 ### RAM Overview
+
 ![Complete 64 byte RAM module showing all components](../../assets/projects/8-bit-cpu/ram_overview.webp)
 
 ### Memory Cells Close Up
+
 ![Individual memory cells built from latches](../../assets/projects/8-bit-cpu/ram_close_up_memory_cells.webp)
 
 ### Row and Column Switching Logic
+
 ![Address decoding and row/column selection logic](../../assets/projects/8-bit-cpu/ram_row_col_switching_logic.webp)

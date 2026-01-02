@@ -1,7 +1,19 @@
 ---
 name: "rsmc"
 description: "A multi threaded multiplayer voxel engine written in Rust. Evolution of my TypeScript Minecraft clones into a performant, multiplayer-focused implementation."
-tags: ["rust", "voxel", "multiplayer", "client-server", "graphics", "networking", "typescript", "wasm", "threejs", "glsl"]
+tags:
+  [
+    "rust",
+    "voxel",
+    "multiplayer",
+    "client-server",
+    "graphics",
+    "networking",
+    "typescript",
+    "wasm",
+    "threejs",
+    "glsl",
+  ]
 ---
 
 # RSMC
@@ -19,7 +31,7 @@ This is probably the project I spent most of my free time on. There have been ma
 
 I once heard that beginner projects in Rust include writing a calculator, a browser, or an operating system. So as a first project I decided to build a multi threaded voxel engine.
 
-The code should be taken with a grain of salt. Apart from Advent of Code, this is my first Rust project. An LLM would almost certainly write cleaner code, but generating solutions is not how I learn. I like my *old fashioned* paperback copy of [the Rust programming language](https://nostarch.com/rust-programming-language-3rd-edition).
+The code should be taken with a grain of salt. Apart from Advent of Code, this is my first Rust project. An LLM would almost certainly write cleaner code, but generating solutions is not how I learn. I like my _old fashioned_ paperback copy of [the Rust programming language](https://nostarch.com/rust-programming-language-3rd-edition).
 
 The project is heavily developed through pull requests. Most features are documented there with sequence diagrams, screencasts and design notes. If you are interested in the technical details, feel free to dig through the PR history.
 
