@@ -166,6 +166,12 @@ const structuredData = {
 3. For all blog post assets
 4. Convert existing images if making related changes
 
+### After Adding Images
+- **Always generate and examine a Lighthouse report** (see Performance Optimization section)
+- Verify images don't cause layout shifts or performance degradation
+- Check that alt text and accessibility attributes are present
+- Ensure images are properly sized and optimized
+
 ### Usage Example
 ```bash
 # Convert with default settings (85% quality)
@@ -212,6 +218,11 @@ const structuredData = {
 2. Run `npm run build` to ensure production build succeeds
 3. Test in browser at `localhost:4321` if UI changes were made
 4. Verify images are optimized (WebP format, reasonable file sizes)
+5. **When adding images or new features**: Generate and examine Lighthouse reports
+   - Run `npm run preview` after building
+   - Generate Lighthouse report for affected pages
+   - Review Performance, Accessibility, Best Practices, and SEO scores
+   - Address any regressions or new issues before committing
 
 ### Git Workflow
 - **Main branch**: `main` (use for PRs)
@@ -276,6 +287,40 @@ const structuredData = {
 - Leverage Astro's built-in optimizations
 - Images processed through sharp service
 - No unnecessary JavaScript in the browser
+
+### Lighthouse Performance Testing
+
+**REQUIRED when adding images or new features:**
+
+1. **Build and preview the site**:
+   ```bash
+   npm run build
+   npm run preview
+   ```
+
+2. **Generate Lighthouse report**:
+   - Open Chrome DevTools (F12)
+   - Navigate to the Lighthouse tab
+   - Select categories: Performance, Accessibility, Best Practices, SEO
+   - Run report for affected pages
+
+3. **Review and address issues**:
+   - **Performance**: Should maintain high scores (aim for 90+)
+   - **Accessibility**: Must be 100 (critical requirement)
+   - **Best Practices**: Address any new warnings
+   - **SEO**: Maintain optimal scores
+
+4. **Common issues to watch for**:
+   - Image sizes and formats (ensure WebP is used)
+   - Missing alt text or aria-labels
+   - Cumulative Layout Shift (CLS) from images
+   - Largest Contentful Paint (LCP) degradation
+   - Missing meta descriptions or structured data
+
+5. **Report findings**:
+   - Share Lighthouse scores in commit messages or PR descriptions
+   - Document any performance trade-offs made
+   - Flag any issues that need addressing
 
 ## Error Handling
 
@@ -373,3 +418,4 @@ This is a **minimal, fast, accessible, SEO-optimized static portfolio site**. Wh
 4. Avoid adding complexity
 5. Let the code speak for itself
 6. Only add styling when requested
+7. **Always run Lighthouse reports when adding images or new features**
