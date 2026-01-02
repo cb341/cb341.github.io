@@ -4,9 +4,9 @@ description: "I use Neovim btw. My personal configuration files for arch/nvim/gi
 tags: ["neovim", "dotfiles", "linux", "terminal", "productivity", "arch"]
 ---
 
-# DOTFILES!!!
+# Dotfiles
 
-I use Neovim btw ✨. I love writing code and I love tools. I want to dictate how stuff behaves so I have my own config for arch/nvim/git/tmux/zj/ghostty etc.
+I use Neovim btw. I love writing code and I love tools. I want to dictate how stuff behaves so I have my own config for arch/nvim/git/tmux/zj/ghostty etc.
 
 These dotfiles represent my development environment carefully crafted over time to maximize productivity and match my workflow preferences. Every tool is configured to work seamlessly together.
 
@@ -25,11 +25,19 @@ As I wrote in [my editor journey](/blog/editor-journey):
 
 > "Neovim is not just a text editor. It is **FAST**, the fastest editing experience I have had. It is incredibly feature rich, yet keyboard oriented for efficient, sophisticated workflows."
 
-After bouncing between Atom, VSCode, JetBrains, NVChad, and even trying Cursor for AI features, I finally landed on **LazyVim** - the sweet spot between a pre-configured distro and the flexibility to customize without maintaining everything myself.
+After bouncing between Atom, VSCode, JetBrains, NVChad, and even trying Cursor for AI features, I finally landed on **LazyVim**, the sweet spot between a pre-configured distro and the flexibility to customize without maintaining everything myself.
 
 I genuinely enjoy Neovim as a hobby. The community is fantastic, it is intuitive to use once you get the hang of it, and there is no big tech corp jargon or anyone pushing AI down my throat. Building software is about writing text, and Neovim integrates incredibly well with my terminal setup: zellij, autojump, ripgrep, lazygit. Everything works together seamlessly.
 
 This is the way.
+
+## Neovim Configuration
+
+I used to maintain my own nvim config from scratch, a bare-knuckle setup that prioritized raw performance above all else. No animations, no bloat, just pure speed. But maintaining it became a chore, especially managing language servers.
+
+LazyVim takes care of the boilerplate while letting me keep what matters: reduced animations, classic vim plugins (oil for file exploration, surround), no markdown rendering, and performance improvements. I also kept some unorthodox things like multicursor because they make me faster.
+
+The goal is still the same as my old config: if it doesn't make editing faster and more efficient, it doesn't make the cut. Short keybindings, minimal overhead, maximum speed.
 
 ## Operating System
 
@@ -54,4 +62,4 @@ That said, my main machine is a **MacBook** I received working for Renuo, and I 
 
 ## Learn More
 
-For the full story of how I ended up here - including my thoughts on AI coding assistants and why I chose LazyVim - check out my [editor journey blog post](/blog/editor-journey).
+For the full story of how I ended up here, including my thoughts on AI coding assistants and why I chose LazyVim, check out my [editor journey blog post](/blog/editor-journey).
