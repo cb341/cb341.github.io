@@ -10,11 +10,7 @@ const { project } = Astro.props;
   <div>
     {
       project.data.demo && (
-        <a
-          href={project.data.demo}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href={project.data.demo} target="_blank" rel="noopener noreferrer">
           Live Demo
         </a>
       )
@@ -22,11 +18,7 @@ const { project } = Astro.props;
 
     {
       project.data.github && (
-        <a
-          href={project.data.github}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href={project.data.github} target="_blank" rel="noopener noreferrer">
           GitHub
         </a>
       )

@@ -19,11 +19,7 @@ const { Content } = await entry.render();
     <div>
       {
         entry.data.github && (
-          <a
-            href={entry.data.github}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href={entry.data.github} target="_blank" rel="noopener noreferrer">
             GitHub
           </a>
         )
@@ -31,11 +27,7 @@ const { Content } = await entry.render();
 
       {
         entry.data.demo && (
-          <a
-            href={entry.data.demo}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href={entry.data.demo} target="_blank" rel="noopener noreferrer">
             Live Demo
           </a>
         )
