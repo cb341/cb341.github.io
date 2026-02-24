@@ -51,8 +51,6 @@ const structuredData = {
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="dns-prefetch" href="https://cb341.dev" />
-    <link rel="preconnect" href="https://cb341.dev" crossorigin />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
@@ -88,55 +86,12 @@ const structuredData = {
       href="/rss.xml"
     />
 
-    <link rel="prefetch" href="/blog" />
-    <link rel="prefetch" href="/projects" />
-    <link rel="prefetch" href="/about" />
-
     <script
       type="application/ld+json"
       set:html={JSON.stringify(structuredData)}
+      is:inline
     />
 
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        margin: 0 auto;
-        max-width: 45rem;
-      }
-
-      .skip-nav {
-        position: absolute;
-        top: -2.5rem;
-        left: 0.375rem;
-        background: black;
-        color: white;
-        padding: 0.5rem;
-        text-decoration: none;
-        border-radius: 0 0 0.25rem 0.25rem;
-        z-index: 1000;
-      }
-
-      .skip-nav:focus {
-        top: 0.375rem;
-      }
-
-      *:focus {
-        outline-offset: 2px;
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        *,
-        *::before,
-        *::after {
-          animation-duration: 0.01ms !important;
-          animation-iteration-count: 1 !important;
-          transition-duration: 0.01ms !important;
-        }
-      }
-    </style>
     <style is:global>
       img {
         max-width: 100%;
@@ -177,9 +132,7 @@ const structuredData = {
       }
     </style>
   </head>
-  <body>
-    <a href="#main-content" class="skip-nav">Skip to main content</a>
-
+  <body style="width: 80ch; margin: 0 auto; overflow-y: scroll">
     <header role="banner">
       <h1>
         <center>
@@ -201,7 +154,7 @@ const structuredData = {
           <NavLink href="/projects">Projects</NavLink>
         </center>
       </nav>
-      <nav class="social-nav" role="navigation" aria-label="Social media links">
+      <nav role="navigation" aria-label="Social media links">
         <center>
           <NavLink
           href="https://github.com/cb341"
@@ -243,35 +196,34 @@ const structuredData = {
     </main>
 
     <Footer />
+  </body>
+  <script>
+    function makeTablesResponsive() {
+      const tables = document.querySelectorAll("table");
 
-    <script>
-      function makeTablesResponsive() {
-        const tables = document.querySelectorAll("table");
+      tables.forEach((table) => {
+        if (table.hasAttribute("data-responsive")) return;
+        table.setAttribute("data-responsive", "true");
 
-        tables.forEach((table) => {
-          if (table.hasAttribute("data-responsive")) return;
-          table.setAttribute("data-responsive", "true");
+        const headers = Array.from(table.querySelectorAll("thead th")).map(
+          (th) => th.textContent?.trim() || "",
+        );
 
-          const headers = Array.from(table.querySelectorAll("thead th")).map(
-            (th) => th.textContent?.trim() || "",
-          );
+        table.classList.add("mobile-table");
 
-          table.classList.add("mobile-table");
-
-          const rows = table.querySelectorAll("tbody tr");
-          rows.forEach((row) => {
-            const cells = row.querySelectorAll("td");
-            cells.forEach((cell, index) => {
-              if (headers[index]) {
-                cell.setAttribute("data-label", headers[index]);
-              }
-            });
+        const rows = table.querySelectorAll("tbody tr");
+        rows.forEach((row) => {
+          const cells = row.querySelectorAll("td");
+          cells.forEach((cell, index) => {
+            if (headers[index]) {
+              cell.setAttribute("data-label", headers[index]);
+            }
           });
         });
-      }
+      });
+    }
 
-      document.addEventListener("DOMContentLoaded", makeTablesResponsive);
-      document.addEventListener("astro:page-load", makeTablesResponsive);
-    </script>
-  </body>
+    document.addEventListener("DOMContentLoaded", makeTablesResponsive);
+    document.addEventListener("astro:page-load", makeTablesResponsive);
+  </script>
 </html>

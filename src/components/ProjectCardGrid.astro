@@ -7,14 +7,13 @@ const { project } = Astro.props;
 
   <p>{project.data.description}</p>
 
-  <div class="actions">
+  <div>
     {
       project.data.demo && (
         <a
           href={project.data.demo}
           target="_blank"
           rel="noopener noreferrer"
-          class="button"
         >
           Live Demo
         </a>
@@ -27,13 +26,12 @@ const { project } = Astro.props;
           href={project.data.github}
           target="_blank"
           rel="noopener noreferrer"
-          class="button"
         >
           GitHub
         </a>
       )
     }
 
-    <a href={`/projects/${project.slug}`} class="button">Read More</a>
+    <a href={`/projects/${project.slug}`}>Read More</a>
   </div>
 </article>

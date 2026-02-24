@@ -29,7 +29,7 @@ const projects = await getCollection("projects");
 
   {
     projects.length > 0 ? (
-      <div class="project-grid">
+      <div>
         {projects.map((project) => (
           <ProjectCardGrid project={project} />
         ))}

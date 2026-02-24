@@ -34,7 +34,7 @@ const olderPosts = sortedPosts.slice(1);
               <a href={`/blog/${latestPost.slug}`}>{latestPost.data.title}</a>
             </h3>
 
-            <div class="meta">
+            <div>
               <em>
                 <time
                   datetime={new Date(latestPost.data.publishedAt).toISOString()}

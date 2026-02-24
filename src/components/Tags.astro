@@ -11,12 +11,11 @@ const { tags, path, taggedCount, activeTag } = Astro.props;
 
 {
   tags && tags.length > 0 && (
-    <ul class="tags" role="group" aria-label="Tags">
+    <ul role="group" aria-label="Tags">
       {tags.map((tag) => (
         <li>
           <a
             href={path(tag)}
-            class={`tag ${activeTag === tag ? "active" : ""}`}
             aria-label={`View posts tagged with ${tag}`}
             aria-current={activeTag === tag ? "page" : undefined}
           >

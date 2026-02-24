@@ -16,14 +16,13 @@ const { Content } = await entry.render();
 
 <BaseLayout>
   <article>
-    <div class="actions">
+    <div>
       {
         entry.data.github && (
           <a
             href={entry.data.github}
             target="_blank"
             rel="noopener noreferrer"
-            class="button"
           >
             GitHub
           </a>
@@ -36,7 +35,6 @@ const { Content } = await entry.render();
             href={entry.data.demo}
             target="_blank"
             rel="noopener noreferrer"
-            class="button"
           >
             Live Demo
           </a>
@@ -48,7 +46,7 @@ const { Content } = await entry.render();
       <Content />
     </div>
 
-    <nav class="nav-links" aria-label="Project navigation">
+    <nav aria-label="Project navigation">
       <a href="/projects">Back to Projects</a>
     </nav>
   </article>

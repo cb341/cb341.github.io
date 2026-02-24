@@ -14,7 +14,7 @@ const { post } = Astro.props;
     </a>
   </h3>
 
-  <div class="meta">
+  <div>
     <em>
       Published on <time datetime={post.data.publishedAt.toISOString()}>
         {formatDate(post.data.publishedAt)}
@@ -24,13 +24,3 @@ const { post } = Astro.props;
 
   <p>{post.data.description}</p>
 </article>
-
-<style>
-  article:has(a:focus) {
-    outline: 2px solid blue;
-  }
-
-  a:focus {
-    outline: 0;
-  }
-</style>

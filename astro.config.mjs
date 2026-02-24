@@ -32,7 +32,7 @@ export default defineConfig({
     domains: [],
   },
   build: {
-    inlineStylesheets: 'auto',
+    inlineStylesheets: 'always',
     assets: '_astro',
   },
   vite: {

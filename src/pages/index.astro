@@ -17,7 +17,7 @@ const projects = await getCollection("projects");
   title="Dani Bengl - Portfolio"
   description="Full-stack software developer specializing in Ruby on Rails, web applications, and modern development practices. Portfolio, blog, and projects."
 >
-  <div class="hero">
+  <div>
     <div>
       <h1>Hello, I'm Dani!</h1>
       <small>
@@ -41,11 +41,11 @@ const projects = await getCollection("projects");
         productivity that Rails brings to development.
       </p>
 
-      <nav class="actions" aria-label="Quick navigation">
+      <nav aria-label="Quick navigation">
         <ul>
-          <li><a href="/about" class="button">About Me</a></li>
-          <li><a href="/projects" class="button">View Projects</a></li>
-          <li><a href="/blog" class="button">Read Blog</a></li>
+          <li><a href="/about">About Me</a></li>
+          <li><a href="/projects">View Projects</a></li>
+          <li><a href="/blog">Read Blog</a></li>
         </ul>
       </nav>
     </div>
@@ -66,7 +66,7 @@ const projects = await getCollection("projects");
             </a>
           </h3>
 
-          <div class="meta">
+          <div>
             <em>
               Published on{" "}
               <time datetime={latestPost.data.publishedAt.toISOString()}>

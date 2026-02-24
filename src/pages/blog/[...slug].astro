@@ -20,7 +20,7 @@ const { Content } = await entry.render();
   <article>
     <h1>{entry.data.title}</h1>
 
-    <div class="meta">
+    <div>
       <em>
         <time datetime={new Date(entry.data.publishedAt).toISOString()}>
           {formatDate(entry.data.publishedAt)}
@@ -33,7 +33,7 @@ const { Content } = await entry.render();
       <Content />
     </div>
 
-    <nav class="nav-links" aria-label="Blog navigation">
+    <nav aria-label="Blog navigation">
       <a href="/blog">Back to Blog</a>
       |
       <a href="#top">Top</a>

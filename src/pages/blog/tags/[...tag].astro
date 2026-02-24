@@ -36,7 +36,7 @@ const { taggedBlogPosts } = Astro.props;
           <h2>
             <a href={`/blog/${post.slug}`}>{post.data.title}</a>
           </h2>
-          <div class="meta">
+          <div>
             <em>
               <time datetime={new Date(post.data.publishedAt).toISOString()}>
                 {formatDate(post.data.publishedAt)}
@@ -49,7 +49,7 @@ const { taggedBlogPosts } = Astro.props;
     }
   </section>
 
-  <nav class="nav-links" aria-label="Blog navigation">
+  <nav aria-label="Blog navigation">
     <a href="/blog">Back to Blog</a>
   </nav>
 </BaseLayout>
