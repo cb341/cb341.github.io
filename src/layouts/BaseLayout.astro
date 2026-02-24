@@ -94,7 +94,7 @@ const structuredData = {
 
     <style is:global>
       img {
-        max-width: 100%;
+        width: 100%;
         height: auto;
       }
 
@@ -102,18 +102,11 @@ const structuredData = {
         overflow-x: auto;
       }
 
-      h1,
-      h2,
-      h3 {
-        line-height: 1.2;
-      }
-
-      table td,
-      table th {
-        border-bottom: 1px solid #ddd;
-      }
-
-      @media (max-width: 768px) {
+      @media (max-width: 880px) {
+        body {
+          font-size: 0.7rem;
+          padding: 0.5rem;
+        }
         .mobile-table thead {
           display: none;
         }
@@ -132,7 +125,7 @@ const structuredData = {
       }
     </style>
   </head>
-  <body style="width: 80ch; margin: 0 auto; overflow-y: scroll">
+  <body style="max-width: 80ch; margin: 0 auto; overflow-y: scroll">
     <header role="banner">
       <h1>
         <center>
