@@ -218,7 +218,7 @@ This is what the form HTML looks like, with data attributes used to attach the c
 </form>
 ```
 
-The event that works best for form submission in that case is [turbo:submit-end](https://turbo.hotwired.dev/reference/events#turbo%3Asubmit-end "https://turbo.hotwired.dev/reference/events#turbo%3Asubmit-end"). Following the documentation of [Stimulus descriptors,](https://stimulus.hotwired.dev/reference/actions#descriptors "https://stimulus.hotwired.dev/reference/actions#descriptors") we can call the `#clear()` method after the form submission event. We are not using the `submit` event because this would clear the form prematurely.
+The event that works best for form submission in that case is [turbo:submit-end](https://turbo.hotwired.dev/reference/events). Following the documentation of [Stimulus descriptors,](https://stimulus.hotwired.dev/reference/actions#descriptors "https://stimulus.hotwired.dev/reference/actions#descriptors") we can call the `#clear()` method after the form submission event. We are not using the `submit` event because this would clear the form prematurely.
 
 #### Conclusion
 

@@ -15,7 +15,8 @@ jobs:
           bundler-cache: true
       - run: bundle exec jekyll build
       - run: |
+          # linkedin.com, amd.com, seagate.com, corsair.com: bot-blocking (links are valid, fail without browser UA)
+          # TODO: remove /cb341\.dev\/blog\/tags/ once deployed
           bundle exec htmlproofer _site \
-            --ignore-urls "/linkedin\.com/,/amd\.com/,/seagate\.com/,/corsair\.com/,/cb341\.dev\/blog\/tags/,/turbo\.hotwired\.dev.*#/" \
-            --ignore-status-codes "429,999" \
-            --no-enforce-https
+            --ignore-urls "/linkedin\.com/,/amd\.com/,/seagate\.com/,/corsair\.com/,/cb341\.dev\/blog\/tags/" \
+            --ignore-status-codes "429,999"
