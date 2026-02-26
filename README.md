@@ -1,22 +1,36 @@
 # [cb341.dev](https://cb341.dev)
 
-[![Preview](public/preview.webp)](https://cb341.dev)
-
-Personal portfolio and blog built with Astro.
+Personal portfolio and blog built with [Jekyll](https://jekyllrb.com/).
 
 ## Setup
 
 ```sh
-npm install
+bundle install
 ```
 
 ## Run
 
 ```sh
-npm run dev
+bundle exec jekyll serve
 ```
 
-Visit `localhost:4321` to view the site.
+Visit `localhost:4000` to view the site.
+
+## Build
+
+```sh
+bin/build
+```
+
+Runs `jekyll build` and formats output with `prettier`.
+
+## Check
+
+```sh
+bin/htmlproofer
+```
+
+Runs `htmlproofer` against `_site/` to verify links and images.
 
 ## License
 
