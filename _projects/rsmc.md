@@ -1,7 +1,19 @@
 ---
 title: "rsmc"
 description: "A multi threaded multiplayer voxel engine written in Rust. Evolution of my TypeScript Minecraft clones into a performant, multiplayer-focused implementation."
-tags: ["rust", "voxel", "multiplayer", "client-server", "graphics", "networking", "typescript", "wasm", "threejs", "glsl"]
+tags:
+  [
+    "rust",
+    "voxel",
+    "multiplayer",
+    "client-server",
+    "graphics",
+    "networking",
+    "typescript",
+    "wasm",
+    "threejs",
+    "glsl",
+  ]
 ---
 
 # RSMC
