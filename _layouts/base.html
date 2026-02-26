@@ -77,8 +77,7 @@
           "https://www.codewars.com/users/cb341"
         ]
       }{% if page.date %},
-      "datePublished": "{{ page.date | date_to_xmlschema }}",
-      "dateModified": "{{ page.date | date_to_xmlschema }}"{% endif %}{% if page.tags %},
+      "datePublished": "{{ page.date | date_to_xmlschema }}"{% endif %}{% if page.tags %},
       "keywords": {{ page.tags | join: ", " | jsonify }}{% endif %}
     }
     </script>
