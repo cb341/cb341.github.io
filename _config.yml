@@ -13,18 +13,10 @@ collections:
 defaults:
   - scope:
       path: ""
-      type: posts
     values:
       layout: base
-  - scope:
-      path: ""
-      type: projects
-    values:
-      layout: base
-  - scope:
-      path: "pages"
-    values:
-      layout: base
+
+date_format: "%d.%m.%Y"
 
 markdown: kramdown
 kramdown:

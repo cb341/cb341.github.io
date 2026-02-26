@@ -2,9 +2,4 @@
 set -e
 
 bundle exec jekyll build
-
-if command -v htmlbeautifier &>/dev/null; then
-  find _site -name "*.html" -exec htmlbeautifier {} \;
-elif command -v prettier &>/dev/null; then
-  prettier --write "_site/**/*.html"
-fi
+prettier --write "_site/**/*.html"

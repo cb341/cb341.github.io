@@ -1,5 +1,4 @@
 ---
-layout: base
 title: "Projects"
 permalink: /projects/
 ---

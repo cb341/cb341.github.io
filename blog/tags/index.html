@@ -1,5 +1,4 @@
 ---
-layout: base
 title: "Blog Tags"
 permalink: /blog/tags/
 ---
@@ -34,7 +33,7 @@ permalink: /blog/tags/
       {%- if post.tags contains tag %}
     <li>
       <a href="{{ post.url }}">{{ post.title }}</a>
-      <em>— {{ post.date | date: "%d.%m.%Y" }}</em>
+      <em>— {{ post.date | date: site.date_format }}</em>
     </li>
       {%- endif -%}
     {%- endfor %}
