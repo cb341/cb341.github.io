@@ -4,42 +4,17 @@ title: "Projects"
 permalink: /projects/
 ---
 
-<h1>Projects</h1>
-<p>A collection of personal projects I've worked on.</p>
+# Projects
 
-<div>
-  <p>
-    <em>There are many more to be documented here..</em>
-    <br />
-    <em>
-      <a href="https://github.com/cb341" target="_blank" rel="noopener noreferrer">
-        Check out my GitHub
-      </a>
-      for more projects in the meantime.
-    </em>
-  </p>
-</div>
+A collection of personal projects I've worked on.
 
-{% if site.projects.size > 0 %}
-<div>
-  {% for project in site.projects %}
-  <article>
-    <h2>
-      <a href="{{ project.url }}" aria-label="View project: {{ project.title }}">
-        {{ project.title }}
-      </a>
-    </h2>
-    <p>{{ project.description }}</p>
-    {% if project.tags %}
-    <p>
-      {% for tag in project.tags %}
-      <small>{{ tag }}</small>{% unless forloop.last %} {% endunless %}
-      {% endfor %}
-    </p>
-    {% endif %}
-  </article>
-  {% endfor %}
-</div>
-{% else %}
-<p>No projects available yet.</p>
-{% endif %}
+_There are many more to be documented here. [Check out my GitHub](https://github.com/cb341) for more projects in the meantime._
+
+{% for project in site.projects %}
+## [{{ project.title }}]({{ project.url }})
+
+{{ project.description }}
+
+{% if project.tags %}{{ project.tags | join: " · " }}{% endif %}
+
+{% endfor %}
