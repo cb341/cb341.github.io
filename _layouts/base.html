@@ -1,21 +1,8 @@
+{%- assign site_url = "https://cb341.dev" -%}
 {%- assign default_title = "Dani Bengl - Full-Stack Developer" -%}
 {%- assign default_description = "Full-stack software developer specializing in Ruby on Rails, web applications, and modern development practices. Portfolio, blog, and projects." -%}
-{%- assign site_url = "https://cb341.dev" -%}
-{%- if page.title -%}
-  {%- assign page_title = page.title | append: " | " | append: default_title -%}
-{%- else -%}
-  {%- assign page_title = default_title -%}
-{%- endif -%}
-{%- if page.description -%}
-  {%- assign page_description = page.description -%}
-{%- else -%}
-  {%- assign page_description = default_description -%}
-{%- endif -%}
-{%- if page.image -%}
-  {%- assign page_image = site_url | append: page.image -%}
-{%- else -%}
-  {%- assign page_image = site_url | append: "/og-image.png" -%}
-{%- endif -%}
+{%- assign page_title = page.title | append: " | " | append: default_title | default: default_title -%}
+{%- assign page_description = page.description | default: default_description -%}
 {%- assign current_url = site_url | append: page.url -%}
 {%- if page.date -%}
   {%- assign og_type = "article" -%}
@@ -36,14 +23,14 @@
     <meta property="og:url" content="{{ current_url }}" />
     <meta property="og:title" content="{{ page_title }}" />
     <meta property="og:description" content="{{ page_description }}" />
-    <meta property="og:image" content="{{ page_image }}" />
+    <meta property="og:image" content="{{ site_url }}/og-image.png" />
     <meta property="og:site_name" content="CB341.DEV" />
     <meta property="og:locale" content="en_US" />
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="{{ current_url }}" />
     <meta property="twitter:title" content="{{ page_title }}" />
     <meta property="twitter:description" content="{{ page_description }}" />
-    <meta property="twitter:image" content="{{ page_image }}" />
+    <meta property="twitter:image" content="{{ site_url }}/og-image.png" />
     <meta property="twitter:creator" content="@cb341" />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#ffffff" />
