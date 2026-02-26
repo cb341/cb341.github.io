@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {% assign default_title = "Dani Bengl - Full-Stack Developer" %}
+    {% assign default_description = "Full-stack software developer specializing in Ruby on Rails, web applications, and modern development practices. Portfolio, blog, and projects." %}
+    {% assign site_url = "https://cb341.dev" %}
+
+    {% if page.title %}
+      {% assign page_title = page.title | append: " | " | append: default_title %}
+    {% else %}
+      {% assign page_title = default_title %}
+    {% endif %}
+
+    {% if page.description %}
+      {% assign page_description = page.description %}
+    {% else %}
+      {% assign page_description = default_description %}
+    {% endif %}
+
+    {% if page.image %}
+      {% assign page_image = site_url | append: page.image %}
+    {% else %}
+      {% assign page_image = site_url | append: "/og-image.png" %}
+    {% endif %}
+
+    {% assign current_url = site_url | append: page.url %}
+
+    <title>{{ page_title }}</title>
+    <meta name="title" content="{{ page_title }}" />
+    <meta name="description" content="{{ page_description }}" />
+    <meta name="author" content="Dani Bengl" />
+    <link rel="canonical" href="{{ current_url }}" />
+
+    {% if page.date %}
+      {% assign og_type = "article" %}
+    {% else %}
+      {% assign og_type = "website" %}
+    {% endif %}
+
+    <meta property="og:type" content="{{ og_type }}" />
+    <meta property="og:url" content="{{ current_url }}" />
+    <meta property="og:title" content="{{ page_title }}" />
+    <meta property="og:description" content="{{ page_description }}" />
+    <meta property="og:image" content="{{ page_image }}" />
+    <meta property="og:site_name" content="CB341.DEV" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="{{ current_url }}" />
+    <meta property="twitter:title" content="{{ page_title }}" />
+    <meta property="twitter:description" content="{{ page_description }}" />
+    <meta property="twitter:image" content="{{ page_image }}" />
+    <meta property="twitter:creator" content="@cb341" />
+
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <link rel="alternate" type="application/rss+xml" title="CB341.DEV RSS Feed" href="/rss.xml" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "{% if og_type == 'article' %}BlogPosting{% else %}WebPage{% endif %}",
+      "headline": {{ page.title | default: default_title | jsonify }},
+      "description": {{ page_description | jsonify }},
+      "url": {{ current_url | jsonify }},
+      "author": {
+        "@type": "Person",
+        "name": "Dani Bengl",
+        "url": {{ site_url | jsonify }},
+        "sameAs": [
+          "https://github.com/cb341",
+          "https://www.linkedin.com/in/daniel-bengl",
+          "https://www.codewars.com/users/cb341"
+        ]
+      }{% if page.date %},
+      "datePublished": "{{ page.date | date_to_xmlschema }}",
+      "dateModified": "{{ page.date | date_to_xmlschema }}"{% endif %}{% if page.tags %},
+      "keywords": {{ page.tags | join: ", " | jsonify }}{% endif %}
+    }
+    </script>
+
+    <style>
+      img {
+        width: 100%;
+        height: auto;
+      }
+
+      pre {
+        overflow-x: auto;
+      }
+
+      @media (max-width: 880px) {
+        body {
+          padding: 0.5rem;
+        }
+        .mobile-table thead {
+          display: none;
+        }
+        .mobile-table tr {
+          display: block;
+          border-bottom: 1px solid #ddd;
+        }
+        .mobile-table td {
+          display: block;
+          border-bottom: none;
+        }
+        .mobile-table td:before {
+          content: attr(data-label) ": ";
+          font-weight: bold;
+        }
+      }
+    </style>
+  </head>
+  <body style="max-width: 80ch; margin: 0 auto; overflow-y: scroll">
+    <header role="banner">
+      <h1>
+        <center>
+          <a href="/" aria-label="CB341.DEV - Home"{% if page.url == "/" %} aria-current="page"{% endif %}>CB341.DEV</a>
+        </center>
+      </h1>
+      <nav role="navigation" aria-label="Main navigation">
+        <center>
+          <a href="/"{% if page.url == "/" %} aria-current="page"{% endif %}>Home</a>
+          |
+          <a href="/about/"{% if page.url == "/about/" %} aria-current="page"{% endif %}>About</a>
+          |
+          <a href="/uses/"{% if page.url == "/uses/" %} aria-current="page"{% endif %}>Uses</a>
+          |
+          <a href="/til/"{% if page.url == "/til/" %} aria-current="page"{% endif %}>TIL</a>
+          |
+          <a href="/blog/"{% if page.url == "/blog/" or page.url contains "/blog/" %} aria-current="page"{% endif %}>Blog</a>
+          |
+          <a href="/projects/"{% if page.url == "/projects/" or page.url contains "/projects/" %} aria-current="page"{% endif %}>Projects</a>
+        </center>
+      </nav>
+      <nav role="navigation" aria-label="Social media links">
+        <center>
+          <a href="https://github.com/cb341" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile (opens in new tab)">GitHub</a>
+          |
+          <a href="https://www.codewars.com/users/cb341" target="_blank" rel="noopener noreferrer" aria-label="Codewars profile (opens in new tab)">Codewars</a>
+          |
+          <a href="https://mastodon.social/deck/@cb341" target="_blank" rel="noopener noreferrer" aria-label="Mastodon profile (opens in new tab)">Mastodon</a>
+          |
+          <a href="https://www.linkedin.com/in/daniel-bengl" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile (opens in new tab)">LinkedIn</a>
+        </center>
+      </nav>
+    </header>
+
+    <main id="main-content" role="main">
+      {{ content }}
+    </main>
+
+    <footer role="contentinfo">
+      <center>
+        <p>
+          &copy; {{ "now" | date: "%Y" }} Dani Bengl.
+          Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>.
+        </p>
+      </center>
+    </footer>
+
+    <script>
+      function makeTablesResponsive() {
+        var tables = document.querySelectorAll("table");
+
+        tables.forEach(function(table) {
+          if (table.hasAttribute("data-responsive")) return;
+          table.setAttribute("data-responsive", "true");
+
+          var headers = Array.from(table.querySelectorAll("thead th")).map(function(th) {
+            return th.textContent ? th.textContent.trim() : "";
+          });
+
+          table.classList.add("mobile-table");
+
+          var rows = table.querySelectorAll("tbody tr");
+          rows.forEach(function(row) {
+            var cells = row.querySelectorAll("td");
+            cells.forEach(function(cell, index) {
+              if (headers[index]) {
+                cell.setAttribute("data-label", headers[index]);
+              }
+            });
+          });
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", makeTablesResponsive);
+    </script>
+  </body>
+</html>
