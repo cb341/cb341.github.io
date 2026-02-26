@@ -19,4 +19,4 @@ jobs:
           node-version: "lts/*"
       - run: npm install -g prettier
       - run: bin/build
-      - run: bin/check
+      - run: bin/htmlproofer
