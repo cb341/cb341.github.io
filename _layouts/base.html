@@ -120,22 +120,22 @@
     <header role="banner">
       <h1>
         <center>
-          <a href="/" aria-label="CB341.DEV - Home"{% if page.url == "/" %} aria-current="page"{% endif %}>CB341.DEV</a>
+          <a href="/" aria-label="CB341.DEV - Home"{% if page.url == "/" %} aria-current="page"{% endif %}>{% if page.url == "/" %}<b>CB341.DEV</b>{% else %}CB341.DEV{% endif %}</a>
         </center>
       </h1>
       <nav role="navigation" aria-label="Main navigation">
         <center>
-          <a href="/"{% if page.url == "/" %} aria-current="page"{% endif %}>Home</a>
+          <a href="/"{% if page.url == "/" %} aria-current="page"{% endif %}>{% if page.url == "/" %}<b>Home</b>{% else %}Home{% endif %}</a>
           |
-          <a href="/about/"{% if page.url == "/about/" %} aria-current="page"{% endif %}>About</a>
+          <a href="/about"{% if page.url == "/about/" %} aria-current="page"{% endif %}>{% if page.url == "/about/" %}<b>About</b>{% else %}About{% endif %}</a>
           |
-          <a href="/uses/"{% if page.url == "/uses/" %} aria-current="page"{% endif %}>Uses</a>
+          <a href="/uses"{% if page.url == "/uses/" %} aria-current="page"{% endif %}>{% if page.url == "/uses/" %}<b>Uses</b>{% else %}Uses{% endif %}</a>
           |
-          <a href="/til/"{% if page.url == "/til/" %} aria-current="page"{% endif %}>TIL</a>
+          <a href="/til"{% if page.url == "/til/" %} aria-current="page"{% endif %}>{% if page.url == "/til/" %}<b>TIL</b>{% else %}TIL{% endif %}</a>
           |
-          <a href="/blog/"{% if page.url == "/blog/" or page.url contains "/blog/" %} aria-current="page"{% endif %}>Blog</a>
+          <a href="/blog"{% if page.url == "/blog/" or page.url contains "/blog/" %} aria-current="page"{% endif %}>{% if page.url == "/blog/" or page.url contains "/blog/" %}<b>Blog</b>{% else %}Blog{% endif %}</a>
           |
-          <a href="/projects/"{% if page.url == "/projects/" or page.url contains "/projects/" %} aria-current="page"{% endif %}>Projects</a>
+          <a href="/projects"{% if page.url == "/projects/" or page.url contains "/projects/" %} aria-current="page"{% endif %}>{% if page.url == "/projects/" or page.url contains "/projects/" %}<b>Projects</b>{% else %}Projects{% endif %}</a>
         </center>
       </nav>
       <nav role="navigation" aria-label="Social media links">
@@ -157,10 +157,17 @@
 
     <footer role="contentinfo">
       <center>
-        <p>
-          &copy; {{ "now" | date: "%Y" }} Dani Bengl.
-          Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>.
-        </p>
+        <hr>
+        <p><small>&copy; {{ "now" | date: "%Y" }} cb341. Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>.</small></p>
+        <a href="https://github.com/cb341" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile (opens in new tab)">GitHub</a>
+        |
+        <a href="https://discord.com/users/456151064484249612" target="_blank" rel="noopener noreferrer" aria-label="Discord profile (opens in new tab)">Discord</a>
+        |
+        <a href="https://mastodon.social/deck/@cb341" target="_blank" rel="noopener noreferrer" aria-label="Mastodon profile (opens in new tab)">Mastodon</a>
+        |
+        <a href="https://www.linkedin.com/in/daniel-bengl" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile (opens in new tab)">LinkedIn</a>
+        |
+        <a href="/rss.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS Feed (opens in new tab)">RSS Feed</a>
       </center>
     </footer>
 
