@@ -1,0 +1,68 @@
+---
+title: "About"
+description: "Learn about Dani Bengl, a full-stack software developer specializing in Ruby on Rails, web development, and computer graphics. Currently studying at ZHAW."
+permalink: /about/
+---
+
+<h1>About Me</h1>
+<p>
+  <small>
+    <a href="https://en.pronouns.page/@cb341" target="_blank" rel="noopener noreferrer" aria-label="Learn about pronouns (opens in new tab)">(it/its)</a>
+  </small>
+</p>
+
+<section aria-labelledby="professional-heading">
+  <h2 id="professional-heading">Professional</h2>
+  <p>
+    I'm a full-stack software developer at <a href="https://www.renuo.ch/" target="_blank" rel="noopener noreferrer">Renuo</a>, a Swiss web development company specializing in <a href="https://rubyonrails.org/" target="_blank" rel="noopener noreferrer">Ruby on Rails</a>. I work on building robust web applications and enjoy the elegance and productivity that Rails brings to development.
+  </p>
+</section>
+
+<section aria-labelledby="education-heading">
+  <h2 id="education-heading">Education</h2>
+  <p>
+    I'm currently an aspiring software engineer in my 1st year studying Bachelor of Applied Computer Science at <a href="https://www.zhaw.ch/" target="_blank" rel="noopener noreferrer">ZHAW</a> (Zurich University of Applied Sciences).
+  </p>
+</section>
+
+<section aria-labelledby="interests-heading">
+  <h2 id="interests-heading">Interests</h2>
+  <p>
+    I have a deep appreciation for mathematics and find beauty in its logical structures and problem-solving approaches. This mathematical mindset helps me approach programming challenges with analytical thinking.
+  </p>
+
+  <p>
+    My technical interests include web development and computer graphics. I enjoy creating interactive experiences and exploring the intersection of code and visual design.
+  </p>
+</section>
+
+<section aria-labelledby="hobbies-heading">
+  <h2 id="hobbies-heading">Hobbies</h2>
+  <p>When I'm not working, you'll find me:</p>
+
+  <ul>
+    <li><strong>Coding</strong> - Working on personal projects and exploring new technologies</li>
+    <li><strong>Reading about coding</strong> - Staying up-to-date with development trends and best practices</li>
+    <li><strong>Linux ricing</strong> - Customizing and optimizing my Linux desktop environment</li>
+    <li><strong>Customizing Neovim</strong> - Fine-tuning my development environment for maximum productivity</li>
+    <li>
+      <strong>Factory games</strong> - Playing automation and building games like:
+      <ul>
+        <li>Satisfactory</li>
+        <li>Astroneer</li>
+        <li>Minecraft (especially technical/redstone builds and automated farms)</li>
+      </ul>
+    </li>
+  </ul>
+
+  <p>
+    I'm drawn to games that involve systems thinking, optimization, and creative problem-solving, the same skills that make programming so enjoyable.
+  </p>
+</section>
+
+<section aria-labelledby="contact-heading">
+  <h2 id="contact-heading">Get in Touch</h2>
+  <p>
+    Feel free to reach out if you'd like to discuss technology, collaborate on projects, or just chat about programming and development! Check out the footer for my social links.
+  </p>
+</section>
