@@ -22,7 +22,6 @@ permalink: /blog/
         {%- endif %}
       </div>
       <p>{{ latest_post.description }}</p>
-      <p><a href="{{ latest_post.url }}">Read more</a></p>
     </article>
   </section>
   {%- if older_posts.size > 0 %}
@@ -44,7 +43,6 @@ permalink: /blog/
         {%- if post.description %}
         <p>{{ post.description }}</p>
         {%- endif %}
-        <p><a href="{{ post.url }}">Read more</a></p>
       </article>
       {%- endfor %}
     </div>
