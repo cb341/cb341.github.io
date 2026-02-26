@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 set -e
 
-bundle exec jekyll build --quiet
 prettier --check "_site/**/*.html"

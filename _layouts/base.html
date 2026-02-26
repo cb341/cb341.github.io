@@ -1,11 +1,27 @@
 {%- assign default_title = "Dani Bengl - Full-Stack Developer" -%}
 {%- assign default_description = "Full-stack software developer specializing in Ruby on Rails, web applications, and modern development practices. Portfolio, blog, and projects." -%}
 {%- assign site_url = "https://cb341.dev" -%}
-{%- if page.title -%}{%- assign page_title = page.title | append: " | " | append: default_title -%}{%- else -%}{%- assign page_title = default_title -%}{%- endif -%}
-{%- if page.description -%}{%- assign page_description = page.description -%}{%- else -%}{%- assign page_description = default_description -%}{%- endif -%}
-{%- if page.image -%}{%- assign page_image = site_url | append: page.image -%}{%- else -%}{%- assign page_image = site_url | append: "/og-image.png" -%}{%- endif -%}
+{%- if page.title -%}
+  {%- assign page_title = page.title | append: " | " | append: default_title -%}
+{%- else -%}
+  {%- assign page_title = default_title -%}
+{%- endif -%}
+{%- if page.description -%}
+  {%- assign page_description = page.description -%}
+{%- else -%}
+  {%- assign page_description = default_description -%}
+{%- endif -%}
+{%- if page.image -%}
+  {%- assign page_image = site_url | append: page.image -%}
+{%- else -%}
+  {%- assign page_image = site_url | append: "/og-image.png" -%}
+{%- endif -%}
 {%- assign current_url = site_url | append: page.url -%}
-{%- if page.date -%}{%- assign og_type = "article" -%}{%- else -%}{%- assign og_type = "website" -%}{%- endif -%}
+{%- if page.date -%}
+  {%- assign og_type = "article" -%}
+{%- else -%}
+  {%- assign og_type = "website" -%}
+{%- endif -%}
 <!DOCTYPE html>
 <html lang="en">
   <head>

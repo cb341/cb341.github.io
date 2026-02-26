@@ -1,7 +1,6 @@
 title: "Dani Bengl - Full-Stack Developer"
 description: "Full-stack software developer specializing in Ruby on Rails, web applications, and modern development practices. Portfolio, blog, and projects."
 url: "https://cb341.dev"
-baseurl: ""
 
 permalink: /blog/:slug/
 
