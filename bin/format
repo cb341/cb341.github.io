@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-set -e
-
-prettier --check "_site/**/*.html"
