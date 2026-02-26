@@ -1,0 +1,89 @@
+---
+layout: base
+title: "Dani Bengl - Portfolio"
+description: "Full-stack software developer specializing in Ruby on Rails, web applications, and modern development practices. Portfolio, blog, and projects."
+permalink: /
+---
+
+<div>
+  <div>
+    <h1>Hello, I'm Dani!</h1>
+    <small>
+      <a href="https://en.pronouns.page/@cb341" target="_blank" rel="noopener noreferrer" aria-label="Learn about pronouns (opens in new tab)">(it/its)</a>
+    </small>
+    <p>
+      I'm a full-stack software developer at <a href="https://www.renuo.ch/" target="_blank" rel="noopener noreferrer">Renuo</a>, a Swiss web development company specializing in <a href="https://rubyonrails.org/" target="_blank" rel="noopener noreferrer">Ruby on Rails</a>. I work on building robust web applications and enjoy the elegance and productivity that Rails brings to development.
+    </p>
+
+    <nav aria-label="Quick navigation">
+      <ul>
+        <li><a href="/about/">About Me</a></li>
+        <li><a href="/projects/">View Projects</a></li>
+        <li><a href="/blog/">Read Blog</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+{% assign latest_post = site.posts.first %}
+{% if latest_post %}
+<section aria-labelledby="latest-post-heading">
+  <h2 id="latest-post-heading">Latest Blog Post</h2>
+
+  <article>
+    <h3>
+      <a href="{{ latest_post.url }}" aria-label="Read blog post: {{ latest_post.title }}">
+        {{ latest_post.title }}
+      </a>
+    </h3>
+
+    <div>
+      <em>
+        Published on
+        <time datetime="{{ latest_post.date | date_to_xmlschema }}">
+          {{ latest_post.date | date: "%d.%m.%Y" }}
+        </time>
+      </em>
+    </div>
+
+    <p>{{ latest_post.description }}</p>
+
+    <p>
+      <a href="{{ latest_post.url }}" aria-label="Continue reading {{ latest_post.title }}">
+        Read more
+      </a>
+    </p>
+  </article>
+
+  <p>
+    <a href="/blog/" aria-label="View all blog posts">All Posts</a>
+  </p>
+</section>
+{% endif %}
+
+<section aria-labelledby="featured-project-heading">
+  <h2 id="featured-project-heading">Featured Project</h2>
+
+  {% assign featured_project = site.projects.first %}
+  {% if featured_project %}
+  <article>
+    <h3>
+      <a href="{{ featured_project.url }}" aria-label="View project: {{ featured_project.title }}">
+        {{ featured_project.title }}
+      </a>
+    </h3>
+    <p>{{ featured_project.description }}</p>
+    {% if featured_project.tags %}
+    <p>
+      {% for tag in featured_project.tags %}
+      <small>{{ tag }}</small>{% unless forloop.last %} {% endunless %}
+      {% endfor %}
+    </p>
+    {% endif %}
+  </article>
+  {% endif %}
+
+  <p>
+    <a href="/projects/" aria-label="View all projects">All Projects</a>
+  </p>
+</section>
