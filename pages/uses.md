@@ -27,7 +27,7 @@ Hello there! I often get asked about the tools and resources I use for my work. 
 - **[Ghostty](https://ghostty.org/)**: This is my terminal on macOS.
 - **[Alacritty](https://github.com/alacritty/alacritty)**: This is my primary terminal on Linux. You can find the configuration in my [dotfiles](https://github.com/cb341/dotfiles/blob/main/.config/alacritty/alacritty.toml).
 - **[LazyGit](https://github.com/jesseduffield/lazygit)**: This is my git client. You can find the configuration in my [dotfiles](https://github.com/cb341/dotfiles/blob/main/lazygit/config.yml)
-- **[Zsh](https://ohmyz.sh/)**: This is my shell. You can find the configuration in my [dotfiles](https://github.com/cb341/dotfiles/.zshrc)
+- **[Zsh](https://ohmyz.sh/)**: This is my shell. You can find the configuration in my [dotfiles](https://github.com/cb341/dotfiles/blob/main/.zshrc)
 - **[Tmux](https://github.com/tmux/tmux/wiki)**: This is my terminal multiplexer. You can find the configuration in my [dotfiles](https://github.com/cb341/dotfiles/blob/main/.tmux.conf)
 - **[GitHub CLI](https://cli.github.com/)**: Used on a daily basis to initialize repositories, create PRs
 

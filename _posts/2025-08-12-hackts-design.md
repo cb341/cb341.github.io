@@ -32,7 +32,7 @@ While using images and clickable areas may allow for faster development, it comp
 ## A Possible Solution
 
 A more efficient solution could be to build a GUI editor in Rails for placing visual components.
-Such an editor could work similarly to [JavaFX Scene Builder](https://openjfx.io/scenebuilder/) or other drag and drop UI layout tools. Developers could place images, text, and overlays directly in the browser, adjusting positions interactively instead of editing CSS values and refreshing the page.
+Such an editor could work similarly to [JavaFX Scene Builder](https://gluonhq.com/products/scene-builder/) or other drag and drop UI layout tools. Developers could place images, text, and overlays directly in the browser, adjusting positions interactively instead of editing CSS values and refreshing the page.
 
 The implementation could store element coordinates and properties in the database, with `position: relative` containers handling placement in the final rendering. This would allow pixel accurate adjustments without touching the stylesheets for every change.
 
