@@ -31,11 +31,7 @@ jobs:
           node-version: "lts/*"
       - run: npm install -g prettier
       - run: bin/build
-      - run: |
-          # linkedin.com, amd.com, seagate.com, corsair.com, reddit.com: bot-blocking (links are valid, fail without browser UA)
-          bundle exec htmlproofer _site \
-            --ignore-urls "/linkedin\.com/,/amd\.com/,/seagate\.com/,/corsair\.com/,/reddit\.com/,/cb341\.dev\/blog\/tags/" \
-            --ignore-status-codes "429,999"
+      - run: bin/check
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
