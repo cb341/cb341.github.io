@@ -120,22 +120,17 @@
     <header role="banner">
       <h1>
         <center>
-          <a href="/" aria-label="CB341.DEV - Home"{% if page.url == "/" %} aria-current="page"{% endif %}>{% if page.url == "/" %}<b>CB341.DEV</b>{% else %}CB341.DEV{% endif %}</a>
+          {% include navlink.html href="/" label="CB341.DEV" aria-label="CB341.DEV - Home" %}
         </center>
       </h1>
       <nav role="navigation" aria-label="Main navigation">
         <center>
-          <a href="/"{% if page.url == "/" %} aria-current="page"{% endif %}>{% if page.url == "/" %}<b>Home</b>{% else %}Home{% endif %}</a>
-          |
-          <a href="/about"{% if page.url == "/about/" %} aria-current="page"{% endif %}>{% if page.url == "/about/" %}<b>About</b>{% else %}About{% endif %}</a>
-          |
-          <a href="/uses"{% if page.url == "/uses/" %} aria-current="page"{% endif %}>{% if page.url == "/uses/" %}<b>Uses</b>{% else %}Uses{% endif %}</a>
-          |
-          <a href="/til"{% if page.url == "/til/" %} aria-current="page"{% endif %}>{% if page.url == "/til/" %}<b>TIL</b>{% else %}TIL{% endif %}</a>
-          |
-          <a href="/blog"{% if page.url == "/blog/" or page.url contains "/blog/" %} aria-current="page"{% endif %}>{% if page.url == "/blog/" or page.url contains "/blog/" %}<b>Blog</b>{% else %}Blog{% endif %}</a>
-          |
-          <a href="/projects"{% if page.url == "/projects/" or page.url contains "/projects/" %} aria-current="page"{% endif %}>{% if page.url == "/projects/" or page.url contains "/projects/" %}<b>Projects</b>{% else %}Projects{% endif %}</a>
+          {% include navlink.html href="/" label="Home" %}
+          | {% include navlink.html href="/about" label="About" %}
+          | {% include navlink.html href="/uses" label="Uses" %}
+          | {% include navlink.html href="/til" label="TIL" %}
+          | {% include navlink.html href="/blog" label="Blog" %}
+          | {% include navlink.html href="/projects" label="Projects" %}
         </center>
       </nav>
       <nav role="navigation" aria-label="Social media links">
