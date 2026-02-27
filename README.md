@@ -22,7 +22,7 @@ Visit `localhost:4000` to view the site.
 bin/build
 ```
 
-Runs `jekyll build` and formats output with `prettier`.
+Runs `jekyll build` and formats output HTML with `htmlbeautifier`.
 
 ## Check
 

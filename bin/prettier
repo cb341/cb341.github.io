@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-set -e
-
-# Only check .md files — .html files contain Liquid templates which prettier mangles
-prettier --check "**/*.md" --ignore-path .gitignore
