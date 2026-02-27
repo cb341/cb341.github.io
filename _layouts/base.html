@@ -1,9 +1,11 @@
 {%- assign site_url = "https://cb341.dev" -%}
 {%- assign default_title = "Dani Bengl - Full-Stack Developer" -%}
 {%- assign default_description = "Full-stack software developer specializing in Ruby on Rails, web applications, and modern development practices. Portfolio, blog, and projects." -%}
+{%- comment -%} " | " separator: e.g. "About | Dani Bengl - Full-Stack Developer" {%- endcomment -%}
 {%- assign page_title = page.title | append: " | " | append: default_title | default: default_title -%}
 {%- assign page_description = page.description | default: default_description -%}
 {%- assign current_url = site_url | append: page.url -%}
+{%- comment -%} og_type: posts have page.date set; everything else is a website {%- endcomment -%}
 {%- if page.date -%}
   {%- assign og_type = "article" -%}
 {%- else -%}
@@ -26,6 +28,7 @@
     <meta property="og:image" content="{{ site_url }}/og-image.png" />
     <meta property="og:site_name" content="CB341.DEV" />
     <meta property="og:locale" content="en_US" />
+    <!-- TODO: create og-image.png for social sharing previews -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="{{ current_url }}" />
     <meta property="twitter:title" content="{{ page_title }}" />
@@ -64,6 +67,7 @@
         text-align: center;
       }
 
+      /* reset: body centers header/footer, main overrides back to left */
       main {
         text-align: left;
       }
