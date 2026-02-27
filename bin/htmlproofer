@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -e
+
+# linkedin.com, amd.com, seagate.com, corsair.com, reddit.com: bot-blocking (links are valid, fail without browser UA)
+# TODO: remove /cb341\.dev\/blog\/tags/ once deployed
+bundle exec htmlproofer _site \
+  --ignore-urls "/linkedin\.com/,/amd\.com/,/seagate\.com/,/corsair\.com/,/reddit\.com/,/cb341\.dev\/blog\/tags/" \
+  --ignore-status-codes "429,999"

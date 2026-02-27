@@ -1,0 +1,31 @@
+title: "Dani Bengl - Full-Stack Developer"
+description: "Full-stack software developer specializing in Ruby on Rails, web applications, and modern development practices. Portfolio, blog, and projects."
+url: "https://cb341.dev"
+
+permalink: /blog/:slug/
+
+collections:
+  projects:
+    output: true
+    permalink: /projects/:slug/
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: base
+
+date_format: "%d.%m.%Y"
+
+markdown: kramdown
+kramdown:
+  syntax_highlighter: none
+
+plugins:
+  - jekyll-sitemap
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - bin/
+  - design.md

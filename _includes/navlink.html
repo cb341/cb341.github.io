@@ -1,0 +1,11 @@
+{%- assign active = false -%}
+{%- if include.href == "/" -%}
+  {%- if page.url == "/" -%}{%- assign active = true -%}{%- endif -%}
+{%- elsif page.url contains include.href -%}
+  {%- assign active = true -%}
+{%- endif -%}
+{%- if active -%}
+  <a href="{{ include.href }}" aria-current="page"><b>{{ include.label }}</b></a>
+{%- else -%}
+  <a href="{{ include.href }}">{{ include.label }}</a>
+{%- endif -%}
