@@ -34,6 +34,7 @@ jobs:
       - id: deployment
         uses: actions/deploy-pages@v4
       - name: Purge Cloudflare cache
+        if: steps.deployment.outcome == 'success'
         run: |
           curl -s -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache" \
             -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
