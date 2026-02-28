@@ -33,6 +33,7 @@ Some notable software written in Rust includes:
 > [YouTube interview](https://www.youtube.com/watch?v=TGfQu0bQTKc&t=95s) by [Programmers Are Also Human](https://www.youtube.com/@programmersarealsohuman5909),
 
 ![Ferris the Rustacean](/assets/blog/ferris-rustacean.webp)
+_Ferris, the unofficial Rust mascot_
 
 ## Picking a game engine
 

@@ -5,7 +5,8 @@ description: "Discover how to implement Hotwire's Turbo Streams and Stimulus in 
 tags: ["bunjs", "hotwire", "websockets"]
 ---
 
-![Image description](/assets/blog/hotwire-demo.webp)
+![Hotwire Turbo Streams demo running outside of Rails](/assets/blog/hotwire-demo.webp)
+_A live Turbo Streams chat demo built with BunJS_
 
 This blog article is inspired by a [Hotwire Turbo streams tutorial for Sinatra](https://www.writesoftwarewell.com/understanding-hotwire-turbo-streams/ "https://www.writesoftwarewell.com/understanding-hotwire-turbo-streams/").
 
@@ -67,6 +68,7 @@ Our approach involves implementing the **multiple publisher - multiple subscribe
 Here is a simple sequence diagram showing the core idea of this project:
 
 ![Sequence diagram of the client-server interactions](/assets/blog/hotwire-sequence-diagram.webp)
+_Multiple publisher / multiple subscriber pattern over WebSockets_
 
 ### Implement the server
 

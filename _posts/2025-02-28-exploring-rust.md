@@ -10,6 +10,7 @@ At Renuo, we love Ruby. It's simple, elegant, and powerful. But let's be honest,
 Over the last couple of months, I've been exploring low-level programming, hoping to bridge the gap between the high-level world of Ruby and the lower-level world of systems programming. To do this, I started working on my first Rust project: a blazingly fast voxel "game" called [rsmc](https://github.com/cb341/rsmc). It features a terrain generator, meshing, a scalable client-server architecture, and custom serialized messages for high-speed communication. This project has been my playground for learning Rust, and in this post, I'll share some of the lessons I've learned along the way.
 
 ![Early stage of development in RSMC. Renet visualiser for simultanous client/server connections.](/assets/blog/rsmc-early-development.webp)
+_Early RSMC development with the Renet visualiser showing simultaneous client/server connections_
 
 ## Why Rust?
 
@@ -129,6 +130,7 @@ Rust isn't the easiest language to pick up. The borrow checker takes time to und
 One of the biggest disadvantages to me is compile times. They can be frustrating since Rust enforces strict checks, but this reduces runtime errors. There's even an [XKCD comic](https://xkcd.com/303/) about it.
 
 ![XKCD 303 - The #1 programmer excuse for legitimately slacking off: "My code's compiling"](/assets/blog/xkcd-compiling.webp)
+_[XKCD 303](https://xkcd.com/303/) the Rust compile time experience_
 
 From my experience, Rust has its trade-offs. Catching many errors at compile time reduces debugging effort, but the strict rules and verbosity make writing new code slower compared to Ruby. That said, Rust's language servers provide excellent refactoring support, which makes working with larger projects easier.
 
