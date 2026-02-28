@@ -15,8 +15,3 @@ vendor/
 
 # jetbrains setting folder
 .idea/
-
-# Legacy Astro artifacts (to be removed)
-dist/
-.astro/
-node_modules/
