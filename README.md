@@ -19,10 +19,10 @@ Visit `localhost:4000` to view the site.
 ## Build
 
 ```sh
-bin/build
+bundle exec jekyll build
 ```
 
-Runs `jekyll build` and formats output HTML with `htmlbeautifier`.
+Formats output HTML with `htmlbeautifier` automatically via a Jekyll hook.
 
 ## Check
 
