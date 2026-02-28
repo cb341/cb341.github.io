@@ -15,6 +15,4 @@ _There are many more to be documented here. [Check out my GitHub](https://github
 
 {{ project.description }}
 
-{%- if project.tags %}{{ project.tags | join: " · " }}{%- endif %}
-
 {%- endfor %}

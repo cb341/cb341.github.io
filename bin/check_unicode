@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -e
+
+# Check for non-ASCII characters in markdown and html source files.
+
+if rg --glob "*.md" --glob "*.html" --ignore-file=<(echo "_site\n.git") '[^\x00-\x7F]' .; then
+  echo "Non-ASCII characters found (see above)."
+  exit 1
+fi
+
+echo "No non-ASCII characters found."

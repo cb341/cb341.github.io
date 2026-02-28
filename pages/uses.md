@@ -35,7 +35,7 @@ permalink: /uses/
 
 ## PC
 
-Currently not in use — primary workflow is macOS. Sometimes booting into **[Arch Linux](https://archlinux.org/)** (btw) for Rust builds and learning. Looking forward to building a proper Linux Threadripper workstation someday.
+Currently not in use, primary workflow is macOS. Sometimes booting into **[Arch Linux](https://archlinux.org/)** (btw) for Rust builds and learning. Looking forward to building a proper Linux Threadripper workstation someday.
 
 - **CPU**: [Ryzen 7 5800x](https://www.amd.com/en/products/processors/desktops/ryzen/5000-series/amd-ryzen-7-5800x.html)
 - **GPU**: [AMD 7900XTX Sapphire](https://www.sapphiretech.com/en/consumer/nitro-radeon-rx-7900-xtx-vaporx-24g-gddr6)

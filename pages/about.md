@@ -18,7 +18,7 @@ READ THE DOCS.
 
 I love Rust and use it for personal projects, hoping to work on a real production codebase with it someday. Most of my free time goes into building things, or learning about building things. I want to understand the world around me. It takes time.
 
-> "You don't change VIM, VIM changes YOU" — [Interview with a VIM Enthusiast](https://www.youtube.com/watch?v=9n1dtmzqnCU)
+> "You don't change VIM, VIM changes YOU" -- [Interview with a VIM Enthusiast](https://www.youtube.com/watch?v=9n1dtmzqnCU)
 
 If you're not an engineer or mathematician, don't expect us to get along. Ask me about Ruby symbols or my favourite parts of IEEE 754, not how the weather's been.
 

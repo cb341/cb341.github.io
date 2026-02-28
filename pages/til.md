@@ -7,7 +7,7 @@ permalink: /til/
 
 A collection of quick notes and snippets that I've learned day to day. These are small discoveries, tips, and insights that I find worth remembering.
 
-> "If you have knowledge, let others light their candles in it." — Margaret Fuller
+> "If you have knowledge, let others light their candles in it." -- Margaret Fuller
 
 I'm not posting here as often after authoring and maintaining [til.renuo.ch](https://til.renuo.ch). You'll find most of my new learnings there, among some of my colleagues.
 

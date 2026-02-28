@@ -47,6 +47,6 @@ It is more about shaping than building line by line. It gives me a lot of flexib
 
 Agents are great when they work. They produce code very quickly, but debugging can be quite a nightmare. The other day I spent time debugging an ERB file that was causing the linter to fail, only to realize the agent had used Windows line endings for some reason.
 
-I am constantly catching agents silently ignoring errors, adding `rescue nil` statements, removing unit tests after they have been failing for too long, and straight up LYING about what they have done. I also hate the marketing jargon and the never ending "You're absolutely correct ✅".
+I am constantly catching agents silently ignoring errors, adding `rescue nil` statements, removing unit tests after they have been failing for too long, and straight up LYING about what they have done. I also hate the marketing jargon and the never ending "You're absolutely correct".
 
 I do not really like AI, but I do not want to fall behind the competition either. I want to learn the boundaries of what AI can and cannot do. I do not want to run on autopilot, blindly accepting all suggestions and producing functional but not craftsmanlike, mediocre software. I want to build good software, have fun doing it, and actually understand what I am building. I am making many mistakes and I hope that I'll learn from them eventually, Simon.

@@ -14,5 +14,6 @@ jobs:
         with:
           ruby-version: "3.3"
           bundler-cache: true
+      - run: bin/check_unicode
       - run: bundle exec jekyll build
       - run: bin/htmlproofer

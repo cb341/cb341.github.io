@@ -164,17 +164,18 @@ I separated the ECS components into specific modules to structure the Bevy proje
 
 ```
 src
-├── client
-│   ├── components.rs
-│   ├── events.rs
-│   ├── main.rs
-│   ├── resources.rs
-│   └── systems.rs
-├── lib.rs
-└── server
-    ├── main.rs
-    ├── resources.rs
-    └── systems.rs
+src/
+  client/
+    components.rs
+    events.rs
+    main.rs
+    resources.rs
+    systems.rs
+  lib.rs
+  server/
+    main.rs
+    resources.rs
+    systems.rs
 ```
 
 Defining various entry points is as simple as adding this to the `Cargo.toml` file:

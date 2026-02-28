@@ -181,7 +181,7 @@ This method of HTML updates stands out for its transparency and simplicity. Firs
 
 Before introducing turbo, we added a simple event listener to reset the Form after the data has been sent to the server. We now need to bring the functionality back, but without reusing the old code. We could use a turbo-stream to reset the form or even a turbo-frame, but rather than using that, I decided to use another library of the Hotwire framework, namely Stimulus:
 
-> Stimulus is a JavaScript framework with modest ambitions. It doesn't seek to take over your entire front-end—in fact, it's not concerned with rendering HTML at all. Instead, it's designed to augment your HTML with just enough behavior to make it shine.
+> Stimulus is a JavaScript framework with modest ambitions. It doesn't seek to take over your entire front-end -- in fact, it's not concerned with rendering HTML at all. Instead, it's designed to augment your HTML with just enough behavior to make it shine.
 >
 > [https://stimulus.hotwired.dev/](https://stimulus.hotwired.dev/ "https://stimulus.hotwired.dev/")
 

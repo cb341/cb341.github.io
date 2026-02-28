@@ -130,13 +130,13 @@
       {{ content }}
       <nav role="navigation" aria-label="Post navigation">
         <hr>
-        <a href="https://github.com/cb341/cb341.github.io/blob/main/{{ page.path }}" target="_blank" rel="noopener noreferrer">GitHub &nearr;</a>
+        <a href="https://github.com/cb341/cb341.github.io/blob/main/{{ page.path }}" target="_blank" rel="noopener noreferrer">GitHub</a>
         {%- if page.date %}
         {% if page.previous %}
-        | <a href="{{ page.previous.url }}">&larr; {{ page.previous.title }}</a>
+        | <a href="{{ page.previous.url }}">< {{ page.previous.title }}</a>
         {% endif %}
         {% if page.next %}
-        | <a href="{{ page.next.url }}">{{ page.next.title }} &rarr;</a>
+        | <a href="{{ page.next.url }}">{{ page.next.title }} ></a>
         {% endif %}
         {%- endif -%}
       </nav>
@@ -144,7 +144,7 @@
 
     <footer role="contentinfo">
       <hr>
-      <p><small>&copy; {{ "now" | date: "%Y" }} cb341. Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>.</small></p>
+      <p><small>(c) {{ "now" | date: "%Y" }} cb341. Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>.</small></p>
       <a href="https://discord.com/users/456151064484249612" target="_blank" rel="noopener noreferrer">Discord</a>
       |
       <a href="https://mastodon.social/deck/@cb341" target="_blank" rel="noopener noreferrer">Mastodon</a>
