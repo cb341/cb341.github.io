@@ -1,5 +1,5 @@
 ---
-title: "Extending Hotwire beyond Ruby on Rails"
+title: "Hotwire Outside of Rails"
 date: 2024-08-03
 description: "Discover how to implement Hotwire's Turbo Streams and Stimulus in a BunJS application, proving that reactive web development isn't exclusive to Rails. Learn to build real-time chat functionality using WebSockets, Turbo Streams for DOM updates, and Stimulus controllers for interactive behavior. A practical guide that demonstrates the versatility of Hotwire technologies beyond the Ruby ecosystem."
 tags: ["bunjs", "hotwire", "websockets"]

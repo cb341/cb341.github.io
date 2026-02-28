@@ -128,6 +128,18 @@
 
     <main id="main-content" role="main">
       {{ content }}
+      {%- if page.date -%}
+      <nav role="navigation" aria-label="Post navigation">
+        <hr>
+        <a href="https://github.com/cb341/cb341.github.io/blob/main/{{ page.path }}" target="_blank" rel="noopener noreferrer">GitHub &nearr;</a>
+        {% if page.previous %}
+        | <a href="{{ page.previous.url }}">&larr; {{ page.previous.title }}</a>
+        {% endif %}
+        {% if page.next %}
+        | <a href="{{ page.next.url }}">{{ page.next.title }} &rarr;</a>
+        {% endif %}
+      </nav>
+      {%- endif -%}
     </main>
 
     <footer role="contentinfo">
