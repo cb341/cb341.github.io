@@ -6,30 +6,30 @@ permalink: /about/
 
 # About Me
 
-<small>[(it/its)](https://en.pronouns.page/@cb341)</small>
+I'm a queer developer [(it/its)](https://en.pronouns.page/@cb341) working at [Renuo](https://www.renuo.ch/), Software on Rails as a service, while studying Computer Science (BSc) at [ZHAW](https://www.zhaw.ch/) School of Engineering, currently in my second year.
 
-## Professional
+I tend to get very into specific things, and I'd like to eventually work my way toward a PhD. One day I'll have a classroom-sized blackboard in my apartment.
 
-I'm a full-stack software developer at [Renuo](https://www.renuo.ch/), a Swiss web development company specializing in [Ruby on Rails](https://rubyonrails.org/). I work on building robust web applications and enjoy the elegance and productivity that Rails brings to development.
+I live in the terminal and like software that does one thing well. No unnecessary abstractions. [KISS](https://en.wikipedia.org/wiki/KISS_principle). I just want things to work. The web is a mess and software has gotten bloated, over-engineered, and slow. I'd rather go back to Rails and a terminal than deal with another layer of indirection. 
 
-## Education
+I live by open source and have little patience for corporate software culture.
 
-I'm currently in my 1st year studying Bachelor of Applied Computer Science at [ZHAW](https://www.zhaw.ch/) (Zurich University of Applied Sciences).
+READ THE DOCS.
 
-## Interests
+I love Rust and use it for personal projects, hoping to work on a real production codebase with it someday. Most of my free time goes into building things, or learning about building things. I want to understand the world around me. It takes time.
 
-I have a deep appreciation for mathematics and find beauty in its logical structures and problem-solving approaches. My technical interests include web development and computer graphics.
+> "You don't change VIM, VIM changes YOU" — [Interview with a VIM Enthusiast](https://www.youtube.com/watch?v=9n1dtmzqnCU)
 
-## Hobbies
+If you're not an engineer or mathematician, don't expect us to get along. Ask me about Ruby symbols or my favourite parts of IEEE 754, not how the weather's been.
 
-When I'm not working, you'll find me:
+I am trying to make the world a better place.
 
-- **Coding** — personal projects and exploring new technologies
-- **Reading about coding** — staying up-to-date with development trends
-- **Linux ricing** — customizing and optimizing my Linux desktop environment
-- **Customizing Neovim** — fine-tuning my development environment
-- **Factory games** — Satisfactory, Astroneer, Minecraft redstone
+---
 
-## Get in Touch
+- Borrowing the neighbor's cat
+- Learning chess, mostly blundering my way to a chaotic checkmate
+- Occasionally losing an afternoon to factory games
+- A little obsessed with syntax
+- Very busy. Please be patient with my response.
 
-Feel free to reach out if you'd like to discuss technology, collaborate on projects, or just chat about programming. Check out the footer for my social links.
+Inspired by [motherfuckingwebsite.com](https://motherfuckingwebsite.com/).

@@ -5,17 +5,9 @@ permalink: /
 ---
 
 <h1>Hello, I'm Dani!</h1>
-<small><a href="https://en.pronouns.page/@cb341" target="_blank" rel="noopener noreferrer">(it/its)</a></small>
 <p>
-  I'm a full-stack software developer at <a href="https://www.renuo.ch/" target="_blank" rel="noopener noreferrer">Renuo</a>, a Swiss web development company specializing in <a href="https://rubyonrails.org/" target="_blank" rel="noopener noreferrer">Ruby on Rails</a>. I work on building robust web applications and enjoy the elegance and productivity that Rails brings to development.
+  Queer developer at <a href="https://www.renuo.ch/" target="_blank" rel="noopener noreferrer">Renuo</a>, Software on Rails as a service. Studying Computer Science (BSc) at <a href="https://www.zhaw.ch/" target="_blank" rel="noopener noreferrer">ZHAW</a> School of Engineering. I live in the terminal, live by open source, and want things to work.
 </p>
-<nav aria-label="Quick navigation">
-  <ul>
-    <li><a href="/about/">About Me</a></li>
-    <li><a href="/projects/">View Projects</a></li>
-    <li><a href="/blog/">Read Blog</a></li>
-  </ul>
-</nav>
 
 {%- assign latest_post = site.posts.first -%}
 {%- if latest_post %}
@@ -26,7 +18,6 @@ permalink: /
     <em>Published on <time datetime="{{ latest_post.date | date_to_xmlschema }}">{{ latest_post.date | date: site.date_format }}</time></em>
     <p>{{ latest_post.description }}</p>
   </article>
-  <p><a href="/blog/">All Posts</a></p>
 </section>
 {%- endif %}
 
@@ -46,5 +37,4 @@ permalink: /
     {%- endif %}
   </article>
   {%- endif %}
-  <p><a href="/projects/">All Projects</a></p>
 </section>
