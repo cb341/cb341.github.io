@@ -18,7 +18,7 @@ permalink: /gallery/
 
   <td>
     <a href="{{ item.url }}">
-      <img src="{{ item.image | replace: '/webp-gallery/', '/webp-gallery/thumbs/' }}" alt="{{ item.alt }}" width="220">
+      <img src="{{ item.image | replace: '/webp-gallery/', '/webp-gallery/thumbs/' }}" alt="{{ item.alt }}"{% if item.thumb_width %} width="{{ item.thumb_width }}" height="{{ item.thumb_height }}"{% endif %}>
     </a>
     <br><i>{{ item.title | remove: "Gallery - " }}</i>
   </td>
