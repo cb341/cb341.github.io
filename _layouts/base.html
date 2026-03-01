@@ -81,27 +81,6 @@
       pre {
         overflow-x: auto;
       }
-
-      @media (max-width: 880px) {
-        body {
-          padding: 0.5rem;
-        }
-        .mobile-table thead {
-          display: none;
-        }
-        .mobile-table tr {
-          display: block;
-          border-bottom: 1px solid #ddd;
-        }
-        .mobile-table td {
-          display: block;
-          border-bottom: none;
-        }
-        .mobile-table td:before {
-          content: attr(data-label) ": ";
-          font-weight: bold;
-        }
-      }
     </style>
   </head>
   <body>
@@ -114,6 +93,7 @@
         | {% include navlink.html href="/til" label="TIL" %}
         | {% include navlink.html href="/blog" label="Blog" %}
         | {% include navlink.html href="/projects" label="Projects" %}
+        | {% include navlink.html href="/gallery" label="Gallery" %}
       </nav>
       <nav role="navigation" aria-label="Social media links">
         <a href="https://github.com/cb341" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -131,13 +111,34 @@
       <nav role="navigation" aria-label="Post navigation">
         <hr>
         <a href="https://github.com/cb341/cb341.github.io/blob/main/{{ page.path }}" target="_blank" rel="noopener noreferrer">GitHub</a>
-        {%- if page.date %}
+        {%- if page.collection == 'posts' %}
         {% if page.previous %}
         | <a href="{{ page.previous.url }}">< {{ page.previous.title }}</a>
         {% endif %}
         {% if page.next %}
         | <a href="{{ page.next.url }}">{{ page.next.title }} ></a>
         {% endif %}
+        {%- endif -%}
+        {%- if page.layout == 'gallery' %}
+        {%- assign gallery_items = site.gallery | sort: 'order' -%}
+        {%- assign gallery_size = gallery_items | size -%}
+        {%- assign current_idx = 0 -%}
+        {%- for item in gallery_items -%}
+          {%- if item.url == page.url -%}{%- assign current_idx = forloop.index0 -%}{%- endif -%}
+        {%- endfor -%}
+        {%- if current_idx == 0 -%}
+          {%- assign prev_idx = gallery_size | minus: 1 -%}
+        {%- else -%}
+          {%- assign prev_idx = current_idx | minus: 1 -%}
+        {%- endif -%}
+        {%- assign next_idx = current_idx | plus: 1 -%}
+        {%- if next_idx >= gallery_size -%}
+          {%- assign next_idx = 0 -%}
+        {%- endif -%}
+        {%- assign prev_gallery = gallery_items[prev_idx] -%}
+        {%- assign next_gallery = gallery_items[next_idx] -%}
+        {% if prev_gallery %}| <a href="{{ prev_gallery.url }}">< {{ prev_gallery.title }}</a>{% endif %}
+        {% if next_gallery %}| <a href="{{ next_gallery.url }}">{{ next_gallery.title }} ></a>{% endif %}
         {%- endif -%}
       </nav>
     </main>
@@ -153,34 +154,5 @@
       |
       <a href="/rss.xml" target="_blank" rel="noopener noreferrer">RSS Feed</a>
     </footer>
-
-    <script>
-      function makeTablesResponsive() {
-        var tables = document.querySelectorAll("table");
-
-        tables.forEach(function(table) {
-          if (table.hasAttribute("data-responsive")) return;
-          table.setAttribute("data-responsive", "true");
-
-          var headers = Array.from(table.querySelectorAll("thead th")).map(function(th) {
-            return th.textContent ? th.textContent.trim() : "";
-          });
-
-          table.classList.add("mobile-table");
-
-          var rows = table.querySelectorAll("tbody tr");
-          rows.forEach(function(row) {
-            var cells = row.querySelectorAll("td");
-            cells.forEach(function(cell, index) {
-              if (headers[index]) {
-                cell.setAttribute("data-label", headers[index]);
-              }
-            });
-          });
-        });
-      }
-
-      document.addEventListener("DOMContentLoaded", makeTablesResponsive);
-    </script>
   </body>
 </html>

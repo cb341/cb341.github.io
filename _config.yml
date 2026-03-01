@@ -8,6 +8,10 @@ collections:
   projects:
     output: true
     permalink: /projects/:slug/
+  gallery:
+    output: true
+    permalink: /gallery/:name/
+    sort_by: order
 
 defaults:
   - scope:
