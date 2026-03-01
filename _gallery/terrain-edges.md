@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "Terrain Edges"
-order: 36
+order: 48
 image: "/webp-gallery/voxel_terrain_edge_detection.webp"
 alt: "Voxel Terrain Edge Detection"
 ---

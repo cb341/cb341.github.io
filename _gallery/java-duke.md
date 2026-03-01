@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "Java Duke"
-order: 41
+order: 30
 image: "/webp-gallery/java_duke_with_feet_fixed.webp"
 alt: "Java Duke with Feet"
 ---

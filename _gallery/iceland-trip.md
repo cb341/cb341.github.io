@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "Iceland Trip"
-order: 59
+order: 13
 image: "/webp-gallery/dani_travelling_iceland.webp"
 alt: "Travelling in Iceland"
 ---

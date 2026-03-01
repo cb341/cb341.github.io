@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "Arduino Bomb"
-order: 44
+order: 4
 image: "/webp-gallery/arduino_bomb.webp"
 alt: "Arduino Pomodoro Timer on Breadboard"
 ---

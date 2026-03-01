@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "Mesher Issues 2"
-order: 21
+order: 17
 image: "/webp-gallery/mesher_issues2.webp"
 alt: "Voxel Mesher Artifacts 2"
 ---

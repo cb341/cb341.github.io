@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "Purple Wireframe"
-order: 24
+order: 55
 image: "/webp-gallery/purple_wireframe.webp"
 alt: "Purple Wireframe Render"
 ---

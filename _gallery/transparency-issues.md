@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "Transparency Issues"
-order: 31
+order: 54
 image: "/webp-gallery/transparency_issues.webp"
 alt: "Transparency Rendering Issues"
 ---

@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "PCB Lab Work"
-order: 54
+order: 37
 image: "/webp-gallery/zhaw_touching_pcb_in_lab_fixed.webp"
 alt: "Working with PCB in Electronics Lab"
 ---

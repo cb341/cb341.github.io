@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "Packing Day"
-order: 53
+order: 18
 image: "/webp-gallery/packing_day.webp"
 alt: "Packing Day Photo"
 ---

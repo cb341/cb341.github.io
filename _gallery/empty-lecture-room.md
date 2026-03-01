@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "Empty Lecture Room"
-order: 56
+order: 21
 image: "/webp-gallery/empty_lecture_room_on_sturday_first_rrival_excited_for_analysis.webp"
 alt: "Empty Lecture Room on Saturday"
 ---

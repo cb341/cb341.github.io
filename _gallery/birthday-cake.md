@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "Birthday Cake"
-order: 17
+order: 52
 image: "/webp-gallery/minecraft_cake_fixed.webp"
 alt: "Minecraft Birthday Cake"
 ---

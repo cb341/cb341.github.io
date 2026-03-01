@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "Starmus Festival"
-order: 2
+order: 3
 image: "/webp-gallery/starmus_festival_fixed.webp"
 alt: "Starmus Festival Photo"
 ---

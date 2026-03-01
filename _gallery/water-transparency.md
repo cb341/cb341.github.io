@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "Water Transparency"
-order: 38
+order: 19
 image: "/webp-gallery/water_layer_transparency.webp"
 alt: "Water Layer Transparency Test"
 ---

@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "Vertex Colors"
-order: 4
+order: 29
 image: "/webp-gallery/chunk_coordinate_speicfic_vertex_colors.webp"
 alt: "Chunk-Specific Vertex Colors"
 ---

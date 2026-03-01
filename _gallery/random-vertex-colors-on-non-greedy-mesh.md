@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "Random Vertex Colors on Non-Greedy Mesh"
-order: 25
+order: 45
 image: "/webp-gallery/random_vertex_colors.webp"
 alt: "Random Vertex Colors on Non-Greedy Mesh"
 ---

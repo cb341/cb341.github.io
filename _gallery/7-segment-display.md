@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "7-Segment Display"
-order: 29
+order: 56
 image: "/webp-gallery/7segment_display.webp"
 alt: "7-Segment Display Circuit"
 ---

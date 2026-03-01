@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "Shadow Maps"
-order: 5
+order: 53
 image: "/webp-gallery/cascading_shadow_maps.webp"
 alt: "Cascading Shadow Maps"
 ---

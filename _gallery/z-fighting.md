@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "Z-Fighting"
-order: 45
+order: 49
 image: "/webp-gallery/zfighting.webp"
 alt: "Z-Fighting Rendering Artifact"
 ---

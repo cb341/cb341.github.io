@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "Chunk Coloring"
-order: 19
+order: 20
 image: "/webp-gallery/chunk_coloring.webp"
 alt: "Voxel Chunk Coloring Debug"
 ---

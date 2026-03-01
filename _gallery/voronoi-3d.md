@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "Voronoi 3D"
-order: 33
+order: 38
 image: "/webp-gallery/voronoi_3d.webp"
 alt: "3D Voronoi Diagram"
 ---

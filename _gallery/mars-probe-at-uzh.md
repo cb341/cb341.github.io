@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "Mars Probe at UZH"
-order: 62
+order: 51
 image: "/webp-gallery/mars_probe_at_uzh_fixed.webp"
 alt: "Mars Probe at University of Zurich"
 ---

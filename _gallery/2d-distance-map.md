@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "2D Distance Map"
-order: 28
+order: 15
 image: "/webp-gallery/single_axis_raymarching_distance_map_2d.webp"
 alt: "2D Raymarching Distance Map"
 ---

@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "Pink Glasses"
-order: 39
+order: 11
 image: "/webp-gallery/dani_with_cool_glasses.webp"
 alt: "Pink Glasses"
 ---

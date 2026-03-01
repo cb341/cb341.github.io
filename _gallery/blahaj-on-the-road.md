@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "Blahaj on the Road"
-order: 43
+order: 9
 image: "/webp-gallery/blahaj_on_the_road.webp"
 alt: "Blahaj Shark on a Road Trip"
 ---

@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "Renuo Internship"
-order: 34
+order: 35
 image: "/webp-gallery/starting_my_internship_at_renuo.webp"
 alt: "Starting Internship at Renuo"
 ---
