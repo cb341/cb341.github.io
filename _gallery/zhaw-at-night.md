@@ -1,6 +1,6 @@
 ---
 layout: gallery
-title: "ZHAW at Night"
+title: "ZHAW Technikum at Night"
 order: 27
 image: "/webp-gallery/zhaw_technikum_at_night_fixed.webp"
 alt: "ZHAW Technikum at Night"

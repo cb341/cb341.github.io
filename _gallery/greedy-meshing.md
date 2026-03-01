@@ -1,6 +1,6 @@
 ---
 layout: gallery
-title: "Greedy Meshing"
+title: "Greedy Meshing Algorithm"
 order: 26
 image: "/webp-gallery/greedy_meshing_algorithm.webp"
 alt: "Greedy Meshing Algorithm"

@@ -1,6 +1,6 @@
 ---
 layout: gallery
-title: "Normals Debug"
+title: "Normals Debugging"
 order: 23
 image: "/webp-gallery/noramls.webp"
 alt: "Surface Normals Visualization"

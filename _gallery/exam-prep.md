@@ -1,6 +1,6 @@
 ---
 layout: gallery
-title: "Exam Prep"
+title: "ZHAW Exam Prep"
 order: 8
 image: "/webp-gallery/zhaw_exam_prep_fixed.webp"
 alt: "ZHAW Exam Preparation"

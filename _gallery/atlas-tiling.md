@@ -1,6 +1,6 @@
 ---
 layout: gallery
-title: "Atlas Tiling"
+title: "Texture Atlas Tiling"
 order: 28
 image: "/webp-gallery/atlas_tiling.webp"
 alt: "Texture Atlas Tiling"

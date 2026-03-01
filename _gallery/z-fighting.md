@@ -1,6 +1,6 @@
 ---
 layout: gallery
-title: "Z-Fighting"
+title: "Z-Fighting Artefacts"
 order: 49
 image: "/webp-gallery/zfighting.webp"
 alt: "Z-Fighting Rendering Artifact"

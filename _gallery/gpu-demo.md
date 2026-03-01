@@ -1,6 +1,6 @@
 ---
 layout: gallery
-title: "GPU Demo"
+title: "GPU Instancing Demo"
 order: 41
 image: "/webp-gallery/gpu_instancing.webp"
 alt: "GPU Instancing Demo"

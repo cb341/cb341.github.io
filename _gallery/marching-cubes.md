@@ -1,6 +1,6 @@
 ---
 layout: gallery
-title: "Marching Cubes"
+title: "Marching Cubes Algorithm"
 order: 43
 image: "/webp-gallery/cube_marching.webp"
 alt: "Marching Cubes Implementation"

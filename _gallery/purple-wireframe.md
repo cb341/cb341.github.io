@@ -1,6 +1,6 @@
 ---
 layout: gallery
-title: "Purple Wireframe"
+title: "Purple Wireframe Mesh"
 order: 55
 image: "/webp-gallery/purple_wireframe.webp"
 alt: "Purple Wireframe Render"

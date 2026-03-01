@@ -1,6 +1,6 @@
 ---
 layout: gallery
-title: "Chunk Coloring"
+title: "Chunk Coordinate Coloring"
 order: 20
 image: "/webp-gallery/chunk_coloring.webp"
 alt: "Voxel Chunk Coloring Debug"

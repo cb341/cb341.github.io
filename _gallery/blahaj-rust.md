@@ -1,6 +1,6 @@
 ---
 layout: gallery
-title: "Blahaj Rust"
+title: "Blahaj Learns Rust"
 order: 61
 image: "/webp-gallery/blahaj_coding_rust.webp"
 alt: "Blahaj Learning Rust"

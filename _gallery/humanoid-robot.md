@@ -1,6 +1,6 @@
 ---
 layout: gallery
-title: "Humanoid Robot"
+title: "Humanoid Robot at ZHAW"
 order: 7
 image: "/webp-gallery/humanoid_robot_at_zhaw.webp"
 alt: "Humanoid Robot at ZHAW"

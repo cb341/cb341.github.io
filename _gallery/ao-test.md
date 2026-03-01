@@ -1,6 +1,6 @@
 ---
 layout: gallery
-title: "AO Test"
+title: "Ambient Occlusion Test"
 order: 40
 image: "/webp-gallery/ao_test.webp"
 alt: "Ambient Occlusion Test"

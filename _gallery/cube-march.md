@@ -1,6 +1,6 @@
 ---
 layout: gallery
-title: "Cube March"
+title: "Cube Marcher"
 order: 42
 image: "/webp-gallery/cube_marcher.webp"
 alt: "Cube Marching Algorithm"

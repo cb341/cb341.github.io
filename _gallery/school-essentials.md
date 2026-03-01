@@ -1,6 +1,6 @@
 ---
 layout: gallery
-title: "School Essentials"
+title: "School Essentials Packed"
 order: 6
 image: "/webp-gallery/essentials_packed_for_school_tablet_cube.webp"
 alt: "Essentials Packed for School"

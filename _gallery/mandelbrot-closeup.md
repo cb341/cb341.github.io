@@ -1,6 +1,6 @@
 ---
 layout: gallery
-title: "Mandelbrot Closeup"
+title: "Mandelbrot Set Closeup"
 order: 10
 image: "/webp-gallery/mandelbrot_set.webp"
 alt: "Mandelbrot Set Closeup from ZHAW Math Lecture"
