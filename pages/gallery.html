@@ -5,6 +5,11 @@ description: A dense image gallery showcasing various development projects, tech
 permalink: /gallery/
 ---
 
+<style>
+td { vertical-align: top; width: 25%; }
+td img { width: 100%; height: auto; }
+</style>
+
 <h1>Gallery</h1>
 
 <p>A collection of images from various development projects, technical demonstrations, and documentation.</p>
@@ -18,7 +23,7 @@ permalink: /gallery/
 
   <td>
     <a href="{{ item.url }}">
-      <img src="{{ item.image | replace: '/webp-gallery/', '/webp-gallery/thumbs/' }}" alt="{{ item.alt }}"{% if item.thumb_width %} width="{{ item.thumb_width }}" height="{{ item.thumb_height }}"{% endif %}>
+      <img src="{{ item.image | replace: '/webp-gallery/', '/webp-gallery/thumbs/' }}" alt="{{ item.alt }}" width="156" height="156" loading="lazy">
     </a>
     <br><i>{{ item.title | remove: "Gallery - " }}</i>
   </td>
