@@ -111,35 +111,9 @@
       <nav role="navigation" aria-label="Post navigation">
         <hr>
         <a href="https://github.com/cb341/cb341.github.io/blob/main/{{ page.path }}" target="_blank" rel="noopener noreferrer">GitHub</a>
-        {%- if page.collection == 'posts' %}
-        {% if page.previous %}
-        | <a href="{{ page.previous.url }}">< {{ page.previous.title }}</a>
-        {% endif %}
-        {% if page.next %}
-        | <a href="{{ page.next.url }}">{{ page.next.title }} ></a>
-        {% endif %}
-        {%- endif -%}
-        {%- if page.layout == 'gallery' %}
-        {%- assign gallery_items = site.gallery | sort: 'order' -%}
-        {%- assign gallery_size = gallery_items | size -%}
-        {%- assign current_idx = 0 -%}
-        {%- for item in gallery_items -%}
-          {%- if item.url == page.url -%}{%- assign current_idx = forloop.index0 -%}{%- endif -%}
-        {%- endfor -%}
-        {%- if current_idx == 0 -%}
-          {%- assign prev_idx = gallery_size | minus: 1 -%}
-        {%- else -%}
-          {%- assign prev_idx = current_idx | minus: 1 -%}
-        {%- endif -%}
-        {%- assign next_idx = current_idx | plus: 1 -%}
-        {%- if next_idx >= gallery_size -%}
-          {%- assign next_idx = 0 -%}
-        {%- endif -%}
-        {%- assign prev_gallery = gallery_items[prev_idx] -%}
-        {%- assign next_gallery = gallery_items[next_idx] -%}
-        {% if prev_gallery %}| <a href="{{ prev_gallery.url }}">< {{ prev_gallery.title }}</a>{% endif %}
-        {% if next_gallery %}| <a href="{{ next_gallery.url }}">{{ next_gallery.title }} ></a>{% endif %}
-        {%- endif -%}
+        {%- if page.collection == 'posts' %}{% include post_nav.html %}{%- endif -%}
+        {%- if page.collection == 'projects' %}{% include project_nav.html %}{%- endif -%}
+        {%- if page.layout == 'gallery' %}{% include gallery_nav.html %}{%- endif -%}
       </nav>
     </main>
 

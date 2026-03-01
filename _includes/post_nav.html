@@ -1,0 +1,6 @@
+{% if page.previous %}
+ | <a href="{{ page.previous.url }}">< {{ page.previous.title }}</a>
+{% endif %}
+{% if page.next %}
+ | <a href="{{ page.next.url }}">{{ page.next.title }} ></a>
+{% endif %}
