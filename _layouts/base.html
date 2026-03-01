@@ -128,5 +128,6 @@
       |
       <a href="/rss.xml" target="_blank" rel="noopener noreferrer">RSS Feed</a>
     </footer>
+  <script>document.addEventListener('keydown',e=>{const as=[...document.querySelectorAll('[aria-label="Post navigation"] a')];if(e.key==='ArrowLeft'){const a=as.find(a=>a.textContent.includes('<'));if(a)location.href=a.href;}if(e.key==='ArrowRight'){const a=as.find(a=>a.textContent.includes('>'));if(a)location.href=a.href;}});</script>
   </body>
 </html>
