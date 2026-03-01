@@ -1,6 +1,6 @@
 ---
 layout: gallery
-title: "Pink Glasses on a Train"
+title: "Pink Glasses on a Plane"
 order: 11
 image: "/webp-gallery/dani_with_cool_glasses.webp"
 alt: "Pink Glasses"
