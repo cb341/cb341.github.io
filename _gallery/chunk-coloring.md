@@ -1,0 +1,10 @@
+---
+layout: gallery
+title: "Chunk Coloring"
+order: 20
+image: "/webp-gallery/chunk_coloring.webp"
+alt: "Voxel Chunk Coloring Debug"
+---
+
+Debug visualization coloring different voxel chunks in distinct colors to visualize chunk boundaries and loading patterns in a procedural world.
+## (WORK IN PROGRESS)

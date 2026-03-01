@@ -1,0 +1,28 @@
+---
+layout: base
+title: Gallery
+description: A dense image gallery showcasing various development projects, technical content, and visual documentation.
+permalink: /gallery/
+---
+
+<h1>Gallery</h1>
+
+<p>A collection of images from various development projects, technical demonstrations, and documentation.</p>
+
+{% assign sorted_gallery = site.gallery | sort: 'order' | reverse %}
+
+<table>
+{% for item in sorted_gallery %}
+  {% assign mod = forloop.index0 | modulo: 4 %}
+  {% if mod == 0 %}<tr>{% endif %}
+
+  <td>
+    <a href="{{ item.url }}">
+      <img src="{{ item.image | replace: '/webp-gallery/', '/webp-gallery/thumbs/' }}" alt="{{ item.alt }}"{% if item.thumb_width %} width="{{ item.thumb_width }}" height="{{ item.thumb_height }}"{% endif %}>
+    </a>
+    <br><i>{{ item.title | remove: "Gallery - " }}</i>
+  </td>
+
+  {% if mod == 3 or forloop.last %}</tr>{% endif %}
+{% endfor %}
+</table>

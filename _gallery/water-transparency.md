@@ -1,0 +1,10 @@
+---
+layout: gallery
+title: "Water Transparency"
+order: 19
+image: "/webp-gallery/water_layer_transparency.webp"
+alt: "Water Layer Transparency Test"
+---
+
+Testing water transparency and refraction in a voxel world. Shows the challenges of rendering semi-transparent water layers over submerged terrain.
+## (WORK IN PROGRESS)

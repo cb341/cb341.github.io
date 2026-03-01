@@ -1,0 +1,6 @@
+{% if page.previous %}
+ | <a href="{{ page.previous.url }}" title="left arrow key">< {{ page.previous.title }}</a>
+{% endif %}
+{% if page.next %}
+ | <a href="{{ page.next.url }}" title="right arrow key">{{ page.next.title }} ></a>
+{% endif %}

@@ -27,6 +27,7 @@ GEM
     ethon (0.15.0)
       ffi (>= 1.15.0)
     eventmachine (1.2.7)
+    fastimage (2.4.0)
     ffi (1.17.3)
     ffi (1.17.3-aarch64-linux-gnu)
     ffi (1.17.3-aarch64-linux-musl)
@@ -227,6 +228,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  fastimage
   html-proofer
   htmlbeautifier
   jekyll (~> 4.3)

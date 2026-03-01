@@ -1,0 +1,10 @@
+{%- assign _i = nil -%}
+{%- for p in include.docs -%}
+  {%- if p.url == page.url -%}{%- assign _i = forloop.index0 -%}{%- endif -%}
+{%- endfor -%}
+{%- assign _prev_i = _i | minus: 1 -%}
+{%- assign _next_i = _i | plus: 1 -%}
+{%- for p in include.docs -%}
+  {%- if _i > 0 and forloop.index0 == _prev_i %} | <a href="{{ p.url }}" title="left arrow key">< {{ p.title }}</a>{%- endif -%}
+  {%- if forloop.index0 == _next_i %} | <a href="{{ p.url }}" title="right arrow key">{{ p.title }} ></a>{%- endif -%}
+{%- endfor -%}

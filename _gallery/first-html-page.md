@@ -1,0 +1,10 @@
+---
+layout: gallery
+title: "First HTML Page"
+order: 2
+image: "/webp-gallery/small_daniel_working_on_firts_html_page_stating_career_as_software_developer.webp"
+alt: "Young Daniel Writing First HTML Page"
+---
+
+Young Daniel hard at work on his very first HTML page - the humble beginning of a software development career. Everyone starts somewhere, and this is where the journey began.
+## (WORK IN PROGRESS)

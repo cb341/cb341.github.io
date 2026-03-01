@@ -1,0 +1,2 @@
+{%- assign _sorted = site.gallery | sort: 'order' | reverse -%}
+{% include collection_nav.html docs=_sorted %}

@@ -1,0 +1,10 @@
+---
+layout: gallery
+title: "Mars Probe at UZH"
+order: 51
+image: "/webp-gallery/mars_probe_at_uzh_fixed.webp"
+alt: "Mars Probe at University of Zurich"
+---
+
+A Mars probe exhibit or model at the University of Zurich. Where aerospace engineering meets computer science education.
+## (WORK IN PROGRESS)
