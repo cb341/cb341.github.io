@@ -10,7 +10,7 @@ collections:
     permalink: /projects/:slug/
   gallery:
     output: true
-    permalink: /gallery/:name/
+    permalink: /gallery/:slug/
     sort_by: order
 
 defaults:
