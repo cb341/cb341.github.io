@@ -15,7 +15,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ page_title }}</title>
     <meta name="title" content="{{ page_title }}">
     <meta name="description" content="{{ page_description }}">
@@ -61,10 +61,13 @@
     </script>
     <style>
       body {
+        overflow-y: scroll;
+      }
+
+      .wrapper {
         max-width: 80ch;
         margin-left: auto;
         margin-right: auto;
-        overflow-y: scroll;
       }
 
       p img {
@@ -78,52 +81,56 @@
     </style>
   </head>
   <body>
-    <center>
-      <header role="banner">
-        <h1>{% include navlink.html href="/" label="CB341.DEV" %}</h1>
-        <nav role="navigation" aria-label="Main navigation">
-          {% include navlink.html href="/" label="Home" %}
-          | {% include navlink.html href="/about" label="About" %}
-          | {% include navlink.html href="/uses" label="Uses" %}
-          | {% include navlink.html href="/til" label="TIL" %}
-          | {% include navlink.html href="/blog" label="Blog" %}
-          | {% include navlink.html href="/projects" label="Projects" %}
-          | {% include navlink.html href="/gallery" label="Gallery" %}
+    <div class="wrapper">
+      <center>
+        <header role="banner">
+          <h1>{% include navlink.html href="/" label="CB341.DEV" %}</h1>
+          <nav role="navigation" aria-label="Main navigation">
+            {% include navlink.html href="/" label="Home" %}
+            | {% include navlink.html href="/about" label="About" %}
+            | {% include navlink.html href="/uses" label="Uses" %}
+            | {% include navlink.html href="/til" label="TIL" %}
+            | {% include navlink.html href="/blog" label="Blog" %}
+            | {% include navlink.html href="/projects" label="Projects" %}
+            | {% include navlink.html href="/gallery" label="Gallery" %}
+          </nav>
+          <nav role="navigation" aria-label="Social media links">
+            <a href="https://github.com/cb341" target="_blank" rel="noopener noreferrer">GitHub</a>
+            |
+            <a href="https://www.codewars.com/users/cb341" target="_blank" rel="noopener noreferrer">Codewars</a>
+            |
+            <a href="https://mastodon.social/deck/@cb341" target="_blank" rel="noopener noreferrer">Mastodon</a>
+            |
+            <a href="https://www.linkedin.com/in/daniel-bengl" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </nav>
+        </header>
+      </center>
+
+      <main id="main-content" role="main">
+        {{ content }}
+        <nav role="navigation" aria-label="Post navigation">
+          <hr>
+          <a href="https://github.com/cb341/cb341.github.io/blob/main/{{ page.path }}" target="_blank" rel="noopener noreferrer">GitHub</a>
+          {%- if page.collection == 'posts' %}{% include post_nav.html %}{%- endif -%}
+          {%- if page.collection == 'projects' %}{% include project_nav.html %}{%- endif -%}
+          {%- if page.layout == 'gallery' %}{% include gallery_nav.html %}{%- endif -%}
         </nav>
-        <nav role="navigation" aria-label="Social media links">
-          <a href="https://github.com/cb341" target="_blank" rel="noopener noreferrer">GitHub</a>
-          |
-          <a href="https://www.codewars.com/users/cb341" target="_blank" rel="noopener noreferrer">Codewars</a>
+      </main>
+
+      <center>
+        <footer role="contentinfo">
+          <hr>
+          <p><small>(c) {{ "now" | date: "%Y" }} cb341. Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>.</small></p>
+          <a href="https://discord.com/users/456151064484249612" target="_blank" rel="noopener noreferrer">Discord</a>
           |
           <a href="https://mastodon.social/deck/@cb341" target="_blank" rel="noopener noreferrer">Mastodon</a>
           |
           <a href="https://www.linkedin.com/in/daniel-bengl" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        </nav>
-      </header>
-    </center>
-
-    <main id="main-content" role="main">
-      {{ content }}
-      <nav role="navigation" aria-label="Post navigation">
-        <hr>
-        <a href="https://github.com/cb341/cb341.github.io/blob/main/{{ page.path }}" target="_blank" rel="noopener noreferrer">GitHub</a>
-        {%- if page.collection == 'posts' %}{% include post_nav.html %}{%- endif -%}
-        {%- if page.collection == 'projects' %}{% include project_nav.html %}{%- endif -%}
-        {%- if page.layout == 'gallery' %}{% include gallery_nav.html %}{%- endif -%}
-      </nav>
-    </main>
-
-    <footer role="contentinfo">
-      <hr>
-      <p><small>(c) {{ "now" | date: "%Y" }} cb341. Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>.</small></p>
-      <a href="https://discord.com/users/456151064484249612" target="_blank" rel="noopener noreferrer">Discord</a>
-      |
-      <a href="https://mastodon.social/deck/@cb341" target="_blank" rel="noopener noreferrer">Mastodon</a>
-      |
-      <a href="https://www.linkedin.com/in/daniel-bengl" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      |
-      <a href="/rss.xml" target="_blank" rel="noopener noreferrer">RSS Feed</a>
-    </footer>
-  <script>document.addEventListener('keydown',e=>{const as=[...document.querySelectorAll('[aria-label="Post navigation"] a')];if(e.key==='ArrowLeft'){const a=as.find(a=>a.textContent.includes('<'));if(a)location.href=a.href;}if(e.key==='ArrowRight'){const a=as.find(a=>a.textContent.includes('>'));if(a)location.href=a.href;}});</script>
+          |
+          <a href="/rss.xml" target="_blank" rel="noopener noreferrer">RSS Feed</a>
+        </footer>
+      </center>
+    </div>
+    <script>document.addEventListener('keydown',e=>{const as=[...document.querySelectorAll('[aria-label="Post navigation"] a')];if(e.key==='ArrowLeft'){const a=as.find(a=>a.textContent.includes('<'));if(a)location.href=a.href;}if(e.key==='ArrowRight'){const a=as.find(a=>a.textContent.includes('>'));if(a)location.href=a.href;}});</script>
   </body>
 </html>
