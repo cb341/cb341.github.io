@@ -25,7 +25,7 @@ td img { width: 100%; height: auto; }
     <a href="{{ item.url }}">
       <img src="{{ item.image | replace: '/webp-gallery/', '/webp-gallery/thumbs/' }}" alt="{{ item.alt }}" width="156" height="156" loading="lazy">
     </a>
-    <br><i>{{ item.title | remove: "Gallery - " }}</i>
+    <br><small><i>{{ item.title | remove: "Gallery - " }}</i></small>
   </td>
 
   {% if mod == 3 or forloop.last %}</tr>{% endif %}
