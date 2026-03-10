@@ -1,7 +1,8 @@
 ---
 layout: gallery
 title: "Mesher Bug"
-order: 24
+order: 10
+category: "Bugs"
 image: "/webp-gallery/mesher_issues.webp"
 alt: "Voxel Mesher Artifacts"
 ---

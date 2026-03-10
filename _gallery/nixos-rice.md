@@ -1,7 +1,8 @@
 ---
 layout: gallery
 title: "NixOS Rice"
-order: 36
+order: 70
+category: "Personal"
 image: "/webp-gallery/nixos_rice.webp"
 alt: "NixOS Desktop Setup"
 ---

@@ -1,7 +1,8 @@
 ---
 layout: gallery
 title: "Packing Day"
-order: 18
+order: 40
+category: "Adventures"
 image: "/webp-gallery/packing_day.webp"
 alt: "Packing Day Photo"
 ---

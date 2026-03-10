@@ -1,7 +1,8 @@
 ---
 layout: gallery
 title: "Blahaj"
-order: 32
+order: 50
+category: "Personal"
 image: "/webp-gallery/blahaj_fixed.webp"
 alt: "Blahaj the Shark"
 ---

@@ -1,7 +1,8 @@
 ---
 layout: gallery
 title: "Humanoid Robot at ZHAW"
-order: 7
+order: 20
+category: "ZHAW"
 image: "/webp-gallery/humanoid_robot_at_zhaw.webp"
 alt: "Humanoid Robot at ZHAW"
 ---

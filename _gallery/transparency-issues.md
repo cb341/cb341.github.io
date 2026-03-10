@@ -1,7 +1,8 @@
 ---
 layout: gallery
 title: "Transparency Artefacts"
-order: 54
+order: 40
+category: "Bugs"
 image: "/webp-gallery/transparency_issues.webp"
 alt: "Transparency Rendering Issues"
 ---

@@ -1,7 +1,8 @@
 ---
 layout: gallery
 title: "First HTML Page"
-order: 2
+order: 10
+category: "Personal"
 image: "/webp-gallery/small_daniel_working_on_firts_html_page_stating_career_as_software_developer.webp"
 alt: "Young Daniel Writing First HTML Page"
 ---

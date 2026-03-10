@@ -1,7 +1,8 @@
 ---
 layout: gallery
 title: "Mars Probe at UZH"
-order: 51
+order: 70
+category: "ZHAW"
 image: "/webp-gallery/mars_probe_at_uzh_fixed.webp"
 alt: "Mars Probe at University of Zurich"
 ---

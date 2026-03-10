@@ -1,7 +1,8 @@
 ---
 layout: gallery
 title: "Stolas Pin"
-order: 58
+order: 110
+category: "Personal"
 image: "/webp-gallery/stolas_pin.webp"
 alt: "Stolas Enamel Pin"
 ---

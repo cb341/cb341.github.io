@@ -1,7 +1,8 @@
 ---
 layout: gallery
 title: "Millennium Falcon Model"
-order: 12
+order: 30
+category: "Personal"
 image: "/webp-gallery/millenium_falcon.webp"
 alt: "Millennium Falcon Model"
 ---

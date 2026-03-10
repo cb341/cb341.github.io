@@ -1,7 +1,8 @@
 ---
 layout: gallery
 title: "Raymarcher"
-order: 39
+order: 50
+category: "Graphics"
 image: "/webp-gallery/raymarcher.webp"
 alt: "Raymarcher Scene"
 ---

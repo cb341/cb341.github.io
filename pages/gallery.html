@@ -12,12 +12,19 @@ td img { width: 100%; height: auto; }
 
 <h1>Gallery</h1>
 
-<p>A collection of images from various development projects, technical demonstrations, and documentation.</p>
+<p>A visual dump of renders, bugs, photos, and everything in between.</p>
 
 {% assign sorted_gallery = site.gallery | sort: 'order' | reverse %}
+{% assign categories = "Graphics,Voxels,Math & Noise,Bugs,Random,Electronics,ZHAW,Adventures,Personal" | split: "," %}
+
+{% for cat in categories %}
+{% assign cat_items = sorted_gallery | where: 'category', cat %}
+{% if cat_items.size > 0 %}
+
+<h2>{{ cat }}</h2>
 
 <table>
-{% for item in sorted_gallery %}
+{% for item in cat_items %}
   {% assign mod = forloop.index0 | modulo: 4 %}
   {% if mod == 0 %}<tr>{% endif %}
 
@@ -25,9 +32,13 @@ td img { width: 100%; height: auto; }
     <a href="{{ item.url }}">
       <img src="{{ item.image | replace: '/webp-gallery/', '/webp-gallery/thumbs/' }}" alt="{{ item.alt }}" width="156" height="156" loading="lazy">
     </a>
-    <br><small><i>{{ item.title | remove: "Gallery - " }}</i></small>
+    <br><small><i>{{ item.title }}</i></small>
   </td>
 
+  {% if forloop.last %}{% assign pad = 3 | minus: mod %}{% for p in (1..pad) %}<td></td>{% endfor %}{% endif %}
   {% if mod == 3 or forloop.last %}</tr>{% endif %}
 {% endfor %}
 </table>
+
+{% endif %}
+{% endfor %}

@@ -1,7 +1,8 @@
 ---
 layout: gallery
 title: "Spaghetti Noise"
-order: 16
+order: 20
+category: "Math & Noise"
 image: "/webp-gallery/spaghetti_noise.webp"
 alt: "Spaghetti Noise Visualization"
 ---

@@ -1,7 +1,8 @@
 ---
 layout: gallery
 title: "Kennedy Space Center"
-order: 0
+order: 10
+category: "Adventures"
 image: "/webp-gallery/nasa_kennedy_space_center.webp"
 alt: "NASA Kennedy Space Center Globe"
 ---

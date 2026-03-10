@@ -1,7 +1,8 @@
 ---
 layout: gallery
 title: "Plushies"
-order: 50
+order: 80
+category: "Personal"
 image: "/webp-gallery/plushees_fixed.webp"
 alt: "Collection of Plush Toys"
 ---

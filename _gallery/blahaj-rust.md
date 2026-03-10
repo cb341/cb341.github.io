@@ -1,7 +1,8 @@
 ---
 layout: gallery
 title: "Blahaj Learns Rust"
-order: 61
+order: 140
+category: "Personal"
 image: "/webp-gallery/blahaj_coding_rust.webp"
 alt: "Blahaj Learning Rust"
 ---

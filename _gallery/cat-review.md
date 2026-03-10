@@ -1,7 +1,8 @@
 ---
 layout: gallery
 title: "Cat on Laptop"
-order: 57
+order: 100
+category: "Personal"
 image: "/webp-gallery/cat_on_laptop_fixed.webp"
 alt: "Feline Code Review"
 ---

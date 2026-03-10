@@ -1,7 +1,8 @@
 ---
 layout: gallery
-title: "Greedy Meshing Algorithm"
-order: 26
+title: "Greedy Meshing"
+order: 10
+category: "Voxels"
 image: "/webp-gallery/greedy_meshing_algorithm.webp"
 alt: "Greedy Meshing Algorithm"
 ---

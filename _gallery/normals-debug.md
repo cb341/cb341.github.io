@@ -1,7 +1,8 @@
 ---
 layout: gallery
-title: "Normals Debugging"
-order: 23
+title: "Normal Vector Debug View"
+order: 20
+category: "Voxels"
 image: "/webp-gallery/noramls.webp"
 alt: "Surface Normals Visualization"
 ---

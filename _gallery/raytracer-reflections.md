@@ -1,7 +1,8 @@
 ---
 layout: gallery
 title: "Raytracer Reflections"
-order: 14
+order: 30
+category: "Graphics"
 image: "/webp-gallery/raytracer_sphere_reflections.webp"
 alt: "Raytracer Sphere Reflections"
 ---

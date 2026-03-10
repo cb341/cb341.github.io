@@ -1,7 +1,8 @@
 ---
 layout: gallery
 title: "GitHub-Style Generated Avatars"
-order: 44
+order: 20
+category: "Random"
 image: "/webp-gallery/github_inspired_randomly_generated_pfps_for_my_first_rails_project.webp"
 alt: "Generated Profile Pictures from Greendit"
 ---

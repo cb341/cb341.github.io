@@ -1,7 +1,8 @@
 ---
 layout: gallery
 title: "Pi Guy Plush"
-order: 60
+order: 130
+category: "Personal"
 image: "/webp-gallery/pi_guy_plush.webp"
 alt: "Pi Guy Plush Toy"
 ---

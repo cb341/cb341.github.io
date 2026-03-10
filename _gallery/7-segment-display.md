@@ -1,7 +1,8 @@
 ---
 layout: gallery
 title: "7-Segment Display"
-order: 56
+order: 40
+category: "Electronics"
 image: "/webp-gallery/7segment_display.webp"
 alt: "7-Segment Display Circuit"
 ---

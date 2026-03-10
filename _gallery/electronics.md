@@ -1,7 +1,8 @@
 ---
 layout: gallery
 title: "Electronics"
-order: 8
+order: 20
+category: "Electronics"
 image: "/webp-gallery/zhaw_resistor_in_lab_fixed.webp"
 alt: "Electronics Lab at ZHAW"
 ---

@@ -1,7 +1,8 @@
 ---
 layout: gallery
 title: "Texture Atlas Tiling"
-order: 28
+order: 30
+category: "Voxels"
 image: "/webp-gallery/atlas_tiling.webp"
 alt: "Texture Atlas Tiling"
 ---

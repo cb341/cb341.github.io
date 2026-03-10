@@ -1,7 +1,8 @@
 ---
 layout: gallery
 title: "Transparency Debugging"
-order: 46
+order: 20
+category: "Bugs"
 image: "/webp-gallery/transparency_debugging.webp"
 alt: "Transparency Debugging View"
 ---

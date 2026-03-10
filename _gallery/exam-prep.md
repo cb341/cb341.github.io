@@ -1,7 +1,8 @@
 ---
 layout: gallery
 title: "ZHAW Exam Prep"
-order: 8
+order: 30
+category: "ZHAW"
 image: "/webp-gallery/zhaw_exam_prep_fixed.webp"
 alt: "ZHAW Exam Preparation"
 ---
