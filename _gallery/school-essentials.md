@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "School Essentials Packed"
-order: 10
+order: 700
 category: "ZHAW"
 image: "/webp-gallery/essentials_packed_for_school_tablet_cube.webp"
 alt: "Essentials Packed for School"

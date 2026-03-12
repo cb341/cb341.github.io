@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "First Day at Renuo"
-order: 30
+order: 802
 category: "Adventures"
 image: "/webp-gallery/starting_my_internship_at_renuo.webp"
 alt: "Starting Internship at Renuo"

@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "Voronoi 3D"
-order: 50
+order: 304
 category: "Math & Noise"
 image: "/webp-gallery/voronoi_3d.webp"
 alt: "3D Voronoi Diagram"

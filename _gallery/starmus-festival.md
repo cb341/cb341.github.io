@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "Starmus Festival"
-order: 20
+order: 801
 category: "Adventures"
 image: "/webp-gallery/starmus_festival_fixed.webp"
 alt: "Starmus Festival Photo"

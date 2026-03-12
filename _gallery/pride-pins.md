@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "Pride Pins"
-order: 60
+order: 905
 category: "Personal"
 image: "/webp-gallery/pride_pins.webp"
 alt: "Pride Pin Collection"

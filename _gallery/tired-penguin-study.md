@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "Tired Penguin During Study Phase"
-order: 60
+order: 705
 category: "ZHAW"
 image: "/webp-gallery/zhaw_tired_penguin_during_study_phase_with_calculator.webp"
 alt: "Tired Penguin with Calculator"

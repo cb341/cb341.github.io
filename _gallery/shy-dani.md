@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "Shy Dani"
-order: 120
+order: 911
 category: "Personal"
 image: "/webp-gallery/shy_dani.webp"
 alt: "Candid Developer Photo"

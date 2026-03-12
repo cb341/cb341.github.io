@@ -1,2 +1,7 @@
-{%- assign _sorted = site.gallery | sort: 'order' | reverse -%}
-{% include collection_nav.html docs=_sorted %}
+{%- assign categories = "Graphics,Voxels,Math & Noise,Bugs,Random,Electronics,ZHAW,Adventures,Personal" | split: "," -%}
+{%- assign _sorted_all = "" | split: "" -%}
+{%- for cat in categories -%}
+  {%- assign cat_items = site.gallery | where: 'category', cat | sort: 'order' | reverse -%}
+  {%- assign _sorted_all = _sorted_all | concat: cat_items -%}
+{%- endfor -%}
+{% include collection_nav.html docs=_sorted_all %}

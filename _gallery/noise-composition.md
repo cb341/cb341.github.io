@@ -1,7 +1,7 @@
 ---
 layout: gallery
 title: "Noise Composition"
-order: 30
+order: 302
 category: "Math & Noise"
 image: "/webp-gallery/noise_composition.webp"
 alt: "Procedural Noise Composition"
