@@ -18,6 +18,10 @@ defaults:
       path: ""
     values:
       layout: base
+  - scope:
+      path: "_posts"
+    values:
+      layout: post
 
 date_format: "%d.%m.%Y"
 

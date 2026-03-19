@@ -5,8 +5,6 @@ description: "My journey through text editors, from Atom to LazyVim, with some t
 tags: ["neovim", "ai", "workflow"]
 ---
 
-# My Editor Journey
-
 I have bounced around quite a bit over the years. Started with **Atom** back when it was the hot new thing, then migrated to **VSCode** like everyone else when Atom started showing its age.
 
 Eventually moved to **JetBrains** (specifically **RubyMine**) for the superior refactoring tools and language intelligence. Somewhere along the way I discovered Vim keybindings and could not go back, so I added **IdeaVim** to RubyMine.
