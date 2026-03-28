@@ -1,7 +1,7 @@
 ---
 title: "Map-Reducing Myself"
 date: 2026-03-28
-description: "312 conversations with Claude, compressed to three lines."
+description: "312 conversations with Claude, compressed to 15 words."
 tags: ["ai", "reflection", "data"]
 ---
 
@@ -53,11 +53,11 @@ The profile found that I write inline asserts in my numerical methods code. Pre/
 
 The asserts are not checking the math. I understand the math. They are checking the transcription. I type fast and produce "everutjing" when I mean "everything." The asserts exist because I do not trust that what I typed is what I meant. The mind is precise. The hands are not. Everything I build sits in that gap.
 
-Claude could not find this. It sees patterns but not the thing that connects them. During the two hours of conversation that followed the pipeline, we kept pulling on that thread, and it turned out to be the thread that tied everything together. The typos, the naming obsession, the formatting rules, the inline asserts, the pronouns. All the same gap. None of that was in the data. It came out of the conversation.
+Claude could not find this. It sees patterns but not the thing that connects them. During the conversation that followed the pipeline, we kept pulling on that thread, and it turned out to be the thread that tied everything together. The typos, the naming obsession, the formatting rules, the inline asserts, the pronouns. All the same gap. None of that was in the data. It came out of the conversation.
 
 ## The compression
 
-After the pipeline produced the profile, I spent two hours in conversation with Claude, questioning it, correcting it, adding context the data did not contain. Claude read my blog posts and gallery captions on cb341.dev to understand how I write. It asked me things the data could not answer. Then we started compressing.
+After the pipeline produced the profile, I spent the better part of a day in conversation with Claude, questioning it, correcting it, adding context the data did not contain. Claude read my blog posts and gallery captions on cb341.dev to understand how I write. It asked me things the data could not answer. Then we started compressing.
 
 ```
 21MB    raw JSON
