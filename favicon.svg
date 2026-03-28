@@ -1,0 +1,11 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Empty set symbol: circle with diagonal slash -->
+  <g transform="translate(32, 32)">
+    <!-- Dark outline (larger strokes to simulate outline) -->
+    <circle cx="0" cy="0" r="20" fill="none" stroke="#1a1a1a" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="-25" y1="25" x2="25" y2="-25" stroke="#1a1a1a" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- White inner shape -->
+    <circle cx="0" cy="0" r="20" fill="none" stroke="white" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="-25" y1="25" x2="25" y2="-25" stroke="white" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
