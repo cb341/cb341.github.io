@@ -2,7 +2,6 @@
 set -e
 
 # linkedin.com, amd.com, seagate.com, corsair.com, reddit.com, apple.com: bot-blocking (links are valid, fail without browser UA)
-# TODO: remove /cb341\.dev\/gallery/ and /github\.com\/cb341/ once gallery is deployed
 bundle exec htmlproofer _site \
-  --ignore-urls "/linkedin\.com/,/amd\.com/,/seagate\.com/,/corsair\.com/,/reddit\.com/,/apple\.com/,/cb341\.dev\/blog\/tags/,/cb341\.dev\/gallery/,/github\.com\/cb341/" \
+  --ignore-urls "/linkedin\.com/,/amd\.com/,/seagate\.com/,/corsair\.com/,/reddit\.com/,/apple\.com/,/cb341\.dev\/blog\/tags/,/cb341\.dev\/blog\/map-reduce-myself/,/github\.com\/cb341/" \
   --ignore-status-codes "429,999"
