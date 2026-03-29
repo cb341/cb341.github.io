@@ -90,4 +90,4 @@ I went into this thinking I could automate self-knowledge. I could not. Claude c
 
 But the automated profile was accurate enough to see myself in and say "yes, but also this." Claude was the first draft. The conversation was the edit.
 
-Claude drafted the words. I shaped them until they were mine. The [code](https://gist.github.com/cb341/032d32bc2d8c161f7c414865a6e3e1e6) and the [result](https://gist.github.com/cb341/80fa11ce8df67e289241585d3b67e06b) are MIT licensed.
+Claude drafted the words. I shaped them until they were mine. The [code](https://gist.github.com/cb341/032d32bc2d8c161f7c414865a6e3e1e6) and the [result](https://gist.github.com/cb341/a49b944b9324b0bab67ecae223fb03df) are MIT licensed.
