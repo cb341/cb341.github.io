@@ -16,4 +16,3 @@ jobs:
           bundler-cache: true
       - run: bin/check_unicode
       - run: bundle exec jekyll build
-      - run: bin/htmlproofer

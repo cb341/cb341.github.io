@@ -24,14 +24,6 @@ bundle exec jekyll build
 
 Formats output HTML with `htmlbeautifier` automatically via a Jekyll hook.
 
-## Check
-
-```sh
-bin/htmlproofer
-```
-
-Runs `htmlproofer` against `_site/` to verify links and images.
-
 ## License
 
 CC-BY-4.0

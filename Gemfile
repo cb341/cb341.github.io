@@ -1,7 +1,6 @@
 source "https://rubygems.org"
 
 gem "jekyll", "~> 4.3"
-gem "html-proofer"
 gem "htmlbeautifier"
 gem "fastimage"
 
