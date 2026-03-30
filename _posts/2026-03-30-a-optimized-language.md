@@ -1,5 +1,5 @@
 ---
-title: "An Optimized Language"
+title: "Compressed Language"
 date: 2026-03-30
 description: "English is bloated, math is dense, and the best language for talking to AI sits somewhere in between."
 tags: ["language", "compression", "ai", "communication"]
