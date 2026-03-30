@@ -49,10 +49,10 @@ $$\pi_{\text{name, email}}(R \bowtie S)$$
 vs
 
 ```sql
-SELECT DISTINCT name, email FROM R INNER JOIN S ON R.id = S.id
+SELECT DISTINCT R.name, R.email FROM R INNER JOIN S ON R.id = S.id;
 ```
 
-21 chars vs 67. The algebra implies distinctness (set-based by definition), so DISTINCT is redundancy the formal notation never needed. SQL trades density for explicitness and practical execution semantics: bag semantics, execution hints, readability for broader audiences. The verbosity is not accidental. But for expressing the pure relational operation, the algebra is unmatched.
+16 symbols vs 67. The algebra implies distinctness (set-based by definition), so DISTINCT is redundancy the formal notation never needed. SQL trades density for explicitness and practical execution semantics: bag semantics, execution hints, readability for broader audiences. The verbosity is not accidental. But for expressing the pure relational operation, the algebra is unmatched.
 
 ## Programming languages: Ruby vs Java
 
