@@ -15,3 +15,6 @@ vendor/
 
 # jetbrains setting folder
 .idea/
+
+# LaTeX build cache
+.latex-cache/

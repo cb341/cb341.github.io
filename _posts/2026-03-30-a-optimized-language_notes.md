@@ -2,7 +2,7 @@
 
 I communicate with AI in broken English and it works perfectly. I drop vowels, ignore spelling, skip grammar, and the meaning arrives intact. Why?
 
-> "I have made this longer than usual because I have not had time to make it shorter." * Blaise Pascal
+> "I have made this longer than usual because I have not had time to make it shorter." * Blaise Pascal [7]
 
 Building on "Map-Reducing Myself" * if we compressed 21MB of identity into 15 words, what does that say about the language we used for the other 20.99MB?
 
@@ -12,7 +12,7 @@ There is a spectrum from natural language to formal notation, and human-AI commu
 
 ## Hieroglyphs as framing
 
-Hieroglyphs were logographic: one symbol encoded an entire concept. We decomposed that into alphabets (phonetic atoms), gained universal composability but lost density. Now we are circling back: `join`, `pi`, `->`, emojis * reinventing hieroglyphs for specific domains.
+Hieroglyphs were logographic: one symbol encoded an entire concept. We decomposed that into alphabets (phonetic atoms), gained universal composability but lost density. Now we are circling back: {% latex inline %}$\bowtie${% endlatex %}, {% latex inline %}$\pi${% endlatex %}, {% latex inline %}$\rightarrow${% endlatex %}, emojis * reinventing hieroglyphs for specific domains.
 
 Arc: **hieroglyphs -> alphabets -> formal notation -> emoji/symbols -> compressed protocols**
 
@@ -22,19 +22,25 @@ We started with symbols, detoured through words, and the optimal path forward mi
 
 Math notation as the purest compressed language. Evolved over centuries toward maximum information density.
 
-Key nuance: math symbols are not faster to write (typing `integral`, `sum`, `join` is awkward) but massively faster to read. A trained eye parses `sum_i x_i^2` instantly; "the sum of the squares of each element x sub i" requires linear reading. Optimized for output bandwidth, not input.
+Key nuance: math symbols are not faster to write (typing `integral`, `sum`, `join` is awkward) but massively faster to read. A trained eye parses {% latex inline %}$\sum_i x_i^2${% endlatex %} instantly; "the sum of the squares of each element x sub i" requires linear reading. Optimized for output bandwidth, not input.
 
 Upfront learning cost amortized over every future read. Same tradeoff as any compressed protocol.
 
 ### Linear algebra as extreme case
 
-A single matrix multiplication `AB` encodes potentially millions of operations. Two characters, behind them a thousand nested loops. No natural language comes close to that compression ratio.
+A single matrix multiplication {% latex inline %}$AB${% endlatex %} encodes potentially millions of operations. Two characters, behind them a thousand nested loops. No natural language comes close to that compression ratio.
 
 And it is the backbone of the AI we are communicating with. Nice circularity: the compressed language (linear algebra) built the system (neural nets) that now lets you use another compressed language (your protocol) to talk to it.
 
 ### Relational algebra vs SQL
 
-`pi_name,email(R join S)` vs `SELECT DISTINCT name, email FROM R INNER JOIN S ON R.id = S.id`
+{% latex %}\[\pi_{\text{name, email}}(R \bowtie S)\]{% endlatex %}
+
+vs
+
+```sql
+SELECT DISTINCT name, email FROM R INNER JOIN S ON R.id = S.id
+```
 
 21 chars vs 67. The algebra implies distinctness (set-based by definition), so DISTINCT is just redundancy the formal notation never needed. English-adjacent languages like SQL carry overhead that purer notations eliminate by design.
 
@@ -59,11 +65,11 @@ Spectrum: **Java -> Ruby -> math notation -> compressed protocol**
 
 ## Typoglycaemia / redundancy
 
-If we can read jumbled words and sentences with missing vowels, are they really necessary? The Cambridge meme (first/last letter preservation) proves English carries enough redundancy that large chunks can be dropped without losing meaning.
+If we can read jumbled words and sentences with missing vowels, are they really necessary? The Cambridge meme (first/last letter preservation) [1] proves English carries enough redundancy that large chunks can be dropped without losing meaning. Research on information density in communication supports this [2]. Cross-linguistic studies on word length [3] and word frequency effects across 12 alphabetic languages [4] further confirm the redundancy built into natural language.
 
 ### xkcd 1133: Up Goer Five
 
-Randall Munroe describes the Saturn V rocket using only the 1000 most common English words. The results:
+Randall Munroe describes the Saturn V rocket using only the 1000 most common English words [5]. The results:
 
 * "The kind of air that once burned a big sky bag and people died" * hydrogen
 * "This is full of that stuff they burned in lights before houses had power" * kerosene
@@ -84,12 +90,21 @@ This is the fundamental tradeoff: **vocabulary size vs token count**. A large sp
 
 Same tradeoff as the CLAUDE.md protocol. The upfront cost of agreeing on `->`, `x`, `?` is tiny. But it only pays off because we reuse those symbols hundreds of times.
 
-Links:
-* https://www.sciencealert.com/word-jumble-meme-first-last-letters-cambridge-typoglycaemia
-* https://medium.com/sarah-cordivano/better-communication-high-information-density-662fe8bfa8d6
-* https://xkcd.com/1133/
-* https://www.sciencedirect.com/science/article/pii/S0749596X23000967
-* https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0281041#pone-0281041-t002
+## References
+
+[1] ScienceAlert, "The 'Cambridge' Word Jumble Meme Is More Complicated Than You Think," 2023. [Online]. Available: [https://www.sciencealert.com/word-jumble-meme-first-last-letters-cambridge-typoglycaemia](https://www.sciencealert.com/word-jumble-meme-first-last-letters-cambridge-typoglycaemia)
+
+[2] S. Cordivano, "Better Communication: High Information Density," Medium, 2019. [Online]. Available: [https://medium.com/sarah-cordivano/better-communication-high-information-density-662fe8bfa8d6](https://medium.com/sarah-cordivano/better-communication-high-information-density-662fe8bfa8d6)
+
+[3] S. Wichmann and E. W. Holman, "Cross-linguistic conditions on word length," PLOS ONE, vol. 18, no. 1, e0281041, Jan. 2023. [Online]. Available: [https://doi.org/10.1371/journal.pone.0281041](https://doi.org/10.1371/journal.pone.0281041)
+
+[4] V. Kuperman, S. Schroeder, and D. Gnetov, "Word length and frequency effects on text reading are highly similar in 12 alphabetic languages," Journal of Memory and Language, vol. 135, 104497, Feb. 2024. [Online]. Available: [https://doi.org/10.1016/j.jml.2023.104497](https://doi.org/10.1016/j.jml.2023.104497)
+
+[5] R. Munroe, "Up Goer Five," xkcd, no. 1133, 2012. [Online]. Available: [https://xkcd.com/1133/](https://xkcd.com/1133/)
+
+[6] R. Munroe, "Thing Explainer: Complicated Stuff in Simple Words." New York, NY, USA: Houghton Mifflin Harcourt, 2015.
+
+[7] B. Pascal, "Lettres Provinciales," letter XVI, 1657.
 
 ## The CLAUDE.md protocol as proof
 
