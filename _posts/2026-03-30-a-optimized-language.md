@@ -3,21 +3,26 @@ title: "An Optimized Language"
 date: 2026-03-30
 description: "English is bloated, math is dense, and the best language for talking to AI sits somewhere in between."
 tags: ["language", "compression", "ai", "communication"]
+math: true
 ---
 
 I communicate with AI in broken English and it works perfectly. I drop vowels, ignore spelling, skip grammar, and the meaning arrives intact. Why?
 
 > "I have made this longer than usual because I have not had time to make it shorter." * Blaise Pascal
 
-Building on ["Map-Reducing Myself"](http://localhost:4000/blog/map-reduce-myself/) * if we compressed 21MB of data into 15 words of identity, what does that say about the language we used for the other 20.99MB?
+Building on ["Map-Reducing Myself"](blog/map-reduce-myself/) * if we compressed 21MB of data into 15 words of identity, what does that say about the language we used for the other 20.99MB?
 
 ## Thesis
 
 There is a spectrum from natural language to formal notation, and human-AI communication is carving out a new point on it.
 
+$$\text{Communication efficiency} = f(\text{token count}, \text{ambiguity}, \text{vocabulary size}, \text{decoding cost})$$
+
+Every example in this article is a tradeoff between these four variables.
+
 ## Hieroglyphs as framing
 
-Hieroglyphs were logographic: one symbol encoded an entire concept. We decomposed that into alphabets (phonetic atoms), gained universal composability but lost density. Now we are circling back: {% latex inline %}$\bowtie${% endlatex %}, {% latex inline %}$\pi${% endlatex %}, {% latex inline %}$\rightarrow${% endlatex %}, emojis * reinventing hieroglyphs for specific domains.
+Hieroglyphs were logographic: one symbol encoded an entire concept. We decomposed that into alphabets (phonetic atoms), gained universal composability but lost density. Now we are circling back: $\bowtie$, $\pi$, $\rightarrow$, emojis * reinventing hieroglyphs for specific domains.
 
 **hieroglyphs -> alphabets -> formal notation -> emoji/symbols -> compressed protocols**
 
@@ -27,19 +32,19 @@ We started with symbols, detoured through words, and the optimal path forward mi
 
 Math notation as the purest compressed language. Evolved over centuries toward maximum information density.
 
-Math symbols are not faster to write (typing `integral`, `sum`, `join` is awkward) but massively faster to read. A trained eye parses {% latex inline %}$\sum_i x_i^2${% endlatex %} instantly; "the sum of the squares of each element x sub i" requires linear reading. Optimized for output bandwidth, not input.
+Math symbols are not faster to write (typing `integral`, `sum`, `join` is awkward) but massively faster to read. A trained eye parses $\sum_i x_i^2$ instantly; "the sum of the squares of each element x sub i" requires linear reading. Optimized for output bandwidth, not input.
 
 Upfront learning cost amortized over every future read. Same tradeoff as any compressed protocol.
 
 ### Linear algebra as extreme case
 
-A single matrix multiplication {% latex inline %}$AB${% endlatex %} encodes potentially millions of operations. Two characters, behind them a thousand nested loops. No natural language comes close to that compression ratio.
+A single matrix multiplication $AB$ encodes potentially millions of operations. Two characters, behind them a thousand nested loops. No natural language comes close to that compression ratio.
 
 And it is the backbone of the AI we are communicating with. The compressed language (linear algebra) built the system (neural nets) that now lets you use another compressed language (your protocol) to talk to it.
 
 ### Relational algebra vs SQL
 
-{% latex %}\[\pi_{\text{name, email}}(R \bowtie S)\]{% endlatex %}
+$$\pi_{\text{name, email}}(R \bowtie S)$$
 
 vs
 
@@ -149,6 +154,10 @@ This is a different kind of compression. Not fewer tokens, but more memorable to
 * Consistent pronunciation, consonant focus, capitalization for emphasis only
 * Multiplicities, borrowing concepts from programming (`;`, `=`, `*`, `*`, `.`)
 * What if we communicate with LLMs via UML?
+
+## Claude the writer, me the editor
+
+Every section in this article started as a compressed prompt and went through multiple rounds of editing. Claude drafted, I rejected, corrected, restructured, added context only I had. "wt f w gt mr i dtl f xkcd" became the Up Goer Five analysis. "mention math symbols maybe not faster to write but much faster to read" became the information density argument. The ideas and the direction were mine. The expansion was collaborative. The process was the proof.
 
 ## Sources
 
