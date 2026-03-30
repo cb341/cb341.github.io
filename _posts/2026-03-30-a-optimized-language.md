@@ -18,7 +18,7 @@ There is a spectrum from natural language to formal notation, and human-AI commu
 
 $$\text{Communication efficiency} = f(\text{token count}, \text{ambiguity}, \text{vocabulary size}, \text{decoding cost})$$
 
-Every example in this article is a tradeoff between these four variables.
+Every example in this article is a tradeoff between these four variables. The key constraint: density scales with shared context. Compression only works because both sides share the same priors.
 
 ## Hieroglyphs as framing
 
@@ -38,7 +38,7 @@ Upfront learning cost amortized over every future read. Same tradeoff as any com
 
 ### Linear algebra as extreme case
 
-A single matrix multiplication $AB$ encodes potentially millions of operations. Two characters, behind them a thousand nested loops. No natural language comes close to that compression ratio.
+A single matrix multiplication $AB$ encodes potentially millions of operations. Two characters, behind them a thousand nested loops. No natural language comes close to that compression ratio. This is not just compression * it is delegation to a shared semantic model. $AB$ only works because both sides agree on what matrix multiplication means. Compression requires a shared decoding function.
 
 And it is the backbone of the AI we are communicating with. The compressed language (linear algebra) built the system (neural nets) that now lets you use another compressed language (your protocol) to talk to it.
 
@@ -52,7 +52,7 @@ vs
 SELECT DISTINCT name, email FROM R INNER JOIN S ON R.id = S.id
 ```
 
-21 chars vs 67. The algebra implies distinctness (set-based by definition), so DISTINCT is just redundancy the formal notation never needed. English-adjacent languages like SQL carry overhead that purer notations eliminate by design.
+21 chars vs 67. The algebra implies distinctness (set-based by definition), so DISTINCT is redundancy the formal notation never needed. SQL trades density for explicitness and practical execution semantics: bag semantics, execution hints, readability for broader audiences. The verbosity is not accidental. But for expressing the pure relational operation, the algebra is unmatched.
 
 ## Programming languages: Ruby vs Java
 
@@ -69,13 +69,13 @@ List<String> names = users.stream()
 
 Same logic. Java makes you declare `List<String>`, wrap in `.stream()`, unwrap with `.collect(Collectors.toList())`. The type system demands you narrate what Ruby lets the reader infer from context. `names` already tells you it is a list of strings * the type annotation is redundant to anyone reading the code.
 
-The verbosity hides behind types vs naming. Java encodes meaning in the type system; Ruby encodes it in the name. Both work. One trusts context, the other spells it out.
+Java encodes constraints and guarantees. Ruby encodes intent and convention. Both work. One trusts context, the other spells it out.
 
 **Java -> Ruby -> math notation -> compressed protocol**
 
 ## Typoglycaemia / redundancy
 
-If we can read jumbled words and sentences with missing vowels, are they really necessary? The Cambridge meme (first/last letter preservation) proves English carries enough redundancy that large chunks can be dropped without losing meaning.
+Shannon entropy tells us that natural language carries far more bits per symbol than the minimum needed to convey meaning. If we can read jumbled words and sentences with missing vowels, are they really necessary? The Cambridge meme (first/last letter preservation) proves English carries enough redundancy that large chunks can be dropped without losing meaning.
 
 ### xkcd 1133: Up Goer Five
 
@@ -118,11 +118,11 @@ Live example from this conversation:
 
 Decoded: "want/wait for * we get more in detail for/of xkcd" * a request to go deeper into the xkcd comic's actual content rather than just summarizing the concept.
 
-8 consonant-skeleton "words", no vowels, no grammar, fully understood. The message is 30 characters; the English version is 53. ~43% compression with zero loss of meaning.
+8 consonant-skeleton "words", no vowels, no grammar, fully understood. The message is 30 characters; the English version is 53. ~43% compression with low perceived loss under shared context.
 
 ## Why I prefer talking to an LLM over humans
 
-LLMs are denser, more responsive, and work easier with loss. I can drop vowels, skip grammar, misspell everything, and the model still gets it. Humans need me to slow down, spell things out, repeat myself. The LLM meets me at my speed and my level of compression. It does not ask me to expand what I already said clearly enough. The bandwidth match is better.
+LLMs optimize for throughput. Humans optimize for alignment. LLMs are denser, more responsive, and work easier with loss. I can drop vowels, skip grammar, misspell everything, and the model still gets it. Humans need me to slow down, spell things out, repeat myself. The LLM meets me at my speed and my level of compression. It does not ask me to expand what I already said clearly enough. The bandwidth match is better.
 
 This is not a social preference. It is a communication efficiency preference. I already optimize across languages in daily life: my sister and I both speak fluent Czech, but we write to each other in English. It is more token efficient. Simpler. No need to differentiate i/y. No carets, no accents. Shorter words. I do the same with classmates who are native German speakers * we default to English because it is faster. You can rush more, compress more, and still land the meaning. For Software Engineering I enrolled in the English group so that the language stays as close to the technical side as possible. Having to live-translate an English class diagram into German for a presentation is overhead I want to minimize. Every translation is a lossy operation. The LLM just takes that one step further.
 
