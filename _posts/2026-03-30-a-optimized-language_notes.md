@@ -2,7 +2,7 @@
 
 I communicate with AI in broken English and it works perfectly. I drop vowels, ignore spelling, skip grammar, and the meaning arrives intact. Why?
 
-> "I have made this longer than usual because I have not had time to make it shorter." * Blaise Pascal [7]
+> "I have made this longer than usual because I have not had time to make it shorter." * Blaise Pascal
 
 Building on "Map-Reducing Myself" * if we compressed 21MB of identity into 15 words, what does that say about the language we used for the other 20.99MB?
 
@@ -65,11 +65,11 @@ Spectrum: **Java -> Ruby -> math notation -> compressed protocol**
 
 ## Typoglycaemia / redundancy
 
-If we can read jumbled words and sentences with missing vowels, are they really necessary? The Cambridge meme (first/last letter preservation) [1] proves English carries enough redundancy that large chunks can be dropped without losing meaning. Research on information density in communication supports this [2]. Cross-linguistic studies on word length [3] and word frequency effects across 12 alphabetic languages [4] further confirm the redundancy built into natural language.
+If we can read jumbled words and sentences with missing vowels, are they really necessary? The Cambridge meme (first/last letter preservation) proves English carries enough redundancy that large chunks can be dropped without losing meaning.
 
 ### xkcd 1133: Up Goer Five
 
-Randall Munroe describes the Saturn V rocket using only the 1000 most common English words [5]. The results:
+Randall Munroe describes the Saturn V rocket using only the 1000 most common English words. The results:
 
 * "The kind of air that once burned a big sky bag and people died" * hydrogen
 * "This is full of that stuff they burned in lights before houses had power" * kerosene
@@ -90,21 +90,14 @@ This is the fundamental tradeoff: **vocabulary size vs token count**. A large sp
 
 Same tradeoff as the CLAUDE.md protocol. The upfront cost of agreeing on `->`, `x`, `?` is tiny. But it only pays off because we reuse those symbols hundreds of times.
 
-## References
+## Sources
 
-[1] ScienceAlert, "The 'Cambridge' Word Jumble Meme Is More Complicated Than You Think," 2023. [Online]. Available: [https://www.sciencealert.com/word-jumble-meme-first-last-letters-cambridge-typoglycaemia](https://www.sciencealert.com/word-jumble-meme-first-last-letters-cambridge-typoglycaemia)
-
-[2] S. Cordivano, "Better Communication: High Information Density," Medium, 2019. [Online]. Available: [https://medium.com/sarah-cordivano/better-communication-high-information-density-662fe8bfa8d6](https://medium.com/sarah-cordivano/better-communication-high-information-density-662fe8bfa8d6)
-
-[3] S. Wichmann and E. W. Holman, "Cross-linguistic conditions on word length," PLOS ONE, vol. 18, no. 1, e0281041, Jan. 2023. [Online]. Available: [https://doi.org/10.1371/journal.pone.0281041](https://doi.org/10.1371/journal.pone.0281041)
-
-[4] V. Kuperman, S. Schroeder, and D. Gnetov, "Word length and frequency effects on text reading are highly similar in 12 alphabetic languages," Journal of Memory and Language, vol. 135, 104497, Feb. 2024. [Online]. Available: [https://doi.org/10.1016/j.jml.2023.104497](https://doi.org/10.1016/j.jml.2023.104497)
-
-[5] R. Munroe, "Up Goer Five," xkcd, no. 1133, 2012. [Online]. Available: [https://xkcd.com/1133/](https://xkcd.com/1133/)
-
-[6] R. Munroe, "Thing Explainer: Complicated Stuff in Simple Words." New York, NY, USA: Houghton Mifflin Harcourt, 2015.
-
-[7] B. Pascal, "Lettres Provinciales," letter XVI, 1657.
+* [Typoglycaemia: The Cambridge Word Jumble](https://www.sciencealert.com/word-jumble-meme-first-last-letters-cambridge-typoglycaemia)
+* [Better Communication: High Information Density](https://medium.com/sarah-cordivano/better-communication-high-information-density-662fe8bfa8d6)
+* [Cross-linguistic conditions on word length](https://doi.org/10.1371/journal.pone.0281041)
+* [Word length and frequency effects across 12 alphabetic languages](https://doi.org/10.1016/j.jml.2023.104497)
+* [xkcd 1133: Up Goer Five](https://xkcd.com/1133/)
+* [Thing Explainer: Complicated Stuff in Simple Words](https://www.houghtonmifflinbooks.com/thingexplainer/)
 
 ## The CLAUDE.md protocol as proof
 
