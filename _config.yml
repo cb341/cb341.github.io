@@ -39,4 +39,3 @@ exclude:
   - Gemfile.lock
   - bin/
   - design.md
-  - .latex-cache/

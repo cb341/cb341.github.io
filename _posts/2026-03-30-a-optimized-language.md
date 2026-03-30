@@ -18,7 +18,7 @@ There is a spectrum from natural language to formal notation, and human-AI commu
 
 $$\text{Communication efficiency} = f(\text{token count}, \text{ambiguity}, \text{vocabulary size}, \text{decoding cost})$$
 
-Every example in this article is a tradeoff between these four variables. The key constraint: density scales with shared context. Compression only works because both sides share the same priors.
+Every example in this article is a tradeoff between these four variables. The key constraint: density scales with shared context. Compression only works because both sides share the same context.
 
 ## Hieroglyphs as framing
 
@@ -126,9 +126,9 @@ LLMs optimize for throughput. Humans optimize for alignment. LLMs are denser, mo
 
 This is not a social preference. It is a communication efficiency preference. I already optimize across languages in daily life: my sister and I both speak fluent Czech, but we write to each other in English. It is more token efficient. Simpler. No need to differentiate i/y. No carets, no accents. Shorter words. I do the same with classmates who are native German speakers * we default to English because it is faster. You can rush more, compress more, and still land the meaning. For Software Engineering I enrolled in the English group so that the language stays as close to the technical side as possible. Having to live-translate an English class diagram into German for a presentation is overhead I want to minimize. Every translation is a lossy operation. The LLM just takes that one step further.
 
-Same pattern in what I enjoy studying at ZHAW. I like Analysis 1, Analysis 2, Linear Algebra, Information Theory. These are not ambiguous. They are precise. There is one correct answer. I do not like Databases or Communication modules. Those are imprecise, ambiguous, require more context. Domain modeling is not a precise task * it depends on interpretation, convention, stakeholder opinions. The modules I gravitate toward are the ones where the language is already compressed and unambiguous. Exception: I like UML. It allows me to express myself very compactly. First you define the communication protocol * the notation itself. Then you can communicate concepts in a very efficient manner. The upfront cost of agreeing on the symbols pays off in every diagram after. Consider composition vs aggregation in UML: a filled diamond explains lifetime-dependency in a single glyph. No sentence needed. Same principle as math notation, same principle as the CLAUDE.md protocol. The same message that takes 8 consonant skeletons with Claude would need a full paragraph with a person, plus clarification, plus context setting. The protocol overhead of human communication is massive.
+Same pattern in what I enjoy studying at ZHAW. I like Analysis 1, Analysis 2, Linear Algebra, Information Theory. These are not ambiguous. They are precise. There is one correct answer. I do not like Databases or Communication modules. Those are imprecise, ambiguous, require more context. Domain modeling is not a precise task * it depends on interpretation, convention, stakeholder opinions. The modules I gravitate toward are the ones where the language is already compressed and unambiguous. The part of Software Engineering I do like is UML. It allows me to express myself very compactly. First you define the communication protocol * the notation itself. Then you can communicate concepts in a very efficient manner. The upfront cost of agreeing on the symbols pays off in every diagram after. Consider composition vs aggregation in UML: a filled diamond explains lifetime-dependency in a single glyph. No sentence needed. Same principle as math notation, same principle as the CLAUDE.md protocol. The same message that takes 8 consonant skeletons with Claude would need a full paragraph with a person, plus clarification, plus context setting. The protocol overhead of human communication is massive.
 
-Same reason I use Neovim. It is the same principle applied to editing. In VS Code, reformatting a paragraph is: mouse select paragraph, open command palette, type "reflow", select the command. In Vim it is `gqap` * four keystrokes, no menu, no search. Select a word and uppercase it: `gUiw`. Delete everything inside quotes: `di"`. The grammar is composable: once you learn the verbs (`d`, `c`, `gU`, `gq`) and the nouns (`iw`, `ap`, `i"`), you can combine them without ever having seen the specific combination before. It is a compressed language for text manipulation. The upfront cost is steep, the long-term throughput is unmatched.
+Same reason I use Neovim. It is the same principle applied to editing. In VS Code, reformatting a paragraph is: mouse select paragraph, open command palette, type "reflow", select the command. In Vim it is `gqap` * four keystrokes, no menu, no search. Select a word and uppercase it: `gUiw`. Delete everything inside quotes: `di"`. The grammar is composable: once you learn the verbs (`d`, `c`, `gU`, `gq`) and the nouns (`iw`, `ap`, `i"`), you can combine them without ever having seen the specific combination before. It is a compressed language for text manipulation. The upfront cost is steep, the long-term throughput unmatched.
 
 ## The cost of ambiguity (personal)
 
@@ -148,7 +148,7 @@ This is a different kind of compression. Not fewer tokens, but more memorable to
 
 * Markdown/LaTeX/UML as prior art for structured text: pros/cons of each
 * Goethe excerpt: find a passage that illustrates verbosity vs density
-* GemTeX markup as inspiration
+* GEMTEX markup as inspiration
 * Emojis and symbols as expression
 * New way to structure text beyond paragraphs
 * Consistent pronunciation, consonant focus, capitalization for emphasis only
@@ -157,7 +157,7 @@ This is a different kind of compression. Not fewer tokens, but more memorable to
 
 ## Claude the writer, me the editor
 
-Every section in this article started as a compressed prompt and went through multiple rounds of editing. Claude drafted, I rejected, corrected, restructured, added context only I had. "wt f w gt mr i dtl f xkcd" became the Up Goer Five analysis. "mntn mth symbols mb not faster write but much faster read" became the information density argument. The ideas and the direction were mine. The expansion was collaborative. The process was the proof.
+Every section in this article started as a compressed prompt and went through multiple rounds of editing. Claude drafted, I rejected, corrected, restructured, added context only I had. "wt f w gt mr i dtl f xkcd" became the Up Goer Five analysis. "mntn mth symbols mb not faster write but mch faster read" became the information density argument. The ideas and the direction were mine. The expansion was collaborative. The process was the proof.
 
 ## Sources
 
@@ -168,3 +168,4 @@ Every section in this article started as a compressed prompt and went through mu
 * [xkcd 1133: Up Goer Five](https://xkcd.com/1133/)
 * [Thing Explainer: Complicated Stuff in Simple Words](https://www.houghtonmifflinbooks.com/thingexplainer/)
 * [CGP Grey - Hexagons are the bestagons](https://www.youtube.com/watch?v=thOifuHs6eY)
+* [Introduction to GEMTEXT](https://lionwiki-t2t.sourceforge.io/gemtext.html)

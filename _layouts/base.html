@@ -80,21 +80,12 @@
         overflow-x: auto;
       }
 
-      .latex-block {
-        text-align: center;
-        margin: 1em 0;
-      }
-
-      .latex-block img, img.latex-inline {
-        vertical-align: middle;
-      }
-
-      p img.latex-inline {
-        width: auto;
-        height: auto;
-        display: inline;
-      }
     </style>
+    {%- if page.math -%}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\[', right: '\\]', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}]});"></script>
+    {%- endif -%}
   </head>
   <body>
     <div class="wrapper">
