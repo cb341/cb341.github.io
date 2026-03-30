@@ -10,7 +10,7 @@ I communicate with AI in broken English and it works perfectly. I drop vowels, i
 
 > "I have made this longer than usual because I have not had time to make it shorter." * Blaise Pascal
 
-Building on ["Map-Reducing Myself"](blog/map-reduce-myself/) * if we compressed 21MB of data into 15 words of identity, what does that say about the language we used for the other 20.99MB?
+Building on ["Map-Reducing Myself"](/blog/map-reduce-myself/) * if we compressed 21MB of data into 15 words of identity, what does that say about the language we used for the other 20.99MB?
 
 ## Thesis
 
@@ -162,10 +162,10 @@ Every section in this article started as a compressed prompt and went through mu
 ## Sources
 
 * [Typoglycaemia: The Cambridge Word Jumble](https://www.sciencealert.com/word-jumble-meme-first-last-letters-cambridge-typoglycaemia)
-* [Better Communication: High Information Density](https://medium.com/sarah-cordivano/better-communication-high-information-density-662fe8bfa8d6)
+* [Better Communication: High Information Density](https://sarahcordivano.medium.com/better-communication-high-information-density-662fe8bfa8d6)
 * [Cross-linguistic conditions on word length](https://doi.org/10.1371/journal.pone.0281041)
 * [Word length and frequency effects across 12 alphabetic languages](https://doi.org/10.1016/j.jml.2023.104497)
 * [xkcd 1133: Up Goer Five](https://xkcd.com/1133/)
-* [Thing Explainer: Complicated Stuff in Simple Words](https://www.houghtonmifflinbooks.com/thingexplainer/)
+* [Thing Explainer: Complicated Stuff in Simple Words](https://en.wikipedia.org/wiki/Thing_Explainer)
 * [CGP Grey - Hexagons are the bestagons](https://www.youtube.com/watch?v=thOifuHs6eY)
 * [Introduction to GEMTEXT](https://lionwiki-t2t.sourceforge.io/gemtext.html)
