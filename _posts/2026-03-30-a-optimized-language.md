@@ -157,7 +157,7 @@ This is a different kind of compression. Not fewer tokens, but more memorable to
 
 ## Claude the writer, me the editor
 
-Every section in this article started as a compressed prompt and went through multiple rounds of editing. Claude drafted, I rejected, corrected, restructured, added context only I had. "wt f w gt mr i dtl f xkcd" became the Up Goer Five analysis. "mention math symbols maybe not faster to write but much faster to read" became the information density argument. The ideas and the direction were mine. The expansion was collaborative. The process was the proof.
+Every section in this article started as a compressed prompt and went through multiple rounds of editing. Claude drafted, I rejected, corrected, restructured, added context only I had. "wt f w gt mr i dtl f xkcd" became the Up Goer Five analysis. "mntn mth symbols mb not faster write but much faster read" became the information density argument. The ideas and the direction were mine. The expansion was collaborative. The process was the proof.
 
 ## Sources
 
