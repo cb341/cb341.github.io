@@ -16,7 +16,7 @@ Building on ["Map-Reducing Myself"](/blog/map-reduce-myself/) * if we compressed
 
 There is a spectrum from natural language to formal notation, and human-AI communication is carving out a new point on it.
 
-$$\text{Communication efficiency} = f(\text{token count}, \text{ambiguity}, \text{vocabulary size}, \text{decoding cost})$$
+$$E_{\text{comm}} = f(N_{\text{tok}}, \text{ambiguity}, |V|, C_{\text{decode}})$$
 
 Every example in this article is a tradeoff between these four variables. The key constraint: density scales with shared context. Compression only works because both sides share the same context.
 
