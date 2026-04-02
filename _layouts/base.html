@@ -20,46 +20,8 @@
     <meta name="title" content="{{ page_title }}">
     <meta name="description" content="{{ page_description }}">
     <meta name="author" content="Dani Bengl">
-    <link rel="canonical" href="{{ current_url }}">
-    <meta property="og:type" content="{{ og_type }}">
-    <meta property="og:url" content="{{ current_url }}">
-    <meta property="og:title" content="{{ page_title }}">
-    <meta property="og:description" content="{{ page_description }}">
-    <meta property="og:image" content="{{ site_url }}/og-image.png">
-    <meta property="og:site_name" content="CB341.DEV">
-    <meta property="og:locale" content="en_US">
-    <!-- TODO: create og-image.png for social sharing previews -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="{{ current_url }}">
-    <meta property="twitter:title" content="{{ page_title }}">
-    <meta property="twitter:description" content="{{ page_description }}">
-    <meta property="twitter:image" content="{{ site_url }}/og-image.png">
-    <meta property="twitter:creator" content="@cb341">
-    <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#ffffff">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="alternate" type="application/rss+xml" title="CB341.DEV RSS Feed" href="/rss.xml">
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "{% if og_type == 'article' %}BlogPosting{% else %}WebPage{% endif %}",
-      "headline": {{ page.title | default: default_title | jsonify }},
-      "description": {{ page_description | jsonify }},
-      "url": {{ current_url | jsonify }},
-      "author": {
-        "@type": "Person",
-        "name": "Dani Bengl",
-        "url": {{ site_url | jsonify }},
-        "sameAs": [
-          "https://github.com/cb341",
-          "https://www.linkedin.com/in/daniel-bengl",
-          "https://www.codewars.com/users/cb341"
-        ]
-      }{% if page.date %},
-      "datePublished": "{{ page.date | date_to_xmlschema }}"{% endif %}{% if page.tags %},
-      "keywords": {{ page.tags | join: ", " | jsonify }}{% endif %}
-    }
-    </script>
     <style>
       body {
         overflow-y: scroll;
@@ -89,30 +51,18 @@
   </head>
   <body>
     <div class="wrapper">
-      <center>
-        <header role="banner">
-          <h1>{% include navlink.html href="/" label="CB341.DEV" %}</h1>
-          <nav role="navigation" aria-label="Main navigation">
-            {% include navlink.html href="/" label="Home" %}
-            | {% include navlink.html href="/about" label="About" %}
-            | {% include navlink.html href="/uses" label="Uses" %}
-            | {% include navlink.html href="/til" label="TIL" %}
-            | {% include navlink.html href="/blog" label="Blog" %}
-            | {% include navlink.html href="/projects" label="Projects" %}
-            | {% include navlink.html href="/gallery" label="Gallery" %}
-          </nav>
-          <nav role="navigation" aria-label="Social media links">
-            <a href="https://github.com/cb341" target="_blank" rel="noopener noreferrer">GitHub</a>
-            |
-            <a href="https://www.codewars.com/users/cb341" target="_blank" rel="noopener noreferrer">Codewars</a>
-            |
-            <a href="https://mastodon.social/deck/@cb341" target="_blank" rel="noopener noreferrer">Mastodon</a>
-            |
-            <a href="https://www.linkedin.com/in/daniel-bengl" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          </nav>
-          <hr>
-        </header>
-      </center>
+      <header role="banner">
+        <nav>
+          <b>CB341.DEV</b>
+          &nbsp; <a href="/about">About</a>
+          &nbsp; <a href="/blog">Blog</a>
+          &nbsp; <a href="/projects">Projects</a>
+          &nbsp; <a href="/gallery">Gallery</a>
+          &nbsp; <a href="/til">TIL</a>
+          &nbsp; <a href="/uses">Uses</a>
+        </nav>
+        <hr>
+      </header>
 
       <main id="main-content" role="main">
         {{ content }}
@@ -132,6 +82,8 @@
           <a href="https://discord.com/users/456151064484249612" target="_blank" rel="noopener noreferrer">Discord</a>
           |
           <a href="https://mastodon.social/deck/@cb341" target="_blank" rel="noopener noreferrer">Mastodon</a>
+          |
+          <a href="https://www.codewars.com/users/cb341" target="_blank" rel="noopener noreferrer">Codewars</a>
           |
           <a href="https://www.linkedin.com/in/daniel-bengl" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           |
