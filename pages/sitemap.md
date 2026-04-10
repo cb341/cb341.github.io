@@ -7,19 +7,16 @@ permalink: /sitemap/
 # Sitemap
 
 ## Pages
-- [Home](/)
 {%- for page in site.pages %}
-  {%- if page.title %}
+  {%- if page.title and page.url != "/sitemap/" %}
 - [{{ page.title }}]({{ page.url }})
   {%- endif %}
 {%- endfor %}
 
 ## Blog
-- [Latest Posts](/)
 {%- for post in site.posts limit: 10 %}
 - [{{ post.title }}]({{ post.url }})
 {%- endfor %}
-- [View all posts](/)
 
 ## Projects
 {%- for project in site.projects %}
