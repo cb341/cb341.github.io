@@ -12,6 +12,8 @@ Conversations, thoughts, half-ideas, things I am starting to explore.
 
 ## 10.04.2026
 
+_decided to introduce threads alongside blog articles to make space for more frequent thoughts_
+
 physically sick today, in real pain.
 
 seems like my physical health has finally caught up to my mental health. having both hit at once made me question things harder than usual.
