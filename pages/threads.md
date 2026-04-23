@@ -10,6 +10,23 @@ Conversations, thoughts, half-ideas, things I am starting to explore.
 
 ---
 
+## 23.04.2026
+
+setting up nctl for local dev today and misread "goreleaser" as "gore leaser". couldn't unsee it after.
+
+started noticing it everywhere:
+
+- postgres / post gres
+- github / git hub
+- linkedin / linked in
+- dropbox / drop box
+- therapist / the rapist
+- nowhere / now here
+
+the letters don't change. so what does?
+
+why did i read it one way the first hundred times and another way today? was the second reading always there, waiting? if so, what decides which one i get? and if two readings sit in the same letters, how many am i missing in everything else i read?
+
 ## 10.04.2026
 
 _decided to introduce threads alongside blog articles to make space for more frequent thoughts_
