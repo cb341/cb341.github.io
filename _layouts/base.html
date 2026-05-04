@@ -23,25 +23,49 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="alternate" type="application/rss+xml" title="CB341.DEV RSS Feed" href="/rss.xml">
     <style>
+      html, body { margin: 0; padding: 0; }
       body {
         overflow-y: scroll;
+        background: #e9ecef;
+        color: #1c1c1a;
+        font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, ui-serif, serif;
+        font-size: 15px;
+        line-height: 1.55;
+        letter-spacing: -0.01em;
       }
 
       .wrapper {
-        max-width: 80ch;
-        margin-left: auto;
-        margin-right: auto;
+        max-width: 68ch;
+        margin: 24px auto;
+        background: #fafaf8;
+        padding: 36px 40px;
+        border: 1px solid #ececea;
+      }
+      @media (max-width: 600px) {
+        .wrapper { margin: 0; padding: 18px 16px; border-left: 0; border-right: 0; }
       }
 
-      p img {
-        width: 100%;
-        height: auto;
-      }
+      p img { width: 100%; height: auto; }
+      blockquote { margin: 1.2em 2em; font-style: italic; }
 
+      hr { border: 0; border-top: 1px solid #e6e6e2; margin: .6em 0; }
+
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: .88em;
+        background: #f1f1ee;
+        padding: 1px 4px;
+        border-radius: 2px;
+      }
       pre {
         overflow-x: auto;
+        background: #f1f1ee;
+        border: 1px solid #e6e6e2;
+        padding: 10px 12px;
+        font-size: .88em;
+        line-height: 1.5;
       }
-
+      pre code { background: transparent; padding: 0; }
     </style>
     {%- if page.math -%}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" crossorigin="anonymous">
