@@ -9,7 +9,78 @@ math: true
 
 Conversations, thoughts, half-ideas, things I am starting to explore.
 
+## 04.05.2026
+
+been thinking a lot about AI and software engineering.
+
+not sure what software engineering even is anymore. \
+work has felt... empty lately ; \
+mostly prompting agents. describing what should exist instead of building it. it works. things get done. but it doesn't feel like *doing*.
+
+had a discussion at work where we compared it to brewing beer.
+
+you can buy beer. or you can brew it yourself. \
+the process is the point.
+
+but with code it's different.
+
+you don't just buy it. you don't even have to make it. \
+you can just… ask for it.
+
+you can't prompt a beer into existence. \
+you still have to go through the process.
+
+with code, the process is optional.
+
 ---
+
+if i can describe a system and have it built, what part of it is mine? \
+if i don't write the code, do i still understand it?
+
+and if i *do* write it, am i just choosing the slower path on purpose?
+
+do i even need to understand it at all, if an AI can take the entire project, code, docs, discussions, git history, and pinpoint what matters?
+
+---
+
+AI can read everything. suggest fixes. propose optimizations. \
+so what is left for me to do?
+
+is it enough to say "make it faster"? \
+but what does "faster" even mean?
+
+---
+
+I tried reducing engineering into a loop: \
+something feels slow → measure → fix → measure again
+
+measure what? \
+fix based on which assumption? \
+what if the assumption is wrong?
+
+---
+
+AI gives answers. often good ones.
+
+but what is an answer worth if it hasn't been tested?
+
+if correctness only appears after something is run and observed, \
+is engineering just the act of confronting reality?
+
+---
+
+i still like writing code.
+
+not sure why _exactly_.
+
+maybe because it feels like real work? \
+maybe because it forces me to understand things? \
+maybe because i have more control over the process? \
+maybe because it is the actual act of creation, not just the idea of it? \
+maybe because it allows me to prove to myself that i understand something, not just claim it?
+maybe because it feels like a craft, something that requires skill and practice to get better at? But so does prompting, no? Why does it feel so different?
+
+**if i remove that, what is left?**
 
 ## 23.04.2026
 
