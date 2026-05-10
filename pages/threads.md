@@ -9,6 +9,30 @@ math: true
 
 Conversations, thoughts, half-ideas, things I am starting to explore.
 
+## 10.05.2026
+
+Been thinking about RTGs again (radioisotope thermoelectric generators) after a long tangent that started with how things cool in the vacuum of space.
+
+They’re basically nuclear batteries that produce steady heat from plutonium-238 decay for decades. In space they’re elegant. On Earth they’re mostly avoided. But the radiation they emit is interesting in a darker way.
+
+Radiation brute-forces mutations. It increases the error rate in DNA copying. Most of those errors are harmful or neutral. A tiny fraction might be beneficial. Under extreme selective pressure (fire, radiation, starvation, etc.), the few survivors can carry traits that look like accelerated evolution, namely radiation resistance, fire resistance, better DNA repair, darker pigmentation, etc.
+
+So theoretically: set an area on fire repeatedly while exposing it to controlled radiation and you might sculpt organisms that are extremely hardy to both. Like lab-directed evolution but on a landscape scale. Chernobyl’s Red Forest + later wildfires already did a messy version of this experiment.
+
+It feels like the ultimate “move fast and break things” approach to biology. Flood the system with noise and variation, kill almost everything, and see what’s left standing. Evolution by catastrophe.
+
+Reminds me of the AI conversation. We can now brute-force code into existence by describing it. No need for the slow, careful craft. Is that better? Or are we just trading understanding for speed and volume?
+
+Same question here: does flooding the genome with mutations and extreme selection actually accelerate meaningful progress? Or does it mostly create suffering and dead ends with a few hardened survivors?
+
+Nature already does this slowly with fire, volcanoes, solar radiation. We could do it faster. The question is whether we should, and what we lose in the process.
+Most mutations are bad. Most attempts fail. The “forward” leaps are rare and expensive.
+
+Still... the black Chernobyl frogs are real. They happened in ~30 years.
+
+Curious what other traits we could force if we tried.
+No conclusions. Just another void staring back.
+
 ## 04.05.2026
 
 been thinking a lot about AI and software engineering.
