@@ -66,6 +66,8 @@
         line-height: 1.5;
       }
       pre code { background: transparent; padding: 0; }
+      main :is(h2,h3,h4,h5,h6)[id] > a { color: inherit; text-decoration: none; }
+      main :is(h2,h3,h4,h5,h6)[id] > a:hover::after { content: " #"; color: #bbb; }
     </style>
     {%- if page.math -%}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" crossorigin="anonymous">
@@ -114,6 +116,7 @@
         </footer>
       </center>
     </div>
+    <script>document.querySelectorAll('main :is(h2,h3,h4,h5,h6)[id]').forEach(h=>h.innerHTML=`<a href="#${h.id}">${h.innerHTML}</a>`);</script>
     <script>document.addEventListener('keydown',e=>{const as=[...document.querySelectorAll('[aria-label="Post navigation"] a')];if(e.key==='ArrowLeft'){const a=as.find(a=>a.textContent.includes('<'));if(a)location.href=a.href;}if(e.key==='ArrowRight'){const a=as.find(a=>a.textContent.includes('>'));if(a)location.href=a.href;}});</script>
   </body>
 </html>
