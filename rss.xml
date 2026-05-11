@@ -5,7 +5,7 @@ permalink: /rss.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>cb341 Blog</title>
+    <title>cb341.dev</title>
     <description>Personal blog and portfolio</description>
     <link>{{ site.url }}</link>
     <atom:link href="{{ site.url }}/rss.xml" rel="self" type="application/rss+xml" />
@@ -25,5 +25,30 @@ permalink: /rss.xml
       {%- endfor %}
     </item>
     {%- endfor %}
+    {%- for p in site.pages %}{%- if p.url == "/threads/" %}{%- assign threads_page = p %}{%- endif %}{%- endfor %}
+    {%- if threads_page %}
+      {%- assign chunks = threads_page.content | split: "
+## " %}
+      {%- for chunk in chunks offset:1 %}
+        {%- assign lines = chunk | split: "
+" %}
+        {%- assign heading = lines[0] | strip %}
+        {%- assign body = chunk | remove_first: lines[0] | strip %}
+        {%- assign date_parts = heading | split: " " | first | split: "." %}
+        {%- assign dd = date_parts[0] %}
+        {%- assign mm = date_parts[1] %}
+        {%- assign yyyy = date_parts[2] %}
+        {%- assign iso = yyyy | append: "-" | append: mm | append: "-" | append: dd | append: "T12:00:00Z" %}
+        {%- assign slug = heading | replace: ".", "" | slugify %}
+    <item>
+      <title>Threads: {{ heading | xml_escape }}</title>
+      <link>{{ site.url }}{{ threads_page.url }}#{{ slug }}</link>
+      <guid isPermaLink="false">{{ site.url }}{{ threads_page.url }}#{{ slug }}</guid>
+      <description><![CDATA[{{ body | markdownify }}]]></description>
+      <pubDate>{{ iso | date_to_rfc822 }}</pubDate>
+      <category>threads</category>
+    </item>
+      {%- endfor %}
+    {%- endif %}
   </channel>
 </rss>
