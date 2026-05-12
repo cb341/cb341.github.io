@@ -9,6 +9,73 @@ math: true
 
 Conversations, thoughts, half-ideas, things I am starting to explore.
 
+## 12.05.2026
+
+looked into autism traits today to understand people better. \
+namely how perception of marketing and manipulation is affected by rational neurodivergence which made me stumble on the word "anthropomorphism":
+
+> objects as if they are human in appearance, character, or behaviour
+
+this made something CLICK about CS vocabulary. \
+many concepts are inherently anthropomorphized by design:
+
+```
+emotions:        compiler is angry, service is happy/sad/healthy,
+                 process is starving, thread is waiting patiently
+
+relationships:   parent/child process, orphaned container,
+                 master/slave (deprecated), sibling nodes
+
+human actions:   daemon woke up, server died/killed, worker is idle,
+                 garbage collector cleaned up, service is listening,
+                 endpoints are talking, connection refused
+
+human states:    process sleeping/running, cache is fresh/stale,
+                 bit is dirty/clean, link is alive/dead
+```
+
+vs non-human but still metaphorical:
+
+```
+borrowed names:  zombie, worm, trojan horse, spider, crawler
+architecture:    pipeline, gateway, backbone, bridge
+military:        payload, attack, exploit, kill chain
+```
+
+the concepts aren't new to me. the label is.\
+the conceptual metaphors are no longer invisible. 
+
+found an umbrella term: **tropes** (meaning-shift)
+
+```
+tropes
+|- metaphor          "time is money"
+|- metonymy          "White House said"
+|- synecdoche        "boots on the ground"
+|- personification   "wind whispered"
+|- anthropomorphism  "compiler is angry"
+|- reification       "market decided"
++- irony, hyperbole, litotes...
+```
+
+was aware the shifts exist. \
+now i can name them.
+
+---
+
+also learned **chiasmus** today: reversed term order for symmetry.
+
+> "Ask not what your country can do for you — ask what you can do for your country" (JFK)
+
+Breakdown:
+
+```
+ask not   what your country   can do   for you
+ask       what you            can do   for your country
+```
+
+uses elegant structure to aid memorability.
+
 ## 11.05.2026 (afternoon)
 
 (yes this entry contains filler, are you yet frustrated by it?)
