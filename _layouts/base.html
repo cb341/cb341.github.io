@@ -94,6 +94,8 @@
         <nav role="navigation" aria-label="Post navigation">
           <hr>
           <a href="https://github.com/cb341/cb341.github.io/blob/main/{{ page.path }}" target="_blank" rel="noopener noreferrer">GitHub</a>
+          |
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeRD0Q9wYYZelAkRXEu2cCFN89-cvoAfOtyTY9vaz9-FUvYXQ/viewform?usp=pp_url&entry.2083454847={{ current_url | url_encode }}" target="_blank" rel="noopener noreferrer">Page Feedback</a>
           {%- if page.collection == 'posts' %}{% include post_nav.html %}{%- endif -%}
           {%- if page.collection == 'projects' %}{% include project_nav.html %}{%- endif -%}
           {%- if page.layout == 'gallery' %}{% include gallery_nav.html %}{%- endif -%}
