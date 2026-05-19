@@ -30,13 +30,15 @@ and there is so much more to chess than i imagined.
 then found GM José Raúl Capablanca.
 
 everyone learns by memorizing openings. hundreds of variations. \
-capablanca reduced the entire game to 5 principles:
+capablanca reduced the entire game to 7 principles:
 
-* **activate your king, restrict opponent's king**: centralize yours, cut off theirs
-* **prioritize passed pawns**: main offensive plan is to create and advance them
-* **rule of trade-offs**: winning? keep pawns. losing? trade pawns, seek draw
-* **prevent opponent plans (prophylaxis)**: determine what they want, stop it
-* **attack weaknesses**: target weak pawns, force creation of new weaknesses
+1. **check for hanging pieces every move**: yours and theirs. before anything else. loose pieces drop off. most games below 1500 are decided by one side leaving a piece undefended, not by deep strategy
+2. **activate your king, restrict opponent's king**: centralize yours, cut off theirs. in the endgame the king is a fighting piece
+3. **prioritize passed pawns**: main offensive plan is to create and advance them. a passed pawn must be pushed
+4. **rule of trade-offs**: winning? trade pieces, keep pawns. losing? trade pawns, keep pieces, seek draw
+5. **prevent opponent plans (prophylaxis)**: determine what they want, stop it before pursuing your own
+6. **attack weaknesses, principle of two weaknesses**: one weakness rarely loses. create a second on the other side of the board, stretch the defense until it tears
+7. **know basic endgames cold**: king+pawn vs king, opposition, square rule, lucena, philidor. without these the rest is theatre
 
 bishop endgames add some more:
 
