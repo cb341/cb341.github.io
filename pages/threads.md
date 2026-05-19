@@ -9,6 +9,53 @@ math: true
 
 Conversations, thoughts, half-ideas, things I am starting to explore.
 
+## 19.05.2026
+
+started playing chess myself again after watching god-tier play of hikaru, levi, magnus.
+thought i understood chess by watching. tried blitz and brutally realized i didn't. \
+150-300 elo. accuracy below 50%. one game i even managed a 35 material disatvantage because i wasn't paying attention.
+
+watched more. saw patterns i'd missed. \
+tried puzzles and solved 400+. \
+pins, skewers, basic mates. watched more. saw even more depth.
+
+now i switched to slow chess. untimed bot games. some evaluate at 1400. \
+doesn't mean i'm 1400. means with infinite time, i can sometimes see what to do.
+
+each iteration uncovered more. \
+and there is so much more to chess than i imagined.
+
+---
+
+then found GM José Raúl Capablanca.
+
+everyone learns by memorizing openings. hundreds of variations. \
+capablanca reduced the entire game to 5 principles:
+
+* **activate your king, restrict opponent's king**: centralize yours, cut off theirs
+* **prioritize passed pawns**: main offensive plan is to create and advance them
+* **rule of trade-offs**: winning? keep pawns. losing? trade pawns, seek draw
+* **prevent opponent plans (prophylaxis)**: determine what they want, stop it
+* **attack weaknesses**: target weak pawns, force creation of new weaknesses
+
+bishop endgames add some more:
+
+* place your pawns on **opposite color** to your bishop
+* force opponent's pawns onto **same color** as their bishop
+* restricts their bishop, creates permanent targets, maximizes yours
+
+the more i learn, the more there is. \
+but capablanca shows it can still be thought about simply. \
+which is very elegant to me.
+
+i realized that i already do this instinctively. \
+not with rules but with board state. \
+i tend to mercilessly trade pieces to reach endgames. \
+fewer pieces -> fewer branches -> clearer position -> less room for mistakes
+
+> "The winner of the game is the player who makes the next-to-last mistake." \
+> — Savielly Tartakower
+
 ## 12.05.2026
 
 looked into autism traits today to understand people better. \
