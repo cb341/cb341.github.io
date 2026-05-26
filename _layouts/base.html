@@ -50,6 +50,39 @@
 
       hr { border: 0; border-top: 1px solid #e6e6e2; margin: .6em 0; }
 
+      table {
+        width: 100%;
+        margin: 1.6em 0;
+        border-collapse: collapse;
+        font-size: 1.45em;
+        line-height: 1.35;
+      }
+
+      th,
+      td {
+        padding: .26em 1.4em .26em 0;
+        border: 0;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      th {
+        font-weight: 700;
+      }
+
+      td:last-child,
+      th:last-child {
+        padding-right: 0;
+      }
+
+      @media (max-width: 600px) {
+        table {
+          display: block;
+          overflow-x: auto;
+          font-size: 1.18em;
+        }
+      }
+
       code {
         font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
         font-size: .88em;
