@@ -101,6 +101,206 @@
       pre code { background: transparent; padding: 0; }
       main :is(h2,h3,h4,h5,h6)[id] > a { color: inherit; text-decoration: none; }
       main :is(h2,h3,h4,h5,h6)[id] > a:hover::after { content: " #"; color: #bbb; }
+
+      .print-only { display: none; }
+
+      @page {
+        size: A4;
+        margin: 22mm 20mm 24mm;
+
+        @bottom-center {
+          content: counter(page) " / " counter(pages);
+          color: #777;
+          font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+          font-size: 8.5pt;
+        }
+      }
+
+      @media print {
+        html,
+        body {
+          background: #fff;
+        }
+
+        body {
+          color: #111;
+          font-size: 11pt;
+          line-height: 1.45;
+          letter-spacing: 0;
+          overflow: visible;
+          print-color-adjust: exact;
+          -webkit-print-color-adjust: exact;
+        }
+
+        .wrapper {
+          max-width: none;
+          margin: 0;
+          padding: 0;
+          border: 0;
+          background: transparent;
+        }
+
+        body > .wrapper > header,
+        body > .wrapper > center,
+        main > nav[aria-label="Post navigation"] {
+          display: none;
+        }
+
+        .print-only {
+          display: block;
+        }
+
+        main {
+          max-width: 100%;
+        }
+
+        h1 {
+          margin: 0 0 3mm;
+          font-size: 24pt;
+          line-height: 1.12;
+          letter-spacing: 0;
+          break-after: avoid;
+        }
+
+        .post-print-meta {
+          margin: 0 0 9mm;
+          padding-bottom: 4mm;
+          border-bottom: 0.4pt solid #bbb;
+          color: #666;
+          font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+          font-size: 8.5pt;
+          line-height: 1.35;
+        }
+
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+          break-after: avoid;
+          page-break-after: avoid;
+        }
+
+        h2 {
+          margin-top: 9mm;
+          padding-top: 2mm;
+          border-top: 0.4pt solid #ddd;
+          font-size: 17pt;
+          line-height: 1.2;
+        }
+
+        h3 { font-size: 13.5pt; }
+        h4, h5, h6 { font-size: 11.5pt; }
+
+        p,
+        li,
+        blockquote {
+          orphans: 3;
+          widows: 3;
+        }
+
+        a {
+          color: inherit;
+          text-decoration-thickness: 0.5pt;
+          text-underline-offset: 1.5pt;
+        }
+
+        main a[href^="http"]::after {
+          content: " (" attr(href) ")";
+          color: #666;
+          font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+          font-size: 8pt;
+          overflow-wrap: anywhere;
+        }
+
+        main :is(h1,h2,h3,h4,h5,h6) a::after,
+        main a[href^="https://cb341.dev"]::after,
+        main a[href^="http"] code::after {
+          content: "";
+        }
+
+        blockquote {
+          margin: 4mm 0;
+          padding-left: 5mm;
+          border-left: 1.5pt solid #bbb;
+          color: #333;
+        }
+
+        pre,
+        blockquote,
+        table,
+        p:has(img) {
+          break-inside: avoid;
+          page-break-inside: avoid;
+        }
+
+        code {
+          background: #f3f3f1;
+          border: 0.4pt solid #ddd;
+          padding: 0 2pt;
+          border-radius: 0;
+          font-size: 8.5pt;
+        }
+
+        pre {
+          white-space: pre-wrap;
+          overflow: visible;
+          background: #f6f6f4;
+          border: 0.5pt solid #d8d8d2;
+          padding: 7pt 8pt;
+          font-size: 8.2pt;
+          line-height: 1.35;
+        }
+
+        pre code {
+          border: 0;
+          padding: 0;
+          font-size: inherit;
+        }
+
+        p img {
+          display: block;
+          max-width: 100%;
+          max-height: 170mm;
+          object-fit: contain;
+          margin: 5mm auto 2mm;
+          border: 0.5pt solid #ddd;
+        }
+
+        table {
+          display: table;
+          width: 100%;
+          font-size: 9pt;
+          line-height: 1.25;
+          border-top: 0.5pt solid #999;
+          border-bottom: 0.5pt solid #999;
+        }
+
+        th,
+        td {
+          padding: 2.5pt 6pt 2.5pt 0;
+          border-bottom: 0.4pt solid #ddd;
+        }
+
+        thead {
+          display: table-header-group;
+        }
+
+        tr {
+          break-inside: avoid;
+          page-break-inside: avoid;
+        }
+
+        hr {
+          border-top-color: #bbb;
+        }
+
+        .katex-display {
+          overflow: visible;
+          break-inside: avoid;
+          page-break-inside: avoid;
+        }
+      }
     </style>
     {%- if page.math -%}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" crossorigin="anonymous">
@@ -108,7 +308,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\[', right: '\\]', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}]});"></script>
     {%- endif -%}
   </head>
-  <body>
+  <body class="layout-{{ page.layout | default: 'base' }} collection-{{ page.collection | default: 'page' }}">
     <div class="wrapper">
       <header role="banner">
         <nav>
