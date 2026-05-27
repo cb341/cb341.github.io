@@ -117,12 +117,8 @@
       }
 
       @media print {
-        html,
         body {
           background: #fff;
-        }
-
-        body {
           color: #111;
           font-size: 11pt;
           line-height: 1.45;
@@ -134,32 +130,17 @@
 
         .wrapper {
           max-width: none;
-          margin: 0;
-          padding: 0;
-          border: 0;
+          margin: 0; padding: 0; border: 0;
           background: transparent;
         }
 
-        body > .wrapper > header,
-        body > .wrapper > center,
-        main > nav[aria-label="Post navigation"] {
-          display: none;
-        }
-
-        .print-only {
-          display: block;
-        }
-
-        main {
-          max-width: 100%;
-        }
+        body > .wrapper > header, body > .wrapper > center, main > nav { display: none; }
+        .print-only { display: block; }
 
         h1 {
           margin: 0 0 3mm;
           font-size: 24pt;
           line-height: 1.12;
-          letter-spacing: 0;
-          break-after: avoid;
         }
 
         .post-print-meta {
@@ -172,15 +153,6 @@
           line-height: 1.35;
         }
 
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-          break-after: avoid;
-          page-break-after: avoid;
-        }
-
         h2 {
           margin-top: 9mm;
           padding-top: 2mm;
@@ -191,13 +163,6 @@
 
         h3 { font-size: 13.5pt; }
         h4, h5, h6 { font-size: 11.5pt; }
-
-        p,
-        li,
-        blockquote {
-          orphans: 3;
-          widows: 3;
-        }
 
         a {
           color: inherit;
@@ -214,8 +179,7 @@
         }
 
         main :is(h1,h2,h3,h4,h5,h6) a::after,
-        main a[href^="https://cb341.dev"]::after,
-        main a[href^="http"] code::after {
+        main a[href^="https://cb341.dev"]::after {
           content: "";
         }
 
@@ -224,14 +188,6 @@
           padding-left: 5mm;
           border-left: 1.5pt solid #bbb;
           color: #333;
-        }
-
-        pre,
-        blockquote,
-        table,
-        p:has(img) {
-          break-inside: avoid;
-          page-break-inside: avoid;
         }
 
         code {
@@ -255,7 +211,6 @@
         pre code {
           border: 0;
           padding: 0;
-          font-size: inherit;
         }
 
         p img {
@@ -269,7 +224,6 @@
 
         table {
           display: table;
-          width: 100%;
           font-size: 9pt;
           line-height: 1.25;
           border-top: 0.5pt solid #999;
@@ -282,23 +236,9 @@
           border-bottom: 0.4pt solid #ddd;
         }
 
-        thead {
-          display: table-header-group;
-        }
-
-        tr {
+        h1, h2, h3, h4, h5, h6, pre, blockquote, table, tr, p:has(img), .katex-display {
           break-inside: avoid;
-          page-break-inside: avoid;
-        }
-
-        hr {
-          border-top-color: #bbb;
-        }
-
-        .katex-display {
-          overflow: visible;
-          break-inside: avoid;
-          page-break-inside: avoid;
+          break-after: avoid;
         }
       }
     </style>
@@ -308,7 +248,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\[', right: '\\]', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}]});"></script>
     {%- endif -%}
   </head>
-  <body class="layout-{{ page.layout | default: 'base' }} collection-{{ page.collection | default: 'page' }}">
+  <body>
     <div class="wrapper">
       <header role="banner">
         <nav>
