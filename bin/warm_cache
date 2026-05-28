@@ -1,0 +1,107 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "net/http"
+require "optparse"
+require "rexml/document"
+require "thread"
+require "uri"
+
+options = {
+  concurrency: 4,
+  sitemap: "https://cb341.dev/sitemap.xml",
+  timeout: 15
+}
+
+OptionParser.new do |parser|
+  parser.banner = "Usage: bin/warm_cache [options]"
+
+  parser.on("-s", "--sitemap URL", "Sitemap URL to read") do |value|
+    options[:sitemap] = value
+  end
+
+  parser.on("-j", "--concurrency COUNT", Integer, "Parallel requests, default: 4") do |value|
+    options[:concurrency] = [value, 1].max
+  end
+
+  parser.on("-t", "--timeout SECONDS", Integer, "Per-request timeout, default: 15") do |value|
+    options[:timeout] = [value, 1].max
+  end
+end.parse!
+
+def fetch(uri, timeout, limit = 5)
+  raise "too many redirects for #{uri}" if limit.zero?
+
+  response = Net::HTTP.start(
+    uri.host,
+    uri.port,
+    use_ssl: uri.scheme == "https",
+    open_timeout: timeout,
+    read_timeout: timeout
+  ) do |http|
+    request = Net::HTTP::Get.new(uri)
+    request["User-Agent"] = "cb341-cache-warmer/1.0"
+    http.request(request)
+  end
+
+  case response
+  when Net::HTTPRedirection
+    fetch(URI(response.fetch("location")), timeout, limit - 1)
+  else
+    response
+  end
+end
+
+sitemap_uri = URI(options[:sitemap])
+sitemap = fetch(sitemap_uri, options[:timeout])
+abort "Could not fetch sitemap: HTTP #{sitemap.code}" unless sitemap.is_a?(Net::HTTPSuccess)
+
+document = REXML::Document.new(sitemap.body)
+urls = REXML::XPath.each(document, "//*[local-name()='url']/*[local-name()='loc']").map do |element|
+  URI(element.text.strip)
+end
+
+abort "No URLs found in #{options[:sitemap]}" if urls.empty?
+
+queue = Queue.new
+urls.each { |url| queue << url }
+
+mutex = Mutex.new
+failures = []
+completed = 0
+
+workers = Array.new(options[:concurrency]) do
+  Thread.new do
+    loop do
+      url = queue.pop(true)
+      response = fetch(url, options[:timeout])
+      cache = response["cf-cache-status"] || "-"
+
+      mutex.synchronize do
+        completed += 1
+        puts format("[%<done>d/%<total>d] %<code>s %<cache>s %<url>s",
+                    done: completed,
+                    total: urls.length,
+                    code: response.code,
+                    cache: cache,
+                    url: url)
+        failures << [url, response.code] unless response.is_a?(Net::HTTPSuccess)
+      end
+    rescue ThreadError
+      break
+    rescue StandardError => error
+      mutex.synchronize do
+        completed += 1
+        puts "[#{completed}/#{urls.length}] ERROR #{url}: #{error.message}"
+        failures << [url, error.message]
+      end
+    end
+  end
+end
+
+workers.each(&:join)
+
+if failures.any?
+  warn "\n#{failures.length} request(s) failed."
+  exit 1
+end

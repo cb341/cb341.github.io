@@ -1,0 +1,99 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "digest"
+require "json"
+require "net/http"
+require "optparse"
+require "pathname"
+require "uri"
+
+options = {
+  batch_size: 100,
+  base_url: "https://cb341.dev"
+}
+
+OptionParser.new do |parser|
+  parser.banner = "Usage: bin/purge_changed_cache OLD_BUILD_DIR NEW_BUILD_DIR [options]"
+
+  parser.on("-u", "--base-url URL", "Public site URL, default: https://cb341.dev") do |value|
+    options[:base_url] = value.delete_suffix("/")
+  end
+
+  parser.on("-n", "--dry-run", "Print URLs without calling Cloudflare") do
+    options[:dry_run] = true
+  end
+end.parse!
+
+old_dir, new_dir = ARGV.map { |path| Pathname(path).expand_path }
+
+abort "OLD_BUILD_DIR is required" unless old_dir
+abort "NEW_BUILD_DIR is required" unless new_dir
+abort "#{old_dir} does not exist" unless old_dir.directory?
+abort "#{new_dir} does not exist" unless new_dir.directory?
+
+def file_hashes(root)
+  root.find.each_with_object({}) do |path, hashes|
+    next unless path.file?
+
+    relative_path = path.relative_path_from(root).to_s
+    hashes[relative_path] = Digest::SHA256.file(path).hexdigest
+  end
+end
+
+def public_urls(base_url, path)
+  if path == "index.html"
+    ["#{base_url}/", "#{base_url}/index.html"]
+  elsif path.end_with?("/index.html")
+    directory_url = "#{base_url}/#{path.delete_suffix('/index.html')}/"
+    explicit_url = "#{base_url}/#{path}"
+    [directory_url, explicit_url]
+  else
+    ["#{base_url}/#{path}"]
+  end
+end
+
+old_hashes = file_hashes(old_dir)
+new_hashes = file_hashes(new_dir)
+
+changed_paths = (old_hashes.keys | new_hashes.keys).select do |path|
+  old_hashes[path] != new_hashes[path]
+end
+
+urls = changed_paths.flat_map { |path| public_urls(options[:base_url], path) }.uniq.sort
+
+if urls.empty?
+  puts "No changed cacheable URLs found."
+  exit
+end
+
+puts "Purging #{urls.length} changed URL(s):"
+urls.each { |url| puts "  #{url}" }
+
+exit if options[:dry_run]
+
+zone_id = ENV.fetch("CLOUDFLARE_ZONE_ID") do
+  abort "CLOUDFLARE_ZONE_ID is required"
+end
+
+api_token = ENV.fetch("CLOUDFLARE_API_TOKEN") do
+  abort "CLOUDFLARE_API_TOKEN is required"
+end
+
+endpoint = URI("https://api.cloudflare.com/client/v4/zones/#{zone_id}/purge_cache")
+
+urls.each_slice(options[:batch_size]) do |batch|
+  response = Net::HTTP.start(endpoint.host, endpoint.port, use_ssl: true) do |http|
+    request = Net::HTTP::Post.new(endpoint)
+    request["Authorization"] = "Bearer #{api_token}"
+    request["Content-Type"] = "application/json"
+    request.body = JSON.generate(files: batch)
+    http.request(request)
+  end
+
+  body = JSON.parse(response.body)
+  next if response.is_a?(Net::HTTPSuccess) && body["success"]
+
+  warn JSON.pretty_generate(body)
+  abort "Cloudflare purge request failed with HTTP #{response.code}"
+end
