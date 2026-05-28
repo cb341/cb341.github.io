@@ -55,5 +55,20 @@ permalink: /rss.xml
     </item>
       {%- endfor %}
     {%- endif %}
+    {%- for project in site.projects %}
+    {%- assign feedback_target = site.url | append: project.url %}
+    {%- capture feedback_link %}<hr><p><a href="{{ feedback_form }}{{ feedback_target | url_encode }}" target="_blank" rel="noopener noreferrer">Challenge this project (anonymous)</a></p>{% endcapture %}
+    <item>
+      <title>Project: {{ project.title | xml_escape }}</title>
+      <link>{{ site.url }}{{ project.url }}</link>
+      <guid isPermaLink="false">{{ site.url }}{{ project.url }}</guid>
+      <description><![CDATA[{{ project.content | markdownify | replace: 'src="/', 'src="https://cb341.dev/' | replace: 'href="/', 'href="https://cb341.dev/' }}{{ feedback_link }}]]></description>
+      <pubDate>{{ project.date | date_to_rfc822 }}</pubDate>
+      <category>project</category>
+      {%- for tag in project.tags %}
+      <category>{{ tag | xml_escape }}</category>
+      {%- endfor %}
+    </item>
+    {%- endfor %}
   </channel>
 </rss>

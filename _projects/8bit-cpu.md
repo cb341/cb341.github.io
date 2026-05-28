@@ -1,5 +1,6 @@
 ---
 title: "8bit-cpu"
+date: 2026-01-02
 description: "A minimal abstraction 8Bit CPU and 64 Byte RAM built entirely from single bit logic gates to understand computer architecture from first principles."
 tags:
   [
