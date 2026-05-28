@@ -26,21 +26,17 @@
       html, body { margin: 0; padding: 0; }
       body {
         overflow-y: scroll;
-        background: #e9ecef;
         color: #1c1c1a;
         font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, ui-serif, serif;
         font-size: 15px;
-        line-height: 1.55;
-        letter-spacing: -0.01em;
       }
 
       .wrapper {
-        max-width: 68ch;
-        margin: 24px auto;
-        background: #fafaf8;
+        max-width: 67ch;
+        margin: 0 auto;
         padding: 36px 40px;
-        border: 1px solid #ececea;
       }
+
       @media (max-width: 600px) {
         .wrapper { margin: 0; padding: 18px 16px; border-left: 0; border-right: 0; }
       }
@@ -52,34 +48,37 @@
 
       table {
         width: 100%;
-        margin: 1.6em 0;
         border-collapse: collapse;
-        font-size: 1.45em;
-        line-height: 1.35;
       }
 
       th,
       td {
-        padding: .26em 1.4em .26em 0;
+        padding: .1em .5em;
+        border-top: 1px solid black;
         border: 0;
         text-align: left;
-        vertical-align: top;
       }
 
-      th {
-        font-weight: 700;
-      }
-
-      td:last-child,
-      th:last-child {
-        padding-right: 0;
+      tr {
+        border-top: 1px solid black;
       }
 
       @media (max-width: 600px) {
         table {
           display: block;
           overflow-x: auto;
-          font-size: 1.18em;
+          max-width: 100%;
+          color: red;
+        }
+
+        th,
+        td {
+          min-width: 9rem;
+        }
+
+        th:last-child,
+        td:last-child {
+          min-width: 18rem;
         }
       }
 
@@ -92,11 +91,10 @@
       }
       pre {
         overflow-x: auto;
-        background: #f1f1ee;
-        border: 1px solid #e6e6e2;
+        border: 1px dashed #e6e6e2;
         padding: 10px 12px;
         font-size: .88em;
-        line-height: 1.5;
+        line-height: 1;
       }
       pre code { background: transparent; padding: 0; }
       main :is(h2,h3,h4,h5,h6)[id] > a { color: inherit; text-decoration: none; }
