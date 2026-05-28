@@ -3,6 +3,7 @@ layout: null
 permalink: /rss.xml
 ---
 <?xml version="1.0" encoding="UTF-8"?>
+{%- assign feedback_form = "https://docs.google.com/forms/d/e/1FAIpQLSeRD0Q9wYYZelAkRXEu2cCFN89-cvoAfOtyTY9vaz9-FUvYXQ/viewform?usp=pp_url&entry.2083454847=" -%}
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>cb341.dev</title>
@@ -14,11 +15,13 @@ permalink: /rss.xml
     <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
     <ttl>60</ttl>
     {%- for post in site.posts %}
+    {%- assign feedback_target = site.url | append: post.url %}
+    {%- capture feedback_link %}<hr><p><a href="{{ feedback_form }}{{ feedback_target | url_encode }}" target="_blank" rel="noopener noreferrer">Challenge this post (anonymous)</a></p>{% endcapture %}
     <item>
       <title>{{ post.title | xml_escape }}</title>
       <link>{{ site.url }}{{ post.url }}</link>
       <guid>{{ site.url }}{{ post.url }}</guid>
-      <description>{{ post.content | xml_escape }}</description>
+      <description>{{ post.content | append: feedback_link | xml_escape }}</description>
       <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
       {%- for tag in post.tags %}
       <category>{{ tag | xml_escape }}</category>
@@ -40,11 +43,13 @@ permalink: /rss.xml
         {%- assign yyyy = date_parts[2] %}
         {%- assign iso = yyyy | append: "-" | append: mm | append: "-" | append: dd | append: "T12:00:00Z" %}
         {%- assign slug = heading | replace: ".", "" | slugify %}
+        {%- assign feedback_target = site.url | append: threads_page.url | append: "#" | append: slug %}
+        {%- capture feedback_link %}<hr><p><a href="{{ feedback_form }}{{ feedback_target | url_encode }}" target="_blank" rel="noopener noreferrer">Challenge this thread (anonymous)</a></p>{% endcapture %}
     <item>
       <title>Threads: {{ heading | xml_escape }}</title>
       <link>{{ site.url }}{{ threads_page.url }}#{{ slug }}</link>
       <guid isPermaLink="false">{{ site.url }}{{ threads_page.url }}#{{ slug }}</guid>
-      <description><![CDATA[{{ body | markdownify }}]]></description>
+      <description><![CDATA[{{ body | markdownify }}{{ feedback_link }}]]></description>
       <pubDate>{{ iso | date_to_rfc822 }}</pubDate>
       <category>threads</category>
     </item>
