@@ -6,6 +6,8 @@ permalink: /about/
 
 # About Me
 
+<a href="https://github.com/cb341" target="_blank" rel="noopener noreferrer"><img class="about-avatar" src="/assets/about/avatar.webp" alt="Illustrated avatar of Dani wearing glasses and making a peace sign" width="460" height="460"></a>
+
 I'm a queer developer [(it/its)](https://en.pronouns.page/@cb341) working at [Renuo](https://www.renuo.ch/), Software on Rails as a service, while studying Computer Science (BSc) at [ZHAW](https://www.zhaw.ch/) School of Engineering, currently in my second year. Check out my [setup](/uses/), [TIL](/til/), and [how to approach me](/how-to-approach/).
 
 I tend to get very into specific things, and I'd like to eventually work my way toward a PhD. One day I'll have a classroom-sized blackboard in my apartment.
