@@ -29,6 +29,32 @@ What I wanted from it:
 
 Repository: [https://github.com/cb341/chess-widget](https://github.com/cb341/chess-widget)
 
+A quick example of PGN, the format the widget takes as input. Metadata in square-bracket tags at the top, then the moves themselves in algebraic notation where every move is uniquely identified by the piece, the destination square and any disambiguation. The format is more interesting than it looks. This video on the [re-discovery of algebraic notation](https://www.youtube.com/watch?v=iDnW0WiCqNc) explains it well.
+
+The sample game below is one of mine, a 5-minute blitz that ended in a chaotic checkmate on move 23.
+
+```pgn
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2026.05.27"]
+[Round "?"]
+[White "CuddlyBunion341"]
+[Black "KamKam777"]
+[Result "1-0"]
+[TimeControl "300"]
+[WhiteElo "204"]
+[BlackElo "185"]
+[Termination "CuddlyBunion341 won by checkmate"]
+[ECO "A06"]
+[EndTime "19:50:16 GMT+0000"]
+[Link "https://www.chess.com/game/live/169329691518"]
+
+1. e4 d5 2. Nf3 dxe4 3. Ng5 e5 4. Nxe4 Bf5 5. d3 Qc8 6. Be2 Bg4 7. Bxg4 f5 8.
+Bh3 fxe4 9. Bxc8 Nc6 10. dxe4 Rxc8 11. O-O Rd8 12. Bd2 Bb4 13. c3 Bc5 14. b4 Bb6
+15. b5 Na5 16. Qh5+ g6 17. Qxe5+ Ne7 18. Qxh8+ Kd7 19. Qxh7 Nc4 20. Rd1 Rf8 21.
+Bh6+ Ke8 22. Bxf8 Kxf8 23. Rd8# 1-0
+```
+
 ### chess.com's widget
 
 ![The chess.com share widget. Looks fine, but no way to customize the board, no eval chart, and you are stuck on their player.](/assets/projects/chess-widget/chess_com-widget.webp)
@@ -140,4 +166,4 @@ First project I built almost entirely in an agentic manner. I wrote the spec in 
 
 ## Demo
 
-Live demo at [chess.cb341.dev/about](https://chess.cb341.dev/). A game not particularly proud of but shows what the widget is about.
+Live demo at [chess.cb341.dev/about](https://chess.cb341.dev/) using the PGN from the top of this page.
