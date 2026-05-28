@@ -107,34 +107,28 @@
       @page {
         size: A4;
         margin: 22mm 20mm 24mm;
-
         @bottom-center {
           content: counter(page) " / " counter(pages);
           color: #777;
-          font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
           font-size: 8.5pt;
         }
       }
 
       @media print {
         body {
-          background: #fff;
-          color: #111;
           font-size: 11pt;
           line-height: 1.45;
           letter-spacing: 0;
-          overflow: visible;
-          print-color-adjust: exact;
-          -webkit-print-color-adjust: exact;
         }
 
         .wrapper {
           max-width: none;
-          margin: 0; padding: 0; border: 0;
-          background: transparent;
+          margin: 0;
+          padding: 0;
+          border: 0;
         }
 
-        body > .wrapper > header, body > .wrapper > center, main > nav { display: none; }
+        header, footer, main > nav { display: none; }
         .print-only { display: block; }
 
         h1 {
@@ -148,7 +142,6 @@
           padding-bottom: 4mm;
           border-bottom: 0.4pt solid #bbb;
           color: #666;
-          font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
           font-size: 8.5pt;
           line-height: 1.35;
         }
@@ -157,60 +150,12 @@
           margin-top: 9mm;
           padding-top: 2mm;
           border-top: 0.4pt solid #ddd;
-          font-size: 17pt;
-          line-height: 1.2;
-        }
-
-        h3 { font-size: 13.5pt; }
-        h4, h5, h6 { font-size: 11.5pt; }
-
-        a {
-          color: inherit;
-          text-decoration-thickness: 0.5pt;
-          text-underline-offset: 1.5pt;
-        }
-
-        main a[href^="http"]::after {
-          content: " (" attr(href) ")";
-          color: #666;
-          font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-          font-size: 8pt;
-          overflow-wrap: anywhere;
-        }
-
-        main :is(h1,h2,h3,h4,h5,h6) a::after,
-        main a[href^="https://cb341.dev"]::after {
-          content: "";
-        }
-
-        blockquote {
-          margin: 4mm 0;
-          padding-left: 5mm;
-          border-left: 1.5pt solid #bbb;
-          color: #333;
-        }
-
-        code {
-          background: #f3f3f1;
-          border: 0.4pt solid #ddd;
-          padding: 0 2pt;
-          border-radius: 0;
-          font-size: 8.5pt;
         }
 
         pre {
           white-space: pre-wrap;
           overflow: visible;
-          background: #f6f6f4;
-          border: 0.5pt solid #d8d8d2;
-          padding: 7pt 8pt;
           font-size: 8.2pt;
-          line-height: 1.35;
-        }
-
-        pre code {
-          border: 0;
-          padding: 0;
         }
 
         p img {
@@ -219,21 +164,10 @@
           max-height: 170mm;
           object-fit: contain;
           margin: 5mm auto 2mm;
-          border: 0.5pt solid #ddd;
         }
 
         table {
-          display: table;
           font-size: 9pt;
-          line-height: 1.25;
-          border-top: 0.5pt solid #999;
-          border-bottom: 0.5pt solid #999;
-        }
-
-        th,
-        td {
-          padding: 2.5pt 6pt 2.5pt 0;
-          border-bottom: 0.4pt solid #ddd;
         }
 
         h1, h2, h3, h4, h5, h6, pre, blockquote, table, tr, p:has(img), .katex-display {
