@@ -6,12 +6,49 @@ permalink: /gallery/
 ---
 
 <style>
-table, tr, th, td { all: revert; }
-td {
-  vertical-align: top;
-  width: 25%;
+.gallery-sections {
+  width: calc(100% + 14.5rem);
+  max-width: calc(100vw - 32px);
+  margin-left: -7.25rem;
 }
-td img { width: 100%; height: auto; }
+
+.gallery-section {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  gap: .75rem;
+  padding: .75rem 0;
+  border-top: 1px solid #d8d8d2;
+}
+
+.gallery-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.gallery-item {
+  display: block;
+  width: 96px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.gallery-item img {
+  display: block;
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border: 1px solid #d8d8d2;
+}
+
+@media (max-width: 600px) {
+  .gallery-sections {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .gallery-section { display: block; }
+}
 </style>
 
 <h1>Gallery</h1>
@@ -21,28 +58,21 @@ td img { width: 100%; height: auto; }
 {% assign sorted_gallery = site.gallery | sort: 'order' | reverse %}
 {% assign categories = "Graphics,Voxels,Math & Noise,Bugs,Random,Electronics,ZHAW,Adventures,Personal" | split: "," %}
 
+<div class="gallery-sections">
 {% for cat in categories %}
 {% assign cat_items = sorted_gallery | where: 'category', cat %}
 {% if cat_items.size > 0 %}
-
-<h2>{{ cat }}</h2>
-
-<table>
-{% for item in cat_items %}
-  {% assign mod = forloop.index0 | modulo: 4 %}
-  {% if mod == 0 %}<tr>{% endif %}
-
-  <td>
-    <a href="{{ item.url }}">
-      <img src="{{ item.image | replace: '/webp-gallery/', '/webp-gallery/thumbs/' }}" alt="{{ item.alt }}" width="156" height="156" loading="lazy">
-    </a>
-    <br><small><i>{{ item.title }}</i></small>
-  </td>
-
-  {% if forloop.last %}{% assign pad = 3 | minus: mod %}{% for p in (1..pad) %}<td></td>{% endfor %}{% endif %}
-  {% if mod == 3 or forloop.last %}</tr>{% endif %}
-{% endfor %}
-</table>
-
+  <section class="gallery-section">
+    <strong>{{ cat }}</strong>
+    <div class="gallery-row">
+    {% for item in cat_items %}
+      <a class="gallery-item" href="{{ item.url }}">
+        <img src="{{ item.image | replace: '/webp-gallery/', '/webp-gallery/thumbs/' }}" alt="{{ item.alt }}" width="96" height="96" loading="lazy">
+        <small>{{ item.title }}</small>
+      </a>
+    {% endfor %}
+    </div>
+  </section>
 {% endif %}
 {% endfor %}
+</div>
