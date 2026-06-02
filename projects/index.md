@@ -6,14 +6,13 @@ layout: base
 
 # Projects
 
-A collection of personal projects I've worked on.
+Things I built, broke, rewrote, or kept around long enough to document.
 
-_There are many more to be documented here. [Check out my GitHub](https://github.com/cb341) for more projects in the meantime._
+More lives in [GitHub repositories](https://github.com/cb341?tab=repositories&q=&type=source&language=&sort=).
 
 {%- for project in site.projects %}
-
-## [{{ project.title }}]({{ project.url }})
-
-{{ project.description }}
-
+<p>
+  <a href="{{ project.url }}"><b>{{ project.title }}</b></a><br>
+  {{ project.description }}
+</p>
 {%- endfor %}
