@@ -11,25 +11,25 @@ Conversations, thoughts, half-ideas, things I am starting to explore.
 
 ## 19.05.2026
 
-started playing chess myself again after watching god-tier play of hikaru, levi, magnus.
-thought i understood chess by watching. tried blitz and brutally realized i didn't. \
+started playing chess myself again after watching god-tier play of hikaru, levi, magnus ; thought i understood chess by watching. tried blitz and brutally realized i didn't.
+
 150-300 elo. accuracy below 50%. one game i even managed a 35 material disatvantage because i wasn't paying attention.
 
-watched more. saw patterns i'd missed. \
-tried puzzles and solved 400+. \
+watched more. saw patterns i'd missed.
+tried puzzles and solved 400+.
 pins, skewers, basic mates. watched more. saw even more depth.
 
-now i switched to slow chess. untimed bot games. some evaluate at 1400. \
+now i switched to slow chess. untimed bot games. some evaluate at 1400.
 doesn't mean i'm 1400. means with infinite time, i can sometimes see what to do.
 
-each iteration uncovered more. \
+each iteration uncovered more.
 and there is so much more to chess than i imagined.
 
 ---
 
 then found GM José Raúl Capablanca.
 
-everyone learns by memorizing openings. hundreds of variations. \
+everyone learns by memorizing openings. hundreds of variations.
 capablanca reduced the entire game to 7 principles:
 
 1. **check for hanging pieces every move**: yours and theirs. before anything else. loose pieces drop off. most games below 1500 are decided by one side leaving a piece undefended, not by deep strategy
@@ -46,26 +46,26 @@ bishop endgames add some more:
 * force opponent's pawns onto **same color** as their bishop
 * restricts their bishop, creates permanent targets, maximizes yours
 
-the more i learn, the more there is. \
-but capablanca shows it can still be thought about simply. \
+the more i learn, the more there is.
+but capablanca shows it can still be thought about simply.
 which is very elegant to me.
 
-i realized that i already do this instinctively. \
-not with rules but with board state. \
-i tend to mercilessly trade pieces to reach endgames. \
-fewer pieces -> fewer branches -> clearer position -> less room for mistakes
+i realized that i already do this instinctively.
+not with rules but with board state.
+i tend to mercilessly trade pieces to reach endgames.
+fewer pieces → fewer branches → clearer position → less room for mistakes
 
-> "The winner of the game is the player who makes the next-to-last mistake." \
+> "The winner of the game is the player who makes the next-to-last mistake."
 > — Savielly Tartakower
 
 ## 12.05.2026
 
-looked into autism traits today to understand people better. \
+looked into autism traits today to understand people better.
 namely how perception of marketing and manipulation is affected by rational neurodivergence which made me stumble on the word "anthropomorphism":
 
 > objects as if they are human in appearance, character, or behaviour
 
-this made something CLICK about CS vocabulary. \
+this made something CLICK about CS vocabulary.
 many concepts are inherently anthropomorphized by design:
 
 ```
@@ -91,7 +91,7 @@ architecture:    pipeline, gateway, backbone, bridge
 military:        payload, attack, exploit, kill chain
 ```
 
-the concepts aren't new to me. the label is.\
+the concepts aren't new to me. the label is.
 the conceptual metaphors are no longer invisible. 
 
 found an umbrella term: **tropes** (meaning-shift)
@@ -107,7 +107,7 @@ tropes
 +- irony, hyperbole, litotes...
 ```
 
-was aware the shifts exist. \
+was aware the shifts exist.
 now i can name them.
 
 ---
@@ -129,7 +129,7 @@ uses elegant structure to aid memorability.
 
 (yes this entry contains filler, are you yet frustrated by it?)
 
-recently discovered the RFC writing style for the internet. \
+recently discovered the RFC writing style for the internet.
 [RFC 2119](https://datatracker.ietf.org/doc/html/rfc2119) defines a handful of keywords meant to remove ambiguity from specifications:
 
 > 1. MUST   This word, or the terms "REQUIRED" or "SHALL", mean that the
@@ -146,10 +146,10 @@ recently discovered the RFC writing style for the internet. \
 
 we SHOULD apply this to everyday language.
 
-daily language is mostly filler. greetings burn tokens. \
+daily language is mostly filler. greetings burn tokens.
 when both sides agree the goal is to exchange information, not feelings, email is high friction for no reason.
 
-on a different note: \
+on a different note:
 can we make it socially acceptable to write emails in a colder, denser way?
 
 **BEFORE**
@@ -171,17 +171,17 @@ what i actually wanted to say:
 
 **AFTER**
 >
-> Reservation Fr. 08.05.2026, Drachenhöhle. \
-> Teilnehmer: 18→8. \
+> Reservation Fr. 08.05.2026, Drachenhöhle.
+> Teilnehmer: 18→8.
 > Wechsel zu Hobbithöhle möglich?
 >
 > Dani Bengl (it/its)
 
-the organizers will extract that core from my original anyway. \
-then they formulate their own core ("room available, will move", or "possible but maybe keep the bigger room"), pad it with filler, send. \
+the organizers will extract that core from my original anyway.
+then they formulate their own core ("room available, will move", or "possible but maybe keep the bigger room"), pad it with filler, send.
 i receive, scan, decode, repeat.
 
-why can't human <-> human communication skip the encode/decode step?
+why can't human ↔ human communication skip the encode/decode step?
 
 maybe it can. open the channel with a header:
 
@@ -196,9 +196,9 @@ i'll try it. either non-engineers read me as cold and heartless, or they appreci
 
 ## 11.05.2026 (morning)
 
-most modern languages signal sentence type at the end. \
-declarative, imperative, interrogative, exclamatory. \
-you only learn the tone after you've already read the words. \
+most modern languages signal sentence type at the end.
+declarative, imperative, interrogative, exclamatory.
+you only learn the tone after you've already read the words.
 hard to read aloud. you have to guess, then correct.
 
 why not put the marker first?
@@ -213,27 +213,27 @@ reads more structured. same shape as:
 
 > Q: Why do we even bother with languages?
 
-and while we're rewriting orthography. capitalization currently marks sentence starts. \
-the leading marker would already do that. \
+and while we're rewriting orthography. capitalization currently marks sentence starts.
+the leading marker would already do that.
 free up capitalization for *meaning* instead. emphasize words that MUST NOT be skimmed, like bold or italics but in plain text.
 
 > if a leading `?` opens a question, does the trailing `?` still earn its keep? probably drop it. one marker per sentence...
 
 ## 11.05.2026 (midnight)
 
-caught myself asking Claude to move a file for me today. \
+caught myself asking Claude to move a file for me today.
 not debug something. not explain something. move a file.
 
-the strange part wasn't that it worked. it was how little resistance i felt. \
+the strange part wasn't that it worked. it was how little resistance i felt.
 my first instinct was delegation.
 
-used to think understanding came from doing things directly. \
+used to think understanding came from doing things directly.
 staying with the problem long enough for it to shape you a little.
 
-now i can skip most of that. \
+now i can skip most of that.
 describe the outcome. wait a few seconds. approve the result.
 
-it works. sometimes better than i would have done myself. \
+it works. sometimes better than i would have done myself.
 but something about it feels deeply lonely.
 
 like the distance between thought and reality is collapsing, and with it the need for me to exist anywhere in the middle.
@@ -259,7 +259,7 @@ Same question here: does flooding the genome with mutations and extreme selectio
 Nature already does this slowly with fire, volcanoes, solar radiation. We could do it faster. The question is whether we should, and what we lose in the process.
 Most mutations are bad. Most attempts fail. The “forward” leaps are rare and expensive.
 
-Still...\
+Still...
 the black Chernobyl frogs are real. They happened in ~30 years.
 
 Curious what other traits we could force if we tried.
@@ -268,28 +268,28 @@ Curious what other traits we could force if we tried.
 
 been thinking a lot about AI and software engineering.
 
-not sure what software engineering even is anymore. \
-work has felt... empty lately ; \
-mostly prompting agents. describing what should exist instead of building it. it works. things get done. but it doesn't feel like *doing*.
+not sure what software engineering even is anymore.
+work has felt...
+empty lately ; mostly prompting agents. describing what should exist instead of building it. it works. things get done. but it doesn't feel like *doing*.
 
 had a discussion at work where we compared it to brewing beer.
 
-you can buy beer. or you can brew it yourself. \
+you can buy beer. or you can brew it yourself.
 the process is the point.
 
 but with code it's different.
 
-you don't just buy it. you don't even have to make it. \
+you don't just buy it. you don't even have to make it.
 you can just… ask for it.
 
-you can't prompt a beer into existence. \
+you can't prompt a beer into existence.
 you still have to go through the process.
 
 with code, the process is optional.
 
 ---
 
-if i can describe a system and have it built, what part of it is mine? \
+if i can describe a system and have it built, what part of it is mine?
 if i don't write the code, do i still understand it?
 
 and if i *do* write it, am i just choosing the slower path on purpose?
@@ -298,19 +298,19 @@ do i even need to understand it at all, if an AI can take the entire project, co
 
 ---
 
-AI can read everything. suggest fixes. propose optimizations. \
+AI can read everything. suggest fixes. propose optimizations.
 so what is left for me to do?
 
-is it enough to say "make it faster"? \
+is it enough to say "make it faster"?
 but what does "faster" even mean?
 
 ---
 
-I tried reducing engineering into a loop: \
+I tried reducing engineering into a loop:
 something feels slow → measure → fix → measure again
 
-measure what? \
-fix based on which assumption? \
+measure what?
+fix based on which assumption?
 what if the assumption is wrong?
 
 ---
@@ -319,7 +319,7 @@ AI gives answers. often good ones.
 
 but what is an answer worth if it hasn't been tested?
 
-if correctness only appears after something is run and observed, \
+if correctness only appears after something is run and observed,
 is engineering just the act of confronting reality?
 
 ---
@@ -328,10 +328,10 @@ i still like writing code.
 
 not sure why _exactly_.
 
-maybe because it feels like real work? \
-maybe because it forces me to understand things? \
-maybe because i have more control over the process? \
-maybe because it is the actual act of creation, not just the idea of it? \
+maybe because it feels like real work?
+maybe because it forces me to understand things?
+maybe because i have more control over the process?
+maybe because it is the actual act of creation, not just the idea of it?
 maybe because it allows me to prove to myself that i understand something, not just claim it?
 maybe because it feels like a craft, something that requires skill and practice to get better at? But so does prompting, no? Why does it feel so different?
 
@@ -364,7 +364,11 @@ learned the formal names for derivative notations today.
 
 I hate Leibniz. it is so many tokens. Newton says the same thing with a single dot. why would anyone pick the bulky one?
 
-also stumbled on the [wikipage](https://en.wikipedia.org/wiki/Fourth,_fifth,_and_sixth_derivatives_of_position) for higher-order derivatives of position. so position -> velocity -> acceleration -> jerk -> snap -> crackle -> pop? these sound so silly :P I can't imagine using them in a real paper, but they are fun to say.
+also stumbled on the [wikipage](https://en.wikipedia.org/wiki/Fourth,_fifth,_and_sixth_derivatives_of_position) for higher-order derivatives of position. soo...
+
+position → velocity → acceleration → jerk → snap → crackle → pop?
+
+these sound so silly :P I can't imagine using them in a real paper, but they are fun to say.
 
 and the latex for Newton dots is delightful. `dot` for one, `ddot` for two d'ots, `dddot` for three d'ots, `ddddot` for four. love it. but the dots in a row get boring for higher orders. why not play with the arrangement? (I mean there's probably a plethera of reasons why we don't, but it's fun to think about it anyway)
 

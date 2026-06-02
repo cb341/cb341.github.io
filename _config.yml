@@ -29,6 +29,7 @@ date_format: "%d.%m.%Y"
 markdown: kramdown
 kramdown:
   syntax_highlighter: none
+  hard_wrap: true
   smart_quotes: ["apos", "apos", "quot", "quot"]
   typographic_symbols: {mdash: "--", ndash: "--", hellip: "...", laquo: "<<", raquo: ">>", laquo_space: "<< ", raquo_space: " >>"}
 
