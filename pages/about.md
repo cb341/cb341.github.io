@@ -31,7 +31,7 @@ I am trying to make the world a better place.
 - Borrowing the neighbor's cat
 - Learning chess, mostly blundering my way to a chaotic checkmate
 - Occasionally losing an afternoon to factory games
-- A little obsessed with syntax
+- Obsessed with how notation, grammar, naming, punctuation, and type systems serialize thought.
 - Very busy. Please be patient with my response.
 
 Inspired by [motherfuckingwebsite.com](https://motherfuckingwebsite.com/).
