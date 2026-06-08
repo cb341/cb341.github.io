@@ -9,6 +9,225 @@ math: true
 
 Conversations, thoughts, half-ideas, things I am starting to explore.
 
+## 08.06.2026
+
+while studying DNS for exam prep, i ended up browsing the list of all top-level domains:
+
+<https://www.iana.org/domains/root/db>
+
+a few things stood out.
+first, some testing-related entries:
+
+- `.test` is not listed
+- `.invalid` is not listed
+
+because they are reserved and not delegated, they can never resolve in the public DNS. [RFC 6761](https://datatracker.ietf.org/doc/html/rfc6761) marks them special-use: [`.test` (6.2)](https://datatracker.ietf.org/doc/html/rfc6761#section-6.2) and [`.invalid` (6.4)](https://datatracker.ietf.org/doc/html/rfc6761#section-6.4).
+then some amusing generic TLDs:
+- `.foo` - generic, Charleston Road Registry Inc.
+- `.bar` - generic, Punto 2012 Sociedad Anonima Promotora de Inversion de Capital Variable
+
+and then:
+- `.app` - generic, Charleston Road Registry Inc. (Google's registry entity)
+- `.mov` - generic, Charleston Road Registry Inc. (Google's registry entity)
+- `.zip` - generic, Charleston Road Registry Inc. (Google's registry entity)
+
+`.app` feels normal enough.
+`.mov` and `.zip` immediately felt odd.
+
+they are file extensions 1st. domains 2nd.
+
+historically:
+
+```text
+invoice.zip -> file
+```
+
+now:
+
+```text
+invoice.zip -> file
+invoice.zip -> domain
+```
+
+same string.
+two meanings.
+
+there is even a recent paper dedicated to this:
+> "The namespace for filenames and DNS names has overlapped since the introduction of DNS in 1985: .com was the original binary format used for DOS and CP/M systems. Recently the introduction of gTLDs such as .zip and .mov, coupled with the growing prevalence of web resources, has ignited new concerns about potential issues related to DNS and filename confusion."
+>
+> <https://arxiv.org/abs/2604.04805>
+
+another quote:
+> "document[.]zip ... could refer to either a compressed archive file ... or a website"
+
+and:
+
+> "A potent scenario for confusion occurs when filenames are automatically hyperlinked"
+
+the paper does **not** claim that `.zip` broke the Internet.
+it does show that the confusion is observable across software ecosystems.
+
+the authors write:
+
+> "harms primarily arise when filenames are mistakenly interpreted as DNS names"
+
+and:
+
+> "the DNS query itself leaks information about local filenames"
+
+the technical argument is simple:
+
+**DNS does not care.**
+**humans do.**
+
+DNS sees valid labels:
+
+```text
+.com
+.zip
+.mov
+.app
+```
+
+while humans have spent decades learning that `something.zip` is a compressed archive. the protocol and the user now disagree.
+
+some examples of abuse:
+
+<https://www.fortinet.com/blog/industry-trends/threat-actors-add-zip-domains-to-phishing-arsenals>
+
+---
+
+another thing i noticed is the number of non-ASCII TLDs:
+
+* `.公司` - generic, China Internet Network Information Center (CNNIC)
+* `.联通`  - generic,  China United Network Communications Corporation Limited
+* `.vermögensberatung`  - generic,  Deutsche Vermögensberatung Aktiengesellschaft DVAG
+* `.இந்தியா`  - country code  National Internet Exchange of India
+* `.москва`  - generic  Foundation for Assistance for Internet Technologies and Infrastructure Development (FAITID)
+
+i like this.
+
+the Internet should not be limited to ASCII.
+but it introduces another class of ambiguity.
+my first question was:
+
+> can Unicode only be used in the TLD?
+
+no.
+
+it can appear anywhere in an internationalized domain name.
+this leads directly to homograph attacks.
+
+example:
+
+```text
+paypal.com
+```
+
+leading with [`U+0070 LATIN SMALL LETTER P`](https://unicode-explorer.com/c/0070).
+
+versus:
+
+```text
+рaypal.com
+```
+
+leading with [`U+0440 CYRILLIC SMALL LETTER ER`](https://unicode-explorer.com/c/0440).
+
+they look almost identical.
+only different code points.
+
+the Unicode Consortium uses essentially this example:
+
+> Suppose that you get an email notifying you that your paypal.com account has a problem. You, being a security-savvy user, realize that it might be a spoof ... But actually it is going to a spoof site that has a fake "paypal.com", using the Cyrillic letter that looks precisely like a 'p'. You use the site without suspecting, and your password ends up compromised.
+>
+> <https://www.unicode.org/L2/L2005/05110-tr36-draft3/tr36-3r.html>
+
+same pattern as `.zip`.
+
+the computer sees one thing.
+the human sees another.
+
+that difference is what enables IDN homograph attacks.
+
+**how do browsers mitigate this?**
+
+when a label trips its IDN filter, show the Punycode (`xn--...`) instead of the deceptive Unicode ([example: Chromium](https://chromium.googlesource.com/chromium/src/+/main/docs/idn.md)).
+
+two cases:
+
+1. **mixed-script:** `рaypal` (one Cyrillic `р`)
+   trips the filter → shown as `xn--aypal-uye.com` → caught.
+2. **whole-script:** `аррӏе` (all Cyrillic)
+   slips past it → stays Cyrillic, reads as `apple.com` → missed.
+
+the first is the example i used above. the second is the dangerous one, still live as Xudong Zheng's 2017 proof-of-concept.
+
+the link below reads `apple.com`. it does not go there:
+
+[аррӏе.com](https://www.xn--80ak6aa92e.com/) ([writeup](https://www.xudongz.com/blog/2017/idn-phishing/))
+
+a modern browser shows the Punycode now, because the filter learned to flag lookalikes of *known* top domains. in 2017 it showed `apple.com`. a confusable of a less famous domain still slips through.
+
+inspect any conversion yourself: <https://www.punycoder.com/>
+
+---
+
+while reading about `.zip`, i kept noticing the same tradeoff:
+
+> small local benefit. large distributed cost.
+
+more examples:
+ 
+- **Office macros: automation ↔ malware delivery**
+  Microsoft now blocks internet-sourced macros by default, citing their routine abuse for ransomware and remote-access trojans.
+  <https://techcommunity.microsoft.com/blog/microsoft_365blog/helping-users-stay-safe-blocking-internet-macros-by-default-in-office/3071805>
+
+- **SMS 2FA: easy deployment ↔ SIM swapping**
+  all five major US carriers used authentication an attacker could trivially subvert (Lee, Kaiser, Mayer, Narayanan, SOUPS 2020). NIST 800-63B restricts SMS as an authenticator.
+  <https://www.usenix.org/conference/soups2020/presentation/lee>
+  <https://pages.nist.gov/800-63-4/sp800-63b.html>
+
+- **MIME sniffing: compatibility ↔ content-sniffing XSS**
+  a browser that guesses a file's type can be tricked into running an uploaded "image" as HTML (Barth, Caballero, Song, IEEE S&P 2009). the WHATWG spec it informs is the standard.
+  <https://www.adambarth.com/papers/2009/barth-caballero-song.pdf>
+  <https://mimesniff.spec.whatwg.org/>
+
+- **email tracking: rich HTML ↔ surveillance on open**
+  85% of bulk emails embed third-party content; ~29% leak your address to a third party the moment you view them (Englehardt, Han, Narayanan, PoPETs 2018).
+  <https://petsymposium.org/popets/2018/popets-2018-0006.php>
+
+different technologies.
+
+same shape.
+
+the feature owner gets the benefit.
+everyone else inherits the complexity.
+
+---
+
+for `.zip`, i still struggle to see the upside.
+
+most arguments eventually reduce to branding.
+
+the downside is permanent ambiguity in a namespace that billions of people already associated with files.
+
+maybe the cost is insignificant.
+maybe nobody notices.
+
+but if someone proposed:
+
+```text
+.pdf
+.docx
+.exe
+.jpg
+```
+
+as top-level domains today, most engineers would (hopefully) immediately see the problem.
+
+`.zip` and `.mov` feel different mostly because they already (unfortunately) exist.
+
 ## 02.06.2026
 
 exam prep:
