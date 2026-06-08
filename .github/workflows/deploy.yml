@@ -22,11 +22,94 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.3"
           bundler-cache: true
-      - run: bundle exec jekyll build
+      - name: Build previous site
+        id: previous-build
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+
+          if [ "${{ github.event_name }}" = "push" ] && [ "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ]; then
+            previous_ref="${{ github.event.before }}"
+          else
+            previous_ref="HEAD^"
+          fi
+
+          git worktree add --detach "$RUNNER_TEMP/previous-site" "$previous_ref"
+          bundle exec jekyll build \
+            --source "$RUNNER_TEMP/previous-site" \
+            --destination "$RUNNER_TEMP/previous-site-build"
+      - name: Build current site
+        run: bundle exec jekyll build
+      - name: Find changed routes
+        id: changed-routes
+        env:
+          SITE_URL: https://cb341.dev
+        run: |
+          set -euo pipefail
+
+          if [ "${{ steps.previous-build.outcome }}" != "success" ]; then
+            : > "$RUNNER_TEMP/purge-urls.txt"
+            echo "count=0" >> "$GITHUB_OUTPUT"
+            echo "No previous build available; skipping route-specific Cloudflare purge."
+            exit 0
+          fi
+
+          python3 <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+
+          previous = Path(os.environ["RUNNER_TEMP"]) / "previous-site-build"
+          current = Path("_site")
+          output = Path(os.environ["RUNNER_TEMP"]) / "purge-urls.txt"
+          site_url = os.environ["SITE_URL"].rstrip("/")
+
+          def digest(path):
+              h = hashlib.sha256()
+              with path.open("rb") as file:
+                  for chunk in iter(lambda: file.read(1024 * 1024), b""):
+                      h.update(chunk)
+              return h.hexdigest()
+
+          def files(root):
+              return {
+                  path.relative_to(root)
+                  for path in root.rglob("*")
+                  if path.is_file()
+              }
+
+          def url_for(path):
+              parent = path.parent.as_posix()
+              if path.name == "index.html" and parent == ".":
+                  return "/"
+
+              if path.name == "index.html":
+                  return f"/{parent}/"
+
+              return f"/{path.as_posix()}"
+
+          changed = []
+          for path in sorted(files(previous) | files(current)):
+              before = previous / path
+              after = current / path
+              if not before.exists() or not after.exists() or digest(before) != digest(after):
+                  changed.append(f"{site_url}{url_for(path)}")
+
+          output.write_text("\n".join(changed) + ("\n" if changed else ""))
+
+          with Path(os.environ["GITHUB_OUTPUT"]).open("a") as github_output:
+              github_output.write(f"count={len(changed)}\n")
+
+          print(f"Found {len(changed)} changed route(s).")
+          for url in changed:
+              print(url)
+          PY
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
@@ -34,9 +117,35 @@ jobs:
       - id: deployment
         uses: actions/deploy-pages@v4
       - name: Purge Cloudflare cache
-        if: steps.deployment.outcome == 'success'
+        if: steps.deployment.outcome == 'success' && steps.changed-routes.outputs.count != '0'
+        env:
+          CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
-          curl -s -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache" \
-            -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
-            -H "Content-Type: application/json" \
-            --data '{"purge_everything":true}'
+          set -euo pipefail
+
+          python3 <<'PY'
+          import json
+          import os
+          import subprocess
+          from pathlib import Path
+
+          urls = [
+              line.strip()
+              for line in (Path(os.environ["RUNNER_TEMP"]) / "purge-urls.txt").read_text().splitlines()
+              if line.strip()
+          ]
+
+          endpoint = f"https://api.cloudflare.com/client/v4/zones/{os.environ['CLOUDFLARE_ZONE_ID']}/purge_cache"
+          headers = [
+              "-H", f"Authorization: Bearer {os.environ['CLOUDFLARE_API_TOKEN']}",
+              "-H", "Content-Type: application/json",
+          ]
+
+          for start in range(0, len(urls), 30):
+              payload = json.dumps({"files": urls[start:start + 30]})
+              subprocess.run(
+                  ["curl", "-sS", "-X", "POST", endpoint, *headers, "--data", payload],
+                  check=True,
+              )
+          PY
