@@ -24,6 +24,16 @@
     <link rel="canonical" href="{{ current_url | escape }}">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="alternate" type="application/rss+xml" title="cb341.dev RSS Feed" href="/rss.xml">
+    {% if page.layout == "gallery" %}
+    {%- assign gallery_description = page.description | default: page.content | markdownify | strip_html | normalize_whitespace | truncate: 160 -%}
+    <meta property="og:description" content="{{ gallery_description | escape }}">
+    {%- endif %}
+    {% if page.image %}
+    <meta property="og:image" content="{{ site_url }}{{ page.image | escape }}">
+    {%- if page.alt %}
+    <meta property="og:image:alt" content="{{ page.alt | escape }}">
+    {%- endif %}
+    {%- endif %}
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
