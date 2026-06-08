@@ -1,3 +1,7 @@
+# Prose line breaks
+
+We only do real breaks now: separate every line with a blank line (true paragraph break). No trailing `\` soft breaks, no trailing-double-space breaks.
+
 # Gallery image workflow
 
 Source images go in `webp-gallery/` (big) and `webp-gallery/thumbs/` (220x220 square thumb). Convention: `snake_case.webp`, big ~850px wide preserving aspect, thumb 220x220 cropped square. Front matter `image:` in `_gallery/<slug>.md` points to the big webp.
