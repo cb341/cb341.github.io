@@ -1,30 +1,73 @@
 {%- assign site_url = "https://cb341.dev" -%}
-{%- assign default_title = "cb341.dev" -%}
-{%- assign default_description = "Full-stack software developer specializing in Ruby on Rails, web applications, and modern development practices. Portfolio, blog, and projects." -%}
-{%- if page.title and page.title != default_title -%}
-  {%- assign page_title = page.title | append: " | " | append: default_title -%}
+{%- assign site_name = "cb341.dev" -%}
+{%- assign default_title = site.title | default: "Dani Bengl - Full-Stack Developer" -%}
+{%- assign default_description = site.description | default: "Full-stack software developer specializing in Ruby on Rails, web applications, and modern development practices. Portfolio, blog, and projects." -%}
+{%- if page.url == "/" -%}
+  {%- assign page_title = "Dani Bengl (cb341) - Full-Stack Developer" -%}
+{%- elsif page.title and page.title != site_name -%}
+  {%- assign page_title = page.title | append: " | " | append: site_name -%}
 {%- else -%}
   {%- assign page_title = default_title -%}
 {%- endif -%}
 {%- assign page_description = page.description | default: default_description -%}
 {%- assign current_url = site_url | append: page.url -%}
-{%- comment -%} og_type: posts have page.date set; everything else is a website {%- endcomment -%}
-{%- if page.date -%}
-  {%- assign og_type = "article" -%}
-{%- else -%}
-  {%- assign og_type = "website" -%}
-{%- endif -%}
+{%- assign social_image = site_url | append: "/assets/about/avatar.webp" -%}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ page_title }}</title>
+    <title>{{ page_title | escape }}</title>
 
-    <meta name="description" content="{{ page_description }}">
+    <meta name="description" content="{{ page_description | escape }}">
     <meta name="author" content="Dani Bengl">
+    <link rel="canonical" href="{{ current_url | escape }}">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="alternate" type="application/rss+xml" title="cb341.dev RSS Feed" href="/rss.xml">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "{{ site_name }}",
+        "alternateName": "Dani Bengl",
+        "url": "{{ site_url }}/",
+        "author": {
+          "@type": "Person",
+          "name": "Dani Bengl",
+          "alternateName": "cb341",
+          "url": "{{ site_url }}/"
+        }
+      }
+    </script>
+    {%- if page.url == "/" or page.url == "/about/" %}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Dani Bengl",
+        "alternateName": "cb341",
+        "url": "{{ site_url }}/",
+        "image": "{{ social_image }}",
+        "jobTitle": "Full-stack software developer",
+        "knowsAbout": [
+          "Ruby on Rails",
+          "Rust",
+          "computer science",
+          "computer graphics",
+          "open source software",
+          "web development"
+        ],
+        "sameAs": [
+          "https://github.com/cb341",
+          "https://gist.github.com/cb341",
+          "https://www.linkedin.com/in/daniel-bengl",
+          "https://mastodon.social/@cb341",
+          "https://www.codewars.com/users/cb341",
+          "https://www.lesswrong.com/users/cb341"
+        ]
+      }
+    </script>
+    {%- endif %}
     <style>
       html, body { margin: 0; padding: 0; }
       body {
