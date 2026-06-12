@@ -2,17 +2,6 @@
 title: "chess-widget"
 date: 2026-05-28
 description: "An embeddable chess game analysis widget. PGN in, annotated replay with Stockfish 18 eval, move classification and bookmarks out. Built to scratch a chess.com itch."
-tags:
-  [
-    "chess",
-    "stockfish",
-    "rails",
-    "postgres",
-    "web-components",
-    "no-build",
-    "javascript",
-    "cucumber",
-  ]
 ---
 
 # Chess Widget

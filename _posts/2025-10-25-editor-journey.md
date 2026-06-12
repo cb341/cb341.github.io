@@ -2,7 +2,6 @@
 title: "My Editor Journey"
 date: 2025-10-25
 description: "My journey through text editors, from Atom to LazyVim, with some thoughts on AI coding assistants."
-tags: ["neovim", "ai", "workflow"]
 ---
 
 I have bounced around quite a bit over the years. Started with **Atom** back when it was the hot new thing, then migrated to **VSCode** like everyone else when Atom started showing its age.

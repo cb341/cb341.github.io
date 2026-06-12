@@ -2,7 +2,6 @@
 title: "How the Homebrew Multi-User Rabbit Hole Bricked My Mac"
 date: 2026-04-27
 description: "A deep dive into multi-user setups on macOS, why Homebrew falls apart in them, and how I ended up reluctantly switching to MacPorts after bricking my laptop."
-tags: ["macos", "homebrew", "macports", "workflow"]
 ---
 
 I work part-time at Renuo as a software engineer and study Computer Science part-time at ZHAW. Most weeks mix client codebases, coursework, and personal projects on the same laptop, with the same tools: Neovim with lazygit and delta, iTerm2, Raycast, Setapp, hotkeys, window management. The setup should feel the same regardless of which one I am working on.

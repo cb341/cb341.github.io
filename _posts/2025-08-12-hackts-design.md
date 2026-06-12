@@ -2,7 +2,6 @@
 title: "Custom Figma Design Challenges"
 date: 2025-08-12
 description: "How unique spacing and alignment in Figma designs create difficulties in Rails, and why a visual layout editor could help."
-tags: ["rails", "css", "sass", "figma", "gui-editor"]
 ---
 
 While building the [hackts.ch](https://hackts.ch) site, I encountered layout issues that I did not anticipate. The design came from a highly customised Figma file with precise alignments, irregular shapes and spacing patterns.

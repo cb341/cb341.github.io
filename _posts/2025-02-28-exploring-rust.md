@@ -1,8 +1,7 @@
 ---
 title: "Exploring Rust as a Rubyist"
 date: 2025-02-28
-description: "A deep dive into learning Rust as a Ruby developer, exploring the journey of building a voxel game engine with Bevy. From understanding the borrow checker to discovering the power of composition over inheritance, feature flags, and macros. Learn about the trade-offs between Ruby's simplicity and Rust's performance, memory safety, and compile-time guarantees."
-tags: ["rust", "gamedev"]
+description: "Lessons from building a voxel engine in Rust as a Ruby developer: the borrow checker, composition over inheritance, feature flags, and macros."
 ---
 
 At Renuo, we love Ruby. It's simple, elegant, and powerful. But let's be honest, Ruby isn't the fastest language out there.

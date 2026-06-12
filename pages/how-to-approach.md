@@ -16,16 +16,14 @@ This is not a demand that everyone talks the same way. It is a description of de
 
 ## Short version
 
-| Prefer                  | Avoid                                |
-| ----------------------- | ------------------------------------ |
-| direct language         | empty greetings                      |
-| explicit context        | hidden intent                        |
-| actual question upfront | vague reassurance                    |
-| concrete examples       | excessive social padding             |
-| rational disagreement   | treating disagreement as disrespect  |
-| cited claims            | unsourced factual claims             |
-| clear ownership         | making synthesis look like invention |
-| friendly directness     | corporate formality                  |
+- **direct language**, not empty greetings
+- **explicit context**, not hidden intent
+- **actual question upfront**, not vague reassurance
+- **concrete examples**, not excessive social padding
+- **rational disagreement**, not disagreement as disrespect
+- **cited claims**, not unsourced factual claims
+- **clear ownership**, not synthesis dressed as invention
+- **friendly directness**, not corporate formality
 
 ## First message
 
@@ -137,14 +135,6 @@ no worries if not
 this might be totally wrong but
 ```
 
-Classic examples:
-
-```text
-I hope this message finds you well.
-Dear Dani,
-I was wondering if maybe...
-```
-
 Better:
 
 ```text
@@ -177,54 +167,22 @@ ChatGPT said
 obviously
 ```
 
-If you make a factual claim, link source when practical.
-
-If an idea comes from someone else, name them.
-
-If something is your opinion, say so.
-
-Do not make synthesis look like invention.
+Link sources when practical, name people when ideas are theirs, and mark opinion as opinion. Do not make synthesis look like invention.
 
 ## My communication defaults
 
 This section is loosely based on Erin Meyer's *The Culture Map*. I have not read the full book yet, so treat this as my practical use of the dimensions, not a book summary.
 
-| Dimension     | My default                         |
-| ------------- | ---------------------------------- |
-| Communicating | low context                        |
-| Evaluating    | direct feedback                    |
-| Persuading    | principles first                   |
-| Leading       | egalitarian                        |
-| Deciding      | top down after debate              |
-| Trusting      | task based                         |
-| Disagreeing   | confrontational, but rational      |
-| Scheduling    | flexible with explicit constraints |
+- **Communicating: low context** — include the information; do not make me infer hidden state
+- **Evaluating: direct feedback** — say what is wrong clearly
+- **Persuading: principles first** — give the rule, invariant, or model before the example
+- **Leading: egalitarian** — challenge ideas regardless of role
+- **Deciding: top down after debate** — discuss openly, then owner decides
+- **Trusting: task based** — reliability matters more than social performance
+- **Disagreeing: confrontational, but rational** — attack the claim, not me personally
+- **Scheduling: flexible with explicit constraints** — exact timing can move, but constraints must be explicit
 
-### Information
-
-Low context: include the information. Do not make me infer hidden state.
-
-Principles first: give me the rule, invariant, or model before the example.
-
-### Feedback and disagreement
-
-Direct feedback: say what is wrong clearly.
-
-Confrontational disagreement: disagreement is useful when it attacks the claim, not me personally.
-
-### Social structure
-
-Egalitarian: challenge ideas regardless of role.
-
-Top down after debate: discuss openly, then owner decides.
-
-Task based trust: reliability matters more than social performance.
-
-### Time
-
-Flexible scheduling: exact timing can move, but constraints must be explicit.
-
-Bad:
+Scheduling, bad:
 
 ```text
 soon
@@ -236,6 +194,6 @@ Better:
 before Friday evening, because I want to publish it this weekend
 ```
 
-## Core rules
+## Core rule
 
-Dense does not mean rude. Direct feedback should still be careful, specific, and aimed at the work rather than the person. Rational disagreement is welcome. Sourcing claims is part of taking the conversation seriously.
+Dense does not mean rude. Everything above optimizes for less decoding work, not less warmth.

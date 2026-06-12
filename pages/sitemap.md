@@ -14,7 +14,7 @@ permalink: /sitemap/
 {%- endfor %}
 
 ## Blog
-{%- for post in site.posts limit: 10 %}
+{%- for post in site.posts %}
 - [{{ post.title }}]({{ post.url }})
 {%- endfor %}
 

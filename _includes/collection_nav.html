@@ -1,10 +1,11 @@
-{%- assign _i = nil -%}
-{%- for p in include.docs -%}
-  {%- if p.url == page.url -%}{%- assign _i = forloop.index0 -%}{%- endif -%}
+{%- comment -%} Prev/next links for the current page within include.docs (an ordered list). {%- endcomment -%}
+{%- assign current_index = nil -%}
+{%- for doc in include.docs -%}
+  {%- if doc.url == page.url -%}{%- assign current_index = forloop.index0 -%}{%- endif -%}
 {%- endfor -%}
-{%- assign _prev_i = _i | minus: 1 -%}
-{%- assign _next_i = _i | plus: 1 -%}
-{%- for p in include.docs -%}
-  {%- if _i > 0 and forloop.index0 == _prev_i %} | <a href="{{ p.url }}" title="left arrow key">< {{ p.title }}</a>{%- endif -%}
-  {%- if forloop.index0 == _next_i %} | <a href="{{ p.url }}" title="right arrow key">{{ p.title }} ></a>{%- endif -%}
+{%- assign prev_index = current_index | minus: 1 -%}
+{%- assign next_index = current_index | plus: 1 -%}
+{%- for doc in include.docs -%}
+  {%- if current_index > 0 and forloop.index0 == prev_index %} | <a href="{{ doc.url }}" title="left arrow key">< {{ doc.title }}</a>{%- endif -%}
+  {%- if forloop.index0 == next_index %} | <a href="{{ doc.url }}" title="right arrow key">{{ doc.title }} ></a>{%- endif -%}
 {%- endfor -%}

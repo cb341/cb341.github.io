@@ -1,7 +1,7 @@
-{%- assign categories = "Graphics,Voxels,Math & Noise,Bugs,Random,Electronics,ZHAW,Adventures,Personal" | split: "," -%}
-{%- assign _sorted_all = "" | split: "" -%}
-{%- for cat in categories -%}
-  {%- assign cat_items = site.gallery | where: 'category', cat | sort: 'order' | reverse -%}
-  {%- assign _sorted_all = _sorted_all | concat: cat_items -%}
+{%- comment -%} Gallery items in display order: by category, newest first within each. {%- endcomment -%}
+{%- assign gallery_in_display_order = "" | split: "" -%}
+{%- for category in site.gallery_categories -%}
+  {%- assign category_items = site.gallery | where: "category", category | sort: "order" | reverse -%}
+  {%- assign gallery_in_display_order = gallery_in_display_order | concat: category_items -%}
 {%- endfor -%}
-{% include collection_nav.html docs=_sorted_all %}
+{% include collection_nav.html docs=gallery_in_display_order %}

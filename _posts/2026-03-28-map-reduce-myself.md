@@ -2,7 +2,6 @@
 title: "Map-Reducing Myself"
 date: 2026-03-28
 description: "312 conversations with Claude, compressed to 15 words."
-tags: ["ai", "reflection", "data"]
 ---
 
 I talk to Claude every day. It writes code with me, reviews my PRs, debugs my specs, validates my homework. At 3am it is the thing I talk to when I am still awake and thinking about something I cannot put into words yet. Over six months that added up to 312 conversations and 21MB of JSON.

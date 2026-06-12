@@ -14,6 +14,7 @@ permalink: /rss.xml
     <copyright>Copyright (c) {{ "now" | date: "%Y" }} cb341. Licensed under CC BY 4.0.</copyright>
     <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
     <ttl>60</ttl>
+    {%- comment -%} Blog posts {%- endcomment -%}
     {%- for post in site.posts %}
     {%- assign feedback_target = site.url | append: post.url %}
     {%- capture feedback_link %}<hr><p><a href="{{ feedback_form }}{{ feedback_target | url_encode }}" target="_blank" rel="noopener noreferrer">Challenge this post (anonymous)</a></p>{% endcapture %}
@@ -23,9 +24,6 @@ permalink: /rss.xml
       <guid>{{ site.url }}{{ post.url }}</guid>
       <description>{{ post.content | append: feedback_link | xml_escape }}</description>
       <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
-      {%- for tag in post.tags %}
-      <category>{{ tag | xml_escape }}</category>
-      {%- endfor %}
     </item>
     {%- endfor %}
     {%- comment -%} Threads entries, linked by heading anchor on /threads/ {%- endcomment -%}
@@ -43,6 +41,9 @@ permalink: /rss.xml
       <category>threads</category>
     </item>
     {%- endfor %}
+    {%- comment -%} Projects, with root-relative src/href rewritten to absolute for feed readers {%- endcomment -%}
+    {%- assign src_prefix = 'src="' | append: site.url | append: '/' %}
+    {%- assign href_prefix = 'href="' | append: site.url | append: '/' %}
     {%- for project in site.projects %}
     {%- assign feedback_target = site.url | append: project.url %}
     {%- capture feedback_link %}<hr><p><a href="{{ feedback_form }}{{ feedback_target | url_encode }}" target="_blank" rel="noopener noreferrer">Challenge this project (anonymous)</a></p>{% endcapture %}
@@ -50,12 +51,9 @@ permalink: /rss.xml
       <title>Project: {{ project.title | xml_escape }}</title>
       <link>{{ site.url }}{{ project.url }}</link>
       <guid isPermaLink="false">{{ site.url }}{{ project.url }}</guid>
-      <description><![CDATA[{{ project.content | markdownify | replace: 'src="/', 'src="https://cb341.dev/' | replace: 'href="/', 'href="https://cb341.dev/' }}{{ feedback_link }}]]></description>
+      <description><![CDATA[{{ project.content | markdownify | replace: 'src="/', src_prefix | replace: 'href="/', href_prefix }}{{ feedback_link }}]]></description>
       <pubDate>{{ project.date | date_to_rfc822 }}</pubDate>
       <category>project</category>
-      {%- for tag in project.tags %}
-      <category>{{ tag | xml_escape }}</category>
-      {%- endfor %}
     </item>
     {%- endfor %}
   </channel>

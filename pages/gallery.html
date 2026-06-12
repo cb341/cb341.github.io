@@ -17,7 +17,7 @@ permalink: /gallery/
   grid-template-columns: 6.5rem 1fr;
   gap: .75rem;
   padding: .75rem 0;
-  border-top: 1px solid #d8d8d2;
+  border-top: 1px solid var(--border);
 }
 
 .gallery-row {
@@ -38,7 +38,7 @@ permalink: /gallery/
   width: 96px;
   height: 96px;
   object-fit: cover;
-  border: 1px solid #d8d8d2;
+  border: 1px solid var(--border);
 }
 
 @media (max-width: 600px) {
@@ -56,10 +56,9 @@ permalink: /gallery/
 <p>A visual dump of renders, bugs, photos, and everything in between.</p>
 
 {% assign sorted_gallery = site.gallery | sort: 'order' | reverse %}
-{% assign categories = "Graphics,Voxels,Math & Noise,Bugs,Random,Electronics,ZHAW,Adventures,Personal" | split: "," %}
 
 <div class="gallery-sections">
-{% for cat in categories %}
+{% for cat in site.gallery_categories %}
 {% assign cat_items = sorted_gallery | where: 'category', cat %}
 {% if cat_items.size > 0 %}
   <section class="gallery-section">

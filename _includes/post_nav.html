@@ -1,6 +1,3 @@
-{% if page.previous %}
- | <a href="{{ page.previous.url }}" title="left arrow key">< {{ page.previous.title }}</a>
-{% endif %}
-{% if page.next %}
- | <a href="{{ page.next.url }}" title="right arrow key">{{ page.next.title }} ></a>
-{% endif %}
+{%- comment -%} site.posts is newest-first; reverse so "<" points to the older post. {%- endcomment -%}
+{%- assign posts_oldest_first = site.posts | reverse -%}
+{% include collection_nav.html docs=posts_oldest_first %}

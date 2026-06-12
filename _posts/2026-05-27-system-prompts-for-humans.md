@@ -2,7 +2,6 @@
 title: "System Prompts For Humans"
 date: 2026-05-27
 description: "If LLMs get communication instructions, maybe humans should too."
-tags: ["communication", "ai", "culture", "protocol"]
 ---
 
 I have recently been thinking a lot about human to LLM and human to human communication.

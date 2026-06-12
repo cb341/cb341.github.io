@@ -2,7 +2,6 @@
 title: "dotfiles"
 date: 2026-01-02
 description: "I use Neovim btw. My personal configuration files for arch/nvim/git/tmux/zj/ghostty and more."
-tags: ["neovim", "dotfiles", "linux", "terminal", "productivity", "arch"]
 ---
 
 # Dotfiles

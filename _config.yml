@@ -29,6 +29,8 @@ defaults:
 
 date_format: "%d.%m.%Y"
 
+gallery_categories: ["Graphics", "Voxels", "Math & Noise", "Bugs", "Random", "Electronics", "ZHAW", "Adventures", "Personal"]
+
 markdown: kramdown
 kramdown:
   syntax_highlighter: none
@@ -43,4 +45,4 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - bin/
-  - design.md
+  - gallery-variants/
