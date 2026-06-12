@@ -13,6 +13,9 @@ collections:
     output: true
     permalink: /gallery/:slug/
     sort_by: order
+  threads:
+    output: false
+    sort_by: date
 
 defaults:
   - scope:
