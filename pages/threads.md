@@ -13,17 +13,14 @@ Conversations, thoughts, half-ideas, things I am starting to explore.
 {% assign entries = site.threads | sort: "date" | reverse %}
 
 <style>
-.threads-toc { font-size: .9em; border-left: 3px solid var(--line, #e6e6e2); padding-left: 1em; }
-.threads-toc ul { list-style: none; padding: 0; margin: .3em 0 .8em; }
-.threads-toc li { margin: .15em 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.threads-toc .month { font-weight: bold; }
-.threads-toc .day { font-variant-numeric: tabular-nums; display: inline-block; min-width: 2ch; margin-right: .5ch; }
+.threads-toc { font-size: .9em; }
+.threads-toc ul { list-style: none; padding-left: 1em; margin: .3em 0 .8em; }
 </style>
 
 {% assign months = entries | group_by_exp: "entry", "entry.date | date: '%B %Y'" %}
 <nav class="threads-toc" aria-label="Entry index">
 {%- for month in months %}
-  <span class="month">{{ month.name }}</span>
+  <b>{{ month.name }}</b>
   <ul>
   {%- for entry in month.items %}
     {%- assign slug = entry.title | replace: ".", "" | slugify %}
@@ -33,7 +30,7 @@ Conversations, thoughts, half-ideas, things I am starting to explore.
       {%- assign trimmed_length = teaser | size | minus: 1 %}
       {%- assign teaser = teaser | slice: 0, trimmed_length %}
     {%- endif %}
-    <li><a class="day" href="#{{ slug }}" title="{{ entry.title }}">{{ entry.date | date: "%d" }}</a> {{ teaser | escape }}...</li>
+    <li><a href="#{{ slug }}" title="{{ entry.title }}">{{ entry.date | date: "%d" }}</a> {{ teaser | escape }}...</li>
   {%- endfor %}
   </ul>
 {%- endfor %}
