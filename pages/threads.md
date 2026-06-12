@@ -28,7 +28,12 @@ Conversations, thoughts, half-ideas, things I am starting to explore.
   {%- for entry in month.items %}
     {%- assign slug = entry.title | replace: ".", "" | slugify %}
     {%- assign teaser = entry.content | strip_html | normalize_whitespace | truncatewords: 9, "" %}
-    <li><a class="day" href="#{{ slug }}" title="{{ entry.title }}">{{ entry.date | date: "%d" }}</a> {{ teaser | escape }}</li>
+    {%- assign last_char = teaser | slice: -1, 1 %}
+    {%- if last_char == "." or last_char == "," or last_char == ";" or last_char == ":" %}
+      {%- assign trimmed_length = teaser | size | minus: 1 %}
+      {%- assign teaser = teaser | slice: 0, trimmed_length %}
+    {%- endif %}
+    <li><a class="day" href="#{{ slug }}" title="{{ entry.title }}">{{ entry.date | date: "%d" }}</a> {{ teaser | escape }}...</li>
   {%- endfor %}
   </ul>
 {%- endfor %}
