@@ -28,33 +28,21 @@ permalink: /rss.xml
       {%- endfor %}
     </item>
     {%- endfor %}
-    {%- for p in site.pages %}{%- if p.url == "/threads/" %}{%- assign threads_page = p %}{%- endif %}{%- endfor %}
-    {%- if threads_page %}
-      {%- assign chunks = threads_page.content | split: "
-## " %}
-      {%- for chunk in chunks offset:1 %}
-        {%- assign lines = chunk | split: "
-" %}
-        {%- assign heading = lines[0] | strip %}
-        {%- assign body = chunk | remove_first: lines[0] | strip %}
-        {%- assign date_parts = heading | split: " " | first | split: "." %}
-        {%- assign dd = date_parts[0] %}
-        {%- assign mm = date_parts[1] %}
-        {%- assign yyyy = date_parts[2] %}
-        {%- assign iso = yyyy | append: "-" | append: mm | append: "-" | append: dd | append: "T12:00:00Z" %}
-        {%- assign slug = heading | replace: ".", "" | slugify %}
-        {%- assign feedback_target = site.url | append: threads_page.url | append: "#" | append: slug %}
-        {%- capture feedback_link %}<hr><p><a href="{{ feedback_form }}{{ feedback_target | url_encode }}" target="_blank" rel="noopener noreferrer">Challenge this thread (anonymous)</a></p>{% endcapture %}
+    {%- comment -%} Threads entries, linked by heading anchor on /threads/ {%- endcomment -%}
+    {%- assign threads_entries = site.threads | sort: "date" | reverse %}
+    {%- for entry in threads_entries %}
+    {%- assign slug = entry.title | replace: ".", "" | slugify %}
+    {%- assign feedback_target = site.url | append: "/threads/#" | append: slug %}
+    {%- capture feedback_link %}<hr><p><a href="{{ feedback_form }}{{ feedback_target | url_encode }}" target="_blank" rel="noopener noreferrer">Challenge this thread (anonymous)</a></p>{% endcapture %}
     <item>
-      <title>Threads: {{ heading | xml_escape }}</title>
-      <link>{{ site.url }}{{ threads_page.url }}#{{ slug }}</link>
-      <guid isPermaLink="false">{{ site.url }}{{ threads_page.url }}#{{ slug }}</guid>
-      <description><![CDATA[{{ body | markdownify }}{{ feedback_link }}]]></description>
-      <pubDate>{{ iso | date_to_rfc822 }}</pubDate>
+      <title>Threads: {{ entry.title | xml_escape }}</title>
+      <link>{{ site.url }}/threads/#{{ slug }}</link>
+      <guid isPermaLink="false">{{ site.url }}/threads/#{{ slug }}</guid>
+      <description><![CDATA[{{ entry.content }}{{ feedback_link }}]]></description>
+      <pubDate>{{ entry.date | date_to_rfc822 }}</pubDate>
       <category>threads</category>
     </item>
-      {%- endfor %}
-    {%- endif %}
+    {%- endfor %}
     {%- for project in site.projects %}
     {%- assign feedback_target = site.url | append: project.url %}
     {%- capture feedback_link %}<hr><p><a href="{{ feedback_form }}{{ feedback_target | url_encode }}" target="_blank" rel="noopener noreferrer">Challenge this project (anonymous)</a></p>{% endcapture %}
