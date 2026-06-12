@@ -12,7 +12,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.3"
+          ruby-version: "4.0"
           bundler-cache: true
       - run: bin/check_unicode
       - run: bundle exec jekyll build
+      - run: bundle exec htmlproofer _site --disable-external --no-enforce-https
