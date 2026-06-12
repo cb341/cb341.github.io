@@ -1,0 +1,58 @@
+/* ===== shared house style for cb341.dev + utils =====
+   Canonical source: cb341.github.io/_includes/shared.css
+   Published at /assets/shared.css (hot-linked by github.com/cb341/utils).
+   Site inlines it into base.html via a Liquid include tag.
+   Tokens + element defaults only — layout containers stay per-project.
+   Values are the original cb341.dev palette; utils overrides its own
+   tokens (line/muted/code-bg/…) in its style.css. */
+
+:root {
+  color-scheme: light; /* keep native form controls light even in OS dark mode */
+  --bg: #fff;
+  --fg: #1c1c1a;
+  --line: #e6e6e2;
+  --muted: #bbb;
+  --code-bg: #f1f1ee;
+  --accent: #3a5a8c;     /* used by utils; site links stay browser default */
+  --accent-bg: #f3f3ef;
+  --border: var(--line); /* legacy alias used by tool JS */
+}
+
+html { overflow-y: scroll; } /* stable scrollbar so width never shifts */
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, ui-serif, serif;
+  font-size: 15px;
+}
+
+blockquote { margin: 1.2em 2em; font-style: italic; }
+
+hr { border: 0; border-top: 1px solid var(--line); margin: .6em 0; }
+
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: .1em .5em; border: 0; text-align: left; }
+tr { border-top: 1px solid black; }
+@media (max-width: 600px) {
+  table { display: block; overflow-x: auto; max-width: 100%; }
+  th, td { min-width: 9rem; }
+  th:last-child, td:last-child { min-width: 18rem; }
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .88em;
+  background: var(--code-bg);
+  padding: 1px 4px;
+  border-radius: 2px;
+}
+pre {
+  overflow-x: auto;
+  border: 1px dashed var(--line);
+  padding: 10px 12px;
+  font-size: .88em;
+  line-height: 1;
+}
+pre code { background: transparent; padding: 0; }
+
+abbr[title] { text-decoration: underline dashed; cursor: help; }

@@ -1,17 +1,23 @@
-{%- assign site_url = "https://cb341.dev" -%}
+{%- assign site_url = site.url -%}
 {%- assign site_name = "cb341.dev" -%}
-{%- assign default_title = site.title | default: "Dani Bengl - Full-Stack Developer" -%}
-{%- assign default_description = site.description | default: "Full-stack software developer specializing in Ruby on Rails, web applications, and modern development practices. Portfolio, blog, and projects." -%}
 {%- if page.url == "/" -%}
   {%- assign page_title = "Dani Bengl (cb341) - Full-Stack Developer" -%}
 {%- elsif page.title and page.title != site_name -%}
   {%- assign page_title = page.title | append: " | " | append: site_name -%}
 {%- else -%}
-  {%- assign page_title = default_title -%}
+  {%- assign page_title = site.title -%}
 {%- endif -%}
-{%- assign page_description = page.description | default: default_description -%}
+{%- if page.layout == "gallery" and page.description == nil -%}
+  {%- assign page_description = page.content | markdownify | strip_html | normalize_whitespace | truncate: 160 -%}
+{%- else -%}
+  {%- assign page_description = page.description | default: site.description -%}
+{%- endif -%}
 {%- assign current_url = site_url | append: page.url -%}
-{%- assign social_image = site_url | append: "/assets/about/avatar.webp" -%}
+{%- if page.image -%}
+  {%- assign social_image = site_url | append: page.image -%}
+{%- else -%}
+  {%- assign social_image = site_url | append: "/assets/about/avatar.webp" -%}
+{%- endif -%}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -24,16 +30,16 @@
     <link rel="canonical" href="{{ current_url | escape }}">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="alternate" type="application/rss+xml" title="cb341.dev RSS Feed" href="/rss.xml">
-    {% if page.layout == "gallery" %}
-    {%- assign gallery_description = page.description | default: page.content | markdownify | strip_html | normalize_whitespace | truncate: 160 -%}
-    <meta property="og:description" content="{{ gallery_description | escape }}">
-    {%- endif %}
-    {% if page.image %}
-    <meta property="og:image" content="{{ site_url }}{{ page.image | escape }}">
+    <meta property="og:site_name" content="{{ site_name }}">
+    <meta property="og:title" content="{{ page_title | escape }}">
+    <meta property="og:description" content="{{ page_description | escape }}">
+    <meta property="og:url" content="{{ current_url | escape }}">
+    <meta property="og:type" content="{% if page.collection == 'posts' %}article{% else %}website{% endif %}">
+    <meta property="og:image" content="{{ social_image | escape }}">
     {%- if page.alt %}
     <meta property="og:image:alt" content="{{ page.alt | escape }}">
     {%- endif %}
-    {%- endif %}
+    <meta name="twitter:card" content="{% if page.image %}summary_large_image{% else %}summary{% endif %}">
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -79,13 +85,13 @@
     </script>
     {%- endif %}
     <style>
+      {% include shared.css %}
+
+      /* site-specific below; shared tokens/elements come from _includes/shared.css */
       html, body { margin: 0; padding: 0; }
-      body {
-        overflow-y: scroll;
-        color: #1c1c1a;
-        font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, ui-serif, serif;
-        font-size: 15px;
-      }
+
+      .skip-link { position: absolute; left: -999px; }
+      .skip-link:focus { position: static; }
 
       .wrapper {
         max-width: 67ch;
@@ -105,62 +111,9 @@
         margin: .25em 0 1em 1.25em;
         border-radius: 4px;
       }
-      blockquote { margin: 1.2em 2em; font-style: italic; }
 
-      hr { border: 0; border-top: 1px solid #e6e6e2; margin: .6em 0; }
-
-      table {
-        width: 100%;
-        border-collapse: collapse;
-      }
-
-      th,
-      td {
-        padding: .1em .5em;
-        border-top: 1px solid black;
-        border: 0;
-        text-align: left;
-      }
-
-      tr {
-        border-top: 1px solid black;
-      }
-
-      @media (max-width: 600px) {
-        table {
-          display: block;
-          overflow-x: auto;
-          max-width: 100%;
-        }
-
-        th,
-        td {
-          min-width: 9rem;
-        }
-
-        th:last-child,
-        td:last-child {
-          min-width: 18rem;
-        }
-      }
-
-      code {
-        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-        font-size: .88em;
-        background: #f1f1ee;
-        padding: 1px 4px;
-        border-radius: 2px;
-      }
-      pre {
-        overflow-x: auto;
-        border: 1px dashed #e6e6e2;
-        padding: 10px 12px;
-        font-size: .88em;
-        line-height: 1;
-      }
-      pre code { background: transparent; padding: 0; }
       main :is(h2,h3,h4,h5,h6)[id] > a { color: inherit; text-decoration: none; }
-      main :is(h2,h3,h4,h5,h6)[id] > a:hover::after { content: " #"; color: #bbb; }
+      main :is(h2,h3,h4,h5,h6)[id] > a:hover::after { content: " #"; color: var(--muted); }
     </style>
     {%- if page.math -%}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" crossorigin="anonymous">
@@ -169,6 +122,7 @@
     {%- endif -%}
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <div class="wrapper">
       <header role="banner">
         <nav>
