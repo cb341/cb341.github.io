@@ -32,6 +32,7 @@ I am trying to make the world a better place.
 - Learning chess, mostly blundering my way to a chaotic checkmate
 - Occasionally losing an afternoon to factory games
 - Obsessed with how notation, grammar, naming, punctuation, and type systems serialize thought.
+- Fluent in English, German, Czech, and Math. French only if you force me.
 - Very busy. Please be patient with my response.
 
 Inspired by [motherfuckingwebsite.com](https://motherfuckingwebsite.com/).
