@@ -6,13 +6,11 @@ permalink: /how-to-approach/
 
 # How To Approach Dani
 
-Communication defaults for less guessing.
+LLMs get system prompts because we want predictable behavior from an ambiguous interface. Humans are ambiguous interfaces too. This page is mine: explicit communication defaults, written down so you do not have to guess them and I do not have to decode around them.
 
-This page is the practical artifact described in [System Prompts For Humans](/blog/system-prompts-for-humans/).
+It is the practical artifact described in [System Prompts For Humans](/blog/system-prompts-for-humans/). A description, not a demand that everyone talks the same way.
 
 Pronouns: it/its.
-
-This is not a demand that everyone talks the same way. It is a description of defaults that make communication with me easier, clearer, and less ambiguous.
 
 ## Short version
 
@@ -71,20 +69,28 @@ I do not need ceremony. I need signal.
 
 I want direct feedback.
 
-Useful shape:
-
-```text
-What you see:
-What it makes you think:
-What you would change:
-```
+Useful feedback separates three layers: observation (what is there), interpretation (what it does to you), action (what you would change). Mixing them forces me to untangle fact from opinion from request. The exact labels are free; the separation is the point.
 
 Example:
 
 ```text
-What you see: This paragraph sounds defensive.
-What it makes you think: The reader may feel accused before understanding the idea.
-What you would change: Move the personal motivation later and start with the general protocol concept.
+hey, read your system prompts post.
+Observation: the intro spends four paragraphs on LLM prompting before humans show up.
+Interpretation: I almost closed the tab. It read like another prompting tutorial.
+Change: pull "humans are ambiguous interfaces too" into the first paragraph.
+```
+
+Negative feedback should look negative. Softened wording hides the signal:
+
+```text
+section 3 feels maybe a bit defensive? no worries though
+```
+
+Ambiguous: nitpick, blocker, or politeness? Better:
+
+```text
+Negative: section 3 is defensive.
+Severity: would not publish as is.
 ```
 
 Direct feedback should still be careful: clear about the problem, specific about the reason, and aimed at the work rather than the person.
@@ -112,7 +118,7 @@ Feels wrong.
 
 I tend to respect people more when they disagree with me rationally. Agreement without reasoning gives little signal. A clear objection gives me something to work with.
 
-Disagree with claims, assumptions, wording, structure, or decisions. Please do not attack me personally.
+Targets: claims, assumptions, wording, structure, decisions. Not me personally.
 
 ## Fluff
 
@@ -155,6 +161,8 @@ Question: Z?
 
 This is not about being cold. It is about making intent visible.
 
+Don't fear the use of symbols. `→`, `≠`, `?` for open questions, `MUST`/`SHOULD`/`MAY` from RFC 2119: all compress better than the sentences they replace.
+
 ## Sources and ownership
 
 Claims should carry sources. Ideas should carry ownership.
@@ -189,16 +197,14 @@ Do not make synthesis look like invention.
 
 This section is loosely based on Erin Meyer's *The Culture Map*. I have not read the full book yet, so treat this as my practical use of the dimensions, not a book summary.
 
-| Dimension     | My default                         |
-| ------------- | ---------------------------------- |
-| Communicating | low context                        |
-| Evaluating    | direct feedback                    |
-| Persuading    | principles first                   |
-| Leading       | egalitarian                        |
-| Deciding      | top down after debate              |
-| Trusting      | task based                         |
-| Disagreeing   | confrontational, but rational      |
-| Scheduling    | flexible with explicit constraints |
+- **Communicating: low context.** Include the information; do not make me infer hidden state.
+- **Evaluating: direct feedback.** Say what is wrong clearly.
+- **Persuading: principles first.** Give the rule, invariant, or model before the example.
+- **Leading: egalitarian.** Challenge ideas regardless of role.
+- **Deciding: top down after debate.** Discuss openly, then owner decides.
+- **Trusting: task based.** Reliability matters more than social performance.
+- **Disagreeing: confrontational, but rational.** Attack the claim, not me personally.
+- **Scheduling: flexible with explicit constraints.** Exact timing can move; deadlines and reasons must be stated.
 
 ### Information
 
