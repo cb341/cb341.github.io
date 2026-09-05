@@ -1,5 +1,5 @@
 ---
-title: "Proving 6 ≤ 7 the hard way"
+title: "Proving comparability of 6 and 7, the hard way"
 date: 2026-09-05
 description: "Proving that any two natural numbers compare, from the definition of a natural number upwards, in Lean."
 tags: ["theoretical mathematics", "first principles"]
