@@ -1,5 +1,5 @@
 ---
-title: "Proving comparability of 6 and 7, the hard way"
+title: "Proving comparability of 6 and 7, from first principles"
 date: 2026-09-05
 description: "Proving that any two natural numbers compare, from an inductive definition of the naturals and two axioms for addition, in Lean."
 tags: ["theoretical mathematics", "first principles"]
@@ -19,6 +19,8 @@ $$
 $$
 
 any two natural numbers compare. one of them is at most the other.
+
+we are proving a little more than comparability of 6 and 7. `le_total` proves that every pair of natural numbers is comparable, with 6 and 7 as one instance. its name describes the property: `le` is $\le$, and `total` means that the relation compares any two elements. this is the comparability condition of a total order. here `total` does not mean that a function is defined for every input, and this theorem alone does not establish the other order laws.
 
 take 6 and 7. then $(6 \le 7) \lor (7 \le 6)$ is $T \lor F$, so $T$.
 take 1 twice. then $(1 \le 1) \lor (1 \le 1)$ is $T \lor T$, so $T$.
@@ -448,7 +450,7 @@ that makes `sorry` the counterpart of a stubbed test: it lets you write the shap
 
 ## The last step
 
-what follows is the final theorem only, the bottom node of the dependency graph. it uses the definition of $\mathbb{N}$, the two addition axioms, the definition of $\le$, and six earlier theorems.
+what follows is the final theorem, the bottom node of the dependency graph. it uses the definition of $\mathbb{N}$, the two addition axioms, the definition of $\le$, and six earlier theorems. the last command checks the concrete pair from the title.
 
 ```lean
 theorem le_total (x y : ℕ) : x ≤ y ∨ y ≤ x := by
@@ -482,6 +484,9 @@ theorem le_total (x y : ℕ) : x ≤ y ∨ y ≤ x := by
         use a
         rewrite[succ_add]
         rfl
+
+#check le_total 6 7
+-- le_total 6 7 : 6 ≤ 7 ∨ 7 ≤ 6
 ```
 
 [open the whole development in the Lean web editor][lean-live]. clicking a line shows its hypotheses and goal.
@@ -490,7 +495,7 @@ the indentation records the nesting, but the code still reads as one vertical se
 
 ![Lean proof state overview](/assets/blog/lean_state_overview.png)
 
-every node in that diagram is one of the two-column states from earlier, and every edge is a tactic. three things it shows that the linear listing hides.
+every node in the graphviz diagram is one of the two-column states from earlier, and every edge is a tactic. three things it shows that the linear listing hides.
 
 the labelled frames are where the state splits. `induction y` opens the `succ d` frame, `cases hd` opens `inl` and `inr` inside it, and `cases c` splits again inside `inr`. each frame starts at its own filled dot, so the nesting on the page is the nesting of the proof.
 
@@ -580,20 +585,13 @@ each case establishes one half of the goal, so the goal holds at $\operatorname{
 
 ## From code to paper
 
-i have only just started learning how to prove theorems, and i am still unsure why this beautiful part of mathematics has stayed so far out of sight during my time at ZHAW. did i miss a definition? why exactly is this move allowed? Lean turns those questions into goals and errors. this was an exercise in precision, not in making a short theorem long.
+there are two parts to this for me. the first is the mathematics itself. i have only just started learning how to prove theorems, and i am still unsure why this beautiful part of mathematics has stayed so far out of sight during my time at ZHAW. definitions are beautiful because they are precise. they say exactly what the objects and relations mean, and the proof shows what follows from them. working through `le_total` was an exercise in that precision.
 
-i suspect many mathematicians learning Lean make the opposite transition, from paper proofs into a proof assistant. i am coming from computer science and using Lean on the way into proof-based maths. it felt approachable because it is also a functional programming language. i can work in Neovim with the Lean plugin, inspect the proof state, and start with mathlib documentation when i get stuck. Lean materialises the proof as something i can run and get a checkmark for.
+the second is the transition from computer science into proof-based maths. i suspect many mathematicians learning Lean move in the opposite direction, from paper proofs into a proof assistant. Lean felt approachable to me because it is also a functional programming language. i can work in Neovim with the Lean plugin, inspect the proof state, and start with mathlib documentation when i get stuck. Lean materialises the proof as something i can run and get a checkmark for.
 
 the structure and state keeping are training for paper proofs, where there is no compiler or proof checker. next is linear algebra at the [FernUniversität in Hagen](https://www.fernuni-hagen.de/mi/studium/module/lin_alg.shtml), alongside part-time studies at ZHAW. it is my first course where proofs are the work rather than a step inside it. i am eager to see how much transfers.
 
 reading Peano also made me wish i had learned Latin. some of the historical material would be much more approachable.
-
-the Lean file ends with the concrete pair from the title:
-
-```lean
-#check le_total 6 7
--- le_total 6 7 : 6 ≤ 7 ∨ 7 ≤ 6
-```
 
 ## Further reading
 
