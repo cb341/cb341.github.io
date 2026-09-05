@@ -25,7 +25,7 @@ take 1 twice. then $(1 \le 1) \lor (1 \le 1)$ is $T \lor T$, so $T$.
 
 checking pairs by hand settles those two pairs. $\mathbb{N}^2$ is infinite, so no amount of checking gets through it, and the $\forall$ has to be discharged some other way.
 
-right now $\le$, $+$ and $\mathbb{N}$ are all undefined, so that line is notation. the rest of the article pays the debt in order.
+right now $\le$, $+$ and $\mathbb{N}$ are all undefined, so that line is only notation. the sections below define each one before proving the theorem.
 
 ## What the proof rests on
 
@@ -96,7 +96,7 @@ $$
 
 ### Natural numbers
 
-$\mathbb{N} = \lbrace 0,1,2,3,\ldots \rbrace$ is a listing. the ellipsis carries the definition, which means there is no definition yet.
+$\mathbb{N} = \lbrace 0,1,2,3,\ldots \rbrace$ lists the first few naturals and assumes we know how the list continues. we still need a definition.
 
 what we need instead is an *inductive* definition: a finite set of rules that generate every natural and nothing else. two rules suffice. [^peano]
 
@@ -114,13 +114,13 @@ n = 0
 n = \operatorname{succ}(d) \text{ for some } d \in \mathbb{N}.
 $$
 
-Lean's inductive definition also gives us induction. to prove something about every natural, prove it for $0$ and prove that $d$ having it forces $\operatorname{succ}(d)$ to have it. that is the `induction` tactic later, and it is the reason this definition is worth the trouble.
+Lean's inductive definition also gives us induction. to prove something about every natural, prove it for $0$ and prove that $d$ having it forces $\operatorname{succ}(d)$ to have it. that is the `induction` tactic used later.
 
 the Lean artefact names this inductive type `MyNat`; i write $\mathbb{N}$ in the prose.
 
 [^peano]: Giuseppe Peano, *Arithmetices principia, nova methodo exposita*, 1889. The Latin original is on archive.org: <https://archive.org/details/arithmeticespri00peangoog/page/n10/mode/2up>
 
-this is a choice, not the only option. the naturals can be built in several ways, and the constructions agree on everything we care about here. [^ordinals]
+there are other constructions of the naturals. [^ordinals]
 
 <details markdown="1">
 <summary>four other ways to define ℕ</summary>
@@ -141,7 +141,7 @@ $$
 
 simpler to write, but $n < m$ is no longer $n \in m$, so order has to be defined separately. [^zermelo]
 
-**Church numerals.** a number is a function that applies another function that many times. $n$ is $\lambda f. \lambda x. f^n(x)$, so $3$ is $\lambda f. \lambda x. f(f(f(x)))$. addition composes the two iterates of $f$. this is how the naturals appear in untyped lambda calculus. [^church]
+**Church numerals.** a number is a function that applies another function that many times. $n$ is $\lambda f. \lambda x. f^n(x)$, so $3$ is $\lambda f. \lambda x. f(f(f(x)))$. addition can be defined by $\lambda m.\lambda n.\lambda f.\lambda x.\,m\,f\,(n\,f\,x)$: apply $f$ $n$ times, then $m$ more times. this is how the naturals appear in untyped lambda calculus. [^church]
 
 **Peano axioms as first-order theory.** rather than constructing the naturals, state the properties they must have: $0$ is not a successor, $\operatorname{succ}$ is injective, and the induction schema is included. this leaves the objects unspecified and constrains them instead. [^pa]
 
@@ -159,19 +159,17 @@ i am using zero and succ, which is what the Natural Number Game uses and what Le
 
 [^pa]: The first-order theory is usually attributed to Peano 1889 by way of Dedekind. Hájek and Pudlák, *Metamathematics of First-Order Arithmetic* (1998), chapter I, is the reference treatment. First-order induction is an axiom schema, with one instance per formula, and the theory has nonstandard models. the inductive type here has only the constructors stated above.
 
-### Our zero and Lean's zero
+### Constructor zero and numeral zero
 
-the definition above introduces a constructor, written `MyNat.zero` in Lean. the character `0` is a numeral, which is what a person types. they denote the same natural number. they are not syntactically the same term, but Lean reduces them to the same term, so they are definitionally equal.
+the definition above introduces the constructor `MyNat.zero`. Lean's numeral `0` elaborates to the same natural number. the two expressions are not syntactically identical, but Lean reduces them to the same term, so they are definitionally equal.
 
-this matters mechanically. `rfl` closes a goal up to definitional equality. `zero_eq_0` makes that equality available as an equation for `rewrite`.
+for the mathematics in this article, treat `MyNat.zero` and `0` as the same thing. `zero_eq_0` only handles Lean's bookkeeping: after a case split produces the constructor name, the lemma gives `rewrite` an explicit equation using the numeral.
 
 `succ n = n + 1` is different: it is not definitional here. `succ_eq_add_one` proves it from the two addition axioms.
 
-the proof below carries `rewrite[zero_eq_0] at hc` for exactly this reason.
-
 ### Addition
 
-$6 + 1 = 7$ gives one sum. $\mathbb{N}^2$ has infinitely many, so we need rules for all pairs. in the artefact, `add` is an opaque function and NNG4 supplies two axioms that characterise recursion on the second argument:
+$6 + 1 = 7$ gives one sum. $\mathbb{N}^2$ has infinitely many, so we need rules for all pairs. in the artefact, `add` is opaque and constrained by two axioms. both reduce the second argument:
 
 $$
 \begin{aligned}
@@ -218,11 +216,11 @@ $$
 
 there is a gap, and the gap is itself a natural number. $c$ cannot be negative because its type is $\mathbb{N}$.
 
-the gap is a natural, so it is either zero or a successor, which gives two pictures. in (I) the gap is $c = 0$ and $a = b$, the case where $\le$ holds because the two numbers are equal. in (II) the gap is nonzero and $a + c = b$ with $a$ strictly below $b$.
+there are two cases. in (I), the gap is $c = 0$ and $a = b$. in (II), the gap is a successor and $a$ is strictly below $b$.
 
 ![Number line showing the gap c as zero in case I and nonzero in case II](/assets/blog/lean_numberline_two_cases.svg)
 
-the proof below hits that split as a case distinction. once a gap `c` is in hand, `cases c` asks which of the two pictures applies, and the two branches close with different lemmas.
+the proof later makes the same distinction. once it has a gap `c`, `cases c` separates zero from successor.
 
 this is the definition the Natural Number Game uses. Lean's own `Nat.le` is an inductive type instead, built from reflexivity and a successor step: [^natle]
 
@@ -287,11 +285,11 @@ theorem zero_add (n : ℕ) : 0 + n = n := by
     rfl
 ```
 
-the two axioms describe addition through its second argument. `a + 0 = a` is available directly as `add_zero`, while `0 + n = n` has to be derived as `zero_add`. the two look symmetric and only one is assumed. this asymmetry is why `succ_add`, `add_comm` and `add_assoc` all need their own inductive proofs.
+the two axioms describe addition through its second argument. `a + 0 = a` is available directly as `add_zero`, while `0 + n = n` has to be derived as `zero_add`. the two look symmetric and only one is assumed. this asymmetry is why `succ_add` and `add_assoc` need their own inductive proofs.
 
 </details>
 
-one theorem often admits several proofs, each a different path through the dependency graph. Ording's *99 Variations on a Proof* takes this to its conclusion with 99 proofs of a single cubic. [^ording]
+one theorem often admits several proofs, each a different path through the dependency graph. Ording's *99 Variations on a Proof* gives 99 proofs that one cubic equation has two real roots. [^ording]
 
 [^ording]: Philip Ording, *99 Variations on a Proof*, Princeton University Press, 2019.
 
@@ -320,23 +318,20 @@ theorem le_succ_self (x : ℕ) : x ≤ succ x := by
 
 </details>
 
-three arithmetic theorems remain:
+two arithmetic theorems remain on the path to `le_total`:
 
 $$
 \begin{aligned}
 \operatorname{succ}(a) + b &= \operatorname{succ}(a+b) && (\texttt{succ\_add}) \\
-(a+b)+c &= a+(b+c) && (\texttt{add\_assoc}) \\
-a+b &= b+a && (\texttt{add\_comm})
+(a+b)+c &= a+(b+c) && (\texttt{add\_assoc})
 \end{aligned}
 $$
-
-`le_total` depends on `succ_add` and `add_assoc`. it does not depend on `add_comm`, though the artefact proves that too.
 
 ## Tactics as state transitions
 
 a Lean proof has a state: the hypotheses you have, and the goal you owe. a tactic changes that state. the proof is the sequence of changes.
 
-the tables below are static copies of something you can drive yourself. [the whole development runs in the Lean web editor][lean-live], and clicking a line shows its state in the panel on the right.
+the tables below are static copies of Lean's goal window.
 
 the Lean documentation puts it this way: [^tactics]
 
@@ -351,7 +346,7 @@ written as two columns, with `zero_le` as the example:
 | `x : ℕ` | `0 ≤ x` |
 {: .table-equal-2}
 
-after unfolding the definition of $\le$:
+`use x` needs an existential goal. Lean therefore unfolds the reducible `LE` instance and `MyNat.le` until it sees the definition below. this happens automatically; there is no separate `unfold` tactic in the proof.
 
 | Givens | Goal |
 | --- | --- |
@@ -412,7 +407,7 @@ some tactics split the state in two instead of changing it. those are the ones t
 | `c : ℕ`, `hc : x = d + c` | `x ≤ succ d ∨ succ d ≤ x` |
 {: .table-equal-2}
 
-and `right`, which picks a side of the goal and discards the other:
+and `right`, which chooses the second constructor of `Or`:
 
 | Givens | Goal |
 | --- | --- |
@@ -421,7 +416,7 @@ and `right`, which picks a side of the goal and discards the other:
 
 </details>
 
-`left`, `right` and `use` commit to a choice the goal did not force. the first two pick a disjunct and discard the other, `use` picks a witness and discards every other candidate. pick wrong and the remaining goal is unprovable even though the original was fine, so you undo and try again. the rewriting tactics do not have this property: they transform a goal into an equivalent one, so a provable goal stays provable.
+`left` and `right` choose which constructor of `Or` to build. `use w` supplies `w` as the witness for an existential. a bad choice can leave a goal that cannot be proved, even when another branch or witness would have worked. rewriting is different: it replaces equals by equals without choosing a branch or witness.
 
 ## Tests and proofs
 
@@ -433,9 +428,7 @@ assert comparable(1, 1)
 assert comparable(0, 255)
 ```
 
-green suite, three pairs, out of infinitely many. property-based testing does better. QuickCheck, Hypothesis and proptest generate values of `a` and `b` and assert the property on each, which samples more widely and still samples. [^quickcheck]
-
-[^quickcheck]: Koen Claessen and John Hughes, *QuickCheck: A Lightweight Tool for Random Testing of Haskell Programs*, ICFP 2000: <https://www.cs.tufts.edu/~nr/cs257/archive/john-hughes/quick.pdf>
+green suite, three pairs, out of infinitely many. testing more pairs still settles only the pairs tested. the Lean proof keeps `x` and `y` arbitrary.
 
 the parts that do correspond:
 
@@ -455,7 +448,7 @@ that makes `sorry` the counterpart of a stubbed test: it lets you write the shap
 
 ## The last step
 
-what follows is the final theorem only, the bottom node of the dependency graph. it uses the definition of $\mathbb{N}$, the two addition axioms, the definition of $\le$, and six earlier theorems. the artefact also proves `add_comm`, but `le_total` does not use it.
+what follows is the final theorem only, the bottom node of the dependency graph. it uses the definition of $\mathbb{N}$, the two addition axioms, the definition of $\le$, and six earlier theorems.
 
 ```lean
 theorem le_total (x y : ℕ) : x ≤ y ∨ y ≤ x := by
@@ -491,19 +484,9 @@ theorem le_total (x y : ℕ) : x ≤ y ∨ y ≤ x := by
         rfl
 ```
 
-[open the whole development in the Lean web editor][lean-live] to click through the proof states yourself. it contains the six supporting theorems and the separate proof of `add_comm`.
+[open the whole development in the Lean web editor][lean-live]. clicking a line shows its hypotheses and goal.
 
-the induction is on `y`, which gives two cases.
-
-in the zero case the goal is `x ≤ 0 ∨ 0 ≤ x`. the right disjunct is `zero_le`, proved above, so `right` followed by `exact zero_le x` closes it.
-
-in the successor case the goal is `x ≤ succ d ∨ succ d ≤ x`, with `hd : x ≤ d ∨ d ≤ x` available. splitting `hd` gives two branches.
-
-in the `inl` branch, `x ≤ d`, so there is a gap `c` with `d = x + c`. the same gap extended by one witnesses `x ≤ succ d`, which is `use c + 1`.
-
-in the `inr` branch, `d ≤ x`, so there is a gap `c` with `x = d + c`. this branch needs a second split, on `c` itself, and it is exactly the (I) against (II) distinction from the number line.
-
-case (I), `c` is zero, so `x = d` and `x ≤ succ d` follows from `le_succ_self`. case (II), `c` is `succ a`, so `x = succ(d + a)` and `succ d ≤ x` holds with witness `a`.
+the indentation records the nesting, but the code still reads as one vertical sequence. the proof state branches: `induction y` creates two obligations, then `cases hd` and `cases c` split them again. the diagram puts that shape on the page and shows where each branch closes.
 
 ![Lean proof state overview](/assets/blog/lean_state_overview.png)
 
@@ -511,13 +494,13 @@ every node in that diagram is one of the two-column states from earlier, and eve
 
 the labelled frames are where the state splits. `induction y` opens the `succ d` frame, `cases hd` opens `inl` and `inr` inside it, and `cases c` splits again inside `inr`. each frame starts at its own filled dot, so the nesting on the page is the nesting of the proof.
 
-`left` and `right` discard a disjunct. the top right branch goes from `x ≤ 0 ∨ 0 ≤ x` to `0 ≤ x` under `right`, and the left half never appears again. the same happens inside the frames, where the goal is written `…∨…` while both halves are still live and collapses to a single inequality the moment `left` or `right` fires.
+`left` and `right` choose a constructor of `Or`. the top right branch goes from `x ≤ 0 ∨ 0 ≤ x` to `0 ≤ x` under `right`. inside the frames, each `…∨…` goal becomes a single inequality after `left` or `right`.
 
 four goals get closed, one per leaf, and this proof uses two tactics to do it. `rfl` closes the two that end in an equation whose sides are the same term, `(x+c)+1 = (x+c)+1` and `succ(d+a) = succ(d+a)`, both rewritten until the two halves are literally identical. `exact` closes the other two by naming a result proved earlier, `zero_le x` on the far right and `le_succ_self d` in the middle. every rewrite above them exists to reach one of those two endings. the remaining circles lower down are merge points where the branches rejoin.
 
 ## In English
 
-the same development written out as a mathematician would write it, with the tactics replaced by prose. the Lean above and the proof below are the same argument.
+the same development in textbook-style prose, inspired by the proofs in Velleman and Axler. the Lean above and the proof below are the same argument.
 
 <details markdown="1">
 <summary>the whole thing, in prose</summary>
@@ -563,13 +546,6 @@ Proof. let $a$ be arbitrary and fixed. by induction on $b$.
 - *Base case:* $b = 0$. both sides reduce to $\operatorname{succ}(a)$ by the zero equation.
 - *Inductive step:* let $d$ be arbitrary and take $b = \operatorname{succ}(d)$. inductive hypothesis: $\operatorname{succ}(a) + d = \operatorname{succ}(a + d)$. the left side becomes $\operatorname{succ}(\operatorname{succ}(a) + d)$, then $\operatorname{succ}(\operatorname{succ}(a + d))$ by the hypothesis. the right side becomes the same, by the successor equation under the outer successor. $\Box$
 
-**Lemma (`add_comm`).** $a + b = b + a$.
-
-Proof. let $a$ be arbitrary and fixed. by induction on $b$.
-
-- *Base case:* $b = 0$. both sides equal $a$, by the zero equation and by `zero_add`.
-- *Inductive step:* let $d$ be arbitrary and take $b = \operatorname{succ}(d)$. inductive hypothesis: $a + d = d + a$. the left side is $\operatorname{succ}(a + d)$, hence $\operatorname{succ}(d + a)$ by the hypothesis. the right side is $\operatorname{succ}(d + a)$ by `succ_add`. $\Box$
-
 **Lemma (`add_assoc`).** $(a + b) + c = a + (b + c)$.
 
 Proof. let $a$ and $c$ be arbitrary and fixed. by induction on the middle summand $b$, which occurs under a successor on both sides.
@@ -602,17 +578,22 @@ each case establishes one half of the goal, so the goal holds at $\operatorname{
 
 </details>
 
-## What it cost
+## From code to paper
 
-eight theorems and eighty-three lines of tactics, for a statement that needs no defending to anyone who has counted to seven.
+i have only just started learning how to prove theorems, and i am still unsure why this beautiful part of mathematics has stayed so far out of sight during my time at ZHAW. did i miss a definition? why exactly is this move allowed? Lean turns those questions into goals and errors. this was an exercise in precision, not in making a short theorem long.
 
-`le_total` itself takes thirty lines. six theorems on its dependency path take another forty-two: `succ_eq_add_one` at four lines, `zero_add` at nine, `succ_add` at eleven, `add_assoc` at thirteen, `zero_le` at three, `le_succ_self` at two. `add_comm` takes the remaining eleven lines, though `le_total` does not use it. four of the six dependencies are about addition, and none of those four mention $\le$ at all. proving that two numbers compare turns out to be mostly a matter of proving that addition behaves.
+i suspect many mathematicians learning Lean make the opposite transition, from paper proofs into a proof assistant. i am coming from computer science and using Lean on the way into proof-based maths. it felt approachable because it is also a functional programming language. i can work in Neovim with the Lean plugin, inspect the proof state, and start with mathlib documentation when i get stuck. Lean materialises the proof as something i can run and get a checkmark for.
 
-what the artefact assumes is small and explicit: the inductive definition of `MyNat`, an opaque `add`, the axioms `add_zero` and `add_succ`, and the definition of `≤`. everything after that is derived. `sorry` is the explicit escape hatch for an unfinished proof, and Lean reports its presence.
+the structure and state keeping are training for paper proofs, where there is no compiler or proof checker. next is linear algebra at the [FernUniversität in Hagen](https://www.fernuni-hagen.de/mi/studium/module/lin_alg.shtml), alongside part-time studies at ZHAW. it is my first course where proofs are the work rather than a step inside it. i am eager to see how much transfers.
 
-the full single-file solution is in the [Lean web editor][lean-live]. it opens in the Lean 4 web editor with the whole development in it, so you can click any line and watch the givens and goal in the right-hand panel, exactly the two columns from earlier. put the cursor inside the `inr` branch and you can see the case split on `c` open up. no install, and it typechecks end to end.
+reading Peano also made me wish i had learned Latin. some of the historical material would be much more approachable.
 
-next is linear algebra at the [FernUniversität in Hagen](https://www.fernuni-hagen.de/mi/studium/module/lin_alg.shtml), alongside part-time studies at ZHAW. first course where proofs are the work rather than a step inside it, which is why i wanted this done now.
+the Lean file ends with the concrete pair from the title:
+
+```lean
+#check le_total 6 7
+-- le_total 6 7 : 6 ≤ 7 ∨ 7 ≤ 6
+```
 
 ## Further reading
 
@@ -629,4 +610,6 @@ next is linear algebra at the [FernUniversität in Hagen](https://www.fernuni-ha
 - <https://leanprover-community.github.io/learn.html> and the list of 1000 theorems: <https://leanprover-community.github.io/1000.html>
 - Kevin Buzzard, co-author of Natural Number Game 4: <https://profiles.imperial.ac.uk/k.buzzard/about>
 
-[lean-live]: https://live.lean-lang.org/#codez=LTAEEEFcBcAsHsBOAuUBjARgZgCwEZQAKAEQEMA7ASwEoAoEesAFVkoGdQATeNSAWwCm5aKFKU%2BHaPFBsEAd1BwBM6AIAOHRAICOkSls6hK5UGsTx4AN2MBzRotjKknAYluh4AM1DlS0SIikADY%2B%2FBiubAA0PqSCQQCejPagDgJIAnygQQIA%2BlLQwUQAHqDxoKiAqITU5aAlgCZEpaCAFESNDUVJIKCe5plqAhTSpEWU8BLRbAWI0O5%2BqUbknJBo05bKLp7GlNPw5PZeMf6BIeRhEdFmVjNBIaSQw0GUpIhl2Xx8pBzBOzap9nKkZQohiEnBmIgAigBRYgAOg6YAAkqBIGxlEoDgFCic%2BOFEFwBBsqNtyBxuqM5r5DljTog2PYADL9Ew2WLKD6iUAYD7seGgWDQaAaZAAemFpE4sRh7zgMNgsEgMJcwoAxMKbMLshQLqtEMA0KM%2BJAifFheRyDYcLRxGokCIALJ%2BWAPDAwpikZaUNAwgASpFWVr4NqmoAdcGdrvd0y9AGEdtBAjbUQGg%2FbHeG3R6veA1GoEuBoMnbSG05QXRmozDox8BHTrUXQ07SxHMzCAHJwABKAjkblUheDDfTkc9EZg8H7IkZFBhkKCpDLw69ACFuWgJ6Ap%2BQZ3OFy2EQslsT1yuBa5KDXmxWAPJ9cgABTclj8AmPflUbgvZAKMPp7GgMJXNhPXXQcm03GcijMADVxAktdwrKtUVrQMi3Au0BG%2FcsRy7TwgnXcDZ3nS8R0A4C6wHOCfyZCCoNItdyMnajCPgkiYIYjcmJ3YivS7HsthfdjQJYr0AFUk0Eyi0Iw0gYQAZWtWh7BYZRPHga54Dkdx1k2YlPgWURhlGDg5FcNFSAAayEDwdVAYVQD4eBQQ2ARDDJPh7HRbN3UcDdPSEVFDFbVsAHEcFAIRrHMchBGEUAkViLpYkoB4nlATSZXsJFuB8eARAKSyPDkcgIlYNRrNcOZVOuIINK0gkdJGEl7AwGA4q4QY0HM8gNOyTgbGUBynM9PxGrYOEGE6flBTYEU1S2eUXX1PgNSZbVXD1A0jS2E0gtC3liHYNA53EVxUBYdgjA4bq8p8oRpl7Mp9nRXawoi8awGIAANLp%2BkOGsZCWWBRA4MwMOgMozGMaZzUiexVMQaVoZ%2BIF7PSeZ%2FC2ShVkURdjNMnK8osqyrFcOF7CXSFgoRVtQBe0AGGMRYPWxu14lbWY5EcLRaAAH1AAAvVxpFQVn2YLPm2CWNAalF2ZACTCEM2b8Wg3zcFrVFAABtHMcm67hoAAXUVsWYUltA12ukadiIXxBHKABeY2%2FFbXKrfIapCEhpBtod0A8AABkDoPqgAIgqEPQHtgA%2BJ2C1oW2azUd1lFluPjAmCg0GUVB91ged%2BMMVO0q5l8UnWW4ghEZBHdTmFBfMRT1g8TwxeKGoxeqEWlar%2B3aBSaU0CBkp0tgPvQD5k36%2BkFJo9juuhbHie%2FFNqXOUjmPa7N6XCC8VuMDoWgm6kVvCBKLuO%2Fb2Zq7Hgeh7S%2BbF7nqeUnX2nl6nx%2FN9XjBX5NreiGPrMfeil04FHIFneYExd6zAAN4mFQGLAAvjUK8LdZhFxMJzUyY9oE92bq3XYVoSRgIgWdeAsl4zuCLlg7mKQpAULcOaUwvt6GUKYYQQBIg1AHyUOkTIU8cg6ByP7GW3d57mEjqAER1dQCIFwo3AkHhiqiNbjIr%2B5spEKO8OwHIz9KigAVg%2BeAaheZSNfkwRAkAXwS1XjkV%2BAAxYISZ7CthpPiQkmMdhjVoLwrQmQdi5CEVvXRQsX6oAII7f%2B0jHYYDKHIvCviMiKDkPAQR2gcjBICS%2FGoAAmSR%2F8CAyNibI%2BRiTMhwC0IE9JwToApJSKgLA%2BTV55KKXE0pjg%2BFdHgAENJGSpZ5FgJUmoYVImr0aa0kpCSOl%2BK6FjKpfTzY5FUgEepoAACsTSNFhQmfEnx0yklASKL04JGxsarIAGybOlhsnZ7S0gzNRKscgxz%2BmHNWQAdiuaAS5ty8L2HFKCI8xjSC6DZJwQw595axwMbHEBxDM7KFAeAcFNRkWF27sXbBKQAW%2B1rgCxSQwRiZABSEiRhBSAqL8J3DkABqMxjtSAq0MsS8FCzt4UohbHalFK6WEH%2FpwaooyNHktAHSgVilOjGB0JAYI21D6KOyEQClP9Kid0dqAQAwEREGlqq6IP8GWivQEQjO4Ds4bkhNCmRgAL8lrtkQAl%2BT2EhK2YgtMQphQYPYAA6nnEQVUaoKCeGya4cwymaGlfoFyihpAXBJnMZwZ4mH7AqO9UAykOIUBwMFVk4VyCRR2DFLh5hrAuEMHbEepg5xZwQEEFwtJkC8jKQDRZQiSVZPgU26WJhHYmDpYUmJiROgpDYEgZ4vI02hrSvjNaJhil23ZBQcKRQs6IDQOwAQZNOgUypjTYg4BWxIg9a8d4HbemtuUe2%2F%2BXafCGr7ZyRIKQtB8VUJrAJLzFlTwNmPR9vYBCaxJVvT9D7uw%2Fr%2Fayj9X75G0CPRSgROLCDtqqDUERdKr3wP7WPRmh5GrXpHo%2FZ%2B0cx5Aafb%2BgRQj%2FaAZft%2B%2FioHOCkvgBRh98iUg2I0YYWAhgCPZKo8%2B%2F9UsGOyOA9R9j%2FHdlQYyMe4JcHlU1EQ6gf%2BPK15CvZYa%2FevtYkYYPB6a2P9cPMYFqEzjlHBPPtI%2Bk8jhGBPEZo3RkTxnf0kvA1xpj48O1cD5PqqOFnuP2dZQBrzdnNawAwLZqzvHzYicg9B0QrKlqZBFSq0AsnaWKbXnSilrSNNM2JGvXTLn8Oea4wF0zwiQsgYc0LUr1HYPgoi3hPTl6%2BRdoK0Z0Lvm%2BP%2Fas5JmrHWQOwHILVxSUWSUfGHcpn%2BOrEvcpU4a6WBreU%2FzpWgNVd7MtYe0%2FfOAeGDPNaIyB4r5nCutdo45lre2hY5ABQN%2Brq8TB9fXj16jYW0CVefV1zgL3f1vY%2B9Zvzh3ev9a85F8TMHzuKtPjJ6lIi2hqfvciVEtQv1FfO5diDfyovZDZRkgQQRvDg9VTUeormz7oZSCiZQeAx4CCKJGE9LbWVZPaB5HyjaTJ8j9MocIVlSA5nMN5dwcAUSJUQGJt4FKMf5EKODso%2BPUCE7KC0Mo0OMspEw1pkwZRct83y15ygNh%2BQWapzTgRir2jXdY3yDjO30DVg4Oxjbo9sl82MCEJ093skpDQDbgA5HyEI5bpawDXO7yzvXnsWZSNkTwBZg%2Fec1sEuntGAn8dJ%2FD6Wvbw8h%2Bo4ABMJou0ZGzwZPkyLNO%2FIHiQZbv3ee6Qj78v%2Fu%2BRB8rzb9A9uM9a%2B2xn3bVXztkaNrMQPHfM88bA6E97ogRD9%2BDxHgk0fJ%2Bx8D4XlIhvlhZFyME1EOOuCt9cxSwzMeAtPd7%2BPhvMfdf68n4P398%2BB9k9EAP2PX27%2BQeVIPAQnUV95FdiES57zFIgljkAA
+## Notes
+
+[lean-live]: https://live.lean-lang.org/#url=https%3A%2F%2Fgist.githubusercontent.com%2Fcb341%2F824784c269bf2a8465ba1d8715103008%2Fraw%2F28f6fd2095de270d72a43dbd7601acad51c0ce89%2Flean_le_total
