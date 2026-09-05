@@ -1,5 +1,5 @@
 ---
-title: "TITLE"
+title: "So You Think You Know ≤ ?"
 date: 2026-09-05
 description: "First steps in formal mathematics with Lean"
 tags: ["theoretical mathematics", "first principles"]
@@ -29,12 +29,15 @@ Wanted to share my findings, deriving a property of natural numbers form first p
 What i want to show is a short introduction to Lean form the perspective of computers cience , how even elementary concepts can be approached rigorously
 
 
-THE PROOF
+THE PROOF - PREFACE
 
 - We need to go over syntacrc things first, define notation
 
 Logical connectives
 - \or , ∧ , →  
+
+- Deifnition of <=
+- Defintion of N, defintion of include in N
 
 Quantors
 - ∀ : allquantor
@@ -47,6 +50,8 @@ Like in HTPi
 
 Proofs of form
 
+_Proof structure has been introduced in the preface of how to prove it (footnote insert) :
+
 ```
 Let x be arbitrary .
   Suppose P (x) is true.
@@ -56,10 +61,19 @@ Thus, for all x, if P (x) then Q(x) .
 ```
 
 
+THE THEOREM
 
-MY SINGLE FILE LEAN SOLUTION
-INCLUDING ALL THOREMS DERIVED FROM FIRST PRINCIPLES
-- https://tinyurl.com/4tr5uc7c
+
+$$
+\forall x,y \in \mathbb{N} : x \le y \lor y \le x
+$$
+
+
+
+
+
+
+MY SINGLE FILE LEAN SOLUTION INCLUDING ALL THOREMS DERIVED FROM FIRST PRINCIPLES: <https://tinyurl.com/4tr5uc7c>
 
 
 FURTHER READING
