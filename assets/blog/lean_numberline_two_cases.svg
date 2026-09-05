@@ -16,8 +16,8 @@
     </marker>
   </defs>
 
-  <!-- ============ case (a) : a = b ============ -->
-  <text class="case" x="14" y="72">(a)</text>
+  <!-- ============ case (I) : c = 0, a = b ============ -->
+  <text class="case" x="14" y="72">(I)</text>
 
   <line class="ax" x1="70" y1="66" x2="690" y2="66" marker-end="url(#arrow)"/>
   <text class="lbl" x="706" y="72">&#8469;</text>
@@ -36,9 +36,10 @@
 
   <circle class="dot" cx="460" cy="66" r="4.5"/>
   <text class="lbl" x="460" y="95" text-anchor="middle">a = b</text>
+  <text class="lbl" x="460" y="42" text-anchor="middle">c = 0</text>
 
-  <!-- ============ case (b) : a + c = b ============ -->
-  <text class="case" x="14" y="212">(b)</text>
+  <!-- ============ case (II) : c > 0, a + c = b ============ -->
+  <text class="case" x="14" y="212">(II)</text>
 
   <line class="ax" x1="70" y1="206" x2="690" y2="206" marker-end="url(#arrow)"/>
   <text class="lbl" x="706" y="212">&#8469;</text>
