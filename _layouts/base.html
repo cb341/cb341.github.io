@@ -147,13 +147,12 @@
       th,
       td {
         padding: .1em .5em;
-        border-top: 1px solid black;
         border: 0;
         text-align: left;
       }
 
-      tr {
-        border-top: 1px solid black;
+      thead {
+        border-bottom: 1px solid black;
       }
 
       @media (max-width: 600px) {
@@ -163,15 +162,6 @@
           max-width: 100%;
         }
 
-        th,
-        td {
-          min-width: 9rem;
-        }
-
-        th:last-child,
-        td:last-child {
-          min-width: 18rem;
-        }
       }
 
       code {
