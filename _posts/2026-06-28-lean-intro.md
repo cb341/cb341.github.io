@@ -501,7 +501,83 @@ four goals get closed, one per leaf, and this proof uses two tactics to do it. `
 
 ## In English
 
-TODO
+### Definitions.
+
+two rules describe $\mathbb{N}$. zero is a natural number, and the successor $\operatorname{succ}(d)$ of a natural number $d$ is a natural number. nothing else is a natural number. from this follows the induction principle: a property that holds of $0$, and holds of $\operatorname{succ}(d)$ whenever it holds of $d$, holds of every natural number.
+
+from here on the universe of discourse is $\mathbb{N}$.
+
+each numeral abbreviates iterated successors: $1 = \operatorname{succ}(0)$, $2 = \operatorname{succ}(1)$, $3 = \operatorname{succ}(2)$, through to $7 = \operatorname{succ}(6)$.
+
+### Axioms.
+
+**Peano axiomatic arithmetic.** addition satisfies two equations.
+
+$$
+\begin{array}{rcll}
+a + 0 &=& a & \qquad (\texttt{add\_zero}) \\[6pt]
+a + \operatorname{succ}(d) &=& \operatorname{succ}(a + d) & \qquad (\texttt{add\_succ})
+\end{array}
+$$
+
+**Inequality.** $a \le b$ when some natural number $c$ satisfies $b = a + c$, with $c$ being the gap. the definition is an equivalence, so a gap proves an inequality and an inequality yields a gap.
+
+### Lemmas.
+
+**Lemma (`succ_eq_add_one`).** $\operatorname{succ}(n) = n + 1$.
+
+Proof. by the numeral definitions $1 = \operatorname{succ}(0)$, so $n + 1$ is $n + \operatorname{succ}(0)$, which the successor equation rewrites as $\operatorname{succ}(n + 0)$, and the zero equation reduces $n + 0$ to $n$. $\Box$
+
+**Lemma (`zero_add`).** $0 + n = n$.
+
+Proof. by induction on $n$.
+
+- *Base case:* $n = 0$. the claim is $0 + 0 = 0$, the zero equation.
+- *Inductive step:* let $d$ be arbitrary and take[118;1:3u $n = \operatorname{succ}(d)$. inductive hypothesis: $0 + d = d$. the successor equation gives $0 + \operatorname{succ}(d) = \operatorname{succ}(0 + d)$, and the hypothesis rewrites the inner sum as $d$. $\Box$
+
+**Lemma (`succ_add`).** $\operatorname{succ}(a) + b = \operatorname{succ}(a + b)$.
+
+Proof. let $a$ be arbitrary and fixed. by induction on $b$.
+
+- *Base case:* $b = 0$. both sides reduce to $\operatorname{succ}(a)$ by the zero equation.
+- *Inductive step:* let $d$ be arbitrary and take $b = \operatorname{succ}(d)$. inductive hypothesis: $\operatorname{succ}(a) + d = \operatorname{succ}(a + d)$. the left side becomes $\operatorname{succ}(\operatorname{succ}(a) + d)$, then $\operatorname{succ}(\operatorname{succ}(a + d))$ by the hypothesis. the right side becomes the same, by the successor equation under the outer successor. $\Box$
+
+**Lemma (`add_comm`).** $a + b = b + a$.
+
+Proof. let $a$ be arbitrary and fixed. by induction on $b$.
+
+- *Base case:* $b = 0$. both sides equal $a$, by the zero equation and by `zero_add`.
+- *Inductive step:* let $d$ be arbitrary and take $b = \operatorname{succ}(d)$. inductive hypothesis: $a + d = d + a$. the left side is $\operatorname{succ}(a + d)$, hence $\operatorname{succ}(d + a)$ by the hypothesis. the right side is $\operatorname{succ}(d + a)$ by `succ_add`. $\Box$
+
+**Lemma (`add_assoc`).** $(a + b) + c = a + (b + c)$.
+
+Proof. let $a$ and $c$ be arbitrary and fixed. by induction on the middle summand $b$, which occurs under a successor on both sides.
+
+- *Base case:* $b = 0$. both sides equal $a + c$, by the zero equation and by `zero_add`.
+- *Inductive step:* let $d$ be arbitrary and take $b = \operatorname{succ}(d)$. inductive hypothesis: $(a + d) + c = a + (d + c)$. the left side becomes $\operatorname{succ}((a + d) + c)$, the right side $\operatorname{succ}(a + (d + c))$, and the hypothesis equates the inner sums. $\Box$
+
+**Lemma (`zero_le`).** $0 \le x$.
+
+Proof. the gap is $x$, since $0 + x = x$ by `zero_add`. $\Box$
+
+**Lemma (`le_succ_self`).** $x \le \operatorname{succ}(x)$.
+
+Proof. the gap is one, since $\operatorname{succ}(x) = x + 1$ by `succ_eq_add_one`. $\Box$
+
+### The theorem.
+
+**Theorem (`le_total`).** for all $x$ and $y$, either $x \le y$ or $y \le x$.
+
+Proof. let $x$ be arbitrary and fixed. by induction on $y$.
+
+- *Base case:* $y = 0$. the right half holds, since $0 \le x$ by `zero_le`.
+- *Inductive step:* let $d$ be arbitrary and take $y = \operatorname{succ}(d)$. inductive hypothesis: $x \le d$ or $d \le x$. goal: $x \le \operatorname{succ}(d)$ or $\operatorname{succ}(d) \le x$. the hypothesis is a disjunction, and the labels name which half is assumed.
+    - *Case 1 (left):* $x \le d$. the gap $c$ satisfies $d = x + c$. then $\operatorname{succ}(d) = (x + c) + 1 = x + (c + 1)$ by `succ_eq_add_one` and `add_assoc`, so $c + 1$ is a gap and $x \le \operatorname{succ}(d)$.
+    - *Case 2 (right):* $d \le x$. the gap $c$ satisfies $x = d + c$, and is zero or a successor. this is (I) against (II) from the number line.
+        - *Case 2a (gap zero):* $c = 0$. then $x = d$ by the zero equation, and $d \le \operatorname{succ}(d)$ by `le_succ_self`, so $x \le \operatorname{succ}(d)$.
+        - *Case 2b (gap a successor):* $c = \operatorname{succ}(a)$. then $x = \operatorname{succ}(d + a)$ by the successor equation, which is $\operatorname{succ}(d) + a$ by `succ_add`, so $a$ is a gap and $\operatorname{succ}(d) \le x$.
+
+each case establishes one half of the goal, so the goal holds at $\operatorname{succ}(d)$. both cases of the induction are now proved, and by the induction principle the statement holds for every $y$. $\blacksquare$
 
 ## What it cost
 
