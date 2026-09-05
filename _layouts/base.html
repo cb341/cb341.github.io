@@ -107,12 +107,42 @@
       }
       blockquote { margin: 1.2em 2em; font-style: italic; }
 
+      /* Keep wide display math inside the article instead of widening the page. */
+      .katex-display {
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+      }
+
+      .katex-display > .katex {
+        max-width: none;
+      }
+
+      /* Allow long URLs and inline code to wrap before widening the viewport. */
+      main a,
+      main code {
+        overflow-wrap: anywhere;
+      }
+
       hr { border: 0; border-top: 1px solid #e6e6e2; margin: .6em 0; }
 
       table {
         width: 100%;
         border-collapse: collapse;
       }
+
+      table[class*="table-equal-"] {
+        table-layout: fixed;
+      }
+
+      table.table-equal-2 th,
+      table.table-equal-2 td { width: 50%; }
+
+      table.table-equal-3 th,
+      table.table-equal-3 td { width: 33.333%; }
+
+      table.table-equal-4 th,
+      table.table-equal-4 td { width: 25%; }
 
       th,
       td {
