@@ -501,6 +501,11 @@ four goals get closed, one per leaf, and this proof uses two tactics to do it. `
 
 ## In English
 
+the same development written out as a mathematician would write it, with the tactics replaced by prose. the Lean above and the proof below are the same argument.
+
+<details markdown="1">
+<summary>the whole thing, in prose</summary>
+
 ### Definitions.
 
 two rules describe $\mathbb{N}$. zero is a natural number, and the successor $\operatorname{succ}(d)$ of a natural number $d$ is a natural number. nothing else is a natural number. from this follows the induction principle: a property that holds of $0$, and holds of $\operatorname{succ}(d)$ whenever it holds of $d$, holds of every natural number.
@@ -533,7 +538,7 @@ Proof. by the numeral definitions $1 = \operatorname{succ}(0)$, so $n + 1$ is $n
 Proof. by induction on $n$.
 
 - *Base case:* $n = 0$. the claim is $0 + 0 = 0$, the zero equation.
-- *Inductive step:* let $d$ be arbitrary and take[118;1:3u $n = \operatorname{succ}(d)$. inductive hypothesis: $0 + d = d$. the successor equation gives $0 + \operatorname{succ}(d) = \operatorname{succ}(0 + d)$, and the hypothesis rewrites the inner sum as $d$. $\Box$
+- *Inductive step:* let $d$ be arbitrary and take $n = \operatorname{succ}(d)$. inductive hypothesis: $0 + d = d$. the successor equation gives $0 + \operatorname{succ}(d) = \operatorname{succ}(0 + d)$, and the hypothesis rewrites the inner sum as $d$. $\Box$
 
 **Lemma (`succ_add`).** $\operatorname{succ}(a) + b = \operatorname{succ}(a + b)$.
 
@@ -578,6 +583,8 @@ Proof. let $x$ be arbitrary and fixed. by induction on $y$.
         - *Case 2b (gap a successor):* $c = \operatorname{succ}(a)$. then $x = \operatorname{succ}(d + a)$ by the successor equation, which is $\operatorname{succ}(d) + a$ by `succ_add`, so $a$ is a gap and $\operatorname{succ}(d) \le x$.
 
 each case establishes one half of the goal, so the goal holds at $\operatorname{succ}(d)$. both cases of the induction are now proved, and by the induction principle the statement holds for every $y$. $\blacksquare$
+
+</details>
 
 ## What it cost
 
