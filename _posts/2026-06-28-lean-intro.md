@@ -1,6 +1,6 @@
 ---
-title: "Mathematics but not handwavey ?"
-date: 2026-06-28
+title: "Proving 6 ≤ 7 the hard way"
+date: 2026-09-05
 description: "Proving that any two natural numbers compare, from the definition of a natural number upwards, in Lean."
 tags: ["theoretical mathematics", "first principles"]
 math: true
@@ -8,7 +8,9 @@ math: true
 
 paper proofs have no compiler. i went looking for one and found Lean, by way of the [Natural Number Game](https://adam.math.hhu.de/#/g/leanprover-community/nng4), which builds the naturals from nothing and makes you prove your way back out. [^nng] i finished it end of june and wanted to write up what the last level actually took.
 
-no AI was used for the Lean here, and none for the maths either: the definitions, the axioms i picked, the proof strategy and the dependency graph are mine. AI was used for phrasing.
+no AI was used for the Lean here, and none for the maths either: the proofs, the proof strategy and the dependency graph are mine. AI was used for phrasing. the definitions of `MyNat`, `+` and `≤` are taken from the Natural Number Game, which is Apache licensed, and modified. [^nng4src]
+
+[^nng4src]: <https://github.com/leanprover-community/NNG4>. the artefact carries the same attribution in its header. the seven supporting theorems and `le_total` are proved by me from those definitions.
 
 ## The theorem
 
@@ -126,7 +128,7 @@ $$
 0=\varnothing,\quad 1=\lbrace\varnothing\rbrace,\quad 2=\lbrace\varnothing,\lbrace\varnothing\rbrace\rbrace,\quad\ldots
 $$
 
-$n < m$ becomes $n \in m$, so order comes for free. this is the standard construction in set theory.
+$n < m$ becomes $n \in m$, so order comes for free. this is the standard construction in set theory. [^vonneumann]
 
 **Zermelo ordinals.** each number is the singleton of the previous one.
 
@@ -134,17 +136,25 @@ $$
 0=\varnothing,\quad 1=\lbrace\varnothing\rbrace,\quad 2=\lbrace\lbrace\varnothing\rbrace\rbrace,\quad\ldots
 $$
 
-simpler to write, but $n < m$ is no longer $n \in m$, so order has to be defined separately.
+simpler to write, but $n < m$ is no longer $n \in m$, so order has to be defined separately. [^zermelo]
 
-**Church numerals.** a number is a function that applies another function that many times. $n$ is $\lambda f. \lambda x. f^n(x)$, so $3$ is $\lambda f. \lambda x. f(f(f(x)))$. addition is function composition. this is how the naturals appear in untyped lambda calculus.
+**Church numerals.** a number is a function that applies another function that many times. $n$ is $\lambda f. \lambda x. f^n(x)$, so $3$ is $\lambda f. \lambda x. f(f(f(x)))$. addition is function composition. this is how the naturals appear in untyped lambda calculus. [^church]
 
-**Peano axioms as first-order theory.** rather than constructing the naturals, state the properties they must have: $0$ is not a successor, $\operatorname{succ}$ is injective, and induction holds. this leaves the objects unspecified and constrains them instead.
+**Peano axioms as first-order theory.** rather than constructing the naturals, state the properties they must have: $0$ is not a successor, $\operatorname{succ}$ is injective, and induction holds. this leaves the objects unspecified and constrains them instead. [^pa]
 
 i am using zero and succ, which is what the Natural Number Game uses and what Lean's own `Nat` is.
 
 </details>
 
 [^ordinals]: <https://www.researchgate.net/publication/228574851_von_Neumann_universe_A_perspective>
+
+[^vonneumann]: John von Neumann, *Zur Einführung der transfiniten Zahlen*, Acta Litt. Acad. Sc. Szeged 1 (1923), 199–208. Standard modern treatment in Kunen, *Set Theory*, chapter I.
+
+[^zermelo]: Ernst Zermelo, *Untersuchungen über die Grundlagen der Mengenlehre I*, Mathematische Annalen 65 (1908), 261–281.
+
+[^church]: Alonzo Church, *An Unsolvable Problem of Elementary Number Theory*, American Journal of Mathematics 58 (1936), 345–363. Barendregt, *The Lambda Calculus*, section 6.4 gives the arithmetic.
+
+[^pa]: The first-order theory is usually attributed to Peano 1889 by way of Dedekind. Hájek and Pudlák, *Metamathematics of First-Order Arithmetic* (1998), chapter I, is the reference treatment. The distinction that matters here: the first-order schema quantifies over formulas, so it does not pin down $\mathbb{N}$ up to isomorphism, whereas the inductive definition above does.
 
 ### Our zero and Lean's zero
 
@@ -168,33 +178,33 @@ a & b = 0 \\
 \end{cases}
 $$
 
-worked on $1 + 2 = 3$. the right column names the axiom used and which direction it was applied in. $(\rightarrow)$ unfolds, replacing a name by its definition. $(\leftarrow)$ folds, recognising a definition and naming it.
+worked on $1 + 2 = 3$. the reason column gives the direction, then the definition used. $(\rightarrow)$ unfolds, replacing a name by its definition. $(\leftarrow)$ folds, recognising a definition and naming it.
 
 $$
 \begin{array}{rl}
-& \textbf{Axioms} \\[2pt]
+& \textbf{Definitions} \\[2pt]
 \colorbox{#fff3cd}{$\vphantom{Ag}\text{i.}$} & 1 \stackrel{\mathrm{def}}{=} \operatorname{succ}(0) \\[2pt]
 \colorbox{#cfe2ff}{$\vphantom{Ag}\text{ii.}$} & 2 \stackrel{\mathrm{def}}{=} \operatorname{succ}(1) \\[2pt]
 \colorbox{#e2d9f3}{$\vphantom{Ag}\text{iii.}$} & 3 \stackrel{\mathrm{def}}{=} \operatorname{succ}(2) \\[2pt]
 \colorbox{#f8d7da}{$\vphantom{Ag}\text{iv.}$} & a+0 \stackrel{\mathrm{def}}{=} a \\[2pt]
 \colorbox{#d1e7dd}{$\vphantom{Ag}\text{v.}$} & a+\operatorname{succ}(b) \stackrel{\mathrm{def}}{=} \operatorname{succ}(a+b)
 \end{array}
-\qquad
+\quad
 \begin{array}{l|l}
 \textbf{Statement} & \textbf{Reason} \\
 \hline
 1 + 2 & \text{given} \\[2pt]
-1 + \colorbox{#cfe2ff}{$\vphantom{Ag}\operatorname{succ}(1)$} & \colorbox{#cfe2ff}{$\vphantom{Ag}\text{ii.}$} \; (\rightarrow) \\[2pt]
-\colorbox{#d1e7dd}{$\vphantom{Ag}\operatorname{succ}(1 + 1)$} & \colorbox{#d1e7dd}{$\vphantom{Ag}\text{v.}$} \; (\rightarrow) \\[2pt]
-\operatorname{succ}(1 + \colorbox{#fff3cd}{$\vphantom{Ag}\operatorname{succ}(0)$}) & \colorbox{#fff3cd}{$\vphantom{Ag}\text{i.}$} \; (\rightarrow) \\[2pt]
-\operatorname{succ}(\operatorname{succ}(\colorbox{#d1e7dd}{$\vphantom{Ag}1 + 0$})) & \colorbox{#d1e7dd}{$\vphantom{Ag}\text{v.}$} \; (\rightarrow) \\[2pt]
-\operatorname{succ}(\operatorname{succ}(\colorbox{#f8d7da}{$\vphantom{Ag}1$})) & \colorbox{#f8d7da}{$\vphantom{Ag}\text{iv.}$} \; (\rightarrow) \\[2pt]
-\operatorname{succ}(\colorbox{#cfe2ff}{$\vphantom{Ag}2$}) & \colorbox{#cfe2ff}{$\vphantom{Ag}\text{ii.}$} \; (\leftarrow) \\[2pt]
-\colorbox{#e2d9f3}{$\vphantom{Ag}3$} & \colorbox{#e2d9f3}{$\vphantom{Ag}\text{iii.}$} \; (\leftarrow)
+1 + \colorbox{#cfe2ff}{$\vphantom{Ag}\operatorname{succ}(1)$} & (\rightarrow)\; \colorbox{#cfe2ff}{$\vphantom{Ag}\text{ii.}$} \\[2pt]
+\colorbox{#d1e7dd}{$\vphantom{Ag}\operatorname{succ}(1 + 1)$} & (\rightarrow)\; \colorbox{#d1e7dd}{$\vphantom{Ag}\text{v.}$} \\[2pt]
+\operatorname{succ}(1 + \colorbox{#fff3cd}{$\vphantom{Ag}\operatorname{succ}(0)$}) & (\rightarrow)\; \colorbox{#fff3cd}{$\vphantom{Ag}\text{i.}$} \\[2pt]
+\operatorname{succ}(\operatorname{succ}(\colorbox{#d1e7dd}{$\vphantom{Ag}1 + 0$})) & (\rightarrow)\; \colorbox{#d1e7dd}{$\vphantom{Ag}\text{v.}$} \\[2pt]
+\operatorname{succ}(\operatorname{succ}(\colorbox{#f8d7da}{$\vphantom{Ag}1$})) & (\rightarrow)\; \colorbox{#f8d7da}{$\vphantom{Ag}\text{iv.}$} \\[2pt]
+\operatorname{succ}(\colorbox{#cfe2ff}{$\vphantom{Ag}2$}) & (\leftarrow)\; \colorbox{#cfe2ff}{$\vphantom{Ag}\text{ii.}$} \\[2pt]
+\colorbox{#e2d9f3}{$\vphantom{Ag}3$} & (\leftarrow)\; \colorbox{#e2d9f3}{$\vphantom{Ag}\text{iii.}$}
 \end{array}
 $$
 
-the same axiom gets used in both directions. which direction you pick is a choice, and picking wrong is how a rewrite fails to terminate.
+the same definition gets used in both directions. which direction you pick is a choice, and picking wrong is how a rewrite fails to terminate.
 
 ### Less than or equal
 
@@ -208,7 +218,7 @@ the gap is a natural, so it is either zero or a successor, which gives two pictu
 
 ![Number line showing the gap c as zero in case I and nonzero in case II](/assets/blog/lean_numberline_two_cases.svg)
 
-that split is not decoration. the proof below hits it as a real case distinction: once a gap `c` is in hand, `cases c` asks which of the two pictures applies, and the two branches close with different lemmas.
+the proof below hits that split as a case distinction. once a gap `c` is in hand, `cases c` asks which of the two pictures applies, and the two branches close with different lemmas.
 
 this is the definition the Natural Number Game uses. Lean's own `Nat.le` is an inductive type instead, built from reflexivity and a successor step: [^natle]
 
@@ -240,7 +250,7 @@ a Lean proof is written as a list of tactics. the ones in this article:
 | `rfl` | closes a goal whose two sides are the same term |
 | `exact` | closes a goal with something already proved |
 
-`rw` is the short form of `rewrite`. `zero_eq_0`, `succ_eq_add_one` and `cases'` are Natural Number Game spellings, so pasting this into a fresh mathlib project gets you errors on the names before anything interesting.
+`rw` is the usual short form of `rewrite`, though the artefact spells it out everywhere. `zero_eq_0`, `succ_eq_add_one` and `cases'` are Natural Number Game spellings, so pasting this into a fresh mathlib project gets you errors on the names before anything interesting.
 
 ## The smaller lemmas
 
@@ -251,20 +261,33 @@ unfolding the definition, $0 \le x$ means $\exists c, x = 0 + c$. take $c := x$.
 ```lean
 theorem zero_le (x : ℕ) : 0 ≤ x := by
   use x
-  rw [zero_add]
+  rewrite[zero_add]
   rfl
 ```
 
+the `zero_add` it leans on is where the work actually happens, and that one goes by induction:
+
 <details markdown="1">
-<summary>the same lemma by induction on x</summary>
+<summary>zero_add, by induction on n</summary>
 
-the base case is $0 \le 0$ with $c := 0$. the step goes from $0 \le d$ to $0 \le \operatorname{succ}(d)$, which means turning a gap `c` into `succ c`.
+```lean
+theorem zero_add (n : ℕ) : 0 + n = n := by
+  induction n with
+  | zero =>
+    rewrite[zero_eq_0]
+    rewrite[add_zero]
+    rfl
+  | succ d hd =>
+    rewrite[add_succ]
+    rewrite[hd]
+    rfl
+```
 
-longer than the first route, and it pulls `add_succ` into the graph on top of `zero_add`. the first route is shorter because it picks the witness in one move instead of building it up one successor at a time.
+addition recurses on its second argument, so `a + 0 = a` is true by definition and `0 + n = n` is not. the two look symmetric and only one of them is free. this asymmetry is why `succ_add`, `add_comm` and `add_assoc` all need their own inductive proofs.
 
 </details>
 
-one theorem, several proofs, each a different path through the dependency graph. Ording's *99 Variations on a Proof* takes this to its conclusion with 99 proofs of a single cubic. [^ording]
+one theorem often admits several proofs, each a different path through the dependency graph. Ording's *99 Variations on a Proof* takes this to its conclusion with 99 proofs of a single cubic. [^ording]
 
 [^ording]: Philip Ording, *99 Variations on a Proof*, Princeton University Press, 2019.
 
@@ -276,20 +299,19 @@ the main proof calls two more results by name. both are proved the same way, fro
 `succ_eq_add_one` connects the constructor to the numeral, the split from earlier:
 
 ```lean
-theorem succ_eq_add_one (n : ℕ) : succ n = n + 1 := by
-  rw [one_eq_succ_zero]
-  rw [add_succ]
-  rw [add_zero]
+theorem succ_eq_add_one n : succ n = n + 1 := by
+  rewrite[one_eq_succ_zero]
+  rewrite[add_succ]
+  rewrite[add_zero]
   rfl
 ```
 
-`le_succ_self` says every number is below its own successor. the gap is one:
+`le_succ_self` says every number is below its own successor. the gap is one, and once the witness is supplied the goal is exactly the previous theorem:
 
 ```lean
 theorem le_succ_self (x : ℕ) : x ≤ succ x := by
   use 1
-  rw [succ_eq_add_one]
-  rfl
+  exact succ_eq_add_one x
 ```
 
 </details>
@@ -327,7 +349,7 @@ after `use x`:
 | `x : ℕ` | `x = 0 + x` |
 {: .table-equal-2}
 
-after `rw [zero_add]`:
+after `rewrite[zero_add]`:
 
 | Givens | Goal |
 | --- | --- |
@@ -336,7 +358,7 @@ after `rw [zero_add]`:
 
 after `rfl`, no goals remain.
 
-the left column only grows and the right column only shrinks. the proof is finished when the right column is empty, which is a condition rather than a judgement call.
+in this example the left column only grows and the right column only shrinks. that is not a law of Lean proofs in general, since `induction` and `cases` replace one goal with several and a rewrite can make a goal larger before it gets smaller. what does hold everywhere is the stopping condition: the proof is finished when no goals remain, which the machine decides rather than the author.
 
 some tactics split the state in two instead of changing it. those are the ones that make a proof branch.
 
@@ -383,7 +405,7 @@ and `right`, which picks a side of the goal and discards the other:
 
 </details>
 
-`left` and `right` are the only tactics here that can lose you the proof. everything else preserves provability, and those two commit to a disjunct before you have checked it holds.
+`left`, `right` and `use` commit to a choice the goal did not force. the first two pick a disjunct and discard the other, `use` picks a witness and discards every other candidate. pick wrong and the remaining goal is unprovable even though the original was fine, so you undo and try again. the rewriting tactics do not have this property: they transform a goal into an equivalent one, so a provable goal stays provable.
 
 ## Tests and proofs
 
@@ -411,11 +433,13 @@ the parts that do correspond:
 
 coverage has no counterpart because a proof holds for the whole domain or it is not a proof.
 
-where the analogy does hold is the feedback loop. tests are worth writing because the machine answers immediately and without sympathy, and the goal window gives that same answer after every step. on paper, "clearly" is a sentence a person can write. Lean has no such sentence.
+where the analogy does hold is the feedback loop. tests are worth writing because the machine answers immediately and without sympathy, and the goal window gives that same answer after every step. on paper, "clearly" is a sentence a person can write and nothing checks it. Lean's equivalent is `sorry`, which compiles but marks the file with a warning you have to look at.
 
-`sorry` completes the correspondence at the other end. it stands in for an unfinished proof, compiles with a warning, and lets you fill in a skeleton piece by piece the way a test suite grows.
+that makes `sorry` the counterpart of a stubbed test: it lets you write the shape of a proof first and fill in the parts one at a time, with the compiler tracking what is still owed.
 
-## The proof
+## The last step
+
+what follows is the final theorem only, the bottom node of the dependency graph. it is thirty lines, and it is thirty lines rather than more because everything it stands on has already been proved: the definition of $\mathbb{N}$, both clauses of addition, the definition of $\le$, and the seven theorems above it, another fifty-three lines that are not in this snippet. the whole development is in the artefact.
 
 ```lean
 theorem le_total (x y : ℕ) : x ≤ y ∨ y ≤ x := by
@@ -451,6 +475,8 @@ theorem le_total (x y : ℕ) : x ≤ y ∨ y ≤ x := by
         rfl
 ```
 
+[open the whole development in the Lean web editor](https://tinyurl.com/4tr5uc7c) to see the definitions and the seven supporting theorems this rests on, and to click through the states below yourself.
+
 the induction is on `y`, which gives two cases.
 
 in the zero case the goal is `x ≤ 0 ∨ 0 ≤ x`. the right disjunct is `zero_le`, proved above, so `right` followed by `exact zero_le x` closes it.
@@ -465,7 +491,13 @@ case (I), `c` is zero, so `x = d` and `x ≤ succ d` follows from `le_succ_self`
 
 ![Lean proof state overview](/assets/blog/lean_state_overview.png)
 
-every node in that diagram is one of the two-column states from earlier, and every edge is a tactic.
+every node in that diagram is one of the two-column states from earlier, and every edge is a tactic. three things it shows that the linear listing hides.
+
+the labelled frames are where the state splits. `induction y` opens the `succ d` frame, `cases hd` opens `inl` and `inr` inside it, and `cases c` splits again inside `inr`. each frame starts at its own filled dot, so the nesting on the page is the nesting of the proof.
+
+`left` and `right` discard a disjunct. the top right branch goes from `x ≤ 0 ∨ 0 ≤ x` to `0 ≤ x` under `right`, and the left half never appears again. the same happens inside the frames, where the goal is written `…∨…` while both halves are still live and collapses to a single inequality the moment `left` or `right` fires.
+
+four goals get closed, one per leaf, and this proof uses two tactics to do it. `rfl` closes the two that end in an equation whose sides are the same term, `(x+c)+1 = (x+c)+1` and `succ(d+a) = succ(d+a)`, both rewritten until the two halves are literally identical. `exact` closes the other two by naming a result proved earlier, `zero_le x` on the far right and `le_succ_self d` in the middle. every rewrite above them exists to reach one of those two endings. the remaining circles lower down are merge points where the branches rejoin.
 
 ## In English
 
@@ -473,9 +505,11 @@ TODO
 
 ## What it cost
 
-eleven supporting results and twenty-eight lines of tactics, for a statement that needs no defending to anyone who has counted to seven.
+eight theorems and eighty-three lines of tactics, for a statement that needs no defending to anyone who has counted to seven.
 
-this article shows three of those eleven. the other eight are commutativity, associativity, `zero_add`, `succ_add`, `add_succ`, `add_zero`, `one_eq_succ_zero` and `zero_eq_0`, and every one of them is proved in the artefact from the two clauses of addition and nothing else. no step is assumed, quoted from a library, or left to the reader. that is the part i could not have got from a paper proof: `sorry` is the only way to skip a step, and it shows up as a warning every time you compile.
+`le_total` itself is thirty of those lines. the other fifty-three are the seven theorems underneath it: `succ_eq_add_one` at four lines, `zero_add` at nine, `succ_add` at eleven, `add_comm` at eleven, `add_assoc` at thirteen, `zero_le` at three, `le_succ_self` at two. five of the seven are about addition, and none of them mention $\le$ at all. proving that two numbers compare turns out to be mostly a matter of proving that addition behaves.
+
+what the artefact assumes is small and explicit: the inductive definition of `MyNat`, `add_zero` and `add_succ` as the defining equations of `+`, and the definition of `≤`. everything after that is derived. `sorry` is the only way to skip a step, and it shows up as a warning every time you compile.
 
 the full single-file solution is at <https://tinyurl.com/4tr5uc7c>. it opens in the Lean 4 web editor with the whole development in it, so you can click any line and watch the givens and goal in the right-hand panel, exactly the two columns from earlier. put the cursor inside the `inr` branch and you can see the case split on `c` open up. no install, and it typechecks end to end.
 
