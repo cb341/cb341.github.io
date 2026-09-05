@@ -1,5 +1,5 @@
 ---
-title: "Proving comparability of 6 and 7, from first principles"
+title: "Comparing 6 and 7 from Scratch"
 date: 2026-09-05
 description: "Proving that any two natural numbers compare, from an inductive definition of the naturals and two axioms for addition, in Lean."
 tags: ["theoretical mathematics", "first principles"]
