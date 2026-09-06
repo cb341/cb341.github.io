@@ -1,38 +1,69 @@
 ---
 title: "About"
-description: "Learn about Dani Bengl, a full-stack software developer specializing in Ruby on Rails, web development, and computer graphics. Currently studying at ZHAW."
+description: "Dani Bengl: computer science student at ZHAW, TA for theory of computation, writing about proofs, logic, and software."
 permalink: /about/
 ---
 
-# About Me
+# Who Am I?
 
-<a href="https://github.com/cb341" target="_blank" rel="noopener noreferrer"><img class="about-avatar" src="/assets/about/avatar.webp" alt="Illustrated avatar of Dani wearing glasses and making a peace sign" width="460" height="460"></a>
+<a href="https://github.com/cb341" target="_blank" rel="noopener noreferrer"><img class="about-avatar" src="/assets/about/avatar.webp" alt="Catto Dani wearing glasses and making a peace sign" width="460" height="460"></a>
 
-I'm a queer developer [(it/its)](https://en.pronouns.page/@cb341) working at [Renuo](https://www.renuo.ch/), Software on Rails as a service, while studying Computer Science (BSc) at [ZHAW](https://www.zhaw.ch/) School of Engineering, currently in my second year. Check out my [setup](/uses/), [TIL](/til/), and [how to approach me](/how-to-approach/).
+a silly queer cat [(it/its)](https://en.pronouns.page/@cb341) that gets way too into things :P
 
-I tend to get very into specific things, and I'd like to eventually work my way toward a PhD. One day I'll have a classroom-sized blackboard in my apartment.
+i study computer science (BSc) at [ZHAW](https://www.zhaw.ch/) school of engineering, currently in my third year, where i am also TA for theory of computation.
 
-I live in the terminal and like software that does one thing well. No unnecessary abstractions. [KISS](https://en.wikipedia.org/wiki/KISS_principle). I just want things to work. The web is a mess and software has gotten bloated, over-engineered, and slow. I'd rather go back to Rails and a terminal than deal with another layer of indirection. 
+this semester i am also doing proof based [linear algebra (61112)](https://www.fernuni-hagen.de/mi/studium/module/lin_alg.shtml) through the [Akademiestudium at FernUniversität in Hagen](https://www.fernuni-hagen.de/mi/studium/akademiestudium.shtml). jordan normal form and the spectral theorem, not matrix arithmetic.
 
-I live by open source and have little patience for corporate software culture.
+**currently**: proofs, Lean, mathematical foundations, metaphysics, papers, books, and whatever rabbit hole takes over next.
 
-READ THE DOCS.
+i still enjoy building CRUD apps at [Renuo](https://renuo.ch).
 
-I love Rust and use it for personal projects, hoping to work on a real production codebase with it someday. Most of my free time goes into building things, or learning about building things. I want to understand the world around me. It takes time.
+i like people who say what they mean, show their sources, and ask the actual question. [calling bullshit](https://callingbullshit.org/) and [no hello](https://nohello.net/en/) make the point better than i can.
 
-> "You don't change VIM, VIM changes YOU" -- [Interview with a VIM Enthusiast](https://www.youtube.com/watch?v=9n1dtmzqnCU)
+somewhere along the way, i'ld like to be a PhD. still figuring out what in.
 
-If you're not an engineer or mathematician, don't expect us to get along. Ask me about Ruby symbols or my favourite parts of IEEE 754, not how the weather's been.
+one day i will have a classroom-sized blackboard in my apartment :3
 
-I am trying to make the world a better place.
+## Software
+
+i like things simple and stupid ([KISS](https://en.wikipedia.org/wiki/KISS_principle)).
+
+Rails. terminals. plain text. tools that do one thing well.
+i like ASM for its stupidity, Ruby for readability, and Rust for making assumptions into rules.
+
+software has gotten bloated, over-engineered, and slow.
+i don't want another abstraction unless it earns its keep.
+
+i endorse open source.
+
+READ THE DOCS!
+
+can we go away from form over function?
+
+> "you don't change vim, vim changes you" — [interview with a vim enthusiast](https://www.youtube.com/watch?v=9n1dtmzqnCU)
+
+## The Stack
+
+i'd like to eventually understand a decent chunk of the whole computational stack:
+
+interfaces and how people use them, browsers, renderers, languages, runtimes, operating systems, kernels, architecture, instructions, logic gates, transistors, electricity, quantum mechanics.
+
+mathematics as the universal language, logic and meaning borrowed from philosophy.
+
+## Lately
+
+most of my personal projects used to involve building something.
+voxel engines, graphics, Rails apps, Rust, CPUs, random tools.
+building software has become much cheaper with AI.
+
+so more of my free time now goes into reading, proofs, Lean, mathematics, philosophy, and writing. i still build things. just less for the sake of having built another thing.
 
 ---
 
-- Borrowing the neighbor's cat
-- Learning chess, mostly blundering my way to a chaotic checkmate
-- Occasionally losing an afternoon to factory games
-- Obsessed with how notation, grammar, naming, punctuation, and type systems serialize thought.
-- Fluent in English, German, Czech, and Math. French only if you force me.
-- Very busy. Please be patient with my response.
+* obsessed with notation, grammar, naming, punctuation, and type systems
+* fluent in English, German, Czech, and math. French only if you force me
+* reading papers and playing around with logic
+* very busy. please be patient with my response
+* still planning on that blackboard
 
-Inspired by [motherfuckingwebsite.com](https://motherfuckingwebsite.com/).
+page inspired by [motherfuckingwebsite.com](https://motherfuckingwebsite.com/).
