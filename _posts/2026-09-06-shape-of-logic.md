@@ -1,7 +1,7 @@
 ---
 title: "Shape of Logic"
 description: "Notation shows you one row of a truth table. A picture shows you all 65,536."
-tags: ["logic", "visualization", "hardware", "first principles"]
+tags: ["logic", "visualization", "hardware", "art"]
 math: true
 ---
 
@@ -106,7 +106,9 @@ you can make a seam appear by picking the MSB-invert palette, which flips the co
 
 a colour map can invent structure that the data does not have. the MSB seam above is exactly that, a boundary that exists because the palette draws one.
 
-the tiling in NAND and the bands in ADD show up under all four palettes, monochrome included, and i checked both by brute force over all pairs instead of trusting the picture. the colour makes them easier to see and does not put them there.
+it cuts the other way too. nibble RGB puts 256 result values onto 121 colours, and that loss is what makes the spirals in multiplication visible at all. vibrant gives every value a distinct colour and buries the shape in detail.
+
+so the palette decides which scale you can see. what it cannot do is put structure into data that has none. the tiling in NAND and the bands in ADD show up under all four palettes, monochrome included, and i checked both by brute force over all pairs instead of trusting the picture.
 
 ## Shifts, and three wires
 
@@ -128,7 +130,7 @@ back to the opening image. multiplication is the busiest operator here, and ever
 
 - powers of two are clean lines. multiplying by $2^k$ is a shift, so those rows and columns look like the shift image.
 - zero cells are sparse, 1,280 of 65,536, about 2%. these are the pairs whose product is divisible by 256.
-- exactly 25% of results are odd. a product is odd only when both operands are odd, which is a quarter of the grid.
+- a quarter of all results are odd, since a product is odd only when both operands are odd. this one is real but invisible, because the palette gives the lowest bit the same weight everywhere and nothing in the picture separates odd from even.
 
 underneath all of it is one rule. bit $k$ of $A \times B$ depends only on the low $k+1$ bits of both operands, which i checked for every bit and every pair. carry moves information upward and never downward, so the low bits of a product never learn about the high bits of its inputs.
 
@@ -136,9 +138,23 @@ the layout follows from that. the low nibble of the product is fixed by the low 
 
 the curves inside each cell are level sets of $A \times B$, which are hyperbolas. before the modulo they would be single arcs sweeping from axis to axis. the wrap at 256 chops each one into pieces, and the pieces stack into the nested rings that read as fish scales.
 
-their spacing follows from the gradient. $A \times B$ changes at rate $\sqrt{A^2 + B^2}$, so arcs sit roughly $256 / \sqrt{A^2 + B^2}$ pixels apart. near the origin that is 22 pixels and the arcs are lazy and wide. at $A = B = 128$ it is 1.4 pixels. past $A = B = 181$ it drops below one pixel, the arcs stop being resolvable, and the corners taper into flat interference where the true product wraps 254 times before it lands.
+the arcs are wide near the origin and get tighter the further out you go. small numbers multiply slowly, so you can walk a long way before the product climbs another 256 and the colour wraps. big numbers multiply fast, so the wraps come one after another.
 
-the vortex look comes from that spacing gradient bending families of arcs against each other. it is a moiré pattern, an artifact of sampling curves too finely for the pixel grid, though the arithmetic underneath really is moving that fast.
+past the middle of the image the arcs are packed closer than one pixel apart and stop being drawable at all. that is the tapering in the corners. at $A = B = 255$ the true product is 65,025, which wraps 254 times before it lands, and there is nowhere near enough room to draw 254 separate arcs.
+
+the vortex look comes from arcs at different spacings crossing each other. it is a moiré pattern, the same effect you get photographing a striped shirt, and it appears because the curves are finer than the pixels available to draw them.
+
+the same operator in nibble RGB makes that easier to see.
+
+<img class="pixelated-image" src="/assets/blog/shape_of_logic_mul_nibble_8x8.png" width="256" height="256" alt="256 by 256 multiplication truth table in nibble RGB">
+
+*multiplication, nibble RGB. [open in the viewer](https://cb341.dev/logic-visualizer/?theme=3&image=8&op=MUL)*
+
+four spirals, one per corner, with a cross through the middle where the arcs run out of room to curve.
+
+the difference is the palette. at 8 bits nibble RGB has no green, so the low nibble drives red and the high nibble drives blue, and each channel adds up the bits that are set. different results land on the same colour, 121 of them for 256 values. vibrant gives every value its own. the merging drops the fine arc-to-arc detail and leaves the slow structure, which is why the spirals come out of the noise.
+
+neither picture is more correct. vibrant resolves individual results and buries the shape in texture, nibble RGB blurs results and shows the shape. the operator is the same in both.
 
 ## Division
 
