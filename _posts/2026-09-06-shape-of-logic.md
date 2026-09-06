@@ -228,27 +228,25 @@ the viewer is live at [cb341.dev/logic-visualizer](https://cb341.dev/logic-visua
 
 *everything is in the toolbar.*
 
-operator, bit width and palette are dropdowns, Jump takes an $A$, an operator and a $B$ and centres that cell, and Download PNG saves what you are looking at. nobody needs to touch a query string.
+operator, bit width and palette are dropdowns, Jump takes an $A$, an operator and a $B$ and centres that cell, and Download PNG saves the current preset as an image (for 4x4 and 8x8, that is).
 
-the link under each image opens that exact view.
-
-[cb341.dev/logic-visualizer/table](https://cb341.dev/logic-visualizer/table) is the contact sheet: every operator at 8 bits, in all four palettes, side by side. it is the fastest way to see how much the palette decides what you notice.
+[cb341.dev/logic-visualizer/table](https://cb341.dev/logic-visualizer/table) shows an overview: every operator at 8 bits, in all four palettes, side by side.
 
 the operators, in order:
 
-| index | `op` | operation |
-| --- | --- | --- |
-| `0` | `NAND` | not (A and B) |
-| `1` | `AND` | A and B |
-| `2` | `NOR` | not (A or B) |
-| `3` | `OR` | A or B |
-| `4` | `XOR` | A xor B |
-| `5`, `6` | `ADD` | addition. indices 5 and 6 label it signed and unsigned, and produce identical bits |
-| `7` | `MUL` | multiplication, low bits |
-| `8` | `DIV` | truncating division, B of 0 gives 0 |
-| `9` | `LSHFT` | A shifted left by the low bits of B |
-| `10` | `RSHFT` | A shifted right by the low bits of B |
-| `11` | `CMP` | equal, less, greater as three bits |
+| operation |
+ --- |
+| `NAND` | not (A and B) |
+| `AND` | A and B |
+| `NOR` | not (A or B) |
+| `OR` | A or B |
+| `XOR` | A xor B |
+| `ADD` | addition, signed and unsigned yield same result |
+| `MUL` | multiplication, low bits |
+| `DIV` | truncating division, B of 0 gives 0 |
+| `LSHFT` | A shifted left by the low bits of B |
+| `RSHFT` | A shifted right by the low bits of B |
+| `CMP` | equal, less, greater as three bits |
 
 the palettes:
 
