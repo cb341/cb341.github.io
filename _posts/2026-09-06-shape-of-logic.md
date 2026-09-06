@@ -184,8 +184,7 @@ i did not get a circuit out of it. what i got is why division resists the treatm
 
 so the method reaches gates, the shifter proves that much. for division it stops short and i still have to build the thing myself.
 
-<details markdown="1">
-<summary>how the viewer got built, ASCII to shaders</summary>
+### How the viewer got built, ASCII to shaders
 
 it started with the ASCII table above, but printed at 8 bits, where it runs 256 rows wide. reading 1s and 0s i saw nothing, and blanking the zeros is what first made the triangle pop.
 
@@ -193,12 +192,7 @@ then images. black and white, one pixel per *bit*, 1 white and 0 black. neat, no
 
 what changed it was one pixel per byte instead of per bit. that is what makes a 256x256 image cover an entire 8-bit operator, and patterns showed up immediately. grayscale by value helped, and the per-bit palettes came later.
 
-but the ALU is 16-bit, and 8 bits was not the target:
-
-- 8-bit: $2^8 = 256$, so $256 \times 256 = 65{,}536$ pixels. fine.
-- 16-bit: $2^{16} = 65{,}536$, so $65{,}536 \times 65{,}536 = 4{,}294{,}967{,}296$ pixels. at one byte each that is about 4 GB, and generating it eagerly was hopeless.
-
-precomputing full images was already too slow well before that.
+256x256 was fine to generate ahead of time. the ALU is 16-bit though, and precomputing at that width was hopeless well before i worked out how hopeless.
 
 the fix was to stop materialising the image at all. render a viewport, compute only the pixels currently on screen. that pushed the work to a fragment shader evaluating the operator per pixel on the GPU, which is also why panning and zooming feel like an image rather than a render queue.
 
@@ -210,21 +204,17 @@ i used Codex for the viewer implementation, the shader, the viewport, and the to
 
 it shows binary, decimal, signed decimal and hex, with the per-bit colour strips. point at any pixel and you get the arithmetic for that cell, which is how i checked the readings above.
 
-the 16-bit view renders the same way, and the patterns hold up rather than dissolving. the operators keep their character at both widths.
-
-</details>
-
 ## One more, at 16 bits
 
 everything above is 8 bits, a 256x256 image that fits on a page. the viewer also runs at 16, and that is a different kind of object.
 
-a 16-bit operator has $65{,}536 \times 65{,}536$ input pairs. that is 4,294,967,296 of them, every one drawn as a pixel, in a single image 65,536 pixels on a side. as raw RGB it would be 12 GB. nothing hands you a 12 GB image, so the viewer never builds one, and the shader computes only the pixels the window is showing.
+a 16-bit operator has $65{,}536 \times 65{,}536$ input pairs. that is 4,294,967,296 of them, one image 65,536 pixels on a side. the results alone, two bytes each, are 8 GB. this is why nothing is precomputed and the shader draws only what the window covers.
 
 so this is a full 16-bit operation, every input pair defined, and you are looking at a piece of it.
 
 <img src="/assets/blog/shape_of_logic_mystery_16.webp" width="900" height="899" alt="A 16-bit operator, showing nested curved arcs">
 
-*which one?*
+*16x16, which one?*
 
 ## Try it
 
