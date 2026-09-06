@@ -1,6 +1,6 @@
 ---
 title: "Shape of Logic"
-description: "Every input pair of an 8-bit operator fits in one 256x256 image. Bitwise ops tile by scale, addition tiles by translation, and overflow turns out to be 255 evenly spaced lines."
+description: "Notation shows you one row of a truth table. A picture shows you all 65,536."
 tags: ["logic", "visualization", "hardware", "first principles"]
 math: true
 ---
