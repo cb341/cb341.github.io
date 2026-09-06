@@ -136,13 +136,9 @@ underneath all of it is one rule. bit $k$ of $A \times B$ depends only on the lo
 
 the layout follows from that. the low nibble of the product is fixed by the low nibbles of the inputs alone, which draws the 16x16 grid of cells repeating their fine detail. the high bits depend on everything, so they vary slowly and paint the 4x4 arrangement of large squares on top. the nibble grid you can see is that split between fast and slow bits.
 
-the curves inside each cell are level sets of $A \times B$, which are hyperbolas. before the modulo they would be single arcs sweeping from axis to axis. the wrap at 256 chops each one into pieces, and the pieces stack into the nested rings that read as fish scales.
+the curves inside each cell are the pairs that share a product. the wrap at 256 cuts them into the nested rings that read as fish scales.
 
-the arcs are wide near the origin and get tighter the further out you go. small numbers multiply slowly, so you can walk a long way before the product climbs another 256 and the colour wraps. big numbers multiply fast, so the wraps come one after another.
-
-past the middle of the image the arcs are packed closer than one pixel apart and stop being drawable at all. that is the tapering in the corners. at $A = B = 255$ the true product is 65,025, which wraps 254 times before it lands, and there is nowhere near enough room to draw 254 separate arcs.
-
-the vortex look comes from arcs at different spacings crossing each other. it is a moiré pattern, the same effect you get photographing a striped shirt, and it appears because the curves are finer than the pixels available to draw them.
+they are wide near the origin, where products grow slowly, and tighten as the numbers get bigger. in the corners they are too fine to draw and blur into the tapering, and where sets of them cross at different spacings you get the vortices.
 
 the same operator in nibble RGB makes that easier to see.
 
