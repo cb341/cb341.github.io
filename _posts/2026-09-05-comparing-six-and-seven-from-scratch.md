@@ -185,7 +185,7 @@ worked on $1 + 2 = 3$. the reason column names the rule and how it is used. $(\r
 
 $$
 \begin{array}{rl}
-& \textbf{Rules used} \\[2pt]
+& \textbf{Definitions} \\[2pt]
 \colorbox{#fff3cd}{$\vphantom{Ag}\text{i.}$} & 1 \stackrel{\mathrm{def}}{=} \operatorname{succ}(0) \\[2pt]
 \colorbox{#cfe2ff}{$\vphantom{Ag}\text{ii.}$} & 2 \stackrel{\mathrm{def}}{=} \operatorname{succ}(1) \\[2pt]
 \colorbox{#e2d9f3}{$\vphantom{Ag}\text{iii.}$} & 3 \stackrel{\mathrm{def}}{=} \operatorname{succ}(2) \\[2pt]
