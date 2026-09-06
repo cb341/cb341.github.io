@@ -110,6 +110,8 @@ it cuts the other way too. nibble RGB puts 256 result values onto 121 colours, a
 
 so the palette decides which scale you can see. what it cannot do is put structure into data that has none. the tiling in NAND and the bands in ADD show up under all four palettes, monochrome included, and i checked both by brute force over all pairs instead of trusting the picture.
 
+[every operator in all four palettes](https://cb341.dev/logic-visualizer/table) is one page if you want to compare them yourself.
+
 ## Shifts, and three wires
 
 <img class="pixelated-image" src="/assets/blog/shape_of_logic_lshft_8x8.png" width="256" height="256" alt="256 by 256 left-shift truth table">
@@ -156,7 +158,7 @@ neither picture is more correct. vibrant resolves individual results and buries 
 
 <img class="pixelated-image" src="/assets/blog/shape_of_logic_div_8x8.png" width="256" height="256" alt="256 by 256 division truth table">
 
-*division, mostly empty. [open in the viewer](https://cb341.dev/logic-visualizer/?theme=0&image=8&op=DIV)*
+*division, mostly empty. [open in the viewer](https://cb341.dev/logic-visualizer/?theme=2&image=8&op=DIV)*
 
 the same shape as the ASCII table, at 64 times the resolution.
 
@@ -229,6 +231,8 @@ the viewer is live at [cb341.dev/logic-visualizer](https://cb341.dev/logic-visua
 operator, bit width and palette are dropdowns, Jump takes an $A$, an operator and a $B$ and centres that cell, and Download PNG saves what you are looking at. nobody needs to touch a query string.
 
 the link under each image opens that exact view.
+
+[cb341.dev/logic-visualizer/table](https://cb341.dev/logic-visualizer/table) is the contact sheet: every operator at 8 bits, in all four palettes, side by side. it is the fastest way to see how much the palette decides what you notice.
 
 the operators, in order:
 
