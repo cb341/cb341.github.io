@@ -56,27 +56,27 @@ at 4 bits this fits on a screen. at 8 bits it is 256 rows of 256 columns and the
 
 the picture is made of nested copies of itself. a quadrant repeats the whole, and inside it the same block repeats again, down to single pixels.
 
-each bit position is evaluated independently of the others. result bit $k$ is a function of $A_k$ and $B_k$ alone, so the 8-bit table is four copies of the 7-bit table, which is four copies of the 6-bit table, all the way down.
+each bit position is evaluated independently of the others. result bit $k$ is a function of $A_k$ and $B_k$ alone, so the four quadrants share the same 7-bit pattern in their low bits, and each of those splits the same way again, down to single pixels. only the top bit distinguishes one quadrant from another.
 
 for all 65,536 pairs, the low nibble of $A \mathbin{\overline{\wedge}} B$ depends only on the low nibbles of $A$ and $B$. the self-similarity goes as deep as the bit count allows.
 
 ## Addition tiles diagonally
 
-<img class="pixelated-image" src="/assets/blog/shape_of_logic_add_8x8.png" width="256" height="256" alt="addition truth table in nibble RGB">
+<img class="pixelated-image" src="/assets/blog/shape_of_logic_add_8x8.png" width="256" height="256" alt="256 by 256 addition truth table in MSB invert">
 
-*addition at 8 bits, nibble RGB. blocks become bands. [open in the viewer](https://cb341.dev/logic-visualizer/?theme=2&image=8&op=ADD)*
+*addition at 8 bits, MSB invert. blocks become bands. [open in the viewer](https://cb341.dev/logic-visualizer/?theme=2&image=8&op=ADD)*
 
-carry. bit $k$ of $A + B$ depends on every bit below $k$, so the bits are no longer independent and the nested blocks go with them. the nibble test that passes for NAND fails here, because the low nibble of a sum can be changed by a carry out of it.
+carry. bit $k$ of $A + B$ depends on every bit below $k$, so the bits are no longer independent and the nested blocks go with them.
+
+addition still passes the nibble test, for the record. the low nibble of a sum is fixed by the low nibbles of the inputs, because a carry only ever moves upward. what breaks is the stricter property NAND has, where bit $k$ needs nothing but bit $k$.
 
 the repetition does not stop, it changes direction. $A + B$ is constant along an anti-diagonal, so the pattern is bands instead of blocks. it is still a tiling. slide the image one step right and one step down and it lands on itself exactly.
 
 the difference is what kind of repetition you get. NAND repeats by scale, the same block nested at every size. addition repeats by translation, one motif shifted along a diagonal. carry is what turns one into the other.
 
-the palette here splits the result by nibble, so the high nibble drives blue and the low nibble drives red. the leading bit lives in that high nibble, which makes the cool bands the results a signed reading calls negative, and the warm ones positive.
+the palette here inverts every colour when the leading bit is set, so the cool bands are the results a signed reading calls negative and the warm ones positive.
 
-the bands alternate, and crossing an edge flips the sign. two positive numbers add to a negative one, two negatives add to a positive. that is signed overflow, and it covers a quarter of the grid. the rate is the same 25% at 8 bits and at 16, split almost evenly between the two directions.
-
-the fine striping is because this is the 16-bit view. the bands survive the widening.
+the bands alternate, and crossing an edge flips the sign. two positive numbers add to a negative one, two negatives add to a positive. that is signed overflow, and it covers a quarter of the grid, the same 25% at 8 bits and at 16.
 
 ## Overflow has a shape
 
@@ -88,9 +88,9 @@ take $148 + 138$. the true sum is $286$. the byte is $30$.
 
 $$148 + 138 \equiv_{256} 30$$
 
-that wrap is a band edge. every place the diagonal stripe restarts, an overflow just happened, and there are 255 such edges at even spacing across the image.
+that wrap is where the colour restarts. there are 255 wrap transitions, one in every nonzero row, and together they line up into the diagonal seam running across the image.
 
-i had thought of overflow as something that happens at the end of the range, once, when you run out of room. there are 255 band edges spread evenly across the image and each one is an overflow. it happens everywhere, at regular intervals, not at a boundary.
+i had thought of overflow as something that happens at the end of the range, once, when you run out of room. it is a seam through the middle of the table, and every row crosses it.
 
 ## The seam that isn't there
 
@@ -98,7 +98,7 @@ if two's complement were a property of the data, there would be a visible seam a
 
 there is none. across all 65,536 pairs the result bits of signed and unsigned addition are identical everywhere. the same holds for subtraction and for multiplication.
 
-this is the trick of two's complement. it is a reading convention applied to bits, and the adder does not know which convention you are using. one adder serves both, which is why the representation won.
+this is the trick of two's complement. it is a reading convention applied to bits, and the adder does not know which convention you are using. one adder serves both, which is one reason the representation is so hardware friendly.
 
 you can make a seam appear by picking the MSB-invert palette, which flips the colour when the leading bit is set. that seam is in the palette.
 
@@ -166,7 +166,7 @@ the bright diagonal edge is the $A // B = 1$ region, and it widens as the number
 
 all the interesting variation is crammed into small values near the axes, where the quotient changes fast.
 
-division is the only operator here that throws information away. that is what the large flat regions are, many inputs landing on the same output. given one argument the others are reversible and division is not.
+plenty of these operators are many-to-one, AND and the shifts included, so losing information is not what makes division unusual. what is unusual is how much of the table is constant, and how far the quotient reaches for its inputs. the bitwise operators answer bit by bit. division needs the whole magnitude of both arguments before it can say anything.
 
 ## What I found instead
 
@@ -180,7 +180,9 @@ the ALU had one-cycle addition, subtraction, and multiplication. i wanted divisi
 
 those first three i could reason my way to. division i could not, and it did not become obvious no matter how long i stared at the spec, so i went looking for a pattern in the bits instead. if the truth table had visible structure, maybe the structure was a circuit.
 
-i did not get a circuit out of it. what i got is why division resists the treatment the other three accept. the flat collapsing regions and the widening diagonal are an operation that discards information, and that cannot come from one pass of independent bit logic. addition tiles until carry couples it. shift is 3 multiplexer stages you can read straight off the image. division is neither.
+i did not get a circuit out of it. what i got is a clearer sense of why division resists what the other three accept. NAND separates into 8 independent one-bit problems. addition into a carry chain. shift into 3 multiplexer stages you can read straight off the image. division has no such decomposition on show, and its picture is the one that does not break into parts.
+
+that is not a proof that a fast divider cannot exist. combinational dividers do exist, unrolling the shift-and-subtract loop into hardware and paying in area and propagation depth instead of cycles. the picture says the structure is not separable in the way the others are, and it does not say what the circuit costs.
 
 so the method reaches gates, the shifter proves that much. for division it stops short and i still have to build the thing myself.
 
@@ -237,8 +239,7 @@ the operators, in order:
 | `2` | `NOR` | not (A or B) |
 | `3` | `OR` | A or B |
 | `4` | `XOR` | A xor B |
-| `5` | `ADDA` | signed addition, same bits as `ADD` |
-| `6` | `ADD` | unsigned addition |
+| `5`, `6` | `ADD` | addition. indices 5 and 6 label it signed and unsigned, and produce identical bits |
 | `7` | `MUL` | multiplication, low bits |
 | `8` | `DIV` | truncating division, B of 0 gives 0 |
 | `9` | `LSHFT` | A shifted left by the low bits of B |
