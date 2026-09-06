@@ -9,7 +9,7 @@ an 8-bit operator takes two bytes and returns one. its truth table has $256 \tim
 
 <img class="pixelated-image" src="/assets/blog/shape_of_logic_mul_8x8.png" width="256" height="256" alt="256 by 256 multiplication truth table">
 
-*multiplication, every input pair at once. [open in the viewer](https://cb341.dev/logic-visualizer/?theme=0&image=8&op=MUL)*
+*multiplication, every input pair at once. [open in the viewer](https://cb341.dev/logic-visualizer/?theme=2&image=8&op=MUL)*
 
 ## The idea
 
@@ -64,7 +64,7 @@ for all 65,536 pairs, the low nibble of $A \mathbin{\overline{\wedge}} B$ depend
 
 <img class="pixelated-image" src="/assets/blog/shape_of_logic_add_8x8.png" width="256" height="256" alt="addition truth table in nibble RGB">
 
-*addition at 16 bits, nibble RGB. blocks become bands. [open in the viewer](https://cb341.dev/logic-visualizer/?theme=3&image=16&op=ADD)*
+*addition at 8 bits, nibble RGB. blocks become bands. [open in the viewer](https://cb341.dev/logic-visualizer/?theme=2&image=8&op=ADD)*
 
 carry. bit $k$ of $A + B$ depends on every bit below $k$, so the bits are no longer independent and the nested blocks go with them. the nibble test that passes for NAND fails here, because the low nibble of a sum can be changed by a carry out of it.
 
@@ -210,9 +210,21 @@ i used Codex for the viewer implementation, the shader, the viewport, and the to
 
 it shows binary, decimal, signed decimal and hex, with the per-bit colour strips. point at any pixel and you get the arithmetic for that cell, which is how i checked the readings above.
 
-the 16-bit view still renders and shows the same patterns at higher resolution, no new ones. the structure was already there at 8 bits. these are properties of the operators and not of the width.
+the 16-bit view renders the same way, and the patterns hold up rather than dissolving. the operators keep their character at both widths.
 
 </details>
+
+## One more, at 16 bits
+
+everything above is 8 bits, a 256x256 image that fits on a page. the viewer also runs at 16, and that is a different kind of object.
+
+a 16-bit operator has $65{,}536 \times 65{,}536$ input pairs. that is 4,294,967,296 of them, every one drawn as a pixel, in a single image 65,536 pixels on a side. as raw RGB it would be 12 GB. nothing hands you a 12 GB image, so the viewer never builds one, and the shader computes only the pixels the window is showing.
+
+so this is a full 16-bit operation, every input pair defined, and you are looking at a piece of it.
+
+<img src="/assets/blog/shape_of_logic_mystery_16.webp" width="900" height="899" alt="A 16-bit operator, showing nested curved arcs">
+
+*which one?*
 
 ## Try it
 
