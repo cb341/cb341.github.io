@@ -174,7 +174,7 @@ this started in [turing complete 2.0](https://store.steampowered.com/app/1444480
 
 i wanted to write it up in late july. the time only showed up now, which meant coming back to the images cold and checking the claims instead of trusting what i remembered seeing.
 
-<img src="/assets/blog/shape_of_logic_tc_major.png" width="1696" height="500" alt="Turing Complete major update announcement">
+<img src="/assets/blog/shape_of_logic_tc_major.webp" width="1696" height="500" alt="Turing Complete major update announcement">
 
 the ALU had one-cycle addition, subtraction, and multiplication. i wanted division on the same terms, a dedicated circuit that answers in one pass instead of a loop that shifts and subtracts once per bit. the usual restoring divider costs a cycle per output bit, which for 16 bits is 16 cycles against multiplication's one.
 
@@ -204,7 +204,7 @@ the fix was to stop materialising the image at all. render a viewport, compute o
 
 i used Codex for the viewer implementation, the shader, the viewport, and the tooltip plumbing. the analysis and the claims in this post are mine, and each numeric claim was checked against a brute-force pass over all 65,536 pairs rather than taken from the picture.
 
-<img class="pixelated-image" src="/assets/blog/shape_of_logic_tooltip.png" width="944" height="490" alt="Tooltip showing binary, decimal, signed decimal and hex for a cell">
+<img class="pixelated-image" src="/assets/blog/shape_of_logic_tooltip.webp" width="944" height="490" alt="Tooltip showing binary, decimal, signed decimal and hex for a cell">
 
 *the tooltip, reading out one cell.*
 
@@ -218,7 +218,7 @@ the 16-bit view still renders and shows the same patterns at higher resolution, 
 
 the viewer is live at [cb341.dev/logic-visualizer](https://cb341.dev/logic-visualizer/). drag to pan, wheel to zoom, arrow keys change operator, click any pixel for the readout.
 
-<img src="/assets/blog/shape_of_logic_toolbar.png" width="3090" height="264" alt="The viewer toolbar: image size, palette, zoom, jump-to-cell and download controls">
+<img src="/assets/blog/shape_of_logic_toolbar.webp" width="3090" height="264" alt="The viewer toolbar: image size, palette, zoom, jump-to-cell and download controls">
 
 *everything is in the toolbar.*
 
