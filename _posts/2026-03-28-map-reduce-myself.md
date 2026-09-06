@@ -1,6 +1,5 @@
 ---
 title: "Map-Reducing Myself"
-date: 2026-03-28
 description: "312 conversations with Claude, compressed to 15 words."
 tags: ["ai", "reflection", "data"]
 ---

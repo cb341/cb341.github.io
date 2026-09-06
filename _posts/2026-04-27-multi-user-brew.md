@@ -1,6 +1,5 @@
 ---
 title: "How the Homebrew Multi-User Rabbit Hole Bricked My Mac"
-date: 2026-04-27
 description: "A deep dive into multi-user setups on macOS, why Homebrew falls apart in them, and how I ended up reluctantly switching to MacPorts after bricking my laptop."
 tags: ["macos", "homebrew", "macports", "workflow"]
 ---
