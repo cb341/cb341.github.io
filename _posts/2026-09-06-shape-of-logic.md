@@ -70,7 +70,7 @@ carry. bit $k$ of $A + B$ depends on every bit below $k$, so the bits are no lon
 
 addition still passes the nibble test, for the record. the low nibble of a sum is fixed by the low nibbles of the inputs, because a carry only ever moves upward. what breaks is the stricter property NAND has, where bit $k$ needs nothing but bit $k$.
 
-the repetition does not stop, it changes direction. $A + B$ is constant along an anti-diagonal, so the pattern is bands instead of blocks. it is still a tiling. slide the image one step right and one step down and it lands on itself exactly.
+the repetition does not stop, it changes direction. $A + B$ is constant along an anti-diagonal, so the pattern is bands instead of blocks. slide the image one step right and one step down and it lands on itself exactly.
 
 the difference is what kind of repetition you get. NAND repeats by scale, the same block nested at every size. addition repeats by translation, one motif shifted along a diagonal. carry is what turns one into the other.
 
@@ -97,8 +97,6 @@ i had thought of overflow as something that happens at the end of the range, onc
 if two's complement were a property of the data, there would be a visible seam at 128 where numbers go negative.
 
 there is none. across all 65,536 pairs the result bits of signed and unsigned addition are identical everywhere. the same holds for subtraction and for multiplication.
-
-this is the trick of two's complement. it is a reading convention applied to bits, and the adder does not know which convention you are using. one adder serves both, which is one reason the representation is so hardware friendly.
 
 you can make a seam appear by picking the MSB-invert palette, which flips the colour when the leading bit is set. that seam is in the palette.
 
@@ -134,7 +132,7 @@ back to the opening image. multiplication is the busiest operator here, and ever
 - zero cells are sparse, 1,280 of 65,536, about 2%. these are the pairs whose product is divisible by 256.
 - a quarter of all results are odd, since a product is odd only when both operands are odd. this one is real but invisible, because the palette gives the lowest bit the same weight everywhere and nothing in the picture separates odd from even.
 
-underneath all of it is one rule. bit $k$ of $A \times B$ depends only on the low $k+1$ bits of both operands, which i checked for every bit and every pair. carry moves information upward and never downward, so the low bits of a product never learn about the high bits of its inputs.
+underneath all of it is one rule. bit $k$ of $A \times B$ depends only on the low $k+1$ bits of both operands. carry moves information upward and never downward, so the low bits of a product never learn about the high bits of its inputs.
 
 the layout follows from that. the low nibble of the product is fixed by the low nibbles of the inputs alone, which draws the 16x16 grid of cells repeating their fine detail. the high bits depend on everything, so they vary slowly and paint the 4x4 arrangement of large squares on top. the nibble grid you can see is that split between fast and slow bits.
 
@@ -168,8 +166,7 @@ the bright diagonal edge is the $A // B = 1$ region, and it widens as the number
 
 all the interesting variation is crammed into small values near the axes, where the quotient changes fast.
 
-plenty of these operators are many-to-one, AND and the shifts included, so losing information is not what makes division unusual. what is unusual is how much of the table is constant, and how far the quotient reaches for its inputs. the bitwise operators answer bit by bit. division needs the whole magnitude of both arguments before it can say anything.
-
+plenty of these operators are many-to-one, AND and the shifts included, so losing information is not what makes division unusual. what is unusual is how much of the table is constant, and how far the quotient reaches for its inputs. the bitwise operators answer bit by bit.
 ## What I found instead
 
 this started in [turing complete 2.0](https://store.steampowered.com/app/1444480/Turing_Complete/), building a new ALU during the campaign rework.
