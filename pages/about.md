@@ -53,7 +53,7 @@ mathematics as the universal language, logic and meaning borrowed from philosoph
 ## Lately
 
 most of my personal projects used to involve building something.
-voxel engines, graphics, Rails apps, Rust, CPUs, random tools.
+voxel engines, graphics, Rails apps, Rust, CLIs, random tools.
 building software has become much cheaper with AI.
 
 so more of my free time now goes into reading, proofs, Lean, mathematics, philosophy, and writing. i still build things. just less for the sake of having built another thing.
