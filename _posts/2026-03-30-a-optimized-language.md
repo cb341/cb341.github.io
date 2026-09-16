@@ -9,7 +9,7 @@ I communicate with AI in broken English and it works perfectly. I drop vowels, i
 
 > "I have made this longer than usual because I have not had time to make it shorter." * Blaise Pascal
 
-Building on ["Map-Reducing Myself"](/blog/map-reduce-myself.html) * if we compressed 21MB of data into 15 words of identity, what does that say about the language we used for the other 20.99MB?
+Building on ["Map-Reducing Myself"](/blog/map-reduce-myself/) * if we compressed 21MB of data into 15 words of identity, what does that say about the language we used for the other 20.99MB?
 
 ## Thesis
 

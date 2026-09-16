@@ -8,7 +8,7 @@ permalink: /how-to-approach/
 
 Communication defaults for less guessing.
 
-This page is the practical artifact described in [System Prompts For Humans](/blog/system-prompts-for-humans.html).
+This page is the practical artifact described in [System Prompts For Humans](/blog/system-prompts-for-humans/).
 
 Pronouns: it/its.
 
