@@ -218,8 +218,15 @@
         <nav role="navigation" aria-label="Post navigation">
           <hr>
           <a href="https://github.com/cb341/cb341.github.io/blob/main/{{ page.path }}?plain=1" target="_blank" rel="noopener noreferrer">Source</a> |
-          <a href="https://raw.githubusercontent.com/cb341/cb341.github.io/refs/heads/main/{{ page.path }}" target="_blank" rel="noopener noreferrer">Raw</a>
-          |
+          {%- assign source_extension = page.path | split: "." | last %}
+          {%- if source_extension == "md" %}
+            {%- if page.url contains ".html" %}
+              {%- assign raw_url = page.url | replace: ".html", ".md" %}
+            {%- else %}
+              {%- assign raw_url = page.url | append: "index.md" %}
+            {%- endif %}
+          <a href="{{ raw_url }}">Raw</a> |
+          {%- endif %}
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSeRD0Q9wYYZelAkRXEu2cCFN89-cvoAfOtyTY9vaz9-FUvYXQ/viewform?usp=pp_url&entry.2083454847={{ current_url | url_encode }}" target="_blank" rel="noopener noreferrer">Page Feedback</a>
           {%- if page.collection == 'posts' %}{% include post_nav.html %}{%- endif -%}
           {%- if page.collection == 'projects' %}{% include project_nav.html %}{%- endif -%}

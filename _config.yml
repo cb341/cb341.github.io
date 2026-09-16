@@ -3,15 +3,15 @@ description: "Full-stack software developer specializing in Ruby on Rails, web a
 url: "https://cb341.dev"
 timezone: Europe/Zurich
 
-permalink: /blog/:slug/
+permalink: /blog/:slug.html
 
 collections:
   projects:
     output: true
-    permalink: /projects/:slug/
+    permalink: /projects/:slug.html
   gallery:
     output: true
-    permalink: /gallery/:slug/
+    permalink: /gallery/:slug.html
     sort_by: order
   threads:
     output: false

@@ -65,6 +65,6 @@ maybe it can. open the channel with a header:
 
 and inside, reduce vocabulary for load-bearing words. MUST, MUST NOT, SHOULD, MAY. capitalized as in the RFC.
 
-builds on top of [a-optimized-language](https://cb341.dev/blog/a-optimized-language/), section "Why I prefer talking to an LLM over humans".
+builds on top of [a-optimized-language](https://cb341.dev/blog/a-optimized-language.html), section "Why I prefer talking to an LLM over humans".
 
 i'll try it. either non-engineers read me as cold and heartless, or they appreciate the efficiency.

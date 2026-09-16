@@ -18,7 +18,7 @@ Writing, projects, studying, visual scraps, and notes.
 
 Following Richard Behiel and [gwern.net](https://gwern.net/me).
 
-Learning chess by playing slowly enough to see why I lose. Building [chess-widget](/projects/chess-widget/) to capture the games, annotations, and mistakes in a small static replay widget.
+Learning chess by playing slowly enough to see why I lose. Building [chess-widget](/projects/chess-widget.html) to capture the games, annotations, and mistakes in a small static replay widget.
 
 Also reading *99 Variations on a Proof*.
 
