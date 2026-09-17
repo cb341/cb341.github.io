@@ -19,10 +19,11 @@ Visit `localhost:4000` to view the site.
 ## Build
 
 ```sh
-bundle exec jekyll build
+bin/build
 ```
 
-Formats output HTML with `htmlbeautifier` automatically via a Jekyll hook.
+Formats HTML and generates a PDF for each blog article with Chrome 131 or newer.
+Set `BROWSER_PATH` if Chrome or Chromium is installed in a nonstandard location.
 
 ## License
 

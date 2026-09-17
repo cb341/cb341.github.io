@@ -1,0 +1,67 @@
+#!/usr/bin/env ruby
+
+require "ferrum"
+require "fileutils"
+require "webrick"
+
+site_dir = File.expand_path(ARGV.shift || abort("Usage: bin/render-pdfs SITE_DIR ARTICLE_URL..."))
+article_urls = ARGV
+
+abort "Jekyll output directory not found: #{site_dir}" unless Dir.exist?(site_dir)
+abort "No article URLs given" if article_urls.empty?
+
+site_url = ENV.fetch("PDF_SITE_URL", "https://cb341.dev").sub(%r{/+\z}, "")
+prepare_page = File.read(File.join(__dir__, "prepare-pdf.js"))
+
+server = WEBrick::HTTPServer.new(
+  DocumentRoot: site_dir,
+  BindAddress: "127.0.0.1",
+  Port: 0,
+  Logger: WEBrick::Log.new(File::NULL),
+  AccessLog: []
+)
+server_thread = Thread.new { server.start }
+port = server.listeners.first.addr[1]
+
+browser = nil
+begin
+  browser = Ferrum::Browser.new(
+    dockerize: Process.uid.zero?,
+    process_timeout: 20,
+    timeout: 20
+  )
+  page = browser.create_page
+
+  article_urls.each do |article_url|
+    article_route = "/#{article_url.delete_prefix("/")}"
+    article_path = article_route
+      .delete_prefix("/")
+      .sub(/\.html\z/, "")
+      .delete_suffix("/")
+    output_route = "/#{article_path}.pdf"
+    output = File.join(site_dir, output_route.delete_prefix("/"))
+    FileUtils.mkdir_p(File.dirname(output))
+
+    page.go_to("http://127.0.0.1:#{port}#{article_route}")
+    unless page.network.status == 200
+      abort "Could not render #{article_route}: HTTP #{page.network.status || "error"}"
+    end
+    page.network.wait_for_idle!(duration: 0.25, timeout: 15)
+    result = page.evaluate_async(prepare_page, 30, site_url)
+    unless result["ok"]
+      abort "Could not prepare #{article_route}: #{result["error"]}"
+    end
+    page.pdf(
+      path: output,
+      format: :A4,
+      print_background: true,
+      prefer_css_page_size: true,
+      display_header_footer: false
+    )
+    puts "Rendered #{output_route}"
+  end
+ensure
+  browser&.quit
+  server.shutdown
+  server_thread.join
+end

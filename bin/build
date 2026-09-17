@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+GENERATE_PDFS=1 bundle exec jekyll build "$@"
