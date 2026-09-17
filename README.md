@@ -11,10 +11,12 @@ bundle install
 ## Run
 
 ```sh
-bundle exec jekyll serve
+bin/run
 ```
 
-Visit `localhost:4000` to view the site.
+Builds the site and its article PDFs, then serves the result without rebuilding it.
+Visit `localhost:4000` to view the site. Additional arguments are passed to
+`jekyll serve`.
 
 ## Build
 
@@ -22,7 +24,7 @@ Visit `localhost:4000` to view the site.
 bin/build
 ```
 
-Formats HTML and generates a PDF for each blog article with Chrome 131 or newer.
+Builds the site and generates a PDF for each blog article with Chrome 131 or newer.
 Set `BROWSER_PATH` if Chrome or Chromium is installed in a nonstandard location.
 
 ## License

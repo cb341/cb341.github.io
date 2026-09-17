@@ -12,8 +12,6 @@ module PdfArticles
     priority :lowest
 
     def generate(site)
-      return unless PdfArticles.enabled?
-
       site.posts.docs.each do |post|
         post.data["pdf_url"] = PdfArticles.url_for(post.url)
       end

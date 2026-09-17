@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+bin/build
+exec bundle exec jekyll serve --skip-initial-build --no-watch "$@"
