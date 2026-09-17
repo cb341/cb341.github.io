@@ -244,8 +244,17 @@
         nav[aria-label="Post navigation"] { display: none; }
 
         main a { color: #000; text-decoration: underline; }
-        h1, h2, h3, h4, h5, h6 { break-after: avoid; break-inside: avoid; }
+        h1, h2, h3, h4, h5, h6,
+        p:has(> strong:only-child) { break-after: avoid; break-inside: avoid; }
+        p:has(> strong:only-child) { margin-bottom: .35em; }
         pre, table, figure, p:has(> img) { break-inside: avoid; }
+
+        /* Compact lists can use the last few lines without splitting an item. */
+        main > ul,
+        main > ol {
+          margin-block: .35em .8em;
+          line-height: 1.3;
+        }
 
         img {
           display: block;
