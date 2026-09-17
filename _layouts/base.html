@@ -186,11 +186,125 @@
       }
       pre code { background: transparent; padding: 0; }
       main :is(h2,h3,h4,h5,h6)[id] > a { text-decoration: none; }
+      .print-description,
+      .print-date { display: none; }
       @media (prefers-color-scheme: dark) {
         html { color-scheme: dark; background: #000; }
         body { background: #000; color: #fff; }
         code { background: transparent; }
         thead { border-color: currentColor; }
+      }
+
+      @media print {
+        @page {
+          size: A4;
+          margin: 19mm 18mm 22mm;
+
+          @bottom-left {
+            content: "Dani Bengl (it/its)";
+            color: #666;
+            font-family: Arial, sans-serif;
+            font-size: 7.5pt;
+          }
+
+          @bottom-center {
+            content: {{ current_url | jsonify }};
+            color: #777;
+            font-family: Arial, sans-serif;
+            font-size: 7pt;
+          }
+
+          @bottom-right {
+            content: counter(page) " / " counter(pages);
+            color: #666;
+            font-family: Arial, sans-serif;
+            font-size: 7.5pt;
+          }
+        }
+
+        html, body { background: #fff; color: #000; }
+        body { font-size: 10.5pt; line-height: 1.45; }
+
+        .wrapper { max-width: none; margin: 0; padding: 0; }
+
+        .article-title {
+          margin: 0 0 9mm;
+          padding: 0 0 7mm;
+          border-bottom: .4mm solid #1c1c1a;
+        }
+        .article-title h1 {
+          max-width: 15cm;
+          margin: 0;
+          font-size: 28pt;
+          line-height: 1.05;
+          letter-spacing: -.025em;
+        }
+        .print-description {
+          display: block;
+          max-width: 14cm;
+          margin: 4mm 0 0;
+          color: #444;
+          font-size: 12pt;
+          line-height: 1.35;
+        }
+        .print-date {
+          display: block;
+          margin: 3mm 0 0;
+          color: #666;
+          font-family: Arial, sans-serif;
+          font-size: 8pt;
+          letter-spacing: .04em;
+          text-transform: uppercase;
+        }
+
+        /* Screen chrome that carries no meaning on paper. */
+        header[role="banner"],
+        footer[role="contentinfo"],
+        nav[aria-label="Post navigation"] { display: none; }
+
+        /* Links keep their destination: the PDF has to stand on its own. */
+        main a { color: #000; text-decoration: underline; }
+        main a[href]::after {
+          content: " (" attr(href) ")";
+          font-size: .85em;
+          word-break: break-all;
+        }
+        /* No URL for anchor links or links wrapping an image: adds no information. */
+        main :is(h2,h3,h4,h5,h6)[id] > a::after,
+        main a[href^="#"]::after,
+        main a[href]:has(> img)::after { content: none; }
+
+        /* Keep blocks whole; never strand a heading at a page bottom. */
+        h1, h2, h3, h4, h5, h6 { break-after: avoid; break-inside: avoid; }
+        p, li, blockquote { orphans: 3; widows: 3; }
+        pre, table, figure { break-inside: avoid; }
+
+        /* 261mm is printable, but an unbreakable block that tall only fits on an
+           otherwise empty page and strands the rest, so cap height too. 150mm still
+           leaves room for prose; detail-dense diagrams opt out via .pixelated-image
+           and SVG, which stay legible only at full size. */
+        img {
+          display: block;
+          max-width: 100%;
+          height: auto;
+          max-height: 150mm;
+          margin-inline: auto;
+          object-fit: contain;
+        }
+        p img { width: auto; }
+        img[src$=".svg"], img.pixelated-image { max-height: none; }
+
+        /* An image paragraph is its own block: let it break away from the prose
+           around it rather than dragging a whole run of text onto the next page. */
+        p:has(> img) { break-inside: avoid; margin: 1em 0; }
+
+        /* A reader cannot expand a <details> on paper, so print the contents. */
+        details > summary { list-style: none; font-weight: bold; }
+        details > summary::-webkit-details-marker { display: none; }
+
+        pre { border: 1px solid #ccc; line-height: 1.3; white-space: pre-wrap; }
+        code { background: transparent; }
+        thead { border-color: #000; }
       }
     </style>
     {%- if page.math -%}
@@ -220,6 +334,9 @@
           <a href="https://github.com/cb341/cb341.github.io/blob/main/{{ page.path }}?plain=1" target="_blank" rel="noopener noreferrer">Source</a>
           {%- if page.raw_url %} |
           <a href="{{ page.raw_url }}">Markdown</a>
+          {%- endif %}
+          {%- if page.pdf_url %} |
+          <a href="{{ page.pdf_url }}">PDF</a>
           {%- endif %}
           |
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSeRD0Q9wYYZelAkRXEu2cCFN89-cvoAfOtyTY9vaz9-FUvYXQ/viewform?usp=pp_url&entry.2083454847={{ current_url | url_encode }}" target="_blank" rel="noopener noreferrer">Page Feedback</a>
@@ -255,6 +372,19 @@
       </footer>
     </div>
     <script>document.querySelectorAll('main :is(h2,h3,h4,h5,h6)[id]').forEach(h=>h.innerHTML=`<a href="#${h.id}">${h.innerHTML}</a>`);</script>
+    <script>
+      // A reader cannot expand a <details> on paper; CSS cannot open one either.
+      addEventListener('beforeprint', () =>
+        document.querySelectorAll('details:not([open])').forEach(d => {
+          d.open = true;
+          d.dataset.printOpened = '';
+        }));
+      addEventListener('afterprint', () =>
+        document.querySelectorAll('details[data-print-opened]').forEach(d => {
+          d.open = false;
+          delete d.dataset.printOpened;
+        }));
+    </script>
     <script>document.addEventListener('keydown',e=>{const as=[...document.querySelectorAll('[aria-label="Post navigation"] a')];if(e.key==='ArrowLeft'){const a=as.find(a=>a.textContent.includes('<'));if(a)location.href=a.href;}if(e.key==='ArrowRight'){const a=as.find(a=>a.textContent.includes('>'));if(a)location.href=a.href;}});</script>
   </body>
 </html>

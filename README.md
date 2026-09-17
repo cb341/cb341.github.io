@@ -22,7 +22,7 @@ Visit `localhost:4000` to view the site.
 bundle exec jekyll build
 ```
 
-Formats output HTML with `htmlbeautifier` automatically via a Jekyll hook.
+Formats HTML and generates a PDF for each blog article with Chrome.
 
 ## License
 

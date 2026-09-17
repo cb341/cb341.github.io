@@ -1,0 +1,158 @@
+#!/usr/bin/env ruby
+
+require "ferrum"
+require "fileutils"
+require "json"
+require "open3"
+require "webrick"
+
+site_dir = File.expand_path(ARGV.shift || "_site")
+abort "Jekyll output directory not found: #{site_dir}" unless Dir.exist?(site_dir)
+site_url = ENV.fetch("PDF_SITE_URL", "https://cb341.dev").sub(%r{/+\z}, "")
+
+article_urls = ARGV
+if article_urls.empty?
+  article_urls = Dir.glob([
+    File.join(site_dir, "blog", "*.html"),
+    File.join(site_dir, "blog", "*", "index.html")
+  ])
+    .sort
+    .reject { |path| path == File.join(site_dir, "blog", "index.html") }
+    .map do |path|
+      relative_path = path.delete_prefix("#{site_dir}/")
+      relative_path = relative_path.delete_suffix("index.html") if relative_path.end_with?("/index.html")
+      "/#{relative_path}"
+    end
+end
+
+chrome_candidates = [
+  ENV["CHROME_PATH"],
+  ENV["BROWSER_PATH"],
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+  "/Applications/Chromium.app/Contents/MacOS/Chromium",
+  "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
+  *ENV.fetch("PATH", "").split(File::PATH_SEPARATOR).flat_map do |directory|
+    %w[google-chrome google-chrome-stable chromium chromium-browser].map do |name|
+      File.join(directory, name)
+    end
+  end
+]
+chrome = chrome_candidates.compact.find { |candidate| File.executable?(candidate) }
+abort "Chrome or Chromium not found. Install Chrome 131 or newer, or set CHROME_PATH." unless chrome
+
+version_output, version_status = Open3.capture2e(chrome, "--version")
+chrome_version = version_output[/\d+/].to_i
+unless version_status.success? && chrome_version >= 131
+  abort "Chrome 131 or newer is required for PDF footers and page numbers."
+end
+
+server = WEBrick::HTTPServer.new(
+  DocumentRoot: site_dir,
+  BindAddress: "127.0.0.1",
+  Port: 0,
+  Logger: WEBrick::Log.new(File::NULL),
+  AccessLog: []
+)
+server_thread = Thread.new { server.start }
+port = server.listeners.first.addr[1]
+
+browser_options = {
+  "disable-gpu" => nil,
+  "disable-dev-shm-usage" => nil,
+  "disable-background-networking" => nil,
+  "disable-component-update" => nil
+}
+browser_options["no-sandbox"] = nil if Process.uid.zero?
+
+browser = nil
+begin
+  browser = Ferrum::Browser.new(
+    browser_path: chrome,
+    browser_options: browser_options,
+    process_timeout: 20,
+    timeout: 20
+  )
+
+  article_urls.each do |article_url|
+    article_route = "/#{article_url.delete_prefix("/")}"
+    article_path = article_route
+      .delete_prefix("/")
+      .sub(/\.html\z/, "")
+      .delete_suffix("/")
+    output_route = "/#{article_path}.pdf"
+    output = File.join(site_dir, output_route.delete_prefix("/"))
+    FileUtils.mkdir_p(File.dirname(output))
+
+    page = browser.create_page
+    page.go_to("http://127.0.0.1:#{port}#{article_route}")
+    unless page.network.status == 200
+      abort "Could not render #{article_route}: HTTP #{page.network.status || "error"}"
+    end
+    page.network.wait_for_idle(duration: 0.25, timeout: 15)
+    page.evaluate <<~JAVASCRIPT
+      (() => {
+        const publicBase = #{JSON.generate("#{site_url}/")};
+        const localOrigin = location.origin;
+
+        document.querySelectorAll("a[href]").forEach(link => {
+          const originalHref = link.getAttribute("href");
+          if (!originalHref || originalHref.startsWith("#")) return;
+
+          const resolved = new URL(link.href);
+          if (resolved.origin !== localOrigin) return;
+
+          link.href = new URL(
+            resolved.pathname + resolved.search + resolved.hash,
+            publicBase
+          ).href;
+        });
+      })();
+    JAVASCRIPT
+    pixel_art_result = page.evaluate_async(<<~JAVASCRIPT, 30)
+      const done = arguments[0];
+
+      Promise.all(
+        Array.from(document.querySelectorAll("img.pixelated-image"), async image => {
+          await image.decode();
+
+          // PDF viewers smooth low-resolution image objects when zooming. Embed a
+          // nearest-neighbor copy at roughly print resolution so each source pixel
+          // remains a hard-edged square in the finished document.
+          const scale = Math.min(8, Math.max(1, Math.ceil(2048 / image.naturalWidth)));
+          if (scale === 1) return;
+
+          const canvas = document.createElement("canvas");
+          canvas.width = image.naturalWidth * scale;
+          canvas.height = image.naturalHeight * scale;
+
+          const context = canvas.getContext("2d");
+          context.imageSmoothingEnabled = false;
+          context.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+          image.src = canvas.toDataURL("image/png");
+          await image.decode();
+        })
+      ).then(
+        () => done({ok: true}),
+        error => done({ok: false, error: String(error)})
+      );
+    JAVASCRIPT
+    unless pixel_art_result["ok"]
+      abort "Could not prepare pixel art in #{article_route}: #{pixel_art_result["error"]}"
+    end
+    page.pdf(
+      path: output,
+      format: :A4,
+      print_background: true,
+      prefer_css_page_size: true,
+      display_header_footer: false
+    )
+    page.close
+
+    puts "Rendered #{output_route}"
+  end
+ensure
+  browser&.quit
+  server.shutdown
+  server_thread.join
+end
