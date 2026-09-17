@@ -19,10 +19,11 @@ Visit `localhost:4000` to view the site.
 ## Build
 
 ```sh
-bundle exec jekyll build
+bin/build
 ```
 
-Formats HTML and generates a PDF for each blog article with Chrome.
+Formats HTML and generates a PDF for each blog article with Chrome 131 or newer.
+Set `BROWSER_PATH` if Chrome or Chromium is installed in a nonstandard location.
 
 ## License
 
