@@ -12,6 +12,7 @@ abort "No article URLs given" if article_urls.empty?
 
 site_url = ENV.fetch("PDF_SITE_URL", "https://cb341.dev").sub(%r{/+\z}, "")
 prepare_page = File.read(File.join(__dir__, "prepare-pdf.js"))
+pdf_styles = File.read(File.join(__dir__, "pdf.css"))
 
 server = WEBrick::HTTPServer.new(
   DocumentRoot: site_dir,
@@ -47,7 +48,7 @@ begin
       abort "Could not render #{article_route}: HTTP #{page.network.status || "error"}"
     end
     page.network.wait_for_idle!(duration: 0.25, timeout: 15)
-    result = page.evaluate_async(prepare_page, 30, site_url)
+    result = page.evaluate_async(prepare_page, 30, site_url, pdf_styles)
     unless result["ok"]
       abort "Could not prepare #{article_route}: #{result["error"]}"
     end

@@ -1,6 +1,21 @@
 const siteUrl = arguments[0];
-const done = arguments[1];
+const pdfStyles = arguments[1];
+const done = arguments[2];
 const localOrigin = location.origin;
+
+const publicUrl = new URL(location.pathname, `${siteUrl}/`).href;
+const style = document.createElement("style");
+style.textContent = pdfStyles.replace("__CURRENT_URL__", JSON.stringify(publicUrl));
+document.head.append(style);
+
+document.querySelectorAll(".print-description, .print-date").forEach(element => {
+  element.hidden = false;
+});
+
+// A reader cannot expand a <details> on paper; open each one before rendering.
+document.querySelectorAll("details:not([open])").forEach(details => {
+  details.open = true;
+});
 
 document.querySelectorAll("a[href]").forEach(link => {
   const originalHref = link.getAttribute("href");
