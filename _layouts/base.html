@@ -124,6 +124,38 @@
         overflow-y: hidden;
       }
 
+      /* Select each path-only formula atomically and copy its TeX source. */
+      mjx-container[jax="SVG"] {
+        cursor: text;
+        user-select: all;
+        -webkit-user-select: all;
+      }
+
+      mjx-container[jax="SVG"] .math-tex-source {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        clip-path: inset(50%);
+        white-space: nowrap;
+      }
+
+      mjx-container[jax="SVG"].math-tex-selected {
+        background: Highlight;
+        color: HighlightText;
+      }
+
+      mjx-container[jax="SVG"][display="true"].math-tex-selected {
+        background: transparent;
+        color: inherit;
+      }
+
+      mjx-container[jax="SVG"][display="true"].math-tex-selected > svg {
+        background: Highlight;
+        color: HighlightText;
+      }
+
       /* Allow long URLs and inline code to wrap before widening the viewport. */
       main a,
       main code {
@@ -252,6 +284,9 @@
         <p><small>AI disclosure: The ideas, observations, and memories are mine. I write them down. I compress them. <a href="https://claude.ai/new">Claude</a> helps with language, wording, and clarity.</small></p>
       </footer>
     </div>
+    {%- if page.math %}
+    <script>document.addEventListener('selectionchange',()=>{const s=document.getSelection();document.querySelectorAll('mjx-container[jax="SVG"]').forEach(m=>m.classList.toggle('math-tex-selected',s&&!s.isCollapsed&&s.containsNode(m,true)));});</script>
+    {%- endif %}
     <script>document.querySelectorAll('main :is(h2,h3,h4,h5,h6)[id]').forEach(h=>h.innerHTML=`<a href="#${h.id}">${h.innerHTML}</a>`);</script>
     <script>document.addEventListener('keydown',e=>{const as=[...document.querySelectorAll('[aria-label="Post navigation"] a')];if(e.key==='ArrowLeft'){const a=as.find(a=>a.textContent.includes('<'));if(a)location.href=a.href;}if(e.key==='ArrowRight'){const a=as.find(a=>a.textContent.includes('>'));if(a)location.href=a.href;}});</script>
   </body>

@@ -7,6 +7,12 @@
     .tick { stroke: #181818; stroke-width: 1.4; }
     .brace{ stroke: #181818; stroke-width: 1.4; fill: none; }
     .dot  { fill: #181818; }
+
+    @media (prefers-color-scheme: dark) {
+      :root { fill: #fff; }
+      .ax, .tick, .brace { stroke: #fff; }
+      .dot, marker path { fill: #fff; }
+    }
   </style>
 
   <defs>
