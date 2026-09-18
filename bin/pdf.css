@@ -18,43 +18,35 @@
   .wrapper { max-width: none; margin: 0; padding: 0; }
 
   .article-title {
-    margin: 0;
-    padding: 0;
-    border: 0;
+    margin: 0 0 7mm;
+    padding: 0 0 3.5mm;
   }
   .article-title h1 {
     max-width: 15cm;
     margin: 0;
-    font-size: 27pt;
+    font-size: 28pt;
     line-height: 1.05;
     letter-spacing: -.025em;
   }
   .article-title > hr {
-    display: block;
-    margin: 3.5mm 0 7mm;
-    border: 0;
-    border-top: .35mm solid #222;
+    display: none;
   }
   .print-description {
     display: block;
-    margin: 3mm 0 4mm;
+    margin: 3mm 0;
     color: #444;
-    font-size: 13pt;
-    line-height: 1.3;
+    font-size: 12pt;
   }
-  .article-details { margin: 0; }
   .article-formats { display: none; }
   .print-date {
     display: block;
     margin: 0;
-    color: #555;
-    font-size: 8.5pt;
+    color: #666;
+    font-size: 8pt;
   }
 
-  body > .skip-link,
-  body > .wrapper > header,
-  footer,
-  nav[aria-label="Article formats"],
+  header[role="banner"],
+  footer[role="contentinfo"],
   nav[aria-label="Post navigation"] { display: none; }
 
   main a { color: #000; text-decoration: underline; }
