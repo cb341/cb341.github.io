@@ -36,7 +36,7 @@ The code should be taken with a grain of salt. Apart from Advent of Code, this i
 
 The project is heavily developed through pull requests. Most features are documented there with sequence diagrams, screencasts and design notes. If you are interested in the technical details, feel free to dig through the PR history.
 
-Make sure to check out [the blog post](/blog/exploring-rust) for more details about the rust project.
+Make sure to check out [the blog post](/blog/exploring-rust/) for more details about the rust project.
 
 Repository: [https://github.com/cb341/rsmc](https://github.com/cb341/rsmc)
 

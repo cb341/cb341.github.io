@@ -22,7 +22,7 @@ The repository has two branches:
 
 ## Philosophy
 
-As I wrote in [my editor journey](/blog/editor-journey):
+As I wrote in [my editor journey](/blog/editor-journey/):
 
 > "Neovim is not just a text editor. It is **FAST**, the fastest editing experience I have had. It is incredibly feature rich, yet keyboard oriented for efficient, sophisticated workflows."
 
@@ -63,4 +63,4 @@ That said, my main machine is a **MacBook** I received working for Renuo, and I 
 
 ## Learn More
 
-For the full story of how I ended up here, including my thoughts on AI coding assistants and why I chose LazyVim, check out my [editor journey blog post](/blog/editor-journey).
+For the full story of how I ended up here, including my thoughts on AI coding assistants and why I chose LazyVim, check out my [editor journey blog post](/blog/editor-journey/).
