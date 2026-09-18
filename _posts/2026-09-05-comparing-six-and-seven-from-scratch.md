@@ -31,10 +31,9 @@ right now $\le$, $+$ and $\mathbb{N}$ are all undefined, so that line is only no
 ## What the proof rests on
 
 ![Dependency graph for le_total](/assets/blog/lean_dependency_graph.svg)
+_the graph is the table of contents and a dependency map for this development._
 
 lavender nodes are the definitions: $\mathbb{N}$ itself, the two axioms for addition, and $1 = \operatorname{succ}(0)$. mint nodes are the arithmetic that follows, including commutativity and associativity. peach nodes are the order results, ending in the theorem.
-
-the graph is the table of contents and a dependency map for this development.
 
 _side note: `add_comm` is in the file and in the graph, but `le_total` does not depend on it. every other theorem shown has a path to `le_total`._
 
@@ -217,9 +216,8 @@ $$
 
 there is a gap, and the gap is itself a natural number. $c$ cannot be negative because its type is $\mathbb{N}$.
 
-there are two cases. in (I), the gap is $c = 0$ and $a = b$. in (II), the gap is a successor and $a$ is strictly below $b$.
-
 ![Number line showing the gap c as zero in case I and nonzero in case II](/assets/blog/lean_numberline_two_cases.svg)
+_there are two cases. in (I), the gap is $c = 0$ and $a = b$. in (II), the gap is a successor and $a$ is strictly below $b$._
 
 the proof later makes the same distinction. once it has a gap `c`, `cases c` separates zero from successor.
 
@@ -490,9 +488,10 @@ theorem le_total (x y : ℕ) : x ≤ y ∨ y ≤ x := by
 
 [open the whole development in the Lean web editor][lean-live]. clicking a line shows its hypotheses and goal.
 
-the indentation records the nesting, but the code still reads as one vertical sequence. the proof state branches: `induction y` creates two obligations, then `cases hd` and `cases c` split them again. the diagram puts that shape on the page and shows where each branch closes.
+the indentation records the nesting, but the code still reads as one vertical sequence. the proof state branches: `induction y` creates two obligations, then `cases hd` and `cases c` split them again.
 
 ![Lean proof state overview](/assets/blog/lean_state_overview.png)
+_the diagram puts that shape on the page and shows where each branch closes._
 
 every node in the graphviz diagram is one of the two-column states from earlier, and every edge is a tactic. three things it shows that the linear listing hides.
 
