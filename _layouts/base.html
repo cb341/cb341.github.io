@@ -82,6 +82,7 @@
     </script>
     {%- endif %}
     <style>
+      /* Core */
       html, body { margin: 0; padding: 0; }
       html { background: #fff; }
       body {
@@ -117,58 +118,9 @@
       }
       blockquote { margin: 1.2em 2em; font-style: italic; }
 
-      {%- if page.math %}
-      /* Keep wide display math inside the article instead of widening the page. */
-      mjx-container[jax="SVG"][display="true"] {
-        max-width: 100%;
-        overflow-x: auto;
-        overflow-y: hidden;
-      }
-
-      /* Select each path-only formula atomically and copy its TeX source. */
-      mjx-container[jax="SVG"] {
-        cursor: text;
-        user-select: all;
-        -webkit-user-select: all;
-      }
-
-      mjx-container[jax="SVG"] .math-tex-source {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        clip-path: inset(50%);
-        white-space: nowrap;
-      }
-
-      mjx-container[jax="SVG"].math-tex-selected {
-        background: Highlight;
-        color: HighlightText;
-      }
-
-      mjx-container[jax="SVG"][display="true"].math-tex-selected {
-        background: transparent;
-        color: inherit;
-      }
-
-      mjx-container[jax="SVG"][display="true"].math-tex-selected > svg {
-        background: Highlight;
-        color: HighlightText;
-      }
-      {%- endif %}
-
-      /* Allow long URLs and inline code to wrap before widening the viewport. */
       main a,
       main code {
         overflow-wrap: anywhere;
-      }
-
-      /* Make standalone list links large enough to tap without affecting prose links. */
-      main li > a:only-child {
-        display: inline-block;
-        min-width: 24px;
-        min-height: 24px;
       }
 
       hr { border: 0; border-top: 1px solid #e6e6e2; margin: .6em 0; }
@@ -208,7 +160,6 @@
           overflow-x: auto;
           max-width: 100%;
         }
-
       }
 
       code {
@@ -234,6 +185,67 @@
         thead { border-color: currentColor; }
       }
     </style>
+
+    <style>
+      /* Accessibility */
+      main li > a:only-child {
+        display: inline-block;
+        min-width: 24px;
+        min-height: 24px;
+      }
+
+      .footnotes .reversefootnote {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin: -3.5px -6px;
+        line-height: 24px;
+        text-align: center;
+        vertical-align: middle;
+      }
+    </style>
+
+    {%- if page.math %}
+    <style>
+      /* Math */
+      mjx-container[jax="SVG"][display="true"] {
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+      }
+
+      mjx-container[jax="SVG"] {
+        cursor: text;
+        user-select: all;
+        -webkit-user-select: all;
+      }
+
+      mjx-container[jax="SVG"] .math-tex-source {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        clip-path: inset(50%);
+        white-space: nowrap;
+      }
+
+      mjx-container[jax="SVG"].math-tex-selected {
+        background: Highlight;
+        color: HighlightText;
+      }
+
+      mjx-container[jax="SVG"][display="true"].math-tex-selected {
+        background: transparent;
+        color: inherit;
+      }
+
+      mjx-container[jax="SVG"][display="true"].math-tex-selected > svg {
+        background: Highlight;
+        color: HighlightText;
+      }
+    </style>
+    {%- endif %}
   </head>
   <body>
     <div class="wrapper">
