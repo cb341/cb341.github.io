@@ -20,6 +20,10 @@ Jekyll::Hooks.register :site, :post_write do |site|
     source_path = File.expand_path(page.path, site.source)
     raw_path = File.join(site.dest, page.data.fetch("raw_url").delete_prefix("/"))
     FileUtils.mkdir_p(File.dirname(raw_path))
-    FileUtils.cp(source_path, raw_path)
+    body = File.read(source_path).sub(/\A---[ \t]*\r?\n.*?^---[ \t]*\r?\n/m, "").lstrip
+    heading, body = body.split(/\r?\n/, 2) if body.start_with?("# ")
+    heading ||= "# #{page.data.fetch("title")}"
+    date = page.data["date"]&.strftime(site.config.fetch("date_format", "%Y-%m-%d"))
+    File.write(raw_path, [heading, date, body&.lstrip].compact.join("\n\n"))
   end
 end
