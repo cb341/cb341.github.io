@@ -294,6 +294,7 @@
         {{ content }}
         <nav role="navigation" aria-label="Post navigation">
           <hr>
+          {%- unless page.collection == 'posts' %}
           <a href="https://github.com/cb341/cb341.github.io/blob/main/{{ page.path }}?plain=1" target="_blank" rel="noopener noreferrer">Source</a>
           {%- if page.raw_url %} |
           <a href="{{ page.raw_url }}">Markdown</a>
@@ -302,6 +303,7 @@
           <a href="{{ page.pdf_url }}">PDF</a>
           {%- endif %}
           |
+          {%- endunless %}
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSeRD0Q9wYYZelAkRXEu2cCFN89-cvoAfOtyTY9vaz9-FUvYXQ/viewform?usp=pp_url&entry.2083454847={{ current_url | url_encode }}" target="_blank" rel="noopener noreferrer">Page Feedback</a>
           {%- if page.collection == 'posts' %}{% include post_nav.html %}{%- endif -%}
           {%- if page.collection == 'projects' %}{% include project_nav.html %}{%- endif -%}

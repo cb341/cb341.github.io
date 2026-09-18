@@ -4,9 +4,9 @@
 @media print {
   @page {
     size: A4;
-    margin: 19mm 18mm 22mm;
+    margin: 17mm 18mm 20mm;
     color: #666;
-    font: 7.5pt Arial, sans-serif;
+    font: 7.5pt Georgia, serif;
 
     @bottom-left { content: "Dani Bengl (it/its)"; }
     @bottom-center { content: __CURRENT_URL__; }
@@ -14,39 +14,46 @@
   }
 
   html, body { background: #fff; color: #000; }
-  body { font-size: 10.5pt; line-height: 1.45; }
+  body { font: 10.5pt/1.45 Georgia, serif; }
   .wrapper { max-width: none; margin: 0; padding: 0; }
 
   .article-title {
-    margin: 0 0 9mm;
-    padding: 0 0 7mm;
-    border-bottom: .4mm solid #1c1c1a;
+    margin: 0;
+    padding: 0;
+    border: 0;
   }
   .article-title h1 {
     max-width: 15cm;
     margin: 0;
-    font-size: 28pt;
+    font-size: 27pt;
     line-height: 1.05;
     letter-spacing: -.025em;
   }
+  .article-title > hr {
+    display: block;
+    margin: 3.5mm 0 7mm;
+    border: 0;
+    border-top: .35mm solid #222;
+  }
   .print-description {
     display: block;
-    margin: 4mm 0 0;
+    margin: 3mm 0 4mm;
     color: #444;
-    font-size: 12pt;
+    font-size: 13pt;
+    line-height: 1.3;
   }
+  .article-meta { display: block; margin: 0; }
   .print-date {
     display: block;
-    margin: 3mm 0 0;
-    color: #666;
-    font-family: Arial, sans-serif;
-    font-size: 8pt;
-    letter-spacing: .04em;
-    text-transform: uppercase;
+    margin: 0;
+    color: #555;
+    font-size: 8.5pt;
   }
 
-  header[role="banner"],
-  footer[role="contentinfo"],
+  body > .skip-link,
+  body > .wrapper > header,
+  footer,
+  nav[aria-label="Article formats"],
   nav[aria-label="Post navigation"] { display: none; }
 
   main a { color: #000; text-decoration: underline; }
