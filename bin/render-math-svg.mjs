@@ -17,6 +17,7 @@ import "@mathjax/src/js/input/tex/textmacros/TextMacrosConfiguration.js";
 
 const EM = 15;
 const EX = 7.5;
+const fragment = process.argv.includes("--fragment");
 const adaptor = liteAdaptor({ fontSize: EM });
 
 AssistiveMmlHandler(RegisterHTMLHandler(adaptor));
@@ -56,6 +57,24 @@ for (const container of adaptor.tags(root, "mjx-container")) {
   const source = math && adaptor.getAttribute(math, "data-latex");
   if (!source) continue;
 
+  if (fragment) {
+    const graphic = adaptor.tags(container, "svg")[0];
+    if (!graphic) continue;
+
+    const display = adaptor.getAttribute(container, "display") === "true";
+    const graphicStyle = adaptor.getAttribute(graphic, "style") || "";
+    const width = adaptor.getAttribute(graphic, "width");
+    const height = adaptor.getAttribute(graphic, "height");
+    const layout = display
+      ? `display:block;margin:.7em auto;padding:0;border:0;max-width:100%;width:${width};height:auto;`
+      : `display:inline-block;margin:0;padding:0;border:0;max-width:none;width:${width};height:${height};`;
+    adaptor.setAttribute(graphic, "style", `${graphicStyle}${layout}`);
+    adaptor.setAttribute(graphic, "aria-label", source);
+    adaptor.removeAttribute(graphic, "aria-hidden");
+    adaptor.replace(graphic, container);
+    continue;
+  }
+
   const selectableSource = source.replace(/\r?\n[\t ]*/g, " ");
   const text = adaptor.node("span", {
     "aria-hidden": "true",
@@ -77,5 +96,9 @@ for (const background of adaptor.tags(root, "rect")) {
 const html = adaptor.outerHTML(root)
   .replace(/@font-face \/\* zero \*\/ \{[\s\S]*?\n\}/, "");
 
-process.stdout.write(adaptor.doctype(document.document));
-process.stdout.write(html);
+if (fragment) {
+  process.stdout.write(adaptor.innerHTML(adaptor.body(document.document)));
+} else {
+  process.stdout.write(adaptor.doctype(document.document));
+  process.stdout.write(html);
+}

@@ -117,6 +117,7 @@
       }
       blockquote { margin: 1.2em 2em; font-style: italic; }
 
+      {%- if page.math %}
       /* Keep wide display math inside the article instead of widening the page. */
       mjx-container[jax="SVG"][display="true"] {
         max-width: 100%;
@@ -155,6 +156,7 @@
         background: Highlight;
         color: HighlightText;
       }
+      {%- endif %}
 
       /* Allow long URLs and inline code to wrap before widening the viewport. */
       main a,
