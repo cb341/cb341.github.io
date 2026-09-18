@@ -118,14 +118,10 @@
       blockquote { margin: 1.2em 2em; font-style: italic; }
 
       /* Keep wide display math inside the article instead of widening the page. */
-      .katex-display {
+      mjx-container[jax="SVG"][display="true"] {
         max-width: 100%;
         overflow-x: auto;
         overflow-y: hidden;
-      }
-
-      .katex-display > .katex {
-        max-width: none;
       }
 
       /* Allow long URLs and inline code to wrap before widening the viewport. */
@@ -197,11 +193,6 @@
         thead { border-color: currentColor; }
       }
     </style>
-    {%- if page.math -%}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" crossorigin="anonymous">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\[', right: '\\]', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}]});"></script>
-    {%- endif -%}
   </head>
   <body>
     <div class="wrapper">

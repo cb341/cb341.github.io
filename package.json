@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@mathjax/src": "4.1.3"
+  }
+}

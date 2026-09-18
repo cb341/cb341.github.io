@@ -6,6 +6,7 @@ Personal portfolio and blog built with [Jekyll](https://jekyllrb.com/).
 
 ```sh
 bundle install
+npm install
 ```
 
 ## Run
@@ -25,6 +26,7 @@ bin/build
 ```
 
 Builds the site and generates a PDF for each blog article with Chrome 131 or newer.
+Math is rendered to inline SVG with MathJax during the build, so Node.js 22 or newer is required.
 Set `BROWSER_PATH` if Chrome or Chromium is installed in a nonstandard location.
 
 ## License
