@@ -164,6 +164,13 @@
         overflow-wrap: anywhere;
       }
 
+      /* Make standalone list links large enough to tap without affecting prose links. */
+      main li > a:only-child {
+        display: inline-block;
+        min-width: 24px;
+        min-height: 24px;
+      }
+
       hr { border: 0; border-top: 1px solid #e6e6e2; margin: .6em 0; }
 
       table {
