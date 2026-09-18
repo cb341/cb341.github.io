@@ -31,8 +31,12 @@ document.querySelectorAll("a[href]").forEach(link => {
 });
 
 Promise.all(
-  Array.from(document.querySelectorAll("img.pixelated-image"), async image => {
+  Array.from(document.querySelectorAll("img"), async image => {
+    // Lazy loading helps the web page, but every image belongs in the PDF.
+    image.loading = "eager";
     await image.decode();
+
+    if (!image.classList.contains("pixelated-image")) return;
 
     // PDF viewers smooth low-resolution image objects when zooming. Embed a
     // nearest-neighbor copy at roughly print resolution so pixels stay sharp.

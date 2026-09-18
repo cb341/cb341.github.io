@@ -6,7 +6,7 @@ permalink: /about/
 
 # Who Am I?
 
-<a href="https://github.com/cb341" target="_blank" rel="noopener noreferrer"><img class="about-avatar" src="/assets/about/avatar.webp" alt="Catto Dani wearing glasses and making a peace sign" width="460" height="460"></a>
+<a href="https://github.com/cb341" target="_blank" rel="noopener noreferrer"><img class="about-avatar" src="/assets/about/avatar.webp" alt="Catto Dani wearing glasses and making a peace sign"></a>
 
 a silly queer cat [(it/its)](https://en.pronouns.page/@cb341) that gets way too into things :P
 

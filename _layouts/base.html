@@ -24,6 +24,9 @@
     <link rel="canonical" href="{{ current_url | escape }}">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="alternate" type="application/rss+xml" title="cb341.dev RSS Feed" href="/rss.xml">
+    {%- if page.preload_image %}
+    <link rel="preload" as="image" href="{{ page.preload_image }}" fetchpriority="high">
+    {%- endif %}
     {% if page.layout == "gallery" %}
     {%- assign gallery_description = page.description | default: page.content | markdownify | strip_html | normalize_whitespace | truncate: 160 -%}
     <meta property="og:description" content="{{ gallery_description | escape }}">
@@ -99,6 +102,7 @@
       }
 
       p img { width: 100%; height: auto; }
+      video.article-video { width: 100%; height: auto; }
       img.pixelated-image {
         width: 100%;
         height: auto;
@@ -204,11 +208,11 @@
       <header role="banner">
         <nav>
           <b><a href="/">CB341.DEV</a></b>
-          &nbsp; <a href="/about">About</a>
-          &nbsp; <a href="/blog">Blog</a>
-          &nbsp; <a href="/projects">Projects</a>
-          &nbsp; <a href="/gallery">Gallery</a>
-          &nbsp; <a href="/threads">Threads</a>
+          &nbsp; <a href="/about/">About</a>
+          &nbsp; <a href="/blog/">Blog</a>
+          &nbsp; <a href="/projects/">Projects</a>
+          &nbsp; <a href="/gallery/">Gallery</a>
+          &nbsp; <a href="/threads/">Threads</a>
         </nav>
         <hr>
       </header>
@@ -236,7 +240,7 @@
         <hr>
         <p><small>(c) {{ "now" | date: "%Y" }} cb341. Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>.</small></p>
         <p>
-          <a href="/sitemap">Sitemap</a>
+          <a href="/sitemap/">Sitemap</a>
           /
           <a href="/rss.xml" target="_blank" rel="noopener noreferrer">RSS Feed</a>
           /
