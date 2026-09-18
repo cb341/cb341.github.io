@@ -41,6 +41,15 @@ permalink: /gallery/
   border: 1px solid #d8d8d2;
 }
 
+.gallery-item figure {
+  margin: 0;
+}
+
+.gallery-item figcaption {
+  margin-top: 0;
+  font-style: normal;
+}
+
 @media (max-width: 600px) {
   .gallery-sections {
     width: 100%;
@@ -67,8 +76,10 @@ permalink: /gallery/
     <div class="gallery-row">
     {% for item in cat_items %}
       <a class="gallery-item" href="{{ item.url }}">
-        <img src="{{ item.image | replace: '/webp-gallery/', '/webp-gallery/thumbs/' }}" alt="{{ item.alt }}" width="96" height="96" loading="lazy">
-        <small>{{ item.title }}</small>
+        <figure>
+          <img src="{{ item.image | replace: '/webp-gallery/', '/webp-gallery/thumbs/' }}" alt="{{ item.alt }}" width="96" height="96" loading="lazy">
+          <figcaption><small>{{ item.title }}</small></figcaption>
+        </figure>
       </a>
     {% endfor %}
     </div>

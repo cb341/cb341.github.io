@@ -55,21 +55,17 @@ Bh3 fxe4 9. Bxc8 Nc6 10. dxe4 Rxc8 11. O-O Rd8 12. Bd2 Bb4 13. c3 Bc5 14. b4 Bb6
 Bh6+ Ke8 22. Bxf8 Kxf8 23. Rd8# 1-0
 ```
 
-### chess.com's widget
-
 ![The chess.com share widget. Looks fine, but no way to customize the board, no eval chart, and you are stuck on their player.](/assets/projects/chess-widget/chess_com-widget.webp)
-
-### lichess embed
+_chess.com's widget_
 
 ![Lichess study embed. Functional but takes you out of the page, no eval-over-time, no move classification on top.](/assets/projects/chess-widget/lichess.webp)
-
-### ChessBase / Fritz embed
+_lichess embed_
 
 ![ChessBase Fritz embed. Heavier UI, locked to their styling, not something you would drop into a personal blog post.](/assets/projects/chess-widget/embedfritz.webp)
-
-### chess.cb341.dev widget (MINE)
+_ChessBase / Fritz embed_
 
 ![My widget. Newspaper-style board, eval-over-time chart, bookmarks panel for every blunder and mistake in the game.](/assets/projects/chess-widget/chess_cb341_dev-widget.webp)
+_chess.cb341.dev widget (MINE)_
 
 ## Architecture
 
