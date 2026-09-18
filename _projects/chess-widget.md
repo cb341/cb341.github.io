@@ -55,25 +55,17 @@ Bh3 fxe4 9. Bxc8 Nc6 10. dxe4 Rxc8 11. O-O Rd8 12. Bd2 Bb4 13. c3 Bc5 14. b4 Bb6
 Bh6+ Ke8 22. Bxf8 Kxf8 23. Rd8# 1-0
 ```
 
-<figure class="captioned-media" id="chesscoms-widget">
-  <img src="/assets/projects/chess-widget/chess_com-widget.webp" alt="The chess.com share widget. Looks fine, but no way to customize the board, no eval chart, and you are stuck on their player.">
-  <figcaption>chess.com's widget</figcaption>
-</figure>
+![The chess.com share widget. Looks fine, but no way to customize the board, no eval chart, and you are stuck on their player.](/assets/projects/chess-widget/chess_com-widget.webp)
+_chess.com's widget_
 
-<figure class="captioned-media" id="lichess-embed">
-  <img src="/assets/projects/chess-widget/lichess.webp" alt="Lichess study embed. Functional but takes you out of the page, no eval-over-time, no move classification on top.">
-  <figcaption>lichess embed</figcaption>
-</figure>
+![Lichess study embed. Functional but takes you out of the page, no eval-over-time, no move classification on top.](/assets/projects/chess-widget/lichess.webp)
+_lichess embed_
 
-<figure class="captioned-media" id="chessbase--fritz-embed">
-  <img src="/assets/projects/chess-widget/embedfritz.webp" alt="ChessBase Fritz embed. Heavier UI, locked to their styling, not something you would drop into a personal blog post.">
-  <figcaption>ChessBase / Fritz embed</figcaption>
-</figure>
+![ChessBase Fritz embed. Heavier UI, locked to their styling, not something you would drop into a personal blog post.](/assets/projects/chess-widget/embedfritz.webp)
+_ChessBase / Fritz embed_
 
-<figure class="captioned-media" id="chesscb341dev-widget-mine">
-  <img src="/assets/projects/chess-widget/chess_cb341_dev-widget.webp" alt="My widget. Newspaper-style board, eval-over-time chart, bookmarks panel for every blunder and mistake in the game.">
-  <figcaption>chess.cb341.dev widget (MINE)</figcaption>
-</figure>
+![My widget. Newspaper-style board, eval-over-time chart, bookmarks panel for every blunder and mistake in the game.](/assets/projects/chess-widget/chess_cb341_dev-widget.webp)
+_chess.cb341.dev widget (MINE)_
 
 ## Architecture
 
