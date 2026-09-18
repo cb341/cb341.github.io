@@ -5,9 +5,10 @@ layout: base
 <header class="article-title">
   <h1>{{ page.title }}</h1>
   {% if page.description %}<p class="print-description">{{ page.description }}</p>{% endif %}
-  <div class="article-meta">
+  <p class="article-details">
     {% if page.date %}<time class="print-date" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: site.date_format }}</time>{% endif %}
-    <nav class="article-formats" aria-label="Article formats">
+    <span class="article-formats">
+      {%- if page.date %} <span aria-hidden="true">·</span>{% endif %}
       <a href="https://github.com/cb341/cb341.github.io/blob/main/{{ page.path }}?plain=1" target="_blank" rel="noopener noreferrer">Source</a>
       {%- if page.raw_url %} <span aria-hidden="true">·</span>
       <a href="{{ page.raw_url }}">Markdown</a>
@@ -15,8 +16,8 @@ layout: base
       {%- if page.pdf_url %} <span aria-hidden="true">·</span>
       <a href="{{ page.pdf_url }}">PDF</a>
       {%- endif %}
-    </nav>
-  </div>
+    </span>
+  </p>
   <hr>
 </header>
 
