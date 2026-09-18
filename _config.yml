@@ -39,6 +39,12 @@ kramdown:
 plugins:
   - jekyll-sitemap
 
+# Jekyll defaults to `no-store`, which prevents testing the browser's
+# back/forward cache. Always revalidate local responses without disabling it.
+webrick:
+  headers:
+    Cache-Control: no-cache
+
 exclude:
   - Gemfile
   - Gemfile.lock
