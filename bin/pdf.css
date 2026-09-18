@@ -20,6 +20,7 @@
   .article-title {
     margin: 0 0 7mm;
     padding: 0 0 3.5mm;
+    border-bottom: .4mm solid #1c1c1a;
   }
   .article-title h1 {
     max-width: 15cm;
