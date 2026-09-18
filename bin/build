@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+npm ci
 GENERATE_PDFS=1 bundle exec jekyll build "$@"
