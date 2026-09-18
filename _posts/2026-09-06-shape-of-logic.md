@@ -7,7 +7,7 @@ math: true
 
 an 8-bit operator takes two bytes and returns one. its truth table has $256 \times 256 = 65{,}536$ rows, which is few enough to put every one of them on screen at the same time.
 
-<a href="https://cb341.dev/logic-visualizer/?theme=2&image=8&op=MUL"><img class="pixelated-image" src="/assets/blog/shape_of_logic_mul_8x8.webp" width="256" height="256" fetchpriority="high" alt="256 by 256 multiplication truth table"></a>
+<a href="https://cb341.dev/logic-visualizer/?theme=2&image=8&op=MUL"><img class="pixelated-image" src="/assets/blog/shape_of_logic_mul_8x8.webp" alt="256 by 256 multiplication truth table"></a>
 
 *multiplication, every input pair at once. [open in the viewer](https://cb341.dev/logic-visualizer/?theme=2&image=8&op=MUL)*
 
@@ -50,7 +50,7 @@ at 4 bits this fits on a screen. at 8 bits it is 256 rows of 256 columns and the
 
 ## Bitwise operators tile
 
-<a href="https://cb341.dev/logic-visualizer/?theme=1&image=8&op=NAND"><img class="pixelated-image" src="/assets/blog/shape_of_logic_tc_major_nand_8x8.webp" width="256" height="256" loading="lazy" decoding="async" alt="256 by 256 NAND truth table"></a>
+<a href="https://cb341.dev/logic-visualizer/?theme=1&image=8&op=NAND"><img class="pixelated-image" src="/assets/blog/shape_of_logic_tc_major_nand_8x8.webp" alt="256 by 256 NAND truth table"></a>
 
 *NAND, monochrome. [open in the viewer](https://cb341.dev/logic-visualizer/?theme=1&image=8&op=NAND)*
 
@@ -62,7 +62,7 @@ for all 65,536 pairs, the low nibble of $A \mathbin{\overline{\wedge}} B$ depend
 
 ## Addition tiles diagonally
 
-<a href="https://cb341.dev/logic-visualizer/?theme=2&image=8&op=ADD"><img class="pixelated-image" src="/assets/blog/shape_of_logic_add_8x8.webp" width="256" height="256" loading="lazy" decoding="async" alt="256 by 256 addition truth table in MSB invert"></a>
+<a href="https://cb341.dev/logic-visualizer/?theme=2&image=8&op=ADD"><img class="pixelated-image" src="/assets/blog/shape_of_logic_add_8x8.webp" alt="256 by 256 addition truth table in MSB invert"></a>
 
 *addition at 8 bits, MSB invert. blocks become bands. [open in the viewer](https://cb341.dev/logic-visualizer/?theme=2&image=8&op=ADD)*
 
@@ -112,7 +112,7 @@ so the palette decides which scale you can see. what it cannot do is put structu
 
 ## Shifts, and three wires
 
-<a href="https://cb341.dev/logic-visualizer/?theme=2&image=8&op=LSHFT"><img class="pixelated-image" src="/assets/blog/shape_of_logic_lshft_8x8.webp" width="256" height="256" loading="lazy" decoding="async" alt="256 by 256 left-shift truth table"></a>
+<a href="https://cb341.dev/logic-visualizer/?theme=2&image=8&op=LSHFT"><img class="pixelated-image" src="/assets/blog/shape_of_logic_lshft_8x8.webp" alt="256 by 256 left-shift truth table"></a>
 
 *left shift, vertical striping with period 8. [open in the viewer](https://cb341.dev/logic-visualizer/?theme=2&image=8&op=LSHFT)*
 
@@ -142,7 +142,7 @@ they are wide near the origin, where products grow slowly, and tighten as the nu
 
 the same operator in nibble RGB makes that easier to see.
 
-<a href="https://cb341.dev/logic-visualizer/?theme=3&image=8&op=MUL"><img class="pixelated-image" src="/assets/blog/shape_of_logic_mul_nibble_8x8.png" width="256" height="256" loading="lazy" decoding="async" alt="256 by 256 multiplication truth table in nibble RGB"></a>
+<a href="https://cb341.dev/logic-visualizer/?theme=3&image=8&op=MUL"><img class="pixelated-image" src="/assets/blog/shape_of_logic_mul_nibble_8x8.png" alt="256 by 256 multiplication truth table in nibble RGB"></a>
 
 *multiplication, nibble RGB. [open in the viewer](https://cb341.dev/logic-visualizer/?theme=3&image=8&op=MUL)*
 
@@ -154,7 +154,7 @@ neither picture is more correct. vibrant resolves individual results and buries 
 
 ## Division
 
-<a href="https://cb341.dev/logic-visualizer/?theme=2&image=8&op=DIV"><img class="pixelated-image" src="/assets/blog/shape_of_logic_div_8x8.webp" width="256" height="256" loading="lazy" decoding="async" alt="256 by 256 division truth table"></a>
+<a href="https://cb341.dev/logic-visualizer/?theme=2&image=8&op=DIV"><img class="pixelated-image" src="/assets/blog/shape_of_logic_div_8x8.webp" alt="256 by 256 division truth table"></a>
 
 *division, mostly empty. [open in the viewer](https://cb341.dev/logic-visualizer/?theme=2&image=8&op=DIV)*
 
@@ -173,7 +173,7 @@ this started in [turing complete 2.0](https://store.steampowered.com/app/1444480
 
 i wanted to write it up in late july. the time only showed up now, which meant coming back to the images cold and checking the claims instead of trusting what i remembered seeing.
 
-<a href="https://store.steampowered.com/app/1444480/Turing_Complete/"><img src="/assets/blog/shape_of_logic_tc_major.webp" width="1696" height="500" loading="lazy" decoding="async" alt="Turing Complete major update announcement"></a>
+<a href="https://store.steampowered.com/app/1444480/Turing_Complete/"><img src="/assets/blog/shape_of_logic_tc_major.webp" alt="Turing Complete major update announcement"></a>
 
 the ALU had one-cycle addition, subtraction, and multiplication. i wanted division on the same terms, a dedicated circuit that answers in one pass instead of a loop that shifts and subtracts once per bit. the usual restoring divider costs a cycle per output bit, which for 16 bits is 16 cycles against multiplication's one.
 
@@ -199,7 +199,7 @@ the fix was to stop materialising the image at all. render a viewport, compute o
 
 i used Codex for the viewer implementation, the shader, the viewport, and the tooltip plumbing. the analysis and the claims in this post are mine, and each numeric claim was checked against a brute-force pass over all 65,536 pairs rather than taken from the picture.
 
-<img class="pixelated-image" src="/assets/blog/shape_of_logic_tooltip.webp" width="944" height="490" loading="lazy" decoding="async" alt="Tooltip showing binary, decimal, signed decimal and hex for a cell">
+<img class="pixelated-image" src="/assets/blog/shape_of_logic_tooltip.webp" alt="Tooltip showing binary, decimal, signed decimal and hex for a cell">
 
 *the tooltip, reading out one cell.*
 
@@ -213,7 +213,7 @@ a 16-bit operator has $65{,}536 \times 65{,}536$ input pairs. that is 4,294,967,
 
 so this is a full 16-bit operation, every input pair defined, and you are looking at a piece of it.
 
-<img src="/assets/blog/shape_of_logic_mystery_16.webp" width="900" height="899" loading="lazy" decoding="async" alt="A 16-bit operator, showing nested curved arcs">
+<img src="/assets/blog/shape_of_logic_mystery_16.webp" alt="A 16-bit operator, showing nested curved arcs">
 
 *16x16, which one?*
 
@@ -221,7 +221,7 @@ so this is a full 16-bit operation, every input pair defined, and you are lookin
 
 the viewer is live at [cb341.dev/logic-visualizer](https://cb341.dev/logic-visualizer/). drag to pan, wheel to zoom, arrow keys change operator, click any pixel for the readout.
 
-<a href="https://cb341.dev/logic-visualizer/"><img src="/assets/blog/shape_of_logic_toolbar.webp" width="3090" height="264" loading="lazy" decoding="async" alt="The viewer toolbar: image size, palette, zoom, jump-to-cell and download controls"></a>
+<a href="https://cb341.dev/logic-visualizer/"><img src="/assets/blog/shape_of_logic_toolbar.webp" alt="The viewer toolbar: image size, palette, zoom, jump-to-cell and download controls"></a>
 
 *everything is in the toolbar.*
 
