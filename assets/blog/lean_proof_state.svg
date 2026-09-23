@@ -1,19 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 868 1627" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" class="lean-proof-state" viewBox="0 0 868 1627" role="img" aria-labelledby="title desc">
 <title id="title">Lean proof state overview</title>
 <desc id="desc">The proof of total ordering splits by induction on y, then by cases of the induction hypothesis and the witness. Four branches close with exact or reflexivity.</desc>
 <style>
-  :root { color: #111; }
-  .frame, .state { fill: #f9fafb; stroke: currentColor; stroke-width: 1.25; }
-  .frame { fill: none; }
-  .flow { fill: none; stroke: currentColor; stroke-width: 1.3; marker-end: url(#arrow); }
-  .dot { fill: currentColor; }
-  .end-ring { fill: none; stroke: currentColor; stroke-width: 1.2; }
-  text { fill: currentColor; font-family: Arial, Helvetica, sans-serif; font-size: 15px; text-anchor: middle; }
-  .frame-title { font-size: 18px; }
-  .edge-label { font-size: 14px; }
+  svg.lean-proof-state { color: #111; }
+  svg.lean-proof-state .frame, svg.lean-proof-state .state { fill: #f9fafb; stroke: currentColor; stroke-width: 1.25; }
+  svg.lean-proof-state .frame { fill: none; }
+  svg.lean-proof-state .flow { fill: none; stroke: currentColor; stroke-width: 1.3; marker-end: url(#arrow); }
+  svg.lean-proof-state .dot { fill: currentColor; }
+  svg.lean-proof-state .end-ring { fill: none; stroke: currentColor; stroke-width: 1.2; }
+  svg.lean-proof-state text { fill: currentColor; font-family: Arial, Helvetica, sans-serif; font-size: 15px; text-anchor: middle; }
+  svg.lean-proof-state .frame-title { font-size: 18px; }
+  svg.lean-proof-state .edge-label { font-size: 14px; }
   @media (prefers-color-scheme: dark) {
-    :root { color: #f5f5f5; }
-    .state { fill: #17191d; }
+    svg.lean-proof-state { color: #f5f5f5; }
+    svg.lean-proof-state .state { fill: #17191d; }
   }
 </style>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 Z" fill="currentColor"/></marker></defs>

@@ -73,6 +73,7 @@
   }
   p img { width: auto; }
   img[src$=".svg"], img.pixelated-image { max-height: none; }
+  svg.inline-svg { display: block; width: 100%; height: auto; max-height: none; }
 
   pre { border: 1px solid #ccc; line-height: 1.3; white-space: pre-wrap; }
   code { background: transparent; }
