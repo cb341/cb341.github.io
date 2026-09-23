@@ -206,52 +206,34 @@
       pre code { background: transparent; padding: 0; }
       main :is(h2,h3,h4,h5,h6)[id] > a { text-decoration: none; }
       {% if page.toc %}
-      .article-toc {
-        display: none;
-      }
+      .article-toc { display: none; }
       @media (min-width: 1120px) {
-        .article-toc:not([hidden]) {
+        .article-toc {
           display: block;
           position: fixed;
           top: 36px;
           left: calc(50% + 33.5ch + 24px);
           width: 220px;
           max-height: calc(100vh - 72px);
-          overflow-y: auto;
+          overflow: auto;
           font-size: 15px;
           line-height: 1.45;
         }
         .article-toc-title,
         .article-toc ol { font-size: 12px; }
-        .article-toc-title {
-          margin-bottom: .7em;
-          font-weight: 700;
-          letter-spacing: .04em;
-          text-transform: uppercase;
-        }
-        .article-toc ol {
-          margin: 0;
-          padding: 0;
-          list-style: none;
-        }
-        .article-toc li { margin: .35em 0; }
-        .article-toc li[data-level="3"] { padding-left: 1em; }
-        .article-toc li[data-level="4"],
-        .article-toc li[data-level="5"],
-        .article-toc li[data-level="6"] { padding-left: 2em; }
+        .article-toc-title { font-weight: bold; }
+        .article-toc ol { margin: 0; padding: 0; list-style: none; }
+        .article-toc li { margin: .5em 0; }
+        .article-toc li:not([data-level="2"]) { padding-left: 1em; }
         .article-toc a {
-          color: #55554f;
+          color: inherit;
+          opacity: .7;
           text-decoration: none;
         }
-        .article-toc a:hover,
-        .article-toc a:focus-visible,
-        .article-toc a[aria-current="location"] {
-          color: inherit;
+        .article-toc a:is(:hover, :focus-visible) {
+          opacity: 1;
           text-decoration: underline;
         }
-      }
-      @media (prefers-color-scheme: dark) {
-        .article-toc a { color: #b9b8b0; }
       }
       @media print { .article-toc { display: none !important; } }
       {% endif %}
@@ -391,35 +373,6 @@
     <script>document.addEventListener('selectionchange',()=>{const s=document.getSelection();document.querySelectorAll('mjx-container[jax="SVG"]').forEach(m=>m.classList.toggle('math-tex-selected',s&&!s.isCollapsed&&s.containsNode(m,true)));});</script>
     {%- endif %}
     <script>document.querySelectorAll('main :is(h2,h3,h4,h5,h6)[id]').forEach(h=>h.innerHTML=`<a href="#${h.id}">${h.innerHTML}</a>`);</script>
-    {%- if page.toc %}
-    <script>
-      (() => {
-        const toc = document.querySelector('.article-toc');
-        if (!toc) return;
-
-        const headings = [...document.querySelectorAll('main :is(h2,h3,h4,h5,h6)[id]')];
-        const links = [...toc.querySelectorAll('a')];
-        let pending = false;
-        const updateCurrent = () => {
-          pending = false;
-          let current = 0;
-          headings.forEach((heading, index) => {
-            if (heading.getBoundingClientRect().top <= 120) current = index;
-          });
-          links.forEach((link, index) => {
-            if (index === current) link.setAttribute('aria-current', 'location');
-            else link.removeAttribute('aria-current');
-          });
-        };
-        window.addEventListener('scroll', () => {
-          if (pending) return;
-          pending = true;
-          requestAnimationFrame(updateCurrent);
-        }, { passive: true });
-        updateCurrent();
-      })();
-    </script>
-    {%- endif %}
     <script>document.addEventListener('keydown',e=>{const as=[...document.querySelectorAll('[aria-label="Post navigation"] a')];if(e.key==='ArrowLeft'){const a=as.find(a=>a.textContent.includes('<'));if(a)location.href=a.href;}if(e.key==='ArrowRight'){const a=as.find(a=>a.textContent.includes('>'));if(a)location.href=a.href;}});</script>
   </body>
 </html>
