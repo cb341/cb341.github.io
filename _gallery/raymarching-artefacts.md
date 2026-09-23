@@ -7,4 +7,4 @@ image: "/webp-gallery/raymarching_artefacts.webp"
 alt: "Raymarching Artefacts"
 ---
 
-## (WORK IN PROGRESS)
+**(WORK IN PROGRESS)**

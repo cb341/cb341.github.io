@@ -7,4 +7,4 @@ image: "/webp-gallery/cube_marcher.webp"
 alt: "Cube Marching Algorithm"
 ---
 
-## (WORK IN PROGRESS)
+**(WORK IN PROGRESS)**
