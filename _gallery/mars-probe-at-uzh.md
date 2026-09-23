@@ -8,4 +8,4 @@ alt: "Mars Probe at University of Zurich"
 ---
 
 A Mars probe exhibit or model at the University of Zurich. Where aerospace engineering meets computer science education.
-## (WORK IN PROGRESS)
+**(WORK IN PROGRESS)**

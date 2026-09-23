@@ -7,4 +7,4 @@ image: "/webp-gallery/ao_test.webp"
 alt: "Ambient Occlusion Test"
 ---
 
-## (WORK IN PROGRESS)
+**(WORK IN PROGRESS)**

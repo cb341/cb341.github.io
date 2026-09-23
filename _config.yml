@@ -26,6 +26,11 @@ defaults:
       path: "_posts"
     values:
       layout: post
+      toc: true
+  - scope:
+      path: "_projects"
+    values:
+      toc: true
 
 date_format: "%d.%m.%Y"
 

@@ -2,6 +2,7 @@
 title: "How To Approach Dani"
 description: "Communication defaults for less guessing."
 permalink: /how-to-approach/
+toc: true
 ---
 
 # How To Approach Dani

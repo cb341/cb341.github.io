@@ -1,6 +1,7 @@
 ---
 title: "Today I Learned"
 permalink: /til/
+toc: true
 ---
 
 # Today I Learned (TIL)

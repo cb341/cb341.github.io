@@ -7,4 +7,4 @@ image: "/webp-gallery/blahaj_fixed.webp"
 alt: "Blahaj the Shark"
 ---
 
-## (WORK IN PROGRESS)
+**(WORK IN PROGRESS)**

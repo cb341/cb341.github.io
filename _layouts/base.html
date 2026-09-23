@@ -205,6 +205,30 @@
       }
       pre code { background: transparent; padding: 0; }
       main :is(h2,h3,h4,h5,h6)[id] > a { text-decoration: none; }
+      {% if page.toc %}
+      .article-toc { display: none; }
+      @media (min-width: 1120px) {
+        .article-toc {
+          display: block;
+          position: fixed;
+          top: 36px;
+          left: calc(50% + 33.5ch + 24px);
+          width: 220px;
+          max-height: calc(100vh - 72px);
+          overflow: auto;
+          font-size: 15px;
+          line-height: 1.45;
+        }
+        .article-toc-title,
+        .article-toc ol { font-size: 12px; }
+        .article-toc-title { font-weight: bold; }
+        .article-toc ol { margin: 0; padding: 0; list-style: none; }
+        .article-toc li { margin: .5em 0; }
+        .article-toc li:not([data-level="2"]) { padding-left: 1em; }
+        .toc-teaser { display: block; margin-left: 1em; }
+      }
+      @media print { .article-toc { display: none !important; } }
+      {% endif %}
       @media (prefers-color-scheme: dark) {
         html { color-scheme: dark; background: #000; }
         body { background: #000; color: #fff; }
@@ -291,6 +315,7 @@
       </header>
 
       <main id="main-content" role="main">
+        {% if page.toc %}{{ content | table_of_contents }}{% endif %}
         {{ content }}
         <nav role="navigation" aria-label="Post navigation">
           <hr>

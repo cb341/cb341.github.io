@@ -7,4 +7,4 @@ image: "/webp-gallery/packing_day.webp"
 alt: "Packing Day Photo"
 ---
 
-## (WORK IN PROGRESS)
+**(WORK IN PROGRESS)**
