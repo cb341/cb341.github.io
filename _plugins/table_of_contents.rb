@@ -15,7 +15,7 @@ module TableOfContents
 
       teaser = attributes.match(TEASER)&.captures&.last
       link = %(<a href="##{CGI.escapeHTML(CGI.unescapeHTML(id))}">#{CGI.escapeHTML(label)}</a>)
-      text = teaser && !teaser.empty? ? "#{link}<br>#{CGI.escapeHTML(CGI.unescapeHTML(teaser))}..." : link
+      text = teaser && !teaser.empty? ? %(#{link}<span class="toc-teaser">#{CGI.escapeHTML(CGI.unescapeHTML(teaser))}...</span>) : link
 
       %(<li data-level="#{level}">#{text}</li>)
     end
