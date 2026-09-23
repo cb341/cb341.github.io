@@ -3,6 +3,7 @@ require "cgi"
 module TableOfContents
   HEADING = /<h([2-6])\b([^>]*)>(.*?)<\/h\1>/im
   ID = /\s+id\s*=\s*(["'])(.*?)\1/m
+  TEASER = /\s+data-toc-teaser\s*=\s*(["'])(.*?)\1/m
 
   def table_of_contents(html)
     items = html.to_s.scan(HEADING).filter_map do |level, attributes, body|
@@ -12,7 +13,11 @@ module TableOfContents
       label = CGI.unescapeHTML(body.gsub(/<[^>]*>/m, "")).strip
       next if label.empty?
 
-      %(<li data-level="#{level}"><a href="##{CGI.escapeHTML(CGI.unescapeHTML(id))}">#{CGI.escapeHTML(label)}</a></li>)
+      teaser = attributes.match(TEASER)&.captures&.last
+      link = %(<a href="##{CGI.escapeHTML(CGI.unescapeHTML(id))}">#{CGI.escapeHTML(label)}</a>)
+      text = teaser && !teaser.empty? ? "#{link}<br>#{CGI.escapeHTML(CGI.unescapeHTML(teaser))}..." : link
+
+      %(<li data-level="#{level}">#{text}</li>)
     end
     return "" if items.empty?
 

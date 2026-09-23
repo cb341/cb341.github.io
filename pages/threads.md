@@ -14,7 +14,14 @@ Conversations, thoughts, half-ideas, things I am starting to explore.
 {% assign entries = site.threads | sort: "date" | reverse %}
 
 {% for entry in entries %}
+{% assign teaser = entry.content | strip_html | normalize_whitespace | truncatewords: 9, "" %}
+{% assign last_char = teaser | slice: -1, 1 %}
+{% if last_char == "." or last_char == "," or last_char == ";" or last_char == ":" %}
+  {% assign trimmed_length = teaser | size | minus: 1 %}
+  {% assign teaser = teaser | slice: 0, trimmed_length %}
+{% endif %}
 ## {{ entry.title }}
+{: data-toc-teaser="{{ teaser | escape }}" }
 
 {::nomarkdown}
 {{ entry.content }}
