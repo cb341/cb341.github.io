@@ -48,7 +48,11 @@ The difference is easiest to see as two message paths. Talking to an LLM has low
 
 ![Low social overhead communication with an LLM](/assets/communication/low_social_ov.svg)
 
+*A compressed prompt goes straight to the LLM, with little social overhead around the exchange.*
+
 ![High social overhead communication with a human](/assets/communication/high_social_ov.svg)
+
+*The same core message takes extra work to encode, send, and decode when social expectations enter the exchange.*
 
 So why not do the same for people approaching me?
 
