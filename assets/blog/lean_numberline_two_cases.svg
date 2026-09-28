@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" class="lean-numberline" viewBox="0 0 760 260" width="760" height="260" font-family="Georgia, 'Times New Roman', serif" fill="#181818">
+<svg style="background:#fff" xmlns="http://www.w3.org/2000/svg" class="lean-numberline" viewBox="0 0 760 260" width="760" height="260" font-family="Georgia, 'Times New Roman', serif" fill="#181818">
   <style>
     svg.lean-numberline .lbl  { font-size: 17px; font-style: italic; }
     svg.lean-numberline .num  { font-size: 16px; }
@@ -8,11 +8,7 @@
     svg.lean-numberline .brace{ stroke: #181818; stroke-width: 1.4; fill: none; }
     svg.lean-numberline .dot  { fill: #181818; }
 
-    @media (prefers-color-scheme: dark) {
-      svg.lean-numberline { fill: #fff; }
-      svg.lean-numberline .ax, svg.lean-numberline .tick, svg.lean-numberline .brace { stroke: #fff; }
-      svg.lean-numberline .dot, svg.lean-numberline marker path { fill: #fff; }
-    }
+
   </style>
 
   <defs>

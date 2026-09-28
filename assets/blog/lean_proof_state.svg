@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" class="lean-proof-state" viewBox="0 0 868 1627" role="img" aria-labelledby="title desc">
+<svg style="background:#fff" xmlns="http://www.w3.org/2000/svg" class="lean-proof-state" viewBox="0 0 868 1627" role="img" aria-labelledby="title desc">
 <title id="title">Lean proof state overview</title>
 <desc id="desc">The proof of total ordering splits by induction on y, then by cases of the induction hypothesis and the witness. Four branches close with exact or reflexivity.</desc>
 <style>
@@ -11,10 +11,7 @@
   svg.lean-proof-state text { fill: currentColor; font-family: Arial, Helvetica, sans-serif; font-size: 15px; text-anchor: middle; }
   svg.lean-proof-state .frame-title { font-size: 18px; }
   svg.lean-proof-state .edge-label { font-size: 14px; }
-  @media (prefers-color-scheme: dark) {
-    svg.lean-proof-state { color: #f5f5f5; }
-    svg.lean-proof-state .state { fill: #17191d; }
-  }
+
 </style>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 Z" fill="currentColor"/></marker></defs>
 <rect class="frame" x="16" y="171" width="700" height="1387" rx="16"/>
