@@ -9,6 +9,9 @@ bundle install
 npm install
 ```
 
+PDF generation also requires [Pandoc](https://pandoc.org/) 3.1 or newer and
+[Typst](https://typst.app/open-source/).
+
 ## Run
 
 ```sh
@@ -25,9 +28,17 @@ Visit `localhost:4000` to view the site. Additional arguments are passed to
 bin/build
 ```
 
-Builds the site and generates a PDF for each blog article with Chrome 131 or newer.
-Math is rendered to inline SVG with MathJax during the build, so Node.js 22 or newer is required.
-Set `BROWSER_PATH` if Chrome or Chromium is installed in a nonstandard location.
+Builds the site and generates a PDF for each blog article directly from its
+Markdown source. Pandoc reads the Markdown and Typst produces the PDF, including
+text math, footnotes, hyphenation, and page-aware figures.
+
+To render one article while working on the PDF layout:
+
+```sh
+PDF_ARTICLE_URL=https://cb341.dev/blog/example/ \
+PDF_ARTICLE_DATE=02.10.2026 \
+bin/render-pdfs _posts/2026-09-06-shape-of-logic.md tmp/shape-of-logic.pdf
+```
 
 ## License
 

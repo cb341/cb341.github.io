@@ -1,3 +1,5 @@
+require "fileutils"
+
 module PdfArticles
   def self.enabled?
     ENV["GENERATE_PDFS"] == "1"
@@ -22,15 +24,28 @@ end
 Jekyll::Hooks.register :site, :post_write do |site|
   next unless PdfArticles.enabled?
 
-  article_urls = site.posts.docs.select(&:write?).map(&:url)
-  next if article_urls.empty?
+  posts = site.posts.docs.select(&:write?)
+  next if posts.empty?
 
   script = File.join(site.source, "bin", "render-pdfs")
-  Jekyll.logger.info "PDFs:", "rendering #{article_urls.length} articles"
+  Jekyll.logger.info "PDFs:", "rendering #{posts.length} articles"
 
-  success = system({ "PDF_SITE_URL" => site.config.fetch("url") }, script, site.dest, *article_urls)
-  next if success
+  posts.each do |post|
+    source = File.expand_path(post.path, site.source)
+    output = File.join(site.dest, PdfArticles.url_for(post.url).delete_prefix("/"))
+    article_url = "#{site.config.fetch("url").sub(%r{/+\z}, "")}#{post.url}"
+    date = post.data.fetch("date").strftime(site.config.fetch("date_format", "%Y-%m-%d"))
 
-  raise Jekyll::Errors::FatalException,
-    "PDF rendering failed. Run #{script} directly for details."
+    FileUtils.mkdir_p(File.dirname(output))
+    success = system(
+      { "PDF_ARTICLE_URL" => article_url, "PDF_ARTICLE_DATE" => date },
+      script,
+      source,
+      output
+    )
+    next if success
+
+    raise Jekyll::Errors::FatalException,
+      "PDF rendering failed for #{post.path}. Run #{script} directly for details."
+  end
 end

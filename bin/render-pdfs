@@ -1,68 +1,53 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env bash
+set -euo pipefail
 
-require "ferrum"
-require "fileutils"
-require "webrick"
+# Usage: bin/render-pdfs SOURCE OUTPUT
 
-site_dir = File.expand_path(ARGV.shift || abort("Usage: bin/render-pdfs SITE_DIR ARTICLE_URL..."))
-article_urls = ARGV
+SOURCE="${1:-}"
+OUTPUT="${2:-}"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-abort "Jekyll output directory not found: #{site_dir}" unless Dir.exist?(site_dir)
-abort "No article URLs given" if article_urls.empty?
+if [[ -z "$SOURCE" || -z "$OUTPUT" || $# -ne 2 ]]; then
+  echo "Usage: bin/render-pdfs SOURCE OUTPUT" >&2
+  exit 1
+fi
 
-site_url = ENV.fetch("PDF_SITE_URL", "https://cb341.dev").sub(%r{/+\z}, "")
-prepare_page = File.read(File.join(__dir__, "prepare-pdf.js"))
-pdf_styles = File.read(File.join(__dir__, "pdf.css"))
+if [[ ! -f "$SOURCE" ]]; then
+  echo "Markdown source not found: $SOURCE" >&2
+  exit 1
+fi
 
-server = WEBrick::HTTPServer.new(
-  DocumentRoot: site_dir,
-  BindAddress: "127.0.0.1",
-  Port: 0,
-  Logger: WEBrick::Log.new(File::NULL),
-  AccessLog: []
-)
-server_thread = Thread.new { server.start }
-port = server.listeners.first.addr[1]
+if ! command -v pandoc >/dev/null 2>&1; then
+  echo "pandoc not found. Install pandoc 3.1 or newer." >&2
+  exit 1
+fi
 
-browser = nil
-begin
-  browser = Ferrum::Browser.new(
-    dockerize: Process.uid.zero?,
-    process_timeout: 20,
-    timeout: 20
-  )
-  page = browser.create_page
+if ! command -v typst >/dev/null 2>&1; then
+  echo "typst not found. Install Typst, then retry." >&2
+  exit 1
+fi
 
-  article_urls.each do |article_url|
-    article_route = "/#{article_url.delete_prefix("/")}"
-    article_path = article_route
-      .delete_prefix("/")
-      .sub(/\.html\z/, "")
-      .delete_suffix("/")
-    output_route = "/#{article_path}.pdf"
-    output = File.join(site_dir, output_route.delete_prefix("/"))
-    FileUtils.mkdir_p(File.dirname(output))
+PANDOC_VERSION="$(pandoc --version | head -n 1 | awk '{print $2}')"
+PANDOC_MAJOR="${PANDOC_VERSION%%.*}"
+PANDOC_REMAINDER="${PANDOC_VERSION#*.}"
+PANDOC_MINOR="${PANDOC_REMAINDER%%.*}"
+if ((PANDOC_MAJOR < 3 || (PANDOC_MAJOR == 3 && PANDOC_MINOR < 1))); then
+  echo "pandoc 3.1 or newer is required; found $PANDOC_VERSION." >&2
+  exit 1
+fi
 
-    page.go_to("http://127.0.0.1:#{port}#{article_route}")
-    unless page.network.status == 200
-      abort "Could not render #{article_route}: HTTP #{page.network.status || "error"}"
-    end
-    page.network.wait_for_idle!(duration: 0.25, timeout: 15)
-    result = page.evaluate_async(prepare_page, 30, site_url, pdf_styles)
-    unless result["ok"]
-      abort "Could not prepare #{article_route}: #{result["error"]}"
-    end
-    page.pdf(
-      path: output,
-      format: :A4,
-      print_background: true,
-      prefer_css_page_size: true,
-      display_header_footer: false
-    )
-    puts "Rendered #{output_route}"
-  end
-ensure
-  browser&.quit
-  server.shutdown
-  server_thread.join
-end
+SOURCE="$(cd "$(dirname "$SOURCE")" && pwd)/$(basename "$SOURCE")"
+mkdir -p "$(dirname "$OUTPUT")"
+OUTPUT="$(cd "$(dirname "$OUTPUT")" && pwd)/$(basename "$OUTPUT")"
+
+cd "$ROOT"
+exec pandoc "$SOURCE" \
+  --from=markdown \
+  --output="$OUTPUT" \
+  --pdf-engine=typst \
+  --template=_pdf/article.typ \
+  --lua-filter=_pdf/captions.lua \
+  --resource-path="$ROOT" \
+  --syntax-highlighting=none \
+  --metadata="article-url:${PDF_ARTICLE_URL:-}" \
+  --metadata="date:${PDF_ARTICLE_DATE:-}"
