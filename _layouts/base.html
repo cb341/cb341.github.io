@@ -109,7 +109,13 @@
       figure.captioned-media { counter-increment: captioned-figure; }
       figure img,
       figure > a,
-      figure > video { display: block; }
+      figure > video,
+      figure > svg.inline-svg { display: block; }
+      figure > svg.inline-svg {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+      }
       figure.captioned-media figcaption {
         margin-top: .55em;
         padding-top: .5em;

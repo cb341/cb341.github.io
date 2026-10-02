@@ -73,6 +73,13 @@
   }
   p img { width: auto; }
   img[src$=".svg"], img.pixelated-image { max-height: none; }
+  figure > svg.inline-svg {
+    width: min(100%, calc(var(--inline-svg-print-width) * .8)) !important;
+    height: auto !important;
+    max-width: 100% !important;
+    max-height: 120mm !important;
+    margin-inline: auto;
+  }
 
   pre { border: 1px solid #ccc; line-height: 1.3; white-space: pre-wrap; }
   code { background: transparent; }
