@@ -9,8 +9,9 @@ bundle install
 npm install
 ```
 
-PDF generation also requires [Pandoc](https://pandoc.org/) 3.1 or newer and
-[Typst](https://typst.app/open-source/).
+PDF generation requires [Pandoc](https://pandoc.org/) 3.1 or newer and
+[Typst](https://typst.app/open-source/). CI uses Pandoc 3.10 and Typst 0.15.0,
+the versions used to verify the committed PDF pipeline.
 
 ## Run
 

@@ -17,5 +17,11 @@ jobs:
         with:
           node-version: "22"
           cache: npm
+      - uses: pandoc/actions/setup@v1
+        with:
+          version: "3.10"
+      - uses: typst-community/setup-typst@v5
+        with:
+          typst-version: "0.15.0"
       - run: bin/check_unicode
       - run: bin/build
