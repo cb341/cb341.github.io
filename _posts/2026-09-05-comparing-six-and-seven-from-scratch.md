@@ -490,7 +490,7 @@ theorem le_total (x y : ℕ) : x ≤ y ∨ y ≤ x := by
 
 the indentation records the nesting, but the code still reads as one vertical sequence. the proof state branches: `induction y` creates two obligations, then `cases hd` and `cases c` split them again.
 
-![Lean proof state overview](/assets/blog/lean_state_overview.png)
+![Lean proof state overview](/assets/blog/lean_proof_state.svg)
 _the diagram puts that shape on the page and shows where each branch closes._
 
 every node in the graphviz diagram is one of the two-column states from earlier, and every edge is a tactic. three things it shows that the linear listing hides.

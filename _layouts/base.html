@@ -109,7 +109,13 @@
       figure.captioned-media { counter-increment: captioned-figure; }
       figure img,
       figure > a,
-      figure > video { display: block; }
+      figure > video,
+      figure > svg.inline-svg { display: block; }
+      figure > svg.inline-svg {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+      }
       figure.captioned-media figcaption {
         margin-top: .55em;
         padding-top: .5em;
@@ -236,6 +242,15 @@
         figure.captioned-media figcaption::before { color: #fff; }
         code { background: transparent; }
         thead { border-color: currentColor; }
+        mjx-container[jax="SVG"] rect[data-bgcolor="true"][fill="#fff3cd"] { fill: #51431c; }
+        mjx-container[jax="SVG"] rect[data-bgcolor="true"][fill="#cfe2ff"] { fill: #203b5e; }
+        mjx-container[jax="SVG"] rect[data-bgcolor="true"][fill="#e2d9f3"] { fill: #41305a; }
+        mjx-container[jax="SVG"] rect[data-bgcolor="true"][fill="#f8d7da"] { fill: #542b35; }
+        mjx-container[jax="SVG"] rect[data-bgcolor="true"][fill="#d1e7dd"] { fill: #1d453b; }
+        mjx-container[jax="SVG"] g[data-mml-node="mpadded"] > g[fill="#1c1c1a"] {
+          fill: #f5f5f5;
+          stroke: #f5f5f5;
+        }
       }
     </style>
 

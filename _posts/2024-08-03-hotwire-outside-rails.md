@@ -66,7 +66,7 @@ Our approach involves implementing the **multiple publisher - multiple subscribe
 
 Here is a simple sequence diagram showing the core idea of this project:
 
-![Sequence diagram of the client-server interactions](/assets/blog/hotwire-sequence-diagram.webp)
+![Sequence diagram of the client-server interactions](/assets/blog/hotwire-sequence-diagram.svg)
 _Multiple publisher / multiple subscriber pattern over WebSockets_
 
 ### Implement the server
