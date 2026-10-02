@@ -1,4 +1,4 @@
-<svg style="background:#fff" xmlns="http://www.w3.org/2000/svg" class="lean-proof-state" viewBox="0 0 868 1627" role="img" aria-labelledby="title desc">
+<svg style="background:#fff" xmlns="http://www.w3.org/2000/svg" class="lean-proof-state" viewBox="0 0 868 1627" width="868" height="1627" role="img" aria-labelledby="title desc">
 <title id="title">Lean proof state overview</title>
 <desc id="desc">The proof of total ordering splits by induction on y, then by cases of the induction hypothesis and the witness. Four branches close with exact or reflexivity.</desc>
 <style>
