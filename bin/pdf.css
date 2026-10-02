@@ -74,10 +74,9 @@
   p img { width: auto; }
   img[src$=".svg"], img.pixelated-image { max-height: none; }
   figure > svg.inline-svg {
-    width: min(100%, calc(var(--inline-svg-print-width) * .8)) !important;
-    height: auto !important;
+    width: auto !important;
+    height: min(120mm, calc(var(--inline-svg-print-height) * .8)) !important;
     max-width: 100% !important;
-    max-height: 120mm !important;
     margin-inline: auto;
   }
 

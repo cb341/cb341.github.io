@@ -56,11 +56,14 @@ module InlineSvg
   def add_print_size(attributes)
     width = attributes[/\bwidth=(['"])([\d.]+)(?:px)?\1/i, 2]
     height = attributes[/\bheight=(['"])([\d.]+)(?:px)?\1/i, 2]
+    view_box = attributes.match(/\bviewBox=(['"])[\d.]+\s+[\d.]+\s+([\d.]+)\s+([\d.]+)\1/i)
+    width ||= view_box && view_box[2]
+    height ||= view_box && view_box[3]
     return attributes unless width && height
 
     properties = "--inline-svg-print-width: #{width}px; --inline-svg-print-height: #{height}px;"
     if attributes =~ /\bstyle=(['"])(.*?)\1/i
-      attributes.sub(/\bstyle=(['"])(.*?)\1/i) { %(style="#{$2} #{properties}") }
+      attributes.sub(/\bstyle=(['"])(.*?)\1/i) { %(style="#{$2}; #{properties}") }
     else
       %(#{attributes} style="#{properties}")
     end
