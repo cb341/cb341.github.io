@@ -11,10 +11,10 @@
 
 
   @media (prefers-color-scheme: dark) {
-  svg.lean-numberline { background: #000 !important; color: #f5f5f5; fill: #f5f5f5; }
-  svg.lean-numberline :is(.ax, .tick, .brace) { stroke: #f5f5f5; }
-  svg.lean-numberline .dot, svg.lean-numberline marker path { fill: #f5f5f5; }
-  svg.lean-numberline .svg-background { fill: #000; }
+  svg.inline-svg.lean-numberline { background: #000 !important; color: #f5f5f5; fill: #f5f5f5; }
+  svg.inline-svg.lean-numberline :is(.ax, .tick, .brace) { stroke: #f5f5f5; }
+  svg.inline-svg.lean-numberline .dot, svg.inline-svg.lean-numberline marker path { fill: #f5f5f5; }
+  svg.inline-svg.lean-numberline .svg-background { fill: #000; }
 }
 </style>
   <rect class="svg-background" width="100%" height="100%" fill="#fff"/>
