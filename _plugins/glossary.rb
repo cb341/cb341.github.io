@@ -28,10 +28,6 @@ module ArticleGlossary
     safe true
 
     def generate(site)
-      eligible = ArticleGlossary.entries(site).map { |entry| entry.fetch("source") }.to_set
-      site.posts.docs.each do |post|
-        post.data["glossary"] = eligible.include?(post.relative_path.delete_prefix("/"))
-      end
       # Resolve every selected definition before rendering, including terms
       # which occur only in an existing link or heading.
       ArticleGlossary.entries(site).each { |entry| ArticleGlossary.terms_for(site, entry) }
@@ -72,12 +68,13 @@ module ArticleGlossary
         next unless seen.add?(index)
 
         replacement.add_child(Nokogiri::XML::Text.new(text[cursor...match.begin(0)], root.document))
-        link = Nokogiri::XML::Node.new("a", root.document)
-        link["class"] = "glossary-term"
-        link["href"] = "##{prefix}-#{index}"
-        link["aria-describedby"] = "#{prefix}-#{index}-definition"
-        link.content = match[0]
-        replacement.add_child(link)
+        button = Nokogiri::XML::Node.new("button", root.document)
+        button["type"] = "button"
+        button["class"] = "glossary-term"
+        button["popovertarget"] = "#{prefix}-#{index}-popup"
+        button["aria-describedby"] = "#{prefix}-#{index}-definition"
+        button.content = match[0]
+        replacement.add_child(button)
         cursor = match.end(0)
         changed = true
       end
@@ -88,13 +85,26 @@ module ArticleGlossary
     end
   end
 
+  def label_html(term)
+    label = CGI.escapeHTML(term.fetch("term"))
+    return label unless term["expansion"]
+
+    %(<abbr title="#{CGI.escapeHTML(term.fetch('expansion'))}">#{label}</abbr>)
+  end
+
   def glossary_html(terms, prefix)
     items = terms.each_with_index.map do |term, index|
       <<~HTML
-        <div class="glossary-item" id="#{prefix}-#{index}">
-          <dt>#{CGI.escapeHTML(term.fetch("term"))}</dt>
-          <dd id="#{prefix}-#{index}-definition">#{CGI.escapeHTML(term.fetch("definition"))}</dd>
-        </div>
+        <dt><dfn id="#{prefix}-#{index}">#{label_html(term)}</dfn></dt>
+        <dd id="#{prefix}-#{index}-definition">#{CGI.escapeHTML(term.fetch("definition"))}</dd>
+      HTML
+    end.join
+    popovers = terms.each_with_index.map do |term, index|
+      <<~HTML
+        <dl class="glossary-popup" id="#{prefix}-#{index}-popup" popover>
+          <dt>#{label_html(term)}</dt>
+          <dd>#{CGI.escapeHTML(term.fetch("definition"))}</dd>
+        </dl>
       HTML
     end.join
 
@@ -103,6 +113,7 @@ module ArticleGlossary
         <summary>Glossary <span class="glossary-count">(#{terms.length})</span></summary>
         <dl>#{items}</dl>
       </details>
+      #{popovers}
     HTML
   end
 
@@ -127,7 +138,11 @@ module ArticleGlossary
       root.add_child(Nokogiri::HTML5.fragment(glossary_html(terms, prefix)))
       changed = true
     end
-    page.output = document.to_html(preserve_newline: true) if changed
+    return unless changed
+
+    style = File.read(File.join(site.source, "_includes/glossary-style.html"))
+    document.at_css("head").add_child(Nokogiri::HTML5.fragment(style))
+    page.output = document.to_html(preserve_newline: true)
   end
 end
 

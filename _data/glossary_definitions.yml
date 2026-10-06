@@ -2,6 +2,7 @@
 # Overrides keep the same word accurate when its meaning changes by article.
 terms:
   ECS:
+    expansion: Entity-component-system
     definition: Entity-component-system, an architecture in which entities identify objects, components hold their data, and systems operate on that data.
     aliases: [Entity Component System, entity-component-system]
   entities:
@@ -44,6 +45,7 @@ terms:
     definition: HTML messages that describe changes to a page, such as appending or replacing an element. Turbo applies these changes in the browser.
     aliases: [Turbo stream]
   DOM:
+    expansion: Document Object Model
     definition: Document Object Model, the browser's tree representation of an HTML document. JavaScript can inspect and change its elements.
   Stimulus controller:
     definition: A JavaScript class connected to HTML elements through data attributes, adding behavior such as responding to events or resetting a form.
@@ -89,6 +91,7 @@ terms:
     definition: CSS declarations written directly in an HTML element's style attribute rather than in a reusable stylesheet rule.
     aliases: [inline style]
   SVGs:
+    expansion: Scalable Vector Graphics
     definition: Scalable Vector Graphics, images described with shapes and text rather than a fixed grid of pixels, so they can scale without pixelation.
     aliases: [SVG]
   responsiveness:
@@ -142,6 +145,7 @@ terms:
     definition: A macOS security mechanism that restricts changes to protected system locations and processes, including some actions by the root user.
 
   LLM:
+    expansion: Large language model
     definition: Large language model, a model trained on large amounts of text to generate and transform language from the context it receives.
     aliases: [LLMs]
   system prompts:
@@ -196,6 +200,7 @@ terms:
     definition: Operations that act on corresponding bit positions independently, such as AND, OR, and XOR, rather than treating the inputs as whole numbers.
     aliases: [bitwise operator]
   NAND:
+    expansion: NOT AND
     definition: NOT AND. For each bit position, the result is zero only when both input bits are one; otherwise it is one.
   nibble:
     definition: A group of four bits. A byte has a low nibble and a high nibble, each with 16 possible values.
@@ -207,12 +212,14 @@ terms:
   two's complement:
     definition: A signed integer representation in which the highest bit has negative weight. An 8-bit pattern represents a value from -128 to 127.
   MSB:
+    expansion: Most significant bit
     definition: Most significant bit, the highest-weight bit in an unsigned binary number. In two's complement it is also the sign bit.
     aliases: [most significant bit]
   multiplexers:
     definition: Circuits that select one of several inputs using control bits. A 2-to-1 multiplexer selects one of two inputs.
     aliases: [multiplexer]
   ALU:
+    expansion: Arithmetic logic unit
     definition: Arithmetic logic unit, the part of a processor or simulated computer that performs arithmetic and logical operations on data.
   combinational dividers:
     definition: Division circuits that produce a result through combinational logic rather than reusing a sequential circuit over several clock cycles; they still have propagation delay.
@@ -244,6 +251,7 @@ terms:
     aliases: [lifetimes]
 
   RTGs:
+    expansion: Radioisotope thermoelectric generators
     definition: Radioisotope thermoelectric generators, devices that convert heat from radioactive decay into electricity using thermoelectric materials. They do not use a nuclear chain reaction.
     aliases: [RTG, radioisotope thermoelectric generators]
   plutonium-238 decay:
@@ -270,6 +278,7 @@ terms:
     definition: The conventions for writing a language, including spelling, capitalization, and punctuation.
 
   RFC:
+    expansion: Request for Comments
     definition: Request for Comments, a document in the series used to publish Internet technical specifications and related material. Not every RFC is an Internet standard.
     aliases: [RFCs]
   specifications:
@@ -323,6 +332,7 @@ terms:
     definition: An endgame shortcut for checking whether a king can catch a freely advancing passed pawn, using an imaginary square and accounting for whose turn it is.
 
   npv:
+    expansion: Net present value
     definition: Net present value, the sum of a project's expected cash inflows and outflows discounted to a common date, including the initial investment.
   discount factors:
     definition: Multipliers that convert future cashflows into values at an earlier reference date. At a constant annual rate r, the factor for t years is 1 / (1 + r)^t.
@@ -341,6 +351,7 @@ terms:
     definition: Einstein's theory of gravity, relating the geometry of spacetime to matter and energy rather than describing gravity simply as a Newtonian force.
 
   DNS:
+    expansion: Domain Name System
     definition: Domain Name System, the distributed naming system that maps domain names to records such as server addresses.
   top-level domains:
     definition: The highest-level domain labels directly below the DNS root, such as com, ch, and zip, written at the right-hand end of a domain name.
@@ -351,6 +362,7 @@ terms:
   namespace:
     definition: A set of names and the rules governing what they identify. Filename and DNS namespaces can contain strings that look the same but identify different things.
   ASCII:
+    expansion: American Standard Code for Information Interchange
     definition: A 7-bit character encoding with 128 values, including English letters, digits, punctuation, and control characters.
   Unicode:
     definition: A standard assigning code points to characters from many writing systems, with encoding formats such as UTF-8 used to store and transmit them.
