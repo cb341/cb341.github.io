@@ -53,8 +53,14 @@
   main a.glossary-term { color: inherit; text-decoration: none; }
   .article-glossary > * { display: block !important; }
   .article-glossary::details-content { content-visibility: visible; }
-  .article-glossary summary { font-weight: bold; }
+  .article-glossary summary { display: none !important; }
+  .glossary-item:first-child::before {
+    content: "Glossary";
+    display: block;
+    margin-bottom: 1em;
+    font-weight: bold;
+  }
   .glossary-count { display: none; }
   .glossary-item { break-inside: avoid; }
-  .article-glossary { border-color: #ccc; }
+  .article-glossary { border-color: #ccc; break-inside: avoid; }
 }

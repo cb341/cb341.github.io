@@ -59,3 +59,4 @@ exclude:
   - bin/
   - design.md
   - test/
+  - tmp/

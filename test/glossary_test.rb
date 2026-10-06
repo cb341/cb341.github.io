@@ -34,10 +34,10 @@ check(root.css("a.glossary-term").map(&:text) == ["Induction", "induction hypoth
 check(root.css("h2 a, h3 a, a a, code a, pre a, script a, style a, svg a, mjx-container a, .footnotes a, .no-glossary a").empty?, "Protected content was annotated")
 check(root.at_css('a[href="/existing"]').text == "induction", "An existing link changed")
 
-root = Nokogiri::HTML5.fragment("<p>nibble nibbles nibbleish pre_nibble αnibble nibbleβ. (NIBBLE)</p>")
+root = Nokogiri::HTML5.fragment("<p>nibble nibbles nibbleish pre_nibble \u03b1nibble nibble\u03b2. (NIBBLE)</p>")
 ArticleGlossary.annotate(root, [term("nibble", aliases: ["nibbles"])], "boundary")
 check(root.css("a.glossary-term").length == 1, "Repeated aliases were annotated in one section")
-root = Nokogiri::HTML5.fragment("<p>nibbleish pre_nibble αnibble nibbleβ. (NIBBLE)</p>")
+root = Nokogiri::HTML5.fragment("<p>nibbleish pre_nibble \u03b1nibble nibble\u03b2. (NIBBLE)</p>")
 ArticleGlossary.annotate(root, [term("nibble")], "boundary")
 check(root.css("a.glossary-term").map(&:text) == ["NIBBLE"], "Unicode or identifier word boundaries failed")
 
