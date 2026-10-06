@@ -58,7 +58,9 @@
 
   /* Compact lists can use the last few lines without splitting an item. */
   main > ul,
-  main > ol {
+  main > ol,
+  .article-body > ul,
+  .article-body > ol {
     margin-block: .35em .8em;
     line-height: 1.3;
   }

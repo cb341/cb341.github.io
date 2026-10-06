@@ -1,0 +1,303 @@
+# Editorial selection for glossary rendering; definitions and aliases live in
+# glossary_definitions.yml. Set eligible to false to disable a piece's glossary.
+# Eligible means that a brief, contextual definition would help readers follow
+# the piece. Terms name concepts used in the source, rather than incidental
+# products, people, or code identifiers. Small selections are intentional.
+# Existing explanations can supply reminder hints; essential definitions
+# should stay in the prose.
+
+posts:
+  - source: _posts/2024-03-07-bevy-multiplayer.md
+    title: Multiplayer with Bevy and Renet
+    eligible: true
+    reason: Readers need the ECS vocabulary and networking concepts to follow the implementation.
+    terms:
+      - ECS
+      - entities
+      - components
+      - systems
+      - data synchronization
+      - binary message encoding
+      - latency
+
+  - source: _posts/2024-04-14-tmux.md
+    title: Supercharge Your Tmux Setup
+    eligible: true
+    reason: A small glossary would distinguish the terminal interface, its subdivisions, and event-driven configuration.
+    terms:
+      - terminal multiplexer
+      - terminal emulator
+      - panes
+      - prefix
+      - hooks
+
+  - source: _posts/2024-08-03-hotwire-outside-rails.md
+    title: Hotwire Outside of Rails
+    eligible: true
+    reason: The tutorial depends on several web communication and DOM update concepts unfamiliar outside this stack.
+    terms:
+      - Web Sockets
+      - multiple publisher - multiple subscriber pattern
+      - Turbo streams
+      - DOM
+      - Stimulus controller
+      - backend agnostic
+
+  - source: _posts/2025-02-28-exploring-rust.md
+    title: Exploring Rust as a Rubyist
+    eligible: true
+    reason: Rust and game development introduce concepts that a Ruby reader may not already know.
+    terms:
+      - voxel
+      - meshing
+      - memory safety
+      - ECS
+      - feature flags
+      - composition over inheritance
+      - traits
+      - macros
+      - borrow checker
+
+  - source: _posts/2025-08-08-local-zsh.md
+    title: Local zsh
+    eligible: true
+    reason: Only a small selection is needed; understanding aliases and sourcing is enough to follow the setup.
+    terms:
+      - aliases
+      - source
+
+  - source: _posts/2025-08-12-hackts-design.md
+    title: Custom Figma Design Challenges
+    eligible: true
+    reason: Layout vocabulary explains the implementation difficulty and the tradeoffs discussed.
+    terms:
+      - box model
+      - flexbox
+      - grid
+      - inline styles
+      - SVGs
+      - responsiveness
+
+  - source: _posts/2025-10-25-editor-journey.md
+    title: My Editor Journey
+    eligible: false
+    reason: The main thread is a personal account of editor preferences; most unfamiliar names are products, and modal editing can be explained locally if needed.
+    terms: []
+
+  - source: _posts/2026-03-28-map-reduce-myself.md
+    title: Map-Reducing Myself
+    eligible: true
+    reason: A few AI and information theory concepts explain how the summarization pipeline works and why compression matters.
+    terms:
+      - metadata
+      - chunking
+      - context window
+      - tokens
+      - Kolmogorov complexity
+
+  - source: _posts/2026-03-30-a-optimized-language.md
+    title: Compressed Language
+    eligible: true
+    reason: Specialized language, information theory, and database vocabulary carry the compression argument.
+    terms:
+      - formal notation
+      - logographic
+      - relational algebra
+      - bag semantics
+      - Typoglycaemia
+      - Shannon entropy
+      - redundancy
+      - lossy
+
+  - source: _posts/2026-04-27-multi-user-brew.md
+    title: How the Homebrew Multi-User Rabbit Hole Bricked My Mac
+    eligible: true
+    reason: Unix permissions and package manager vocabulary are necessary to understand why the approaches failed.
+    terms:
+      - prefix
+      - umask
+      - group-write permissions
+      - bottles
+      - formulae
+      - casks
+      - sudo
+      - System Integrity Protection
+
+  - source: _posts/2026-05-27-system-prompts-for-humans.md
+    title: System Prompts For Humans
+    eligible: true
+    reason: The argument connects AI instructions with communication styles; a few reminders would make these labels easier to follow.
+    terms:
+      - LLM
+      - system prompts
+      - communication protocol
+      - low context
+      - high context
+      - egalitarian
+      - Async communication
+
+  - source: _posts/2026-09-05-comparing-six-and-seven-from-scratch.md
+    title: Comparing 6 and 7 from Scratch
+    eligible: true
+    reason: Strong candidate; the long proof repeatedly relies on logical, inductive, and proof assistant vocabulary, even after introducing it.
+    terms:
+      - total order
+      - disjunction
+      - existential quantification
+      - universal quantification
+      - witness
+      - successor
+      - induction
+      - axioms
+      - lemmas
+      - definitionally equal
+      - induction hypothesis
+      - proof state
+
+  - source: _posts/2026-09-06-shape-of-logic.md
+    title: Shape of Logic
+    eligible: true
+    reason: Strong candidate; interpreting the images requires bit-level arithmetic and circuit terminology.
+    terms:
+      - truth table
+      - Bitwise operators
+      - NAND
+      - nibble
+      - carry
+      - signed overflow
+      - two's complement
+      - MSB
+      - multiplexers
+      - ALU
+      - combinational dividers
+      - fragment shader
+
+threads:
+  - source: _threads/2026-04-10.md
+    title: 10.04.2026
+    eligible: true
+    reason: One brief hint can explain the philosophical term without turning a personal reflection into a reference page.
+    terms:
+      - nihilism
+
+  - source: _threads/2026-04-21.md
+    title: 21.04.2026
+    eligible: true
+    reason: Derivative and multivariable calculus terminology is central to the notation comparison.
+    terms:
+      - derivative
+      - higher-order derivatives
+      - discretization
+      - partial derivatives
+      - Jacobi matrix
+      - comma derivative
+      - lifetime
+
+  - source: _threads/2026-04-23.md
+    title: 23.04.2026
+    eligible: false
+    reason: Word splitting is demonstrated directly by the examples; defining product names would not help the observation.
+    terms: []
+
+  - source: _threads/2026-05-04.md
+    title: 04.05.2026
+    eligible: false
+    reason: This is a personal reflection about engineering and making things; it does not depend on specialized vocabulary.
+    terms: []
+
+  - source: _threads/2026-05-10.md
+    title: 10.05.2026
+    eligible: true
+    reason: Scientific vocabulary carries the analogy; definitions should clarify the concepts without endorsing the thread's speculative causal claims.
+    terms:
+      - RTGs
+      - plutonium-238 decay
+      - mutations
+      - selective pressure
+      - DNA repair
+      - directed evolution
+
+  - source: _threads/2026-05-11-midnight.md
+    title: 11.05.2026 (midnight)
+    eligible: false
+    reason: The reflection on delegation and loneliness is already written in ordinary language.
+    terms: []
+
+  - source: _threads/2026-05-11-morning.md
+    title: 11.05.2026 (morning)
+    eligible: true
+    reason: The proposal assumes readers can distinguish sentence types and know the term for writing conventions.
+    terms:
+      - declarative
+      - imperative
+      - interrogative
+      - exclamatory
+      - orthography
+
+  - source: _threads/2026-05-11-afternoon.md
+    title: 11.05.2026 (afternoon)
+    eligible: true
+    reason: A small glossary can explain the RFC context; MUST and SHOULD are already defined in the quoted passage.
+    terms:
+      - RFC
+      - specifications
+      - tokens
+      - encode/decode
+
+  - source: _threads/2026-05-12.md
+    title: 12.05.2026
+    eligible: true
+    reason: Naming unfamiliar rhetorical devices is the point of this entry; readers benefit from concise definitions beside the labels.
+    terms:
+      - anthropomorphism
+      - tropes
+      - metaphor
+      - metonymy
+      - synecdoche
+      - personification
+      - reification
+      - chiasmus
+
+  - source: _threads/2026-05-19.md
+    title: 19.05.2026
+    eligible: true
+    reason: Chess tactics and endgame vocabulary would otherwise exclude readers new to the game.
+    terms:
+      - blitz
+      - elo
+      - pins
+      - skewers
+      - hanging pieces
+      - passed pawns
+      - prophylaxis
+      - opposition
+      - square rule
+
+  - source: _threads/2026-06-02.md
+    title: 02.06.2026
+    eligible: true
+    reason: The argument depends on distinguishing types of approximation and financial quantities; standard terms should remain separate from the proposed notation.
+    terms:
+      - npv
+      - discount factors
+      - present values
+      - floating point
+      - numerical error
+      - model error
+      - general relativity
+
+  - source: _threads/2026-06-08.md
+    title: 08.06.2026
+    eligible: true
+    reason: DNS naming and Unicode security concepts explain why the same visible string can have different technical meanings.
+    terms:
+      - DNS
+      - top-level domains
+      - delegated
+      - namespace
+      - ASCII
+      - Unicode
+      - internationalized domain name
+      - homograph attacks
+      - code points
+      - Punycode

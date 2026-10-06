@@ -1,0 +1,60 @@
+.glossary-term {
+  color: inherit;
+  text-decoration: underline dotted #77776f;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .2em;
+  cursor: help;
+}
+.glossary-term:hover { text-decoration-color: currentColor; }
+.glossary-term:focus-visible {
+  outline: 2px solid #7979ad;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.article-glossary {
+  margin: 2em 0 1.5em;
+  padding-top: .8em;
+  border-top: 1px solid #e6e6e2;
+  line-height: 1.45;
+}
+.article-glossary > summary { cursor: pointer; }
+.glossary-count { color: #66665f; font-size: .85em; }
+.article-glossary dl { margin-bottom: 0; }
+.glossary-item { margin: 1em 0; scroll-margin-top: 1em; }
+.glossary-item dt { font-weight: bold; }
+.glossary-item dd { margin: .25em 0 0; }
+.glossary-popup {
+  position: fixed;
+  z-index: 100;
+  box-sizing: border-box;
+  width: 290px;
+  max-width: calc(100vw - 24px);
+  max-height: calc(100dvh - 24px);
+  overflow-y: auto;
+  padding: 13px 16px;
+  border: 1px solid #d8d8d0;
+  border-radius: 4px;
+  background: #fafaf6;
+  color: #1c1c1a;
+  box-shadow: 0 4px 16px #00000014;
+  font-size: 14px;
+  line-height: 1.45;
+}
+.glossary-popup[hidden] { display: none; }
+.glossary-popup strong { display: block; margin-bottom: .3em; }
+.glossary-popup p { margin: 0; }
+@media (prefers-color-scheme: dark) {
+  .article-glossary { border-color: #454540; }
+  .glossary-count { color: #aaa; }
+  .glossary-popup { background: #191917; color: #eee; border-color: #454540; }
+}
+@media print {
+  .glossary-popup { display: none !important; }
+  main a.glossary-term { color: inherit; text-decoration: none; }
+  .article-glossary > * { display: block !important; }
+  .article-glossary::details-content { content-visibility: visible; }
+  .article-glossary summary { font-weight: bold; }
+  .glossary-count { display: none; }
+  .glossary-item { break-inside: avoid; }
+  .article-glossary { border-color: #ccc; }
+}

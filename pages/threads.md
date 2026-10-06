@@ -24,7 +24,9 @@ Conversations, thoughts, half-ideas, things I am starting to explore.
 {: data-toc-teaser="{{ teaser | escape }}" }
 
 {::nomarkdown}
+<div class="thread-entry" data-glossary-source="{{ entry.path | escape }}">
 {{ entry.content }}
+</div>
 {:/nomarkdown}
 
 {% assign slug = entry.title | replace: ".", "" | slugify %}
