@@ -1,15 +1,13 @@
 <style>
   /* Glossary */
-  .glossary-term { font: inherit; color: inherit; background: none; border: 0; padding: 0; text-decoration: underline dotted; text-underline-offset: .2em; cursor: pointer; }
-  .article-glossary { margin: 2em 0; padding-top: .8em; border-top: 1px solid GrayText; }
-  .article-glossary summary { cursor: pointer; }
-  .glossary-count { color: GrayText; font-size: .85em; }
+  .glossary-term { all: unset; text-decoration: underline dotted; cursor: pointer; }
+  .glossary-term:focus-visible { outline: auto; }
+  .article-glossary { margin: 2em 0; }
   .article-glossary dt { margin-top: 1em; }
   .article-glossary dt, .glossary-popup dt { font-weight: bold; }
-  .article-glossary dfn { font-style: normal; scroll-margin-top: 1em; }
-  .article-glossary dd, .glossary-popup dd { margin: .25em 0 0; line-height: 1.45; }
-  .glossary-popup { width: 30ch; max-width: calc(100vw - 3em); padding: .8em 1em; border: 1px solid GrayText; background: Canvas; color: CanvasText; }
+  .article-glossary dd, .glossary-popup dd { margin: .25em 0 0; }
+  .glossary-popup { max-width: min(30ch, calc(100vw - 3em)); padding: .75em; }
   @supports (position-area: bottom) {
-    .glossary-popup { inset: auto; margin: .5em; position-area: bottom; position-try-fallbacks: flip-block, flip-inline; }
+    .glossary-popup { inset: auto; margin: .5em; position-area: bottom; position-try-fallbacks: flip-block; }
   }
 </style>

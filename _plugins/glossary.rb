@@ -110,7 +110,7 @@ module ArticleGlossary
 
     <<~HTML
       <details class="article-glossary" id="#{prefix}">
-        <summary>Glossary <span class="glossary-count">(#{terms.length})</span></summary>
+        <summary>Glossary (#{terms.length})</summary>
         <dl>#{items}</dl>
       </details>
       #{popovers}
