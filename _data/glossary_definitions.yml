@@ -162,8 +162,14 @@ terms:
   Async communication:
     definition: Asynchronous communication, where participants send and respond at different times rather than needing to be present together.
 
+  proof assistant:
+    definition: Software that checks formal mathematical proofs. In Lean, tactics build a proof term that the kernel, its core proof checker, checks against the theorem's statement.
+    aliases: [proof assistants]
+  dependency graph:
+    definition: A diagram showing which definitions, axioms, and earlier theorems each result relies on. A path to a theorem shows how an earlier result contributes to its proof.
+    aliases: [dependency map]
   total order:
-    definition: An order relation that is reflexive, antisymmetric, transitive, and compares every pair of elements. The article proves the comparability condition for the natural numbers.
+    definition: An order relation in which every element is at most itself, a ≤ b and b ≤ a imply a = b, and a ≤ b and b ≤ c imply a ≤ c. Every pair also compares; the article proves this last condition.
   disjunction:
     definition: Logical OR. A disjunction P or Q holds when at least one of P and Q holds, including when both hold.
   existential quantification:
@@ -173,13 +179,67 @@ terms:
   witness:
     definition: An object supplied to establish an existential statement; here, a natural number that satisfies the required equation.
     aliases: [witnesses]
+  propositional logic:
+    definition: Logic that combines statements with connectives such as AND, OR, NOT, and implication, treating each statement as a whole rather than examining its objects or quantifiers.
+  converse:
+    definition: The implication obtained by reversing an implication's direction. The converse of P → Q is Q → P; it need not have the same truth value as the original.
+  contrapositive:
+    definition: The implication obtained by reversing the direction and negating both sides. The contrapositive of P → Q is ¬Q → ¬P; in classical logic they are equivalent.
+  De Morgan laws:
+    definition: The equivalences ¬(P ∧ Q) ↔ (¬P ∨ ¬Q) and ¬(P ∨ Q) ↔ (¬P ∧ ¬Q). Moving negation across AND or OR switches the connective and negates each side.
+  commutativity:
+    definition: The property that exchanging the two inputs leaves the result unchanged, as in a + b = b + a or P ∧ Q ↔ Q ∧ P.
+    aliases: [commutative]
+  associativity:
+    definition: The property that regrouping three inputs leaves the result unchanged, as in (a + b) + c = a + (b + c). It changes parentheses while keeping the inputs in the same order.
+    aliases: [associative]
+  idempotent:
+    definition: Unchanged when an input is combined with itself. In the logical laws here, P ∧ P and P ∨ P are each equivalent to P.
+    aliases: [idempotence]
+  distributive:
+    definition: Allowing one operation to pass through another. For logic, P ∧ (Q ∨ R) is equivalent to (P ∧ Q) ∨ (P ∧ R); the corresponding law also holds with AND and OR exchanged.
+    aliases: [distributivity]
+  absorption laws:
+    definition: The logical equivalences P ∧ (P ∨ Q) ↔ P and P ∨ (P ∧ Q) ↔ P. The repeated P makes the extra combination with Q unnecessary.
+  double negation:
+    definition: Negating a statement twice. In classical logic, ¬¬P is equivalent to P; Lean's constructive logic requires a classical principle for the direction from ¬¬P to P in general.
+  inductive definition:
+    definition: A definition specifying constructors that generate the objects, with no other objects admitted. Here, every natural number is zero or the successor of a natural number, built in finitely many steps.
+    aliases: [inductive type, inductive types]
   successor:
     definition: The next natural number, written succ(n). The article constructs natural numbers from zero and repeated successor steps.
     aliases: [successors]
   induction:
     definition: A proof method for the natural numbers that establishes a base case at zero and proves the property for succ(n) assuming it for n.
+    aliases: [induction principle]
+  injective:
+    definition: Sending distinct inputs to distinct outputs. For the successor function, succ(a) = succ(b) implies a = b.
+  first-order theory:
+    definition: A collection of axioms in a language whose quantifiers range over individual objects. For first-order Peano arithmetic, those objects are numbers; quantifiers do not range over all sets or properties of numbers.
+    aliases: [first-order arithmetic]
+  induction schema:
+    definition: A family of axioms, one for each formula expressing a property of numbers. Each says that if the property holds at zero and passes from a number to its successor, it holds for every number.
+  constructor:
+    definition: A basic way to build a value of an inductive type. MyNat has zero and succ; the disjunction type Or has a constructor for a proof of the left side and one for a proof of the right side.
+    aliases: [constructors]
+  elaboration:
+    definition: Lean's translation of source notation into fully specified terms, filling in information such as implicit arguments and types. Here it translates the numeral 0 into a term of type MyNat that reduces to MyNat.zero.
+    aliases: [elaborates]
+  opaque:
+    definition: In Lean, a constant whose definition the proof checker cannot expand to compute with. Here, add is opaque, so its arithmetic behavior comes from the two addition axioms and the theorems proved from them.
+  unfolding:
+    definition: Replacing a defined name with its defining expression. Here, unfolding a ≤ b reveals ∃ c, b = a + c; the opaque add function cannot be expanded this way inside a proof.
+    aliases: [unfold, unfolds, unfolded]
+  reducible:
+    definition: Available for Lean's elaborator and tactics to expand automatically when they need to see the expression behind a defined name. Here this lets use see the existential statement behind the ≤ notation.
+  reflexivity:
+    definition: The property that a relation holds between every element and itself. For ≤, this is n ≤ n; for equality, it is n = n.
+    aliases: [reflexive]
+  type checking:
+    definition: Checking that an expression has its claimed type. In Lean, a theorem's statement is the type expected of its proof term, so checking that term verifies the proof relative to its definitions and assumptions.
+    aliases: [type-checking, typecheck]
   axioms:
-    definition: Statements accepted as starting assumptions within a formal system. In this development, two axioms constrain the opaque addition function.
+    definition: Statements accepted as starting assumptions within a formal system. In this development, a + 0 = a and a + succ(d) = succ(a + d) are assumed rather than proved.
     aliases: [axiom]
   lemmas:
     definition: Proved statements used as intermediate results in a larger proof. A lemma is a theorem serving a supporting role.
@@ -187,11 +247,31 @@ terms:
   definitionally equal:
     definition: Equal by the computation and reduction rules of the type system, without needing a separate theorem to identify the two expressions.
     aliases: [definitional reductions, definitional]
+  tactics:
+    definition: Commands that build a Lean proof by transforming its goals and available hypotheses. For example, induction splits a goal into a base case and a successor case, while exact supplies an existing proof.
+    aliases: [tactic]
+  hypothesis:
+    definition: An assumption or previously established statement available in the current proof branch. A tactic can use it to prove the goal; an induction hypothesis is one particular kind.
+    aliases: [hypotheses]
+  goal:
+    definition: A statement that still needs a proof in the current branch. Tactics can transform it, split it into further obligations, or close it by providing a proof.
+    aliases: [goals]
+  base case:
+    definition: The starting case of an induction. For the natural numbers in this article, it proves the claimed property at zero without an induction hypothesis.
+  inductive step:
+    definition: The part of an induction that assumes a property for an arbitrary natural number d and proves it for succ(d). Together with the base case, it establishes the property for every natural number.
   induction hypothesis:
     definition: The assumed truth of the property for the current natural number in an inductive step, used to prove it for the successor.
     aliases: [inductive hypothesis]
   proof state:
     definition: The hypotheses currently available and the goals still to be proved. A Lean tactic transforms this state while constructing a proof.
+  proof term:
+    definition: A formal expression representing a proof, whose type is the statement being proved. Lean tactics construct this expression, which the kernel then checks.
+  universe of discourse:
+    definition: The collection of objects the variables and quantifiers range over. In the English proof here, all number variables range over the natural numbers.
+  summand:
+    definition: A quantity being added. In (a + b) + c, b is the middle summand; the proof of associativity here uses induction on b.
+    aliases: [summands]
 
   truth table:
     definition: A table listing an operation's result for every possible input combination. Here, each pixel represents one pair of integer inputs.
@@ -379,6 +459,9 @@ terms:
     definition: An encoding of Unicode strings into ASCII used for internationalized domain labels, whose encoded form begins with xn--.
 
 overrides:
+  _posts/2026-09-05-comparing-six-and-seven-from-scratch.md:
+    truth table:
+      definition: A table giving a logical statement's truth value for every combination of truth values of its inputs. Here T means true and F means false.
   _posts/2026-04-27-multi-user-brew.md:
     prefix:
       definition: The base directory where a package manager installs its files, such as /opt/homebrew for Homebrew on Apple Silicon.

@@ -141,18 +141,50 @@ posts:
     eligible: true
     reason: Strong candidate; the long proof repeatedly relies on logical, inductive, and proof assistant vocabulary, even after introducing it.
     terms:
+      - proof assistant
+      - dependency graph
       - total order
       - disjunction
       - existential quantification
       - universal quantification
       - witness
+      - propositional logic
+      - truth table
+      - converse
+      - contrapositive
+      - De Morgan laws
+      - commutativity
+      - associativity
+      - idempotent
+      - distributive
+      - absorption laws
+      - double negation
+      - inductive definition
       - successor
       - induction
+      - injective
+      - first-order theory
+      - induction schema
+      - constructor
+      - elaboration
+      - opaque
+      - unfolding
+      - reducible
+      - reflexivity
+      - type checking
       - axioms
       - lemmas
       - definitionally equal
+      - tactics
+      - hypothesis
+      - goal
+      - base case
+      - inductive step
       - induction hypothesis
       - proof state
+      - proof term
+      - universe of discourse
+      - summand
 
   - source: _posts/2026-09-06-shape-of-logic.md
     title: Shape of Logic
