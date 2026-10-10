@@ -18,6 +18,10 @@ posts:
       - ECS
       - data synchronization
       - binary message encoding
+      - ECS resource
+      - reliable channel
+      - unreliable channel
+      - frame rate
 
   # A small glossary would distinguish the terminal interface, its subdivisions, and event-driven
   # configuration.
@@ -28,6 +32,8 @@ posts:
       - pane
       - prefix
       - hook
+      - tmux window
+      - tmux layout
 
   # Persistent connections, messaging patterns, and HTML update mechanisms explain the
   # unfamiliar parts of the stack.
@@ -37,6 +43,10 @@ posts:
       - multiple publisher - multiple subscriber pattern
       - Turbo stream
       - Stimulus controller
+      - HTML over the wire
+      - broadcast
+      - pub/sub topic
+      - data attribute
 
   # Rust and game development introduce concepts that a Ruby reader may not already know.
   - source: _posts/2025-02-28-exploring-rust.md
@@ -49,6 +59,11 @@ posts:
       - trait
       - macro
       - borrow checker
+      - zero-cost abstraction
+      - metaprogramming
+      - struct
+      - data race
+      - language server
 
   # Only a small selection is needed; understanding aliases and sourcing is enough to follow
   # the setup.
@@ -66,6 +81,8 @@ posts:
       - inline style
       - SVG
       - responsiveness
+      - utility class
+      - accessibility
 
   # Language-model limits and information theory explain the summarization pipeline and its
   # compression tradeoffs.
@@ -75,9 +92,12 @@ posts:
       - context window
       - token
       - Kolmogorov complexity
+      - precondition and postcondition
+      - data normalization
 
   # Specialized language, information theory, and database vocabulary carry the compression
-  # argument.
+  # argument. Relational algebra and Typoglycaemia intentionally remain glossary-only
+  # because their occurrences are in headings and links.
   - source: _posts/2026-03-30-a-optimized-language.md
     terms:
       - formal notation
@@ -88,6 +108,10 @@ posts:
       - Shannon entropy
       - redundancy
       - lossy
+      - set semantics
+      - UML composition
+      - UML aggregation
+      - shared context
 
   # Unix permissions and package manager vocabulary are necessary to understand why the
   # approaches failed.
@@ -100,16 +124,26 @@ posts:
       - formula
       - cask
       - System Integrity Protection
+      - launchd
+      - MacPorts port
+      - daemon
+      - kernel extension
 
-  # Language-model instructions and communication styles connect the AI analogy to human
-  # conversations.
+  # Language-model instructions and one pole from each Culture Map axis connect the
+  # AI analogy to human conversations.
   - source: _posts/2026-05-27-system-prompts-for-humans.md
     terms:
       - LLM
       - system prompt
       - low context
-      - high context
       - asynchronous communication
+      - direct feedback
+      - principles-first persuasion
+      - egalitarian leadership
+      - consensual decision-making
+      - task-based trust
+      - confrontational disagreement
+      - flexible scheduling
 
   # Lean-specific concepts and easily confused proof terms merit reminders; the article
   # explains the remaining logic and arithmetic.
@@ -143,6 +177,12 @@ posts:
       - ALU
       - combinational divider
       - fragment shader
+      - restoring divider
+      - sequential logic
+      - propagation depth
+      - modular arithmetic
+      - truncating integer division
+      - self-similarity
 
 threads:
   # One brief hint can explain the philosophical term without turning a personal reflection

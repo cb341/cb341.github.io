@@ -13,6 +13,18 @@ terms:
     aliases: [synchronization, synchronizing, synchronising]
   binary message encoding:
     definition: Representing structured data as bytes for transmission or storage.
+  ECS resource:
+    definition: Data stored once per ECS world and shared by systems, rather than attached to individual entities.
+    aliases: [resources]
+  reliable channel:
+    definition: A message channel that retransmits lost messages to deliver them while the connection remains active.
+    aliases: [reliable channels, ReliableOrdered]
+  unreliable channel:
+    definition: A message channel that sends without retransmitting losses, allowing messages to be dropped or arrive out of order.
+    aliases: [unreliable channels, Unreliable]
+  frame rate:
+    definition: The number of image frames rendered or displayed per second.
+    aliases: [frame rates]
 
   terminal multiplexer:
     definition: A program that manages multiple terminal sessions, windows, and panes within one terminal interface.
@@ -27,6 +39,12 @@ terms:
   hook:
     definition: A command configured to run automatically when a particular event occurs.
     aliases: [hooks]
+  tmux window:
+    definition: A tmux container holding one or more panes within a session, separate from the terminal emulator's window.
+    aliases: [windows]
+  tmux layout:
+    definition: The arrangement and relative sizes of panes within a tmux window.
+    aliases: [layout, layouts]
 
   WebSocket:
     definition: A protocol maintaining an open connection so client and server can send messages in either direction.
@@ -39,6 +57,17 @@ terms:
   Stimulus controller:
     definition: A JavaScript class attached to HTML elements through data attributes to handle events and add behavior.
     aliases: [Stimulus controllers]
+  HTML over the wire:
+    definition: Sending server-rendered HTML to update a browser interface instead of transmitting data for client-side templating.
+  broadcast:
+    definition: Sending the same message to all connected clients or subscribers.
+    aliases: [broadcasts, broadcasting, broadcasted]
+  pub/sub topic:
+    definition: A named message channel that publishers send to and subscribers listen to.
+    aliases: [topic, topics]
+  data attribute:
+    definition: An HTML attribute prefixed with data- that stores custom values for scripts.
+    aliases: [data attributes, data-attribute, data-attributes]
 
   voxel:
     definition: A volume element representing a cell in three-dimensional space, analogous to a pixel in an image.
@@ -58,6 +87,20 @@ terms:
     aliases: [macros]
   borrow checker:
     definition: Rust's compile-time analysis that checks references obey ownership and borrowing rules.
+  zero-cost abstraction:
+    definition: An abstraction that adds no runtime overhead compared with equivalent code written without it.
+    aliases: [zero-cost abstractions, zero cost abstraction]
+  metaprogramming:
+    definition: Writing code that generates, inspects, or modifies other code or program structures.
+  struct:
+    definition: A Rust type grouping fields into a single value, with named, positional, or no fields.
+    aliases: [structs]
+  data race:
+    definition: Concurrent memory accesses from multiple threads, at least one writing and one non-atomic, without adequate synchronization.
+    aliases: [data races]
+  language server:
+    definition: A program providing editor features such as completion, diagnostics, and refactoring through a shared protocol.
+    aliases: [language servers]
 
   alias:
     definition: A shell name that expands into other command text.
@@ -81,6 +124,11 @@ terms:
     aliases: [SVGs]
   responsiveness:
     definition: A layout's ability to adapt to different viewport sizes while keeping content usable and readable.
+  utility class:
+    definition: A reusable CSS class that applies one focused styling rule, such as spacing or text alignment.
+    aliases: [utility classes]
+  accessibility:
+    definition: Designing interfaces so people with disabilities can perceive, understand, navigate, and use them.
 
   chunking:
     definition: Splitting text into smaller parts that can each be processed within a model's input limit.
@@ -91,6 +139,12 @@ terms:
     aliases: [tokens]
   Kolmogorov complexity:
     definition: The length of the shortest program producing a given output, relative to a chosen universal computing system.
+  precondition and postcondition:
+    definition: A condition required before an operation runs, or guaranteed after it completes successfully.
+    aliases: [pre/postcondition, pre/postconditions]
+  data normalization:
+    definition: Transforming data into a consistent representation for processing or comparison.
+    aliases: [normalized, normalised]
 
   formal notation:
     definition: Symbols and rules with explicitly defined meanings, as in mathematics or diagramming languages.
@@ -108,6 +162,17 @@ terms:
     definition: Predictable or repeated information that can be omitted while preserving the intended message.
   lossy:
     definition: Discarding information during compression or encoding, preventing exact reconstruction of the original.
+  set semantics:
+    definition: Treating a collection as a set, where each distinct value appears at most once.
+    aliases: [set-based]
+  UML composition:
+    definition: A UML whole-part association with exclusive ownership, shown by a filled diamond, whose parts are deleted with their whole.
+    aliases: [composition]
+  UML aggregation:
+    definition: A UML whole-part association shown by a hollow diamond, with grouping semantics defined by the model.
+    aliases: [aggregation]
+  shared context:
+    definition: Knowledge, conventions, and assumptions shared by participants, allowing messages to leave some meaning implicit.
 
   umask:
     definition: A Unix mask that removes selected permission bits when files or directories are created.
@@ -125,6 +190,17 @@ terms:
     aliases: [casks]
   System Integrity Protection:
     definition: A macOS security mechanism restricting changes to protected system locations and processes, including actions by root.
+  launchd:
+    definition: macOS's service manager for starting, stopping, and supervising background processes.
+  MacPorts port:
+    definition: A MacPorts package definition describing software sources, dependencies, and installation steps.
+    aliases: [ports, port]
+  daemon:
+    definition: A background process that provides a service without an interactive user interface.
+    aliases: [daemons]
+  kernel extension:
+    definition: A loadable module that adds functionality, such as hardware drivers, to an operating system's kernel.
+    aliases: [kernel extensions]
 
   LLM:
     expansion: Large language model
@@ -135,11 +211,29 @@ terms:
     aliases: [system prompts]
   low context:
     definition: A communication style expressing meaning directly in the message, with little reliance on shared background or implicit cues.
-  high context:
-    definition: A communication style relying on shared background, relationships, and implicit cues to convey meaning.
   asynchronous communication:
     definition: Communication where participants send and respond at different times without needing to be present together.
     aliases: [Async communication]
+  direct feedback:
+    definition: An evaluation style that states criticism explicitly and clearly.
+  principles-first persuasion:
+    definition: A persuasion style that presents general principles or theory before drawing conclusions and applying them to examples.
+    aliases: [principles first, principles-first]
+  egalitarian leadership:
+    definition: A leadership style that minimizes status differences and encourages participation regardless of rank.
+    aliases: [egalitarian]
+  consensual decision-making:
+    definition: A decision-making style that seeks broad agreement among participants before committing to a choice.
+    aliases: [consensual]
+  task-based trust:
+    definition: A trust-building style where confidence develops through reliable work and demonstrated competence.
+    aliases: [task based trust, task based, task-based]
+  confrontational disagreement:
+    definition: A disagreement style that treats open debate and challenge as normal parts of productive discussion.
+    aliases: [confrontational]
+  flexible scheduling:
+    definition: A scheduling style that adapts plans and timing as circumstances change.
+    aliases: [flexible time]
 
   witness:
     definition: An object supplied to establish that an existential statement holds.
@@ -203,6 +297,22 @@ terms:
     aliases: [combinational dividers]
   fragment shader:
     definition: A GPU program computing output values, such as color, for fragments during rendering.
+  restoring divider:
+    definition: A divider that shifts and subtracts, restoring the previous partial remainder whenever a subtraction produces a negative result.
+    aliases: [restoring dividers]
+  sequential logic:
+    definition: Digital logic whose outputs depend on current inputs and stored state.
+  propagation depth:
+    definition: The maximum number of successive logic stages a signal traverses from a circuit's inputs to its outputs.
+  modular arithmetic:
+    definition: Arithmetic that identifies numbers with the same remainder after division by a fixed modulus.
+    aliases: [addition mod 256, mod]
+  truncating integer division:
+    definition: Integer division that discards the fractional part of the quotient, rounding toward zero.
+    aliases: [truncating division, truncating]
+  self-similarity:
+    definition: A pattern's resemblance to itself at different scales.
+    aliases: [self similarity]
 
   nihilism:
     definition: A family of philosophical views questioning or denying foundations of meaning, value, or knowledge.
@@ -335,6 +445,9 @@ terms:
     definition: An encoding representing Unicode strings using ASCII characters, used within internationalized domain labels.
 
 overrides:
+  _posts/2024-03-07-bevy-multiplayer.md:
+    reliable channel:
+      definition: A Renet channel that retransmits lost messages and delivers them in sending order.
   _posts/2026-09-06-shape-of-logic.md:
     truth table:
       definition: A table of results for all input combinations, visualized here as pixels representing pairs of integer inputs.
