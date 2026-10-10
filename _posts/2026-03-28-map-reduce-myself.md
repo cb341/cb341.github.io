@@ -11,12 +11,11 @@ glossary:
     definition: The maximum number of tokens a language model can handle as input and output together in one request.
   token:
     definition: A text unit processed by a language model, such as a word, word fragment, or punctuation mark.
-    aliases: [tokens]
   Kolmogorov complexity:
     definition: The length of the shortest program producing a given output, relative to a chosen universal computing system.
   precondition and postcondition:
     definition: A condition required before an operation runs, or guaranteed after it completes successfully.
-    aliases: [pre/postcondition, pre/postconditions]
+    aliases: [pre/postcondition]
   data normalization:
     definition: Transforming data into a consistent representation for processing or comparison.
     aliases: [normalized, normalised]

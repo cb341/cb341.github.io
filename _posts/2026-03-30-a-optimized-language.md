@@ -9,20 +9,22 @@ math: true
 glossary:
   formal notation:
     definition: Symbols and rules with explicitly defined meanings, as in mathematics or diagramming languages.
-  logographic:
+  logographic writing:
     definition: Using written signs to represent words or meaningful units rather than individual speech sounds.
+    aliases: [logographic]
   relational algebra:
     definition: A formal language for operations on relations, including selecting rows, projecting columns, and joining relations.
   bag semantics:
     definition: Treating a collection as a multiset, allowing duplicate values.
-  Typoglycaemia:
+  typoglycaemia:
     definition: An informal name for recognizing words with scrambled internal letters, aided by context and familiar word structure.
   Shannon entropy:
     definition: The average information per outcome in a probability distribution, measuring its uncertainty.
   redundancy:
     definition: Predictable or repeated information that can be omitted while preserving the intended message.
-  lossy:
+  lossy compression:
     definition: Discarding information during compression or encoding, preventing exact reconstruction of the original.
+    aliases: [lossy]
   set semantics:
     definition: Treating a collection as a set, where each distinct value appears at most once.
     aliases: [set-based]

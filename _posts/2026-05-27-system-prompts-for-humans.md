@@ -7,20 +7,18 @@ tags: ["communication", "ai", "culture", "protocol"]
 glossary:
   LLM:
     definition: 'Large language model: a text-trained model that generates and transforms language using the context it receives.'
-    aliases: [LLMs]
   system prompt:
     definition: Instructions supplied to a language model to establish behavior and constraints across an interaction.
-    aliases: [system prompts]
   low context:
     definition: A communication style expressing meaning directly in the message, with little reliance on shared background or implicit cues.
   asynchronous communication:
     definition: Communication where participants send and respond at different times without needing to be present together.
-    aliases: [Async communication]
+    aliases: [async communication]
   direct feedback:
     definition: An evaluation style that states criticism explicitly and clearly.
   principles-first persuasion:
     definition: A persuasion style that presents general principles or theory before drawing conclusions and applying them to examples.
-    aliases: [principles first, principles-first]
+    aliases: [principles first]
   egalitarian leadership:
     definition: A leadership style that minimizes status differences and encourages participation regardless of rank.
     aliases: [egalitarian]
@@ -29,7 +27,7 @@ glossary:
     aliases: [consensual]
   task-based trust:
     definition: A trust-building style where confidence develops through reliable work and demonstrated competence.
-    aliases: [task based trust, task based, task-based]
+    aliases: [task based]
   confrontational disagreement:
     definition: A disagreement style that treats open debate and challenge as normal parts of productive discussion.
     aliases: [confrontational]

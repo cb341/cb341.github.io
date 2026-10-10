@@ -6,39 +6,31 @@ tags: ["rust", "gamedev"]
 glossary:
   voxel:
     definition: A volume element representing a cell in three-dimensional space, analogous to a pixel in an image.
-    aliases: [voxels]
   meshing:
     definition: Generating vertices and faces that represent a surface for rendering.
   ECS:
     definition: 'Entity-component-system: an architecture where entities identify objects, components hold data, and systems operate on that data.'
-    aliases: [Entity Component System, entity-component-system]
+    aliases: [entity component system]
   feature flag:
     definition: A Cargo configuration switch including or excluding selected Rust functionality at compile time.
-    aliases: [feature flags]
   composition over inheritance:
     definition: Building types by combining contained objects rather than inheriting behavior through a class hierarchy.
   trait:
     definition: A Rust interface specifying behavior that implementing types must provide.
-    aliases: [traits]
   macro:
     definition: A rule or procedure that generates code during compilation.
-    aliases: [macros]
   borrow checker:
     definition: Rust's compile-time analysis that checks references obey ownership and borrowing rules.
   zero-cost abstraction:
     definition: An abstraction that adds no runtime overhead compared with equivalent code written without it.
-    aliases: [zero-cost abstractions, zero cost abstraction]
   metaprogramming:
     definition: Writing code that generates, inspects, or modifies other code or program structures.
   struct:
     definition: A Rust type grouping fields into a single value, with named, positional, or no fields.
-    aliases: [structs]
   data race:
     definition: Concurrent memory accesses from multiple threads, at least one writing and one non-atomic, without adequate synchronization.
-    aliases: [data races]
   language server:
     definition: A program providing editor features such as completion, diagnostics, and refactoring through a shared protocol.
-    aliases: [language servers]
 ---
 
 At Renuo, we love Ruby. It's simple, elegant, and powerful. But let's be honest, Ruby isn't the fastest language out there.

@@ -12,6 +12,27 @@ module ArticleGlossary
 
   module_function
 
+  def normalize(form)
+    form.downcase.gsub(/[\s\p{Pd}]+/, " ").strip
+  end
+
+  # Case and ordinary spelling variations belong in matching, not YAML aliases.
+  # Irregular plurals and alternate names remain explicit aliases.
+  def matching_forms(form)
+    [form, form.gsub(/(?<=[a-z])(?=[A-Z])/, " ")].map { |value| normalize(value) }.uniq.flat_map do |value|
+      plural = if form.match?(/\b[A-Z][A-Z0-9]+\z/)
+        "#{value}s"
+      elsif value.match?(/[^aeiou]y\z/)
+        value.sub(/y\z/, "ies")
+      elsif value.match?(/(?:s|x|z|ch|sh)\z/)
+        "#{value}es"
+      else
+        "#{value}s"
+      end
+      [value, plural]
+    end.uniq
+  end
+
   def excluded?(node, root)
     node.ancestors.take_while { |ancestor| ancestor != root }.any? do |ancestor|
       EXCLUDED_TAGS.include?(ancestor.name) ||
@@ -25,14 +46,15 @@ module ArticleGlossary
     forms = {}
     terms.each_with_index do |term, index|
       [term.fetch("term"), *term.fetch("aliases", [])].each do |form|
-        normalized = form.downcase.gsub(/\s+/, " ")
-        if forms.key?(normalized) && forms[normalized] != index
-          raise Jekyll::Errors::FatalException, "Ambiguous glossary form: #{form}"
+        matching_forms(form).each do |normalized|
+          if forms.key?(normalized) && forms[normalized] != index
+            raise Jekyll::Errors::FatalException, "Ambiguous glossary form: #{form}"
+          end
+          forms[normalized] = index
         end
-        forms[normalized] = index
       end
     end
-    alternatives = forms.keys.sort_by { |form| -form.length }.map { |form| Regexp.escape(form).gsub("\\ ", "\\s+") }
+    alternatives = forms.keys.sort_by { |form| -form.length }.map { |form| Regexp.escape(form).gsub("\\ ", "[\\s\\p{Pd}]+") }
     pattern = Regexp.new("(?<![\\p{L}\\p{N}_])(?:#{alternatives.join('|')})(?![\\p{L}\\p{N}_])", Regexp::IGNORECASE)
     seen = Set.new
 
@@ -48,7 +70,7 @@ module ArticleGlossary
       changed = false
       text.to_enum(:scan, pattern).each do
         match = Regexp.last_match
-        index = forms.fetch(match[0].downcase.gsub(/\s+/, " "))
+        index = forms.fetch(normalize(match[0]))
         next unless seen.add?(index)
 
         replacement.add_child(Nokogiri::XML::Text.new(text[cursor...match.begin(0)], root.document))

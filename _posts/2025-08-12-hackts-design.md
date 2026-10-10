@@ -12,15 +12,12 @@ glossary:
     definition: A CSS layout system placing elements in rows and columns with control over tracks and gaps.
   inline style:
     definition: CSS declarations written directly in an HTML element's style attribute.
-    aliases: [inline styles]
   SVG:
     definition: 'Scalable Vector Graphics: an image format describing shapes and text as vectors, allowing scaling without pixelation.'
-    aliases: [SVGs]
   responsiveness:
     definition: A layout's ability to adapt to different viewport sizes while keeping content usable and readable.
   utility class:
     definition: A reusable CSS class that applies one focused styling rule, such as spacing or text alignment.
-    aliases: [utility classes]
   accessibility:
     definition: Designing interfaces so people with disabilities can perceive, understand, navigate, and use them.
 ---

@@ -15,7 +15,7 @@ glossary:
     definition: A Lean definition marked for automatic unfolding by the elaborator and tactics.
   unfolding:
     definition: Replacing a defined name with its defining expression.
-    aliases: [unfold, unfolds, unfolded]
+    aliases: [unfold, unfolded]
   definitionally equal:
     definition: Equal by the type system's computation and reduction rules, without a separate equality proof.
     aliases: [definitional reductions]
@@ -25,10 +25,8 @@ glossary:
     definition: The hypotheses currently available and the goals still to be proved.
   tactic:
     definition: A command that builds a Lean proof by transforming goals and available hypotheses.
-    aliases: [tactics]
   witness:
     definition: An object supplied to establish that an existential statement holds.
-    aliases: [witnesses]
   induction schema:
     definition: A family of axioms asserting induction separately for each formula expressing a property of natural numbers.
   first-order theory:
