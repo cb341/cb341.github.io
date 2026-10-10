@@ -2,6 +2,40 @@
 title: "System Prompts For Humans"
 description: "If LLMs get communication instructions, maybe humans should too."
 tags: ["communication", "ai", "culture", "protocol"]
+# Language-model instructions and one pole from each Culture Map axis connect the
+# AI analogy to human conversations.
+glossary:
+  LLM:
+    definition: 'Large language model: a text-trained model that generates and transforms language using the context it receives.'
+    aliases: [LLMs]
+  system prompt:
+    definition: Instructions supplied to a language model to establish behavior and constraints across an interaction.
+    aliases: [system prompts]
+  low context:
+    definition: A communication style expressing meaning directly in the message, with little reliance on shared background or implicit cues.
+  asynchronous communication:
+    definition: Communication where participants send and respond at different times without needing to be present together.
+    aliases: [Async communication]
+  direct feedback:
+    definition: An evaluation style that states criticism explicitly and clearly.
+  principles-first persuasion:
+    definition: A persuasion style that presents general principles or theory before drawing conclusions and applying them to examples.
+    aliases: [principles first, principles-first]
+  egalitarian leadership:
+    definition: A leadership style that minimizes status differences and encourages participation regardless of rank.
+    aliases: [egalitarian]
+  consensual decision-making:
+    definition: A decision-making style that seeks broad agreement among participants before committing to a choice.
+    aliases: [consensual]
+  task-based trust:
+    definition: A trust-building style where confidence develops through reliable work and demonstrated competence.
+    aliases: [task based trust, task based, task-based]
+  confrontational disagreement:
+    definition: A disagreement style that treats open debate and challenge as normal parts of productive discussion.
+    aliases: [confrontational]
+  flexible scheduling:
+    definition: A scheduling style that adapts plans and timing as circumstances change.
+    aliases: [flexible time]
 ---
 
 I have recently been thinking a lot about human to LLM and human to human communication.

@@ -2,6 +2,31 @@
 title: "Hotwire Outside of Rails"
 description: "Discover how to implement Hotwire's Turbo Streams and Stimulus in a BunJS application, proving that reactive web development isn't exclusive to Rails. Learn to build real-time chat functionality using WebSockets, Turbo Streams for DOM updates, and Stimulus controllers for interactive behavior. A practical guide that demonstrates the versatility of Hotwire technologies beyond the Ruby ecosystem."
 tags: ["bunjs", "hotwire", "websockets"]
+# Persistent connections, messaging patterns, and HTML update mechanisms explain the
+# unfamiliar parts of the stack.
+glossary:
+  WebSocket:
+    definition: A protocol maintaining an open connection so client and server can send messages in either direction.
+    aliases: [Web Sockets, Web Socket, WebSockets]
+  multiple publisher - multiple subscriber pattern:
+    definition: The publish-subscribe (pub/sub) pattern lets multiple senders publish to a shared topic received by multiple subscribers.
+  Turbo stream:
+    definition: An HTML message describing a page change, such as appending or replacing an element, which Turbo applies.
+    aliases: [Turbo streams]
+  Stimulus controller:
+    definition: A JavaScript class attached to HTML elements through data attributes to handle events and add behavior.
+    aliases: [Stimulus controllers]
+  HTML over the wire:
+    definition: Sending server-rendered HTML to update a browser interface instead of transmitting data for client-side templating.
+  broadcast:
+    definition: Sending the same message to all connected clients or subscribers.
+    aliases: [broadcasts, broadcasting, broadcasted]
+  pub/sub topic:
+    definition: A named message channel that publishers send to and subscribers listen to.
+    aliases: [topic, topics]
+  data attribute:
+    definition: An HTML attribute prefixed with data- that stores custom values for scripts.
+    aliases: [data attributes, data-attribute, data-attributes]
 ---
 
 ![Hotwire Turbo Streams demo running outside of Rails](/assets/blog/hotwire-demo.webp)

@@ -1,6 +1,18 @@
 ---
 title: "11.05.2026 (afternoon)"
 date: 2026-05-11 15:00
+# RFC conventions and the encoding analogy need brief reminders; the quoted passage
+# already explains MUST and SHOULD.
+glossary:
+  RFC:
+    definition: 'Request for Comments: a document in the series publishing Internet technical specifications and related material.'
+    aliases: [RFCs]
+  token:
+    definition: A unit of a message, such as a word or symbol, used here as an analogy to language-model tokens.
+    aliases: [tokens]
+  encoding:
+    definition: Representing meaning as a message for another person to reconstruct using shared language and context.
+    aliases: [encode/decode]
 ---
 (yes this entry contains filler, are you yet frustrated by it?)
 

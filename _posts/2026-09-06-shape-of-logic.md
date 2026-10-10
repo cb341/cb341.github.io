@@ -3,6 +3,55 @@ title: "Shape of Logic"
 description: "Notation shows you one row of a truth table. A picture shows you all 65,536."
 tags: ["logic", "visualization", "hardware", "art"]
 math: true
+# Strong candidate; interpreting the images requires bit-level arithmetic and circuit
+# terminology.
+glossary:
+  truth table:
+    definition: A table of results for all input combinations, visualized here as pixels representing pairs of integer inputs.
+    aliases: [truth tables]
+  bitwise operator:
+    definition: An operation acting independently on corresponding bit positions, such as AND, OR, or XOR.
+    aliases: [Bitwise operators]
+  NAND:
+    definition: 'NOT AND: a logical operation returning zero only when both input bits are one.'
+  nibble:
+    definition: A group of four bits, representing one of sixteen possible values.
+    aliases: [nibbles]
+  carry:
+    definition: A value passed to a higher digit position when addition exceeds what the current position can represent.
+  signed overflow:
+    definition: An arithmetic result outside the range representable by the chosen signed integer width.
+  two's complement:
+    definition: A signed integer representation in which the highest bit has negative weight.
+  MSB:
+    definition: 'Most significant bit: the highest-weight unsigned binary digit, serving as the sign bit in two''s complement.'
+    aliases: [most significant bit]
+  multiplexer:
+    definition: A circuit selecting one of several inputs using control bits.
+    aliases: [multiplexers]
+  ALU:
+    definition: 'Arithmetic logic unit: the part of a processor that performs arithmetic and logical operations on data.'
+  combinational divider:
+    definition: A division circuit computing the result directly from its inputs without sequential clocked steps.
+    aliases: [combinational dividers]
+  fragment shader:
+    definition: A GPU program computing output values, such as color, for fragments during rendering.
+  restoring divider:
+    definition: A divider that shifts and subtracts, restoring the previous partial remainder whenever a subtraction produces a negative result.
+    aliases: [restoring dividers]
+  sequential logic:
+    definition: Digital logic whose outputs depend on current inputs and stored state.
+  propagation depth:
+    definition: The maximum number of successive logic stages a signal traverses from a circuit's inputs to its outputs.
+  modular arithmetic:
+    definition: Arithmetic that identifies numbers with the same remainder after division by a fixed modulus.
+    aliases: [addition mod 256, mod]
+  truncating integer division:
+    definition: Integer division that discards the fractional part of the quotient, rounding toward zero.
+    aliases: [truncating division, truncating]
+  self-similarity:
+    definition: A pattern's resemblance to itself at different scales.
+    aliases: [self similarity]
 ---
 
 an 8-bit operator takes two bytes and returns one. its truth table has $256 \times 256 = 65{,}536$ rows, which is few enough to put every one of them on screen at the same time.

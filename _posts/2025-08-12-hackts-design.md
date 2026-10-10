@@ -2,6 +2,27 @@
 title: "Custom Figma Design Challenges"
 description: "How unique spacing and alignment in Figma designs create difficulties in Rails, and why a visual layout editor could help."
 tags: ["rails", "css", "sass", "figma", "gui-editor"]
+# Layout vocabulary explains the implementation difficulty and the tradeoffs discussed.
+glossary:
+  box model:
+    definition: CSS's description of an element as content surrounded by padding, a border, and margins.
+  flexbox:
+    definition: A CSS layout system arranging items along a main axis, with controls for alignment, spacing, and wrapping.
+  grid:
+    definition: A CSS layout system placing elements in rows and columns with control over tracks and gaps.
+  inline style:
+    definition: CSS declarations written directly in an HTML element's style attribute.
+    aliases: [inline styles]
+  SVG:
+    definition: 'Scalable Vector Graphics: an image format describing shapes and text as vectors, allowing scaling without pixelation.'
+    aliases: [SVGs]
+  responsiveness:
+    definition: A layout's ability to adapt to different viewport sizes while keeping content usable and readable.
+  utility class:
+    definition: A reusable CSS class that applies one focused styling rule, such as spacing or text alignment.
+    aliases: [utility classes]
+  accessibility:
+    definition: Designing interfaces so people with disabilities can perceive, understand, navigate, and use them.
 ---
 
 While building the [hackts.ch](https://hackts.ch) site, I encountered layout issues that I did not anticipate. The design came from a highly customised Figma file with precise alignments, irregular shapes and spacing patterns.

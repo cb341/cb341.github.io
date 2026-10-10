@@ -3,6 +3,37 @@ title: "Compressed Language"
 description: "English is bloated, math is dense, and the best language for talking to AI sits somewhere in between."
 tags: ["language", "compression", "ai", "communication"]
 math: true
+# Specialized language, information theory, and database vocabulary carry the compression
+# argument. Relational algebra and Typoglycaemia intentionally remain glossary-only
+# because their occurrences are in headings and links.
+glossary:
+  formal notation:
+    definition: Symbols and rules with explicitly defined meanings, as in mathematics or diagramming languages.
+  logographic:
+    definition: Using written signs to represent words or meaningful units rather than individual speech sounds.
+  relational algebra:
+    definition: A formal language for operations on relations, including selecting rows, projecting columns, and joining relations.
+  bag semantics:
+    definition: Treating a collection as a multiset, allowing duplicate values.
+  Typoglycaemia:
+    definition: An informal name for recognizing words with scrambled internal letters, aided by context and familiar word structure.
+  Shannon entropy:
+    definition: The average information per outcome in a probability distribution, measuring its uncertainty.
+  redundancy:
+    definition: Predictable or repeated information that can be omitted while preserving the intended message.
+  lossy:
+    definition: Discarding information during compression or encoding, preventing exact reconstruction of the original.
+  set semantics:
+    definition: Treating a collection as a set, where each distinct value appears at most once.
+    aliases: [set-based]
+  UML composition:
+    definition: A UML whole-part association with exclusive ownership, shown by a filled diamond, whose parts are deleted with their whole.
+    aliases: [composition]
+  UML aggregation:
+    definition: A UML whole-part association shown by a hollow diamond, with grouping semantics defined by the model.
+    aliases: [aggregation]
+  shared context:
+    definition: Knowledge, conventions, and assumptions shared by participants, allowing messages to leave some meaning implicit.
 ---
 
 I communicate with AI in broken English and it works perfectly. I drop vowels, ignore spelling, skip grammar, and the meaning arrives intact. Why?

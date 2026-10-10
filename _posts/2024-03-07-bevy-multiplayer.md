@@ -2,6 +2,29 @@
 title: "Multiplayer with Bevy and Renet"
 description: "A comprehensive guide to building multiplayer games in Rust using the Bevy game engine and Renet networking library. Learn about Entity-Component-System architecture, client-server synchronization, input handling strategies, and practical implementation of real-time multiplayer features. Perfect for developers wanting to explore game development beyond traditional web technologies."
 tags: ["rust", "bevy", "multiplayer", "game"]
+# ECS architecture and state synchronization explain the implementation; the prose defines
+# entities, components, and systems.
+glossary:
+  ECS:
+    definition: 'Entity-component-system: an architecture where entities identify objects, components hold data, and systems operate on that data.'
+    aliases: [Entity Component System, entity-component-system]
+  data synchronization:
+    definition: Keeping copies of shared state consistent across a server and its clients by exchanging updates.
+    aliases: [synchronization, synchronizing, synchronising]
+  binary message encoding:
+    definition: Representing structured data as bytes for transmission or storage.
+  ECS resource:
+    definition: Data stored once per ECS world and shared by systems, rather than attached to individual entities.
+    aliases: [resources]
+  reliable channel:
+    definition: A Renet channel that retransmits lost messages and delivers them in sending order.
+    aliases: [reliable channels, ReliableOrdered]
+  unreliable channel:
+    definition: A message channel that sends without retransmitting losses, allowing messages to be dropped or arrive out of order.
+    aliases: [unreliable channels, Unreliable]
+  frame rate:
+    definition: The number of image frames rendered or displayed per second.
+    aliases: [frame rates]
 ---
 
 Here at Renuo, we specialize in web technologies such as Ruby on Rails, React, Angular, and Spring. One of our core company values is continuous learning: we love exploring new technologies even beyond our usual scope of expertise.

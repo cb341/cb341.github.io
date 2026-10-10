@@ -2,39 +2,15 @@ require "cgi"
 require "nokogiri"
 require "set"
 
+# Post/thread front matter holds small selections for tech-blog readers familiar
+# with everyday computing and basic proof vocabulary. Select unfamiliar concepts
+# needed for the piece; use canonical singular labels, precise aliases, and brief
+# reminders. Keep essential explanations in the prose.
 module ArticleGlossary
   EXCLUDED_TAGS = %w[a button code pre script style textarea select summary h1 h2 h3 h4 h5 h6 svg math mjx-container video audio].freeze
   EXCLUDED_CLASSES = %w[footnotes article-glossary no-glossary].freeze
 
   module_function
-
-  def entries(site)
-    site.data.fetch("glossary", {}).values.flatten
-  end
-
-  def terms_for(site, entry)
-    dictionary = site.data.fetch("glossary_definitions")
-    overrides = dictionary.fetch("overrides", {}).fetch(entry.fetch("source"), {})
-    entry.fetch("terms").map do |label|
-      term = dictionary.fetch("terms").fetch(label).merge(overrides.fetch(label, {}))
-      raise Jekyll::Errors::FatalException, "Missing glossary definition: #{label}" if term.fetch("definition").strip.empty?
-
-      { "term" => label, **term }
-    end
-  end
-
-  class Generator < Jekyll::Generator
-    safe true
-
-    def generate(site)
-      ArticleGlossary.entries(site).each do |entry|
-        source = entry.fetch("source")
-        unless File.file?(File.join(site.source, source))
-          raise Jekyll::Errors::FatalException, "Glossary source not found: #{source}"
-        end
-      end
-    end
-  end
 
   def excluded?(node, root)
     node.ancestors.take_while { |ancestor| ancestor != root }.any? do |ancestor|
@@ -93,24 +69,17 @@ module ArticleGlossary
     end
   end
 
-  def label_html(term)
-    label = CGI.escapeHTML(term.fetch("term"))
-    return label unless term["expansion"]
-
-    %(<abbr title="#{CGI.escapeHTML(term.fetch('expansion'))}">#{label}</abbr>)
-  end
-
   def glossary_html(terms, prefix)
     items = terms.each_with_index.map do |term, index|
       <<~HTML
-        <dt>#{label_html(term)}</dt>
+        <dt>#{CGI.escapeHTML(term.fetch("term"))}</dt>
         <dd id="#{prefix}-#{index}-definition">#{CGI.escapeHTML(term.fetch("definition"))}</dd>
       HTML
     end.join
     popovers = terms.each_with_index.map do |term, index|
       <<~HTML
         <dl class="glossary-popup" id="#{prefix}-#{index}-popup" popover>
-          <dt>#{label_html(term)}</dt>
+          <dt>#{CGI.escapeHTML(term.fetch("term"))}</dt>
           <dd>#{CGI.escapeHTML(term.fetch("definition"))}</dd>
         </dl>
       HTML
@@ -129,19 +98,21 @@ module ArticleGlossary
     return unless page.output&.include?("data-glossary-source")
 
     site = page.site
-    configured = entries(site).to_h do |entry|
-      [entry.fetch("source"), entry]
-    end
     document = Nokogiri::HTML5.parse(page.output)
     changed = false
     document.css("[data-glossary-source]").each do |root|
       source = root["data-glossary-source"]
       root.remove_attribute("data-glossary-source")
-      entry = configured[source]
-      next unless entry
+      doc = site.documents.find { |item| item.relative_path == source }
+      glossary = doc&.data&.fetch("glossary", nil)
+      next unless glossary&.any?
 
-      terms = terms_for(site, entry)
-      next if terms.empty?
+      terms = glossary.map do |label, term|
+        if term.fetch("definition").strip.empty?
+          raise Jekyll::Errors::FatalException, "Missing glossary definition: #{label} in #{source}"
+        end
+        { "term" => label, **term }
+      end
 
       prefix = "glossary-#{File.basename(source, '.md')}"
       annotate(root, terms, prefix)
@@ -158,11 +129,10 @@ module ArticleGlossaryFilter
   def has_glossary(html)
     return false unless html.include?("data-glossary-source")
 
-    sources = ArticleGlossary.entries(@context.registers[:site]).filter_map do |entry|
-      entry.fetch("source") unless entry.fetch("terms").empty?
-    end.to_set
+    site = @context.registers[:site]
     Nokogiri::HTML5.fragment(html).css("[data-glossary-source]").any? do |root|
-      sources.include?(root["data-glossary-source"])
+      doc = site.documents.find { |item| item.relative_path == root["data-glossary-source"] }
+      doc&.data&.fetch("glossary", nil)&.any?
     end
   end
 end
