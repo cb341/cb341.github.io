@@ -154,6 +154,21 @@ module ArticleGlossary
   end
 end
 
+module ArticleGlossaryFilter
+  def has_glossary(html)
+    return false unless html.include?("data-glossary-source")
+
+    sources = ArticleGlossary.entries(@context.registers[:site]).filter_map do |entry|
+      entry.fetch("source") unless entry.fetch("terms").empty?
+    end.to_set
+    Nokogiri::HTML5.fragment(html).css("[data-glossary-source]").any? do |root|
+      sources.include?(root["data-glossary-source"])
+    end
+  end
+end
+
+Liquid::Template.register_filter(ArticleGlossaryFilter)
+
 # Low priority runs after BuildTimeMath, keeping equations outside text matching.
 # RSS and raw Markdown retain the prose.
 Jekyll::Hooks.register [:documents, :pages], :post_render, priority: :low do |page|

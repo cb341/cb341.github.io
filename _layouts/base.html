@@ -232,6 +232,8 @@
         .article-toc { display: none; }
       }
 
+      {% assign has_glossary = content | has_glossary %}
+      {% if has_glossary %}
       /* Glossary */
       .glossary-term { all: unset; text-decoration: underline dotted; cursor: pointer; }
       .glossary-term:focus-visible { outline: auto; }
@@ -243,6 +245,7 @@
       @supports (position-area: bottom) {
         .glossary-popup { inset: auto; margin: .5em; position-area: bottom; position-try-fallbacks: flip-block; }
       }
+      {% endif %}
 
       @media (prefers-color-scheme: dark) {
         html { color-scheme: dark; background: #000; }
