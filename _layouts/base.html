@@ -233,8 +233,26 @@
         .article-toc li:not([data-level="2"]) { padding-left: 1em; }
         .toc-teaser { display: block; margin-left: 1em; }
       }
-      @media print { .article-toc { display: none !important; } }
       {% endif %}
+      @media print {
+        .article-toc { display: none; }
+      }
+
+      {% assign has_glossary = content | has_glossary %}
+      {% if has_glossary %}
+      /* Glossary */
+      .glossary-term { all: unset; text-decoration: underline dotted; cursor: pointer; }
+      .glossary-term:focus-visible { outline: auto; }
+      .article-glossary { margin: 2em 0; }
+      .article-glossary dt { margin-top: 1em; }
+      .article-glossary dt, .glossary-popup dt { font-weight: bold; }
+      .article-glossary dd, .glossary-popup dd { margin: .25em 0 0; }
+      .glossary-popup { max-width: min(30ch, calc(100vw - 3em)); padding: .75em; }
+      @supports (position-area: bottom) {
+        .glossary-popup { inset: auto; margin: .5em; position-area: bottom; position-try-fallbacks: flip-block; }
+      }
+      {% endif %}
+
       @media (prefers-color-scheme: dark) {
         html { color-scheme: dark; background: #000; }
         body { background: #000; color: #fff; }

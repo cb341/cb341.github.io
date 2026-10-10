@@ -2,6 +2,35 @@
 title: "Exploring Rust as a Rubyist"
 description: "A deep dive into learning Rust as a Ruby developer, exploring the journey of building a voxel game engine with Bevy. From understanding the borrow checker to discovering the power of composition over inheritance, feature flags, and macros. Learn about the trade-offs between Ruby's simplicity and Rust's performance, memory safety, and compile-time guarantees."
 tags: ["rust", "gamedev"]
+# Rust and game development introduce concepts that a Ruby reader may not already know.
+glossary:
+  voxel:
+    definition: A volume element representing a cell in three-dimensional space, analogous to a pixel in an image.
+  meshing:
+    definition: Generating vertices and faces that represent a surface for rendering.
+  ECS:
+    definition: 'Entity-component-system: an architecture where entities identify objects, components hold data, and systems operate on that data.'
+    aliases: [entity component system]
+  feature flag:
+    definition: A Cargo configuration switch including or excluding selected Rust functionality at compile time.
+  composition over inheritance:
+    definition: Building types by combining contained objects rather than inheriting behavior through a class hierarchy.
+  trait:
+    definition: A Rust interface specifying behavior that implementing types must provide.
+  macro:
+    definition: A rule or procedure that generates code during compilation.
+  borrow checker:
+    definition: Rust's compile-time analysis that checks references obey ownership and borrowing rules.
+  zero-cost abstraction:
+    definition: An abstraction that adds no runtime overhead compared with equivalent code written without it.
+  metaprogramming:
+    definition: Writing code that generates, inspects, or modifies other code or program structures.
+  struct:
+    definition: A Rust type grouping fields into a single value, with named, positional, or no fields.
+  data race:
+    definition: Concurrent memory accesses from multiple threads, at least one writing and one non-atomic, without adequate synchronization.
+  language server:
+    definition: A program providing editor features such as completion, diagnostics, and refactoring through a shared protocol.
 ---
 
 At Renuo, we love Ruby. It's simple, elegant, and powerful. But let's be honest, Ruby isn't the fastest language out there.

@@ -2,6 +2,34 @@
 title: "How the Homebrew Multi-User Rabbit Hole Bricked My Mac"
 description: "A deep dive into multi-user setups on macOS, why Homebrew falls apart in them, and how I ended up reluctantly switching to MacPorts after bricking my laptop."
 tags: ["macos", "homebrew", "macports", "workflow"]
+# Unix permissions and package manager vocabulary are necessary to understand why the
+# approaches failed.
+glossary:
+  prefix:
+    definition: The base directory where a package manager installs its files, such as /opt/homebrew.
+  umask:
+    definition: A Unix mask that removes selected permission bits when files or directories are created.
+  group-write permission:
+    definition: Permissions allowing a file's owning group to modify it, or create and remove entries in a directory.
+    aliases: [group-write bit]
+  bottle:
+    definition: A prebuilt Homebrew package that can be installed without compiling from source.
+  formula:
+    definition: A Homebrew package definition describing how to obtain, build, and install software.
+    aliases: [formulae]
+  cask:
+    definition: A Homebrew package definition for installing software distributed as ready-made macOS applications or installers.
+  System Integrity Protection:
+    definition: A macOS security mechanism restricting changes to protected system locations and processes, including actions by root.
+  launchd:
+    definition: macOS's service manager for starting, stopping, and supervising background processes.
+  MacPorts port:
+    definition: A MacPorts package definition describing software sources, dependencies, and installation steps.
+    aliases: [port]
+  daemon:
+    definition: A background process that provides a service without an interactive user interface.
+  kernel extension:
+    definition: A loadable module that adds functionality, such as hardware drivers, to an operating system's kernel.
 ---
 
 I work part-time at Renuo as a software engineer and study Computer Science part-time at ZHAW. Most weeks mix client codebases, coursework, and personal projects on the same laptop, with the same tools: Neovim with lazygit and delta, iTerm2, Raycast, Setapp, hotkeys, window management. The setup should feel the same regardless of which one I am working on.

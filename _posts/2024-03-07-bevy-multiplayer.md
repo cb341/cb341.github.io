@@ -2,6 +2,30 @@
 title: "Multiplayer with Bevy and Renet"
 description: "A comprehensive guide to building multiplayer games in Rust using the Bevy game engine and Renet networking library. Learn about Entity-Component-System architecture, client-server synchronization, input handling strategies, and practical implementation of real-time multiplayer features. Perfect for developers wanting to explore game development beyond traditional web technologies."
 tags: ["rust", "bevy", "multiplayer", "game"]
+# Distinguish ECS data and behavior, then explain the channel guarantees used for synchronization.
+glossary:
+  ECS:
+    definition: 'Entity-component-system: an architecture where entities identify objects, components hold data, and systems operate on that data.'
+    aliases: [entity component system]
+  ECS component:
+    definition: Data attached to an entity, describing an attribute such as position or marking a role such as player.
+    aliases: [component]
+  ECS system:
+    definition: A scheduled function operating on components and resources; its declared data access lets Bevy safely parallelize compatible systems.
+    aliases: [bevy system]
+  ECS resource:
+    definition: One value per type stored in the ECS world, shared across systems without belonging to an individual entity.
+  data synchronization:
+    definition: Keeping copies of shared state consistent across a server and its clients by exchanging updates.
+    aliases: [synchronization, synchronizing, synchronising]
+  binary message encoding:
+    definition: Representing structured data as bytes for transmission or storage.
+  reliable ordered channel:
+    definition: Retransmits lost messages until acknowledged and delivers them in send order. A missing message delays later ones, suiting joins and departures that must arrive intact.
+    aliases: [reliableordered]
+  unreliable channel:
+    definition: Sends without retransmission or ordering guarantees. Fresh position updates can replace lost ones without waiting, but receivers must reject stale updates arriving late.
+    aliases: [unreliable]
 ---
 
 Here at Renuo, we specialize in web technologies such as Ruby on Rails, React, Angular, and Spring. One of our core company values is continuous learning: we love exploring new technologies even beyond our usual scope of expertise.
@@ -54,11 +78,13 @@ The [ECS](https://en.wikipedia.org/wiki/Entity_component_system) (Entity Compone
 
 1. **Entities:** Unique identifiers of a group of components (A u32 wrapper in bevy).
 2. **Components:** Modular data pieces that represent specific Entity attributes. (A struct that derives the Component macro in bevy)
-3. **System:** Logic that operates on entities and their components. (A struct that derives the Resource macro in bevy)
+3. **ECS system:** A scheduled function that operates on entities, components, and shared resources.
+
+An **ECS resource** is shared data stored once per type in the world, such as the server's `PlayerLobby`; it is a struct that derives `Resource` in Bevy.
 
 ### Systems in Bevy
 
-Systems in Bevy are functions that take various parameters such as queries, EventReaders, assets, and resources and apply logic to them.
+ECS systems in Bevy are functions that take various parameters such as queries, EventReaders, assets, and resources and apply logic to them.
 
 One powerful feature of Bevy systems is the Query interface. It allows you to fetch specific data for entities in your project. For instance, if no entity is found, the `single_mut()` function will raise an error. Multiple queries are possible as long as entities do not overlap.
 
@@ -200,8 +226,8 @@ cargo run --bin client
 
 To integrate `bevy_renet` into the bevy project, I followed the [Bevy Renet documentation](https://github.com/lucaspoffo/renet/blob/master/bevy_renet/README.md). In my setup, I used these two default channels:
 
-- **Unreliable:** Used for sending and receiving messages for player attribute synchronization. (We don't care about every state change, we can pick the last one)
-- **ReliableOrdered:** Used for sending and receiving messages for player actions such as joining and leaving.
+- **Unreliable:** Used for player attribute synchronization. Messages are not retransmitted and may arrive out of order. A newer position can replace a lost update without waiting; sequence numbers let a receiver reject older updates that arrive late. The examples below omit that check.
+- **ReliableOrdered:** Used for player actions such as joining and leaving. Lost messages are retransmitted, and messages are delivered in send order. Later messages wait for missing earlier ones, so this channel preserves events at the cost of extra delay during loss.
 
 ## Synchronising player positions
 

@@ -48,7 +48,15 @@
 
   header[role="banner"],
   footer[role="contentinfo"],
+  .article-toc,
   nav[aria-label="Post navigation"] { display: none; }
+
+  /* Glossary */
+  .glossary-popup { display: none !important; }
+  .glossary-term { text-decoration: none; }
+  .article-glossary summary { font-weight: bold; break-after: avoid; }
+  .article-glossary dt { break-after: avoid; }
+  .article-glossary dd { break-inside: avoid; }
 
   main a { color: #000; text-decoration: underline; }
   h1, h2, h3, h4, h5, h6,
@@ -58,7 +66,9 @@
 
   /* Compact lists can use the last few lines without splitting an item. */
   main > ul,
-  main > ol {
+  main > ol,
+  .article-body > ul,
+  .article-body > ol {
     margin-block: .35em .8em;
     line-height: 1.3;
   }

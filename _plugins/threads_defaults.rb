@@ -1,9 +1,16 @@
 require "time"
 
+# Set the filename date before Jekyll sorts front-matter documents. Explicit
+# front-matter dates replace this default when the document is read.
+Jekyll::Hooks.register :threads, :post_init do |doc|
+  filename_date = doc.basename_without_ext[/\A\d{4}-\d{2}-\d{2}/]
+  doc.data["date"] ||= Time.parse(filename_date) if filename_date
+end
+
 # Threads entries need no front matter. Jekyll reads front-matter-less files
-# as static files, so promote them to documents first; then date defaults to
-# the YYYY-MM-DD filename prefix and title to that date in site.date_format.
-# Front matter, when present, overrides both. Jekyll pre-fills title with a
+# as static files, so promote them to documents before setting title defaults.
+# The date defaults to the YYYY-MM-DD filename prefix and the title to that
+# date in site.date_format. Front matter overrides both. Jekyll pre-fills title with a
 # titleized slug ("2026 06 08"), so a title still matching that is treated
 # as absent.
 Jekyll::Hooks.register :site, :post_read do |site|
@@ -17,9 +24,6 @@ Jekyll::Hooks.register :site, :post_read do |site|
   collection.files.clear
 
   collection.docs.each do |doc|
-    filename_date = doc.basename_without_ext[/\A\d{4}-\d{2}-\d{2}/]
-    doc.data["date"] ||= Time.parse(filename_date) if filename_date
-
     auto_title = Jekyll::Utils.titleize_slug(doc.basename_without_ext)
     if doc.data["title"].nil? || doc.data["title"] == auto_title
       doc.data["title"] = doc.data["date"].strftime(site.config["date_format"])

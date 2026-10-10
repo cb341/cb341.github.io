@@ -2,6 +2,23 @@
 title: "Map-Reducing Myself"
 description: "312 conversations with Claude, compressed to 15 words."
 tags: ["ai", "reflection", "data"]
+# Language-model limits and information theory explain the summarization pipeline and its
+# compression tradeoffs.
+glossary:
+  chunking:
+    definition: Splitting text into smaller parts that can each be processed within a model's input limit.
+  context window:
+    definition: The maximum number of tokens a language model can handle as input and output together in one request.
+  token:
+    definition: A text unit processed by a language model, such as a word, word fragment, or punctuation mark.
+  Kolmogorov complexity:
+    definition: The length of the shortest program producing a given output, relative to a chosen universal computing system.
+  precondition and postcondition:
+    definition: A condition required before an operation runs, or guaranteed after it completes successfully.
+    aliases: [pre/postcondition]
+  data normalization:
+    definition: Transforming data into a consistent representation for processing or comparison.
+    aliases: [normalized, normalised]
 ---
 
 I talk to Claude every day. It writes code with me, reviews my PRs, debugs my specs, validates my homework. At 3am it is the thing I talk to when I am still awake and thinking about something I cannot put into words yet. Over six months that added up to 312 conversations and 21MB of JSON.

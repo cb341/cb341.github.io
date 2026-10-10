@@ -1,6 +1,18 @@
 ---
 title: "11.05.2026 (afternoon)"
 date: 2026-05-11 15:00
+# RFC conventions and the encoding analogy need brief reminders; the quoted passage
+# already explains MUST and SHOULD.
+glossary:
+  RFC:
+    definition: 'Request for Comments: a document in the series publishing Internet technical specifications and related material.'
+  token:
+    definition: A unit of text; language models split messages into tokens that may represent words, word fragments, or punctuation.
+  encoding:
+    definition: Expressing information as symbols according to shared conventions; decoding reconstructs meaning by applying those conventions in context.
+    aliases: [encode/decode]
+  hedge:
+    definition: A word or phrase that softens a claim or request, signaling uncertainty, qualification, or reduced commitment.
 ---
 (yes this entry contains filler, are you yet frustrated by it?)
 

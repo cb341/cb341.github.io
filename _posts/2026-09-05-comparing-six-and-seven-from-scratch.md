@@ -3,6 +3,35 @@ title: "Comparing 6 and 7 from Scratch"
 description: "Proving that any two natural numbers compare, from an inductive definition of the naturals and two axioms for addition, in Lean."
 tags: ["theoretical mathematics", "first principles"]
 math: true
+# Lean-specific concepts and easily confused proof terms merit reminders; the article
+# explains the remaining logic and arithmetic.
+glossary:
+  elaboration:
+    definition: Lean's translation of source notation into fully specified terms, inferring information such as implicit arguments and types.
+    aliases: [elaborates]
+  opaque:
+    definition: A Lean constant whose defining expression the kernel cannot unfold when checking definitional equality.
+  reducible:
+    definition: A Lean definition marked for automatic unfolding by the elaborator and tactics.
+  unfolding:
+    definition: Replacing a defined name with its defining expression.
+    aliases: [unfold, unfolded]
+  definitionally equal:
+    definition: Equal by the type system's computation and reduction rules, without a separate equality proof.
+    aliases: [definitional reductions]
+  proof term:
+    definition: A formal expression representing a proof, whose type is the statement being proved.
+  proof state:
+    definition: The hypotheses currently available and the goals still to be proved.
+  tactic:
+    definition: A command that builds a Lean proof by transforming goals and available hypotheses.
+  witness:
+    definition: An object supplied to establish that an existential statement holds.
+  induction schema:
+    definition: A family of axioms asserting induction separately for each formula expressing a property of natural numbers.
+  first-order theory:
+    definition: A collection of axioms in a language whose quantifiers range over individual objects.
+    aliases: [first-order arithmetic]
 ---
 
 paper proofs have no compiler. i went looking for one and found Lean, by way of the [Natural Number Game](https://adam.math.hhu.de/#/g/leanprover-community/nng4), which builds the naturals from nothing and makes you prove your way back out. [^nng] i finished it end of june and wanted to write up what the last level actually took.
