@@ -1,5 +1,4 @@
 require "cgi"
-require "digest"
 require "nokogiri"
 require "set"
 
@@ -10,7 +9,7 @@ module ArticleGlossary
   module_function
 
   def entries(site)
-    site.data.fetch("glossary", {}).values.flatten.select { |entry| entry["eligible"] }
+    site.data.fetch("glossary", {}).values.flatten
   end
 
   def terms_for(site, entry)
@@ -28,9 +27,12 @@ module ArticleGlossary
     safe true
 
     def generate(site)
-      # Resolve every selected definition before rendering, including terms
-      # which occur only in an existing link or heading.
-      ArticleGlossary.entries(site).each { |entry| ArticleGlossary.terms_for(site, entry) }
+      ArticleGlossary.entries(site).each do |entry|
+        source = entry.fetch("source")
+        unless File.file?(File.join(site.source, source))
+          raise Jekyll::Errors::FatalException, "Glossary source not found: #{source}"
+        end
+      end
     end
   end
 
@@ -42,13 +44,19 @@ module ArticleGlossary
   end
 
   def annotate(root, terms, prefix)
+    return if terms.empty?
+
     forms = {}
     terms.each_with_index do |term, index|
       [term.fetch("term"), *term.fetch("aliases", [])].each do |form|
-        forms[form.downcase] = index
+        normalized = form.downcase.gsub(/\s+/, " ")
+        if forms.key?(normalized) && forms[normalized] != index
+          raise Jekyll::Errors::FatalException, "Ambiguous glossary form: #{form}"
+        end
+        forms[normalized] = index
       end
     end
-    alternatives = forms.keys.sort_by { |form| -form.length }.map { |form| Regexp.escape(form) }
+    alternatives = forms.keys.sort_by { |form| -form.length }.map { |form| Regexp.escape(form).gsub("\\ ", "\\s+") }
     pattern = Regexp.new("(?<![\\p{L}\\p{N}_])(?:#{alternatives.join('|')})(?![\\p{L}\\p{N}_])", Regexp::IGNORECASE)
     seen = Set.new
 
@@ -64,7 +72,7 @@ module ArticleGlossary
       changed = false
       text.to_enum(:scan, pattern).each do
         match = Regexp.last_match
-        index = forms.fetch(match[0].downcase)
+        index = forms.fetch(match[0].downcase.gsub(/\s+/, " "))
         next unless seen.add?(index)
 
         replacement.add_child(Nokogiri::XML::Text.new(text[cursor...match.begin(0)], root.document))
@@ -95,7 +103,7 @@ module ArticleGlossary
   def glossary_html(terms, prefix)
     items = terms.each_with_index.map do |term, index|
       <<~HTML
-        <dt><dfn id="#{prefix}-#{index}">#{label_html(term)}</dfn></dt>
+        <dt>#{label_html(term)}</dt>
         <dd id="#{prefix}-#{index}-definition">#{CGI.escapeHTML(term.fetch("definition"))}</dd>
       HTML
     end.join
@@ -122,36 +130,32 @@ module ArticleGlossary
 
     site = page.site
     configured = entries(site).to_h do |entry|
-      [File.expand_path(entry.fetch("source"), site.source), entry]
+      [entry.fetch("source"), entry]
     end
     document = Nokogiri::HTML5.parse(page.output)
     changed = false
     document.css("[data-glossary-source]").each do |root|
-      source = root.delete("data-glossary-source")
-      entry = configured[File.expand_path(source, site.source)]
+      source = root["data-glossary-source"]
+      root.remove_attribute("data-glossary-source")
+      entry = configured[source]
       next unless entry
-      next if root.at_css(".article-glossary")
 
       terms = terms_for(site, entry)
-      prefix = "glossary-#{Digest::SHA256.hexdigest(entry.fetch('source'))[0, 12]}"
+      next if terms.empty?
+
+      prefix = "glossary-#{File.basename(source, '.md')}"
       annotate(root, terms, prefix)
       root.add_child(Nokogiri::HTML5.fragment(glossary_html(terms, prefix)))
       changed = true
     end
     return unless changed
 
-    style = File.read(File.join(site.source, "_includes/glossary-style.html"))
-    document.at_css("head").add_child(Nokogiri::HTML5.fragment(style))
     page.output = document.to_html(preserve_newline: true)
   end
 end
 
-# BuildTimeMath's hooks run first, so equations are already SVG and remain
-# outside the glossary's text matching. RSS and raw Markdown retain the prose.
-Jekyll::Hooks.register :documents, :post_render do |document|
-  ArticleGlossary.render(document)
-end
-
-Jekyll::Hooks.register :pages, :post_render do |page|
+# Low priority runs after BuildTimeMath, keeping equations outside text matching.
+# RSS and raw Markdown retain the prose.
+Jekyll::Hooks.register [:documents, :pages], :post_render, priority: :low do |page|
   ArticleGlossary.render(page)
 end

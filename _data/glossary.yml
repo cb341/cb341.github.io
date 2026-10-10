@@ -1,5 +1,5 @@
 # Editorial selection for glossary rendering; definitions and aliases live in
-# glossary_definitions.yml. Set eligible to false to disable a piece's glossary.
+# glossary_definitions.yml. Omit a source to disable its glossary.
 # Readers are tech-blog readers comfortable with everyday computing and basic
 # proof vocabulary, but not necessarily specialists in each article's subject.
 # Select concepts needed to follow the piece; omit familiar vocabulary, ordinary
@@ -7,25 +7,21 @@
 # intentional. Prefer terms easy to confuse or specific to an unfamiliar field;
 # omit concepts already explained sufficiently in the prose or formulas.
 # Labels use canonical spellings and singular base forms; prose forms are aliases.
+# Avoid broad aliases that could mark an ordinary use of a word in the source.
 # Essential explanations stay in the prose; definitions are brief reminders.
 
 posts:
+  # ECS architecture and state synchronization explain the implementation; the prose defines
+  # entities, components, and systems.
   - source: _posts/2024-03-07-bevy-multiplayer.md
-    title: Multiplayer with Bevy and Renet
-    eligible: true
-    reason: ECS vocabulary and state synchronization explain how the multiplayer implementation works.
     terms:
       - ECS
-      - entity
-      - component
-      - system
       - data synchronization
       - binary message encoding
 
+  # A small glossary would distinguish the terminal interface, its subdivisions, and event-driven
+  # configuration.
   - source: _posts/2024-04-14-tmux.md
-    title: Supercharge Your Tmux Setup
-    eligible: true
-    reason: A small glossary would distinguish the terminal interface, its subdivisions, and event-driven configuration.
     terms:
       - terminal multiplexer
       - terminal emulator
@@ -33,20 +29,17 @@ posts:
       - prefix
       - hook
 
+  # Persistent connections, messaging patterns, and HTML update mechanisms explain the
+  # unfamiliar parts of the stack.
   - source: _posts/2024-08-03-hotwire-outside-rails.md
-    title: Hotwire Outside of Rails
-    eligible: true
-    reason: Persistent connections, messaging patterns, and HTML update mechanisms explain the unfamiliar parts of the stack.
     terms:
       - WebSocket
       - multiple publisher - multiple subscriber pattern
       - Turbo stream
       - Stimulus controller
 
+  # Rust and game development introduce concepts that a Ruby reader may not already know.
   - source: _posts/2025-02-28-exploring-rust.md
-    title: Exploring Rust as a Rubyist
-    eligible: true
-    reason: Rust and game development introduce concepts that a Ruby reader may not already know.
     terms:
       - voxel
       - meshing
@@ -57,18 +50,15 @@ posts:
       - macro
       - borrow checker
 
+  # Only a small selection is needed; understanding aliases and sourcing is enough to follow
+  # the setup.
   - source: _posts/2025-08-08-local-zsh.md
-    title: Local zsh
-    eligible: true
-    reason: Only a small selection is needed; understanding aliases and sourcing is enough to follow the setup.
     terms:
       - alias
       - source
 
+  # Layout vocabulary explains the implementation difficulty and the tradeoffs discussed.
   - source: _posts/2025-08-12-hackts-design.md
-    title: Custom Figma Design Challenges
-    eligible: true
-    reason: Layout vocabulary explains the implementation difficulty and the tradeoffs discussed.
     terms:
       - box model
       - flexbox
@@ -77,26 +67,18 @@ posts:
       - SVG
       - responsiveness
 
-  - source: _posts/2025-10-25-editor-journey.md
-    title: My Editor Journey
-    eligible: false
-    reason: The main thread is a personal account of editor preferences; most unfamiliar names are products, and modal editing can be explained locally if needed.
-    terms: []
-
+  # Language-model limits and information theory explain the summarization pipeline and its
+  # compression tradeoffs.
   - source: _posts/2026-03-28-map-reduce-myself.md
-    title: Map-Reducing Myself
-    eligible: true
-    reason: Language-model limits and information theory explain the summarization pipeline and its compression tradeoffs.
     terms:
       - chunking
       - context window
       - token
       - Kolmogorov complexity
 
+  # Specialized language, information theory, and database vocabulary carry the compression
+  # argument.
   - source: _posts/2026-03-30-a-optimized-language.md
-    title: Compressed Language
-    eligible: true
-    reason: Specialized language, information theory, and database vocabulary carry the compression argument.
     terms:
       - formal notation
       - logographic
@@ -107,10 +89,9 @@ posts:
       - redundancy
       - lossy
 
+  # Unix permissions and package manager vocabulary are necessary to understand why the
+  # approaches failed.
   - source: _posts/2026-04-27-multi-user-brew.md
-    title: How the Homebrew Multi-User Rabbit Hole Bricked My Mac
-    eligible: true
-    reason: Unix permissions and package manager vocabulary are necessary to understand why the approaches failed.
     terms:
       - prefix
       - umask
@@ -120,10 +101,9 @@ posts:
       - cask
       - System Integrity Protection
 
+  # Language-model instructions and communication styles connect the AI analogy to human
+  # conversations.
   - source: _posts/2026-05-27-system-prompts-for-humans.md
-    title: System Prompts For Humans
-    eligible: true
-    reason: Language-model instructions and communication styles connect the AI analogy to human conversations.
     terms:
       - LLM
       - system prompt
@@ -131,10 +111,9 @@ posts:
       - high context
       - asynchronous communication
 
+  # Lean-specific concepts and easily confused proof terms merit reminders; the article
+  # explains the remaining logic and arithmetic.
   - source: _posts/2026-09-05-comparing-six-and-seven-from-scratch.md
-    title: Comparing 6 and 7 from Scratch
-    eligible: true
-    reason: Lean-specific concepts and easily confused proof terms merit reminders; the article explains the remaining logic and arithmetic.
     terms:
       - elaboration
       - opaque
@@ -148,10 +127,9 @@ posts:
       - induction schema
       - first-order theory
 
+  # Strong candidate; interpreting the images requires bit-level arithmetic and circuit
+  # terminology.
   - source: _posts/2026-09-06-shape-of-logic.md
-    title: Shape of Logic
-    eligible: true
-    reason: Strong candidate; interpreting the images requires bit-level arithmetic and circuit terminology.
     terms:
       - truth table
       - bitwise operator
@@ -167,17 +145,14 @@ posts:
       - fragment shader
 
 threads:
+  # One brief hint can explain the philosophical term without turning a personal reflection
+  # into a reference page.
   - source: _threads/2026-04-10.md
-    title: 10.04.2026
-    eligible: true
-    reason: One brief hint can explain the philosophical term without turning a personal reflection into a reference page.
     terms:
       - nihilism
 
+  # Derivative and multivariable calculus terminology is central to the notation comparison.
   - source: _threads/2026-04-21.md
-    title: 21.04.2026
-    eligible: true
-    reason: Derivative and multivariable calculus terminology is central to the notation comparison.
     terms:
       - derivative
       - higher-order derivative
@@ -187,22 +162,9 @@ threads:
       - comma derivative
       - lifetime
 
-  - source: _threads/2026-04-23.md
-    title: 23.04.2026
-    eligible: false
-    reason: Word splitting is demonstrated directly by the examples; defining product names would not help the observation.
-    terms: []
-
-  - source: _threads/2026-05-04.md
-    title: 04.05.2026
-    eligible: false
-    reason: This is a personal reflection about engineering and making things; it does not depend on specialized vocabulary.
-    terms: []
-
+  # Radioisotope power and evolutionary biology supply the specialist vocabulary used in the
+  # analogy.
   - source: _threads/2026-05-10.md
-    title: 10.05.2026
-    eligible: true
-    reason: Radioisotope power and evolutionary biology supply the specialist vocabulary used in the analogy.
     terms:
       - RTG
       - plutonium-238 decay
@@ -211,32 +173,23 @@ threads:
       - DNA repair
       - directed evolution
 
-  - source: _threads/2026-05-11-midnight.md
-    title: 11.05.2026 (midnight)
-    eligible: false
-    reason: The reflection on delegation and loneliness is already written in ordinary language.
-    terms: []
-
+  # Sentence types are familiar; orthography names the writing conventions the proposal
+  # would change.
   - source: _threads/2026-05-11-morning.md
-    title: 11.05.2026 (morning)
-    eligible: true
-    reason: Sentence types are familiar; orthography names the writing conventions the proposal would change.
     terms:
       - orthography
 
+  # RFC conventions and the encoding analogy need brief reminders; the quoted passage
+  # already explains MUST and SHOULD.
   - source: _threads/2026-05-11-afternoon.md
-    title: 11.05.2026 (afternoon)
-    eligible: true
-    reason: RFC conventions and the encoding analogy need brief reminders; the quoted passage already explains MUST and SHOULD.
     terms:
       - RFC
       - token
       - encoding
 
+  # Naming unfamiliar rhetorical devices is the point of this entry; readers benefit from
+  # concise definitions beside the labels.
   - source: _threads/2026-05-12.md
-    title: 12.05.2026
-    eligible: true
-    reason: Naming unfamiliar rhetorical devices is the point of this entry; readers benefit from concise definitions beside the labels.
     terms:
       - anthropomorphism
       - trope
@@ -246,10 +199,8 @@ threads:
       - reification
       - chiasmus
 
+  # Chess tactics and endgame vocabulary would otherwise exclude readers new to the game.
   - source: _threads/2026-05-19.md
-    title: 19.05.2026
-    eligible: true
-    reason: Chess tactics and endgame vocabulary would otherwise exclude readers new to the game.
     terms:
       - blitz
       - Elo
@@ -261,10 +212,9 @@ threads:
       - opposition
       - square rule
 
+  # The argument depends on distinguishing types of approximation and financial quantities;
+  # standard terms should remain separate from the proposed notation.
   - source: _threads/2026-06-02.md
-    title: 02.06.2026
-    eligible: true
-    reason: The argument depends on distinguishing types of approximation and financial quantities; standard terms should remain separate from the proposed notation.
     terms:
       - NPV
       - discount factor
@@ -274,10 +224,9 @@ threads:
       - model error
       - general relativity
 
+  # Name delegation and internationalized domain security explain why visually similar names
+  # can identify different sites.
   - source: _threads/2026-06-08.md
-    title: 08.06.2026
-    eligible: true
-    reason: Name delegation and internationalized domain security explain why visually similar names can identify different sites.
     terms:
       - top-level domain
       - delegation

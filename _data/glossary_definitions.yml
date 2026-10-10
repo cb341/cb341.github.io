@@ -8,15 +8,6 @@ terms:
     expansion: Entity-component-system
     definition: An architecture where entities identify objects, components hold their data, and systems operate on that data.
     aliases: [Entity Component System, entity-component-system]
-  entity:
-    definition: An identifier for an object whose data is stored in attached ECS components.
-    aliases: [entities]
-  component:
-    definition: A piece of data attached to an ECS entity, such as a position or player marker.
-    aliases: [components]
-  system:
-    definition: A function that operates on ECS entities by querying their components.
-    aliases: [systems]
   data synchronization:
     definition: Keeping copies of shared state consistent across a server and its clients by exchanging updates.
     aliases: [synchronization, synchronizing, synchronising]
@@ -41,7 +32,7 @@ terms:
     definition: A protocol maintaining an open connection so client and server can send messages in either direction.
     aliases: [Web Sockets, Web Socket, WebSockets]
   multiple publisher - multiple subscriber pattern:
-    definition: A messaging arrangement where multiple senders publish to a shared topic and multiple subscribers receive its messages.
+    definition: The publish-subscribe (pub/sub) pattern lets multiple senders publish to a shared topic received by multiple subscribers.
   Turbo stream:
     definition: An HTML message describing a page change, such as appending or replacing an element, which Turbo applies.
     aliases: [Turbo streams]
@@ -170,7 +161,7 @@ terms:
     definition: A Lean definition marked for automatic unfolding by the elaborator and tactics.
   definitionally equal:
     definition: Equal by the type system's computation and reduction rules, without a separate equality proof.
-    aliases: [definitional reductions, definitional]
+    aliases: [definitional reductions]
   tactic:
     definition: A command that builds a Lean proof by transforming goals and available hypotheses.
     aliases: [tactics]
@@ -262,7 +253,7 @@ terms:
     aliases: [RFCs]
   encoding:
     definition: Representing information using agreed symbols or rules so a decoder can reconstruct it.
-    aliases: [encode/decode, encode, decode, decoding]
+    aliases: [encode/decode]
 
   anthropomorphism:
     definition: Attributing human characteristics, intentions, or behavior to something nonhuman.
@@ -332,7 +323,7 @@ terms:
   namespace:
     definition: A set of names and the rules governing what they identify.
   internationalized domain name:
-    definition: A domain name supporting non-ASCII characters, represented in DNS using ASCII-compatible encoding.
+    definition: A domain name supporting non-ASCII characters, with encoded DNS labels marked by the IDNA ACE prefix xn--.
     aliases: [internationalized domain names, IDN]
   homograph attack:
     definition: A deception using visually similar characters in a domain name to make one site resemble another.
@@ -341,7 +332,7 @@ terms:
     definition: A numeric identifier for a position in Unicode's character space.
     aliases: [code points]
   Punycode:
-    definition: An encoding of Unicode strings into ASCII, used in internationalized domain labels prefixed with xn--.
+    definition: An encoding representing Unicode strings using ASCII characters, used within internationalized domain labels.
 
 overrides:
   _posts/2026-09-06-shape-of-logic.md:
