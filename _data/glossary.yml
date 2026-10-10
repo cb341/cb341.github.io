@@ -1,24 +1,26 @@
 # Editorial selection for glossary rendering; definitions and aliases live in
 # glossary_definitions.yml. Set eligible to false to disable a piece's glossary.
-# Eligible means that a brief, contextual definition would help readers follow
-# the piece. Terms name concepts used in the source, rather than incidental
-# products, people, or code identifiers. Small selections are intentional.
-# Existing explanations can supply reminder hints; essential definitions
-# should stay in the prose.
+# Readers are tech-blog readers comfortable with everyday computing and basic
+# proof vocabulary, but not necessarily specialists in each article's subject.
+# Select concepts needed to follow the piece; omit familiar vocabulary, ordinary
+# words, incidental products, people, and code identifiers. Small selections are
+# intentional. Prefer terms easy to confuse or specific to an unfamiliar field;
+# omit concepts already explained sufficiently in the prose or formulas.
+# Labels use canonical spellings and singular base forms; prose forms are aliases.
+# Essential explanations stay in the prose; definitions are brief reminders.
 
 posts:
   - source: _posts/2024-03-07-bevy-multiplayer.md
     title: Multiplayer with Bevy and Renet
     eligible: true
-    reason: Readers need the ECS vocabulary and networking concepts to follow the implementation.
+    reason: ECS vocabulary and state synchronization explain how the multiplayer implementation works.
     terms:
       - ECS
-      - entities
-      - components
-      - systems
+      - entity
+      - component
+      - system
       - data synchronization
       - binary message encoding
-      - latency
 
   - source: _posts/2024-04-14-tmux.md
     title: Supercharge Your Tmux Setup
@@ -27,21 +29,19 @@ posts:
     terms:
       - terminal multiplexer
       - terminal emulator
-      - panes
+      - pane
       - prefix
-      - hooks
+      - hook
 
   - source: _posts/2024-08-03-hotwire-outside-rails.md
     title: Hotwire Outside of Rails
     eligible: true
-    reason: The tutorial depends on several web communication and DOM update concepts unfamiliar outside this stack.
+    reason: Persistent connections, messaging patterns, and HTML update mechanisms explain the unfamiliar parts of the stack.
     terms:
-      - Web Sockets
+      - WebSocket
       - multiple publisher - multiple subscriber pattern
-      - Turbo streams
-      - DOM
+      - Turbo stream
       - Stimulus controller
-      - backend agnostic
 
   - source: _posts/2025-02-28-exploring-rust.md
     title: Exploring Rust as a Rubyist
@@ -50,12 +50,11 @@ posts:
     terms:
       - voxel
       - meshing
-      - memory safety
       - ECS
-      - feature flags
+      - feature flag
       - composition over inheritance
-      - traits
-      - macros
+      - trait
+      - macro
       - borrow checker
 
   - source: _posts/2025-08-08-local-zsh.md
@@ -63,7 +62,7 @@ posts:
     eligible: true
     reason: Only a small selection is needed; understanding aliases and sourcing is enough to follow the setup.
     terms:
-      - aliases
+      - alias
       - source
 
   - source: _posts/2025-08-12-hackts-design.md
@@ -74,8 +73,8 @@ posts:
       - box model
       - flexbox
       - grid
-      - inline styles
-      - SVGs
+      - inline style
+      - SVG
       - responsiveness
 
   - source: _posts/2025-10-25-editor-journey.md
@@ -87,12 +86,11 @@ posts:
   - source: _posts/2026-03-28-map-reduce-myself.md
     title: Map-Reducing Myself
     eligible: true
-    reason: A few AI and information theory concepts explain how the summarization pipeline works and why compression matters.
+    reason: Language-model limits and information theory explain the summarization pipeline and its compression tradeoffs.
     terms:
-      - metadata
       - chunking
       - context window
-      - tokens
+      - token
       - Kolmogorov complexity
 
   - source: _posts/2026-03-30-a-optimized-language.md
@@ -117,74 +115,38 @@ posts:
       - prefix
       - umask
       - group-write permissions
-      - bottles
-      - formulae
-      - casks
-      - sudo
+      - bottle
+      - formula
+      - cask
       - System Integrity Protection
 
   - source: _posts/2026-05-27-system-prompts-for-humans.md
     title: System Prompts For Humans
     eligible: true
-    reason: The argument connects AI instructions with communication styles; a few reminders would make these labels easier to follow.
+    reason: Language-model instructions and communication styles connect the AI analogy to human conversations.
     terms:
       - LLM
-      - system prompts
-      - communication protocol
+      - system prompt
       - low context
       - high context
-      - egalitarian
-      - Async communication
+      - asynchronous communication
 
   - source: _posts/2026-09-05-comparing-six-and-seven-from-scratch.md
     title: Comparing 6 and 7 from Scratch
     eligible: true
-    reason: Strong candidate; the long proof repeatedly relies on logical, inductive, and proof assistant vocabulary, even after introducing it.
+    reason: Lean-specific concepts and easily confused proof terms merit reminders; the article explains the remaining logic and arithmetic.
     terms:
-      - proof assistant
-      - dependency graph
-      - total order
-      - disjunction
-      - existential quantification
-      - universal quantification
-      - witness
-      - propositional logic
-      - truth table
-      - converse
-      - contrapositive
-      - De Morgan laws
-      - commutativity
-      - associativity
-      - idempotent
-      - distributive
-      - absorption laws
-      - double negation
-      - inductive definition
-      - successor
-      - induction
-      - injective
-      - first-order theory
-      - induction schema
-      - constructor
       - elaboration
       - opaque
-      - unfolding
       - reducible
-      - reflexivity
-      - type checking
-      - axioms
-      - lemmas
+      - unfolding
       - definitionally equal
-      - tactics
-      - hypothesis
-      - goal
-      - base case
-      - inductive step
-      - induction hypothesis
-      - proof state
       - proof term
-      - universe of discourse
-      - summand
+      - proof state
+      - tactic
+      - witness
+      - induction schema
+      - first-order theory
 
   - source: _posts/2026-09-06-shape-of-logic.md
     title: Shape of Logic
@@ -192,16 +154,16 @@ posts:
     reason: Strong candidate; interpreting the images requires bit-level arithmetic and circuit terminology.
     terms:
       - truth table
-      - Bitwise operators
+      - bitwise operator
       - NAND
       - nibble
       - carry
       - signed overflow
       - two's complement
       - MSB
-      - multiplexers
+      - multiplexer
       - ALU
-      - combinational dividers
+      - combinational divider
       - fragment shader
 
 threads:
@@ -218,10 +180,10 @@ threads:
     reason: Derivative and multivariable calculus terminology is central to the notation comparison.
     terms:
       - derivative
-      - higher-order derivatives
+      - higher-order derivative
       - discretization
-      - partial derivatives
-      - Jacobi matrix
+      - partial derivative
+      - Jacobian matrix
       - comma derivative
       - lifetime
 
@@ -240,11 +202,11 @@ threads:
   - source: _threads/2026-05-10.md
     title: 10.05.2026
     eligible: true
-    reason: Scientific vocabulary carries the analogy; definitions should clarify the concepts without endorsing the thread's speculative causal claims.
+    reason: Radioisotope power and evolutionary biology supply the specialist vocabulary used in the analogy.
     terms:
-      - RTGs
+      - RTG
       - plutonium-238 decay
-      - mutations
+      - mutation
       - selective pressure
       - DNA repair
       - directed evolution
@@ -258,23 +220,18 @@ threads:
   - source: _threads/2026-05-11-morning.md
     title: 11.05.2026 (morning)
     eligible: true
-    reason: The proposal assumes readers can distinguish sentence types and know the term for writing conventions.
+    reason: Sentence types are familiar; orthography names the writing conventions the proposal would change.
     terms:
-      - declarative
-      - imperative
-      - interrogative
-      - exclamatory
       - orthography
 
   - source: _threads/2026-05-11-afternoon.md
     title: 11.05.2026 (afternoon)
     eligible: true
-    reason: A small glossary can explain the RFC context; MUST and SHOULD are already defined in the quoted passage.
+    reason: RFC conventions and the encoding analogy need brief reminders; the quoted passage already explains MUST and SHOULD.
     terms:
       - RFC
-      - specifications
-      - tokens
-      - encode/decode
+      - token
+      - encoding
 
   - source: _threads/2026-05-12.md
     title: 12.05.2026
@@ -282,8 +239,7 @@ threads:
     reason: Naming unfamiliar rhetorical devices is the point of this entry; readers benefit from concise definitions beside the labels.
     terms:
       - anthropomorphism
-      - tropes
-      - metaphor
+      - trope
       - metonymy
       - synecdoche
       - personification
@@ -296,11 +252,11 @@ threads:
     reason: Chess tactics and endgame vocabulary would otherwise exclude readers new to the game.
     terms:
       - blitz
-      - elo
-      - pins
-      - skewers
-      - hanging pieces
-      - passed pawns
+      - Elo
+      - pin
+      - skewer
+      - hanging piece
+      - passed pawn
       - prophylaxis
       - opposition
       - square rule
@@ -310,9 +266,9 @@ threads:
     eligible: true
     reason: The argument depends on distinguishing types of approximation and financial quantities; standard terms should remain separate from the proposed notation.
     terms:
-      - npv
-      - discount factors
-      - present values
+      - NPV
+      - discount factor
+      - present value
       - floating point
       - numerical error
       - model error
@@ -321,15 +277,12 @@ threads:
   - source: _threads/2026-06-08.md
     title: 08.06.2026
     eligible: true
-    reason: DNS naming and Unicode security concepts explain why the same visible string can have different technical meanings.
+    reason: Name delegation and internationalized domain security explain why visually similar names can identify different sites.
     terms:
-      - DNS
-      - top-level domains
-      - delegated
+      - top-level domain
+      - delegation
       - namespace
-      - ASCII
-      - Unicode
       - internationalized domain name
-      - homograph attacks
-      - code points
+      - homograph attack
+      - code point
       - Punycode

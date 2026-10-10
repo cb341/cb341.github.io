@@ -1,470 +1,360 @@
-# Definitions are plain text. Aliases match case-insensitively in article prose.
-# Overrides keep the same word accurate when its meaning changes by article.
+# Definitions are plain text, context-free reminders: one sentence, about 20
+# words or fewer. Article-specific meanings and examples belong in overrides.
+# Labels use canonical spellings and singular base forms; aliases retain prose
+# forms and match case-insensitively. Expansions appear in abbr titles, so do not
+# repeat them in definitions. Define neutrally; corrections belong in the prose.
 terms:
   ECS:
     expansion: Entity-component-system
-    definition: Entity-component-system, an architecture in which entities identify objects, components hold their data, and systems operate on that data.
+    definition: An architecture where entities identify objects, components hold their data, and systems operate on that data.
     aliases: [Entity Component System, entity-component-system]
-  entities:
-    definition: Identifiers for game objects. In an ECS, an entity's properties come from the components attached to it.
-    aliases: [entity]
-  components:
-    definition: Pieces of data attached to entities, such as a position or a player marker. Systems provide the behavior that uses them.
-    aliases: [component]
-  systems:
-    definition: Functions that operate on game data, often by querying entities for particular combinations of components.
-    aliases: [system]
+  entity:
+    definition: An identifier for an object whose data is stored in attached ECS components.
+    aliases: [entities]
+  component:
+    definition: A piece of data attached to an ECS entity, such as a position or player marker.
+    aliases: [components]
+  system:
+    definition: A function that operates on ECS entities by querying their components.
+    aliases: [systems]
   data synchronization:
-    definition: Keeping copies of game state consistent across the server and connected clients by exchanging updates.
+    definition: Keeping copies of shared state consistent across a server and its clients by exchanging updates.
     aliases: [synchronization, synchronizing, synchronising]
   binary message encoding:
-    definition: Turning structured data into bytes for transmission, then decoding those bytes back into data at the receiving end.
-  latency:
-    definition: The delay between an action or message being sent and its effect or response being received.
+    definition: Representing structured data as bytes for transmission or storage.
 
   terminal multiplexer:
-    definition: A program such as tmux that manages multiple terminal sessions, windows, and panes within one terminal interface.
+    definition: A program that manages multiple terminal sessions, windows, and panes within one terminal interface.
   terminal emulator:
-    definition: An application such as iTerm2 or Alacritty that displays terminal output and passes keyboard input to programs such as a shell.
+    definition: An application that displays terminal output and passes keyboard input to programs such as a shell.
     aliases: [terminal emulators]
-  panes:
-    definition: Separate regions of a tmux window, each displaying its own terminal session.
-    aliases: [pane]
+  pane:
+    definition: A region of a terminal multiplexer window displaying its own terminal session.
+    aliases: [panes]
   prefix:
-    definition: The key combination that tells tmux to interpret the next key as a tmux command rather than pass it to the program in the pane.
-  hooks:
-    definition: Commands configured to run automatically when a particular event occurs, such as a window resize or a pane losing focus.
-    aliases: [hook]
+    definition: A key combination telling tmux to interpret the next key as a command.
+  hook:
+    definition: A command configured to run automatically when a particular event occurs.
+    aliases: [hooks]
 
-  Web Sockets:
-    definition: WebSocket connections keep a communication channel open so the browser and server can send messages to each other without a new HTTP request for every message.
-    aliases: [Web Socket, WebSocket, WebSockets]
+  WebSocket:
+    definition: A protocol maintaining an open connection so client and server can send messages in either direction.
+    aliases: [Web Sockets, Web Socket, WebSockets]
   multiple publisher - multiple subscriber pattern:
-    definition: A messaging arrangement in which multiple senders publish to a shared topic and multiple subscribers receive the messages on that topic.
-  Turbo streams:
-    definition: HTML messages that describe changes to a page, such as appending or replacing an element. Turbo applies these changes in the browser.
-    aliases: [Turbo stream]
-  DOM:
-    expansion: Document Object Model
-    definition: Document Object Model, the browser's tree representation of an HTML document. JavaScript can inspect and change its elements.
+    definition: A messaging arrangement where multiple senders publish to a shared topic and multiple subscribers receive its messages.
+  Turbo stream:
+    definition: An HTML message describing a page change, such as appending or replacing an element, which Turbo applies.
+    aliases: [Turbo streams]
   Stimulus controller:
-    definition: A JavaScript class connected to HTML elements through data attributes, adding behavior such as responding to events or resetting a form.
+    definition: A JavaScript class attached to HTML elements through data attributes to handle events and add behavior.
     aliases: [Stimulus controllers]
-  backend agnostic:
-    definition: Able to work with different server languages and frameworks rather than depending on one particular backend.
 
   voxel:
-    definition: A volume element, the three-dimensional counterpart of a pixel. A voxel world represents space as small cells or blocks.
+    definition: A volume element representing a cell in three-dimensional space, analogous to a pixel in an image.
     aliases: [voxels]
   meshing:
-    definition: Generating the vertices and faces of a surface that a graphics engine can render; here, turning voxel terrain into visible geometry.
-  memory safety:
-    definition: Preventing invalid memory access, such as using freed memory or accessing data outside its valid bounds.
-  feature flags:
-    definition: Cargo configuration switches that include or exclude selected Rust functionality at compile time, such as optional debugging tools.
-    aliases: [feature flag]
+    definition: Generating vertices and faces that represent a surface for rendering.
+  feature flag:
+    definition: A switch that enables or disables selected functionality.
+    aliases: [feature flags]
   composition over inheritance:
-    definition: Building a type from other types it contains, rather than placing it in a class hierarchy that inherits behavior from a parent.
-  traits:
-    definition: Rust interfaces describing behavior that types can implement, allowing code to work with different types that provide the required operations.
-    aliases: [trait]
-  macros:
-    definition: Rules or procedures that generate code during compilation, reducing repeated code without adding a runtime code-generation step.
-    aliases: [macro]
+    definition: Building types by combining contained objects rather than inheriting behavior through a class hierarchy.
+  trait:
+    definition: A Rust interface specifying behavior that implementing types must provide.
+    aliases: [traits]
+  macro:
+    definition: A rule or procedure that generates code during compilation.
+    aliases: [macros]
   borrow checker:
-    definition: Rust's compile-time analysis of ownership and references, checking that borrows obey rules intended to prevent invalid access and data races.
+    definition: Rust's compile-time analysis that checks references obey ownership and borrowing rules.
 
-  aliases:
-    definition: Shell names that expand into other command text, letting a short command invoke a longer project-specific command.
-    aliases: [alias]
+  alias:
+    definition: A shell name that expands into other command text.
+    aliases: [aliases]
   source:
-    definition: Read and execute a shell file in the current shell, so its aliases, functions, and variables become available in that shell.
+    definition: Execute a shell file in the current shell, making its aliases, functions, and variables available there.
     aliases: [sourcing]
 
   box model:
-    definition: CSS's description of an element as content surrounded by padding, a border, and margins. These layers determine its size and spacing.
+    definition: CSS's description of an element as content surrounded by padding, a border, and margins.
   flexbox:
-    definition: A CSS layout system for arranging items along a main axis, with controls for alignment, spacing, and wrapping.
+    definition: A CSS layout system arranging items along a main axis, with controls for alignment, spacing, and wrapping.
   grid:
-    definition: CSS Grid, a layout system that places elements in rows and columns with explicit control over tracks and gaps.
-  inline styles:
-    definition: CSS declarations written directly in an HTML element's style attribute rather than in a reusable stylesheet rule.
-    aliases: [inline style]
-  SVGs:
+    definition: A CSS layout system placing elements in rows and columns with control over tracks and gaps.
+  inline style:
+    definition: CSS declarations written directly in an HTML element's style attribute.
+    aliases: [inline styles]
+  SVG:
     expansion: Scalable Vector Graphics
-    definition: Scalable Vector Graphics, images described with shapes and text rather than a fixed grid of pixels, so they can scale without pixelation.
-    aliases: [SVG]
+    definition: An image format describing shapes and text as vectors, allowing scaling without pixelation.
+    aliases: [SVGs]
   responsiveness:
     definition: A layout's ability to adapt to different viewport sizes while keeping content usable and readable.
 
-  metadata:
-    definition: Information describing a record rather than its main content, such as identifiers, timestamps, and message or tool types in a conversation export.
   chunking:
-    definition: Splitting a large body of text into smaller parts so each part fits within a model's input limit and can be processed separately.
+    definition: Splitting text into smaller parts that can each be processed within a model's input limit.
   context window:
-    definition: The maximum amount of tokenized input and output a language model can handle together in one request.
-  tokens:
-    definition: The units a language model uses to process text. A token may be a word, part of a word, punctuation, or another sequence of characters.
+    definition: The maximum number of tokens a language model can handle as input and output together in one request.
+  token:
+    definition: A text unit processed by a language model, such as a word, word fragment, or punctuation mark.
+    aliases: [tokens]
   Kolmogorov complexity:
-    definition: The length of the shortest program that produces a specified output, relative to a chosen universal computing system. It cannot be computed in general.
+    definition: The length of the shortest program producing a given output, relative to a chosen universal computing system.
 
   formal notation:
-    definition: Symbols and rules with explicitly defined meanings, such as mathematical notation or a diagramming language.
+    definition: Symbols and rules with explicitly defined meanings, as in mathematics or diagramming languages.
   logographic:
-    definition: Using written signs to represent words or meaningful units rather than individual speech sounds. Writing systems can combine logographic and phonetic signs.
+    definition: Using written signs to represent words or meaningful units rather than individual speech sounds.
   relational algebra:
-    definition: A formal language for operations on relations, including selecting rows, projecting columns, and joining relations. Its classical form uses sets of tuples.
+    definition: A formal language for operations on relations, including selecting rows, projecting columns, and joining relations.
   bag semantics:
-    definition: Treating a collection as a multiset, where duplicate values can occur. SQL commonly preserves duplicates unless an operation removes them.
+    definition: Treating a collection as a multiset, allowing duplicate values.
   Typoglycaemia:
-    definition: An informal name for the ability to recognize some words despite scrambled internal letters, aided by context and familiar word structure.
+    definition: An informal name for recognizing words with scrambled internal letters, aided by context and familiar word structure.
   Shannon entropy:
-    definition: A measure of the uncertainty in a probability distribution, expressed as the average information per outcome. Predictable symbols carry less new information.
+    definition: The average information per outcome in a probability distribution, measuring its uncertainty.
   redundancy:
-    definition: Information that is predictable or repeated, allowing some of it to be removed while the intended message can still be recovered from context.
+    definition: Predictable or repeated information that can be omitted while preserving the intended message.
   lossy:
-    definition: Losing some information during encoding, compression, or translation, so the original cannot be reconstructed exactly from the result alone.
+    definition: Discarding information during compression or encoding, preventing exact reconstruction of the original.
 
   umask:
-    definition: A Unix permission mask that removes selected permission bits when a program creates files or directories. It influences the permissions new files receive.
+    definition: A Unix mask that removes selected permission bits when files or directories are created.
   group-write permissions:
-    definition: Permission for members of a file's owning Unix group to modify the file, or to create and remove entries in a directory.
+    definition: Permissions allowing a file's owning group to modify it, or create and remove entries in a directory.
     aliases: [group-write bit]
-  bottles:
-    definition: Homebrew's prebuilt binary packages, which can be installed without compiling the software from source when the package and installation support it.
-    aliases: [bottle]
-  formulae:
-    definition: Homebrew package definitions describing how to obtain, build, and install software, including command-line tools and libraries.
-    aliases: [formula]
-  casks:
-    definition: Homebrew package definitions commonly used to install macOS applications distributed as ready-made app bundles or installers.
-    aliases: [cask]
-  sudo:
-    definition: A command that runs another command as a different user, commonly root, subject to the permissions configured by the system administrator.
+  bottle:
+    definition: A prebuilt Homebrew package that can be installed without compiling from source.
+    aliases: [bottles]
+  formula:
+    definition: A Homebrew package definition describing how to obtain, build, and install software.
+    aliases: [formulae]
+  cask:
+    definition: A Homebrew package definition for installing software distributed as ready-made macOS applications or installers.
+    aliases: [casks]
   System Integrity Protection:
-    definition: A macOS security mechanism that restricts changes to protected system locations and processes, including some actions by the root user.
+    definition: A macOS security mechanism restricting changes to protected system locations and processes, including actions by root.
 
   LLM:
     expansion: Large language model
-    definition: Large language model, a model trained on large amounts of text to generate and transform language from the context it receives.
+    definition: A model trained on large amounts of text to generate and transform language using the context it receives.
     aliases: [LLMs]
-  system prompts:
-    definition: Instructions supplied to a language model to establish behavior and constraints across an interaction, alongside the user's requests.
-    aliases: [system prompt]
-  communication protocol:
-    definition: Agreed rules for structuring and interpreting messages, including what information to provide and how to signal intent or constraints.
+  system prompt:
+    definition: Instructions supplied to a language model to establish behavior and constraints across an interaction.
+    aliases: [system prompts]
   low context:
-    definition: A communication style that puts more of the intended meaning directly in the message, relying less on shared background and implicit cues.
+    definition: A communication style expressing meaning directly in the message, with little reliance on shared background or implicit cues.
   high context:
-    definition: A communication style that relies more on shared background, relationships, and implicit cues to interpret a message.
-  egalitarian:
-    definition: Giving people equal standing in a discussion rather than treating rank or role as the final authority on an idea.
-  Async communication:
-    definition: Asynchronous communication, where participants send and respond at different times rather than needing to be present together.
+    definition: A communication style relying on shared background, relationships, and implicit cues to convey meaning.
+  asynchronous communication:
+    definition: Communication where participants send and respond at different times without needing to be present together.
+    aliases: [Async communication]
 
-  proof assistant:
-    definition: Software that checks formal mathematical proofs. In Lean, tactics build a proof term that the kernel, its core proof checker, checks against the theorem's statement.
-    aliases: [proof assistants]
-  dependency graph:
-    definition: A diagram showing which definitions, axioms, and earlier theorems each result relies on. A path to a theorem shows how an earlier result contributes to its proof.
-    aliases: [dependency map]
-  total order:
-    definition: An order relation in which every element is at most itself, a ≤ b and b ≤ a imply a = b, and a ≤ b and b ≤ c imply a ≤ c. Every pair also compares; the article proves this last condition.
-  disjunction:
-    definition: Logical OR. A disjunction P or Q holds when at least one of P and Q holds, including when both hold.
-  existential quantification:
-    definition: A statement that at least one object in the specified domain has a property. Proving it requires an example, called a witness.
-  universal quantification:
-    definition: A statement that every object in the specified domain has a property. A proof must cover an arbitrary object rather than only selected examples.
   witness:
-    definition: An object supplied to establish an existential statement; here, a natural number that satisfies the required equation.
+    definition: An object supplied to establish that an existential statement holds.
     aliases: [witnesses]
-  propositional logic:
-    definition: Logic that combines statements with connectives such as AND, OR, NOT, and implication, treating each statement as a whole rather than examining its objects or quantifiers.
-  converse:
-    definition: The implication obtained by reversing an implication's direction. The converse of P → Q is Q → P; it need not have the same truth value as the original.
-  contrapositive:
-    definition: The implication obtained by reversing the direction and negating both sides. The contrapositive of P → Q is ¬Q → ¬P; in classical logic they are equivalent.
-  De Morgan laws:
-    definition: The equivalences ¬(P ∧ Q) ↔ (¬P ∨ ¬Q) and ¬(P ∨ Q) ↔ (¬P ∧ ¬Q). Moving negation across AND or OR switches the connective and negates each side.
-  commutativity:
-    definition: The property that exchanging the two inputs leaves the result unchanged, as in a + b = b + a or P ∧ Q ↔ Q ∧ P.
-    aliases: [commutative]
-  associativity:
-    definition: The property that regrouping three inputs leaves the result unchanged, as in (a + b) + c = a + (b + c). It changes parentheses while keeping the inputs in the same order.
-    aliases: [associative]
-  idempotent:
-    definition: Unchanged when an input is combined with itself. In the logical laws here, P ∧ P and P ∨ P are each equivalent to P.
-    aliases: [idempotence]
-  distributive:
-    definition: Allowing one operation to pass through another. For logic, P ∧ (Q ∨ R) is equivalent to (P ∧ Q) ∨ (P ∧ R); the corresponding law also holds with AND and OR exchanged.
-    aliases: [distributivity]
-  absorption laws:
-    definition: The logical equivalences P ∧ (P ∨ Q) ↔ P and P ∨ (P ∧ Q) ↔ P. The repeated P makes the extra combination with Q unnecessary.
-  double negation:
-    definition: Negating a statement twice. In classical logic, ¬¬P is equivalent to P; Lean's constructive logic requires a classical principle for the direction from ¬¬P to P in general.
-  inductive definition:
-    definition: A definition specifying constructors that generate the objects, with no other objects admitted. Here, every natural number is zero or the successor of a natural number, built in finitely many steps.
-    aliases: [inductive type, inductive types]
-  successor:
-    definition: The next natural number, written succ(n). The article constructs natural numbers from zero and repeated successor steps.
-    aliases: [successors]
-  induction:
-    definition: A proof method for the natural numbers that establishes a base case at zero and proves the property for succ(n) assuming it for n.
-    aliases: [induction principle]
-  injective:
-    definition: Sending distinct inputs to distinct outputs. For the successor function, succ(a) = succ(b) implies a = b.
   first-order theory:
-    definition: A collection of axioms in a language whose quantifiers range over individual objects. For first-order Peano arithmetic, those objects are numbers; quantifiers do not range over all sets or properties of numbers.
+    definition: A collection of axioms in a language whose quantifiers range over individual objects.
     aliases: [first-order arithmetic]
   induction schema:
-    definition: A family of axioms, one for each formula expressing a property of numbers. Each says that if the property holds at zero and passes from a number to its successor, it holds for every number.
-  constructor:
-    definition: A basic way to build a value of an inductive type. MyNat has zero and succ; the disjunction type Or has a constructor for a proof of the left side and one for a proof of the right side.
-    aliases: [constructors]
+    definition: A family of axioms asserting induction separately for each formula expressing a property of natural numbers.
   elaboration:
-    definition: Lean's translation of source notation into fully specified terms, filling in information such as implicit arguments and types. Here it translates the numeral 0 into a term of type MyNat that reduces to MyNat.zero.
+    definition: Lean's translation of source notation into fully specified terms, inferring information such as implicit arguments and types.
     aliases: [elaborates]
   opaque:
-    definition: In Lean, a constant whose definition the proof checker cannot expand to compute with. Here, add is opaque, so its arithmetic behavior comes from the two addition axioms and the theorems proved from them.
+    definition: A Lean constant whose defining expression the kernel cannot unfold when checking definitional equality.
   unfolding:
-    definition: Replacing a defined name with its defining expression. Here, unfolding a ≤ b reveals ∃ c, b = a + c; the opaque add function cannot be expanded this way inside a proof.
+    definition: Replacing a defined name with its defining expression.
     aliases: [unfold, unfolds, unfolded]
   reducible:
-    definition: Available for Lean's elaborator and tactics to expand automatically when they need to see the expression behind a defined name. Here this lets use see the existential statement behind the ≤ notation.
-  reflexivity:
-    definition: The property that a relation holds between every element and itself. For ≤, this is n ≤ n; for equality, it is n = n.
-    aliases: [reflexive]
-  type checking:
-    definition: Checking that an expression has its claimed type. In Lean, a theorem's statement is the type expected of its proof term, so checking that term verifies the proof relative to its definitions and assumptions.
-    aliases: [type-checking, typecheck]
-  axioms:
-    definition: Statements accepted as starting assumptions within a formal system. In this development, a + 0 = a and a + succ(d) = succ(a + d) are assumed rather than proved.
-    aliases: [axiom]
-  lemmas:
-    definition: Proved statements used as intermediate results in a larger proof. A lemma is a theorem serving a supporting role.
-    aliases: [lemma]
+    definition: A Lean definition marked for automatic unfolding by the elaborator and tactics.
   definitionally equal:
-    definition: Equal by the computation and reduction rules of the type system, without needing a separate theorem to identify the two expressions.
+    definition: Equal by the type system's computation and reduction rules, without a separate equality proof.
     aliases: [definitional reductions, definitional]
-  tactics:
-    definition: Commands that build a Lean proof by transforming its goals and available hypotheses. For example, induction splits a goal into a base case and a successor case, while exact supplies an existing proof.
-    aliases: [tactic]
-  hypothesis:
-    definition: An assumption or previously established statement available in the current proof branch. A tactic can use it to prove the goal; an induction hypothesis is one particular kind.
-    aliases: [hypotheses]
-  goal:
-    definition: A statement that still needs a proof in the current branch. Tactics can transform it, split it into further obligations, or close it by providing a proof.
-    aliases: [goals]
-  base case:
-    definition: The starting case of an induction. For the natural numbers in this article, it proves the claimed property at zero without an induction hypothesis.
-  inductive step:
-    definition: The part of an induction that assumes a property for an arbitrary natural number d and proves it for succ(d). Together with the base case, it establishes the property for every natural number.
-  induction hypothesis:
-    definition: The assumed truth of the property for the current natural number in an inductive step, used to prove it for the successor.
-    aliases: [inductive hypothesis]
+  tactic:
+    definition: A command that builds a Lean proof by transforming goals and available hypotheses.
+    aliases: [tactics]
   proof state:
-    definition: The hypotheses currently available and the goals still to be proved. A Lean tactic transforms this state while constructing a proof.
+    definition: The hypotheses currently available and the goals still to be proved.
   proof term:
-    definition: A formal expression representing a proof, whose type is the statement being proved. Lean tactics construct this expression, which the kernel then checks.
-  universe of discourse:
-    definition: The collection of objects the variables and quantifiers range over. In the English proof here, all number variables range over the natural numbers.
-  summand:
-    definition: A quantity being added. In (a + b) + c, b is the middle summand; the proof of associativity here uses induction on b.
-    aliases: [summands]
+    definition: A formal expression representing a proof, whose type is the statement being proved.
 
   truth table:
-    definition: A table listing an operation's result for every possible input combination. Here, each pixel represents one pair of integer inputs.
+    definition: A table listing an operation's result for every possible input combination.
     aliases: [truth tables]
-  Bitwise operators:
-    definition: Operations that act on corresponding bit positions independently, such as AND, OR, and XOR, rather than treating the inputs as whole numbers.
-    aliases: [bitwise operator]
+  bitwise operator:
+    definition: An operation acting independently on corresponding bit positions, such as AND, OR, or XOR.
+    aliases: [Bitwise operators]
   NAND:
     expansion: NOT AND
-    definition: NOT AND. For each bit position, the result is zero only when both input bits are one; otherwise it is one.
+    definition: A logical operation returning zero only when both input bits are one.
   nibble:
-    definition: A group of four bits. A byte has a low nibble and a high nibble, each with 16 possible values.
+    definition: A group of four bits, representing one of sixteen possible values.
     aliases: [nibbles]
   carry:
-    definition: A value passed to a higher bit position when an addition at a lower position exceeds what that position can represent.
+    definition: A value passed to a higher digit position when addition exceeds what the current position can represent.
   signed overflow:
-    definition: A mathematical result outside the range of the chosen signed integer width. Keeping only the available bits can make the interpreted sign change.
+    definition: An arithmetic result outside the range representable by the chosen signed integer width.
   two's complement:
-    definition: A signed integer representation in which the highest bit has negative weight. An 8-bit pattern represents a value from -128 to 127.
+    definition: A signed integer representation in which the highest bit has negative weight.
   MSB:
     expansion: Most significant bit
-    definition: Most significant bit, the highest-weight bit in an unsigned binary number. In two's complement it is also the sign bit.
+    definition: The highest-weight bit in an unsigned binary number, serving as the sign bit in two's complement.
     aliases: [most significant bit]
-  multiplexers:
-    definition: Circuits that select one of several inputs using control bits. A 2-to-1 multiplexer selects one of two inputs.
-    aliases: [multiplexer]
+  multiplexer:
+    definition: A circuit selecting one of several inputs using control bits.
+    aliases: [multiplexers]
   ALU:
     expansion: Arithmetic logic unit
-    definition: Arithmetic logic unit, the part of a processor or simulated computer that performs arithmetic and logical operations on data.
-  combinational dividers:
-    definition: Division circuits that produce a result through combinational logic rather than reusing a sequential circuit over several clock cycles; they still have propagation delay.
-    aliases: [combinational divider]
+    definition: The part of a processor that performs arithmetic and logical operations on data.
+  combinational divider:
+    definition: A division circuit computing the result directly from its inputs without sequential clocked steps.
+    aliases: [combinational dividers]
   fragment shader:
-    definition: A program run on the GPU for fragments being drawn. This viewer uses it to compute and color the result associated with each visible location.
+    definition: A GPU program computing output values, such as color, for fragments during rendering.
 
   nihilism:
-    definition: A family of views questioning or denying accepted foundations of meaning, value, or knowledge. Existential nihilism denies that life has an inherent purpose.
+    definition: A family of philosophical views questioning or denying foundations of meaning, value, or knowledge.
 
   derivative:
-    definition: A function's instantaneous rate of change with respect to a variable, defined by a limit of difference quotients when that limit exists.
+    definition: A function's instantaneous rate of change with respect to a variable, defined by a limit of difference quotients.
     aliases: [derivatives]
-  higher-order derivatives:
-    definition: Derivatives obtained by differentiating repeatedly. For position as a function of time, the first is velocity and the second is acceleration.
-    aliases: [higher-order derivative]
+  higher-order derivative:
+    definition: A derivative obtained by differentiating a function repeatedly.
+    aliases: [higher-order derivatives]
   discretization:
-    definition: Replacing a continuous problem with a representation on discrete points or time steps so it can be computed numerically.
-  partial derivatives:
-    definition: Rates of change of a function with several input variables, varying one input while holding the others fixed.
-    aliases: [partial derivative]
-  Jacobi matrix:
-    definition: Also called the Jacobian matrix, the matrix of first partial derivatives of a vector-valued function, with output components in rows and input variables in columns.
-    aliases: [Jacobian matrix]
+    definition: Replacing a continuous problem with a representation on discrete points or time steps for numerical computation.
+  partial derivative:
+    definition: A function's rate of change when one input variable varies while the others remain fixed.
+    aliases: [partial derivatives]
+  Jacobian matrix:
+    definition: The matrix of first partial derivatives, with output components in rows and input variables in columns.
+    aliases: [Jacobi matrix]
   comma derivative:
-    definition: An indexed notation in which a comma followed by an index denotes partial differentiation with respect to the coordinate identified by that index.
+    definition: An indexed notation where a comma followed by an index denotes partial differentiation with respect to that coordinate.
   lifetime:
-    definition: In Rust, the scope over which a reference is valid. Lifetime annotations express relationships between references so the borrow checker can check their use.
+    definition: The scope over which a Rust reference remains valid.
     aliases: [lifetimes]
 
-  RTGs:
-    expansion: Radioisotope thermoelectric generators
-    definition: Radioisotope thermoelectric generators, devices that convert heat from radioactive decay into electricity using thermoelectric materials. They do not use a nuclear chain reaction.
-    aliases: [RTG, radioisotope thermoelectric generators]
+  RTG:
+    expansion: Radioisotope thermoelectric generator
+    definition: A device converting heat from radioactive decay into electricity using thermoelectric materials.
+    aliases: [RTGs, radioisotope thermoelectric generators, radioisotope thermoelectric generator]
   plutonium-238 decay:
-    definition: The radioactive decay of plutonium-238, an isotope used as a heat source in space power systems. Its half-life is about 88 years.
-  mutations:
-    definition: Changes in an organism's DNA sequence. Their effects can be harmful, neutral, or beneficial depending on the change and its environment.
-    aliases: [mutation]
+    definition: The radioactive transformation of plutonium-238 that releases heat used in radioisotope power systems.
+  mutation:
+    definition: A change in an organism's DNA sequence.
+    aliases: [mutations]
   selective pressure:
-    definition: An environmental factor that changes which heritable traits improve survival or reproductive success. It favors some existing variants rather than creating a needed mutation on demand.
+    definition: An environmental factor affecting which heritable traits improve survival or reproductive success.
   DNA repair:
-    definition: Cellular processes that identify and correct damage to DNA, helping maintain the integrity of genetic information.
+    definition: Cellular processes that identify and correct damage to DNA.
   directed evolution:
-    definition: A laboratory approach that repeatedly generates variation and selects variants with a desired property. It does not guarantee a particular beneficial mutation.
+    definition: A laboratory method that repeatedly generates variation and selects variants with a desired property.
 
-  declarative:
-    definition: A sentence form typically used to make a statement, such as "The file is ready."
-  imperative:
-    definition: A sentence form typically used to give an instruction or make a request, such as "Open the file."
-  interrogative:
-    definition: A sentence form typically used to ask a question, such as "Is the file ready?"
-  exclamatory:
-    definition: A sentence expressing strong feeling or emphasis, often ending with an exclamation mark in writing.
   orthography:
     definition: The conventions for writing a language, including spelling, capitalization, and punctuation.
 
+
   RFC:
     expansion: Request for Comments
-    definition: Request for Comments, a document in the series used to publish Internet technical specifications and related material. Not every RFC is an Internet standard.
+    definition: A document in the series used to publish Internet technical specifications and related material.
     aliases: [RFCs]
-  specifications:
-    definition: Documents that state a system's required behavior, constraints, and interfaces precisely enough for implementations to be compared against them.
-    aliases: [specification]
-  encode/decode:
-    definition: Turn an intended meaning into a message, then reconstruct that meaning from the message using shared language and context.
-    aliases: [encode, decode, encoding, decoding]
+  encoding:
+    definition: Representing information using agreed symbols or rules so a decoder can reconstruct it.
+    aliases: [encode/decode, encode, decode, decoding]
 
   anthropomorphism:
-    definition: Attributing human characteristics, intentions, or behavior to something nonhuman, such as calling a compiler angry.
+    definition: Attributing human characteristics, intentions, or behavior to something nonhuman.
     aliases: [anthropomorphized]
-  tropes:
-    definition: Figures of speech that shift words away from their ordinary or literal meaning, including metaphor and metonymy.
-    aliases: [trope]
-  metaphor:
-    definition: Describing one thing in terms of another to transfer a resemblance or conceptual structure, such as "time is money."
-    aliases: [metaphors]
+  trope:
+    definition: A figure of speech that shifts words from their literal meaning, such as metaphor or metonymy.
+    aliases: [tropes]
   metonymy:
     definition: Referring to something by a closely associated name, such as "the White House" for the US administration.
   synecdoche:
-    definition: Referring to a whole by one of its parts, or a part by the whole, such as "boots on the ground" for soldiers.
+    definition: Referring to a whole by a part, or vice versa, such as "boots on the ground" for soldiers.
   personification:
-    definition: Giving human qualities or actions to an abstraction or nonhuman thing, such as saying that the wind whispered.
+    definition: Giving human qualities or actions to an abstraction or nonhuman thing.
   reification:
-    definition: Treating an abstract concept as though it were a concrete thing with an independent existence or agency.
+    definition: Treating an abstract concept as a concrete thing with independent existence or agency.
   chiasmus:
-    definition: Reversing the order of corresponding elements in two phrases, giving an A-B / B-A structure. Repeating the same words in reverse is more specifically called antimetabole.
+    definition: An A-B / B-A reversal of corresponding elements in phrases; repeating the same words in reverse is antimetabole.
 
   blitz:
-    definition: Chess played with a short time limit for each player, forcing decisions much faster than in a slow game.
-  elo:
-    definition: A rating system estimating relative playing strength from results against other players. A rating is not a measure of how accurate one isolated game was.
-  pins:
-    definition: Chess attacks that constrain a piece because moving it would expose a more valuable target behind it. A piece pinned to its king cannot legally expose the king to check.
-    aliases: [pin]
-  skewers:
-    definition: Chess attacks on a valuable piece with another piece behind it; when the front piece moves, the rear piece becomes exposed.
-    aliases: [skewer]
-  hanging pieces:
-    definition: Pieces that can be captured without sufficient protection or compensation, often because they are undefended.
-    aliases: [hanging piece]
-  passed pawns:
-    definition: Pawns with no opposing pawn ahead of them on their own file or an adjacent file, giving them a clearer route toward promotion.
-    aliases: [passed pawn]
+    definition: Chess played with a short time limit for each player.
+  Elo:
+    definition: A rating system estimating relative playing strength from results against other players.
+  pin:
+    definition: A chess attack constraining a piece because moving it would expose a more valuable target behind it.
+    aliases: [pins]
+  skewer:
+    definition: A chess attack on a valuable piece that exposes a piece behind it when it moves.
+    aliases: [skewers]
+  hanging piece:
+    definition: A piece that can be captured without sufficient protection or compensation.
+    aliases: [hanging pieces]
+  passed pawn:
+    definition: A pawn with no opposing pawn ahead on its file or an adjacent file.
+    aliases: [passed pawns]
   prophylaxis:
-    definition: In chess, anticipating the opponent's intended threats and taking steps to prevent them before pursuing your own plan.
+    definition: In chess, anticipating and preventing the opponent's threats.
   opposition:
-    definition: An endgame relationship between the kings, often on the same rank or file with one square between them, where the player to move may have to yield important squares.
+    definition: An endgame relationship between kings, often separated by one square, where the player to move may yield ground.
   square rule:
-    definition: An endgame shortcut for checking whether a king can catch a freely advancing passed pawn, using an imaginary square and accounting for whose turn it is.
+    definition: A geometric shortcut using an imaginary square to determine whether a king can catch an advancing passed pawn.
 
-  npv:
+  NPV:
     expansion: Net present value
-    definition: Net present value, the sum of a project's expected cash inflows and outflows discounted to a common date, including the initial investment.
-  discount factors:
-    definition: Multipliers that convert future cashflows into values at an earlier reference date. At a constant annual rate r, the factor for t years is 1 / (1 + r)^t.
-    aliases: [discount factor]
-  present values:
-    definition: The values assigned today to future cashflows after applying the chosen discount rate and timing.
-    aliases: [present value, Barwert, barwerte]
+    definition: The sum of a project's expected cash inflows and outflows discounted to a common date, including the initial investment.
+  discount factor:
+    definition: A multiplier converting a future cashflow into its value at an earlier reference date.
+    aliases: [discount factors]
+  present value:
+    definition: The value assigned today to a future cashflow using a chosen discount rate.
+    aliases: [present values, Barwert, barwerte]
   floating point:
-    definition: A finite-precision representation of numbers using a significand and an exponent. Most real numbers cannot be stored exactly in a fixed floating-point format.
+    definition: A finite-precision representation of numbers using a significand and an exponent.
     aliases: [floating-point]
   numerical error:
-    definition: The difference introduced by a numerical computation or approximation, including discretization, truncation, or rounding in arithmetic.
+    definition: The difference introduced by numerical computation or approximation, including discretization, truncation, or rounding.
   model error:
-    definition: The difference between a model's description or predictions and the reality it represents, even if calculations within the model are exact.
+    definition: The difference between a model's description or predictions and the reality it represents.
   general relativity:
-    definition: Einstein's theory of gravity, relating the geometry of spacetime to matter and energy rather than describing gravity simply as a Newtonian force.
+    definition: Einstein's theory of gravity relating spacetime geometry to matter and energy.
 
-  DNS:
-    expansion: Domain Name System
-    definition: Domain Name System, the distributed naming system that maps domain names to records such as server addresses.
-  top-level domains:
-    definition: The highest-level domain labels directly below the DNS root, such as com, ch, and zip, written at the right-hand end of a domain name.
-    aliases: [top-level domain, TLDs, TLD, gTLDs]
-  delegated:
-    definition: In DNS, authority for a part of the name hierarchy is assigned to designated authoritative name servers. A reserved name need not be delegated in the public root.
-    aliases: [delegation]
+  top-level domain:
+    definition: A domain label directly below the DNS root, such as com, ch, or zip.
+    aliases: [top-level domains, TLDs, TLD, gTLDs]
+  delegation:
+    definition: In DNS, assigning authority over part of the name hierarchy to designated authoritative name servers.
+    aliases: [delegated]
   namespace:
-    definition: A set of names and the rules governing what they identify. Filename and DNS namespaces can contain strings that look the same but identify different things.
-  ASCII:
-    expansion: American Standard Code for Information Interchange
-    definition: A 7-bit character encoding with 128 values, including English letters, digits, punctuation, and control characters.
-  Unicode:
-    definition: A standard assigning code points to characters from many writing systems, with encoding formats such as UTF-8 used to store and transmit them.
+    definition: A set of names and the rules governing what they identify.
   internationalized domain name:
-    definition: A domain name containing characters outside the traditional ASCII hostname repertoire, represented in DNS using an ASCII-compatible encoding where needed.
+    definition: A domain name supporting non-ASCII characters, represented in DNS using ASCII-compatible encoding.
     aliases: [internationalized domain names, IDN]
-  homograph attacks:
-    definition: Deceptions that use visually similar characters in a domain name to make one site look like another, even though their underlying names differ.
-    aliases: [homograph attack]
-  code points:
-    definition: Numeric identifiers assigned by Unicode to characters and other defined positions. Visually similar characters can have different code points.
-    aliases: [code point]
+  homograph attack:
+    definition: A deception using visually similar characters in a domain name to make one site resemble another.
+    aliases: [homograph attacks]
+  code point:
+    definition: A numeric identifier for a position in Unicode's character space.
+    aliases: [code points]
   Punycode:
-    definition: An encoding of Unicode strings into ASCII used for internationalized domain labels, whose encoded form begins with xn--.
+    definition: An encoding of Unicode strings into ASCII, used in internationalized domain labels prefixed with xn--.
 
 overrides:
-  _posts/2026-09-05-comparing-six-and-seven-from-scratch.md:
+  _posts/2026-09-06-shape-of-logic.md:
     truth table:
-      definition: A table giving a logical statement's truth value for every combination of truth values of its inputs. Here T means true and F means false.
+      definition: A table of results for all input combinations, visualized here as pixels representing pairs of integer inputs.
   _posts/2026-04-27-multi-user-brew.md:
     prefix:
-      definition: The base directory where a package manager installs its files, such as /opt/homebrew for Homebrew on Apple Silicon.
-  _posts/2026-03-30-a-optimized-language.md:
-    tokens:
-      definition: Units used to represent a message, such as words or symbols. In an LLM, tokens are the units produced by its tokenizer and need not correspond to whole words.
+      definition: The base directory where a package manager installs its files, such as /opt/homebrew.
+  _posts/2025-02-28-exploring-rust.md:
+    feature flag:
+      definition: A Cargo configuration switch including or excluding selected Rust functionality at compile time.
+  _threads/2026-05-11-afternoon.md:
+    token:
+      definition: A unit of a message, such as a word or symbol, used here as an analogy to language-model tokens.
+    encoding:
+      definition: Representing meaning as a message for another person to reconstruct using shared language and context.
