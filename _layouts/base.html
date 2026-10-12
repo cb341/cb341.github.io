@@ -150,6 +150,15 @@
         border-radius: 4px;
       }
       blockquote { margin: 1.2em 2em; font-style: italic; }
+      .article-body blockquote {
+        margin: 1.4em 0;
+        padding-left: 1.25em;
+        border-left: 2px solid #88887d;
+      }
+      .article-body blockquote p:last-child:has(a:only-child) {
+        font-size: .88em;
+        font-style: normal;
+      }
 
       main a,
       main code {
@@ -210,28 +219,44 @@
         line-height: 1;
       }
       pre code { background: transparent; padding: 0; }
+      .article-body pre {
+        margin: 1.4em 0;
+        border: 0;
+        border-left: 1px dashed #cfcfc8;
+        padding: 0 0 0 1.25em;
+        font-size: 13px;
+        line-height: 1.45;
+      }
+      .article-body pre code { font-size: inherit; line-height: inherit; }
       main :is(h2,h3,h4,h5,h6)[id] > a { text-decoration: none; }
       {% if page.toc %}
-      .article-toc { display: none; }
+      .article-toc {
+        margin: 1.25em 0 1.5em;
+        padding-bottom: 1em;
+        border-bottom: 1px solid #e6e6e2;
+        line-height: 1.45;
+      }
+      .article-toc-title { font-weight: bold; cursor: pointer; }
+      .article-toc-title:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+      .article-toc ol { margin: 0; padding: 0; list-style: none; }
+      .article-toc li { margin: .5em 0; }
+      .article-toc li:not([data-level="2"]) { padding-left: 1em; }
+      .toc-teaser { display: block; margin-left: 1em; }
       @media (min-width: 1120px) {
         .article-toc {
-          display: block;
           position: fixed;
           top: 36px;
           left: calc(50% + 33.5ch + 24px);
           width: 220px;
           max-height: calc(100vh - 72px);
           overflow: auto;
+          margin: 0;
+          padding: 0;
+          border: 0;
           font-size: 15px;
-          line-height: 1.45;
         }
         .article-toc-title,
         .article-toc ol { font-size: 12px; }
-        .article-toc-title { font-weight: bold; }
-        .article-toc ol { margin: 0; padding: 0; list-style: none; }
-        .article-toc li { margin: .5em 0; }
-        .article-toc li:not([data-level="2"]) { padding-left: 1em; }
-        .toc-teaser { display: block; margin-left: 1em; }
       }
       {% endif %}
       @media print {
@@ -259,6 +284,8 @@
         figure.captioned-media figcaption { border-color: #454540; color: #b9b8b0; }
         figure.captioned-media figcaption::before { color: #fff; }
         code { background: transparent; }
+        .article-body pre { border-color: #454540; }
+        .article-body blockquote { border-color: #929287; }
         thead { border-color: currentColor; }
         mjx-container[jax="SVG"] rect[data-bgcolor="true"][fill="#fff3cd"] { fill: #51431c; }
         mjx-container[jax="SVG"] rect[data-bgcolor="true"][fill="#cfe2ff"] { fill: #203b5e; }
