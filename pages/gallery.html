@@ -77,7 +77,7 @@ permalink: /gallery/
     {% for item in cat_items %}
       <a class="gallery-item" href="{{ item.url }}">
         <figure>
-          <img src="{{ item.image | replace: '/webp-gallery/', '/webp-gallery/thumbs/' }}" alt="{{ item.alt }}" width="96" height="96" loading="lazy">
+          <img src="{{ item.image | replace: '/webp-gallery/', '/webp-gallery/thumbs/' }}" alt="{{ item.alt }}"{% if item.pixelated %} style="image-rendering: pixelated; image-rendering: crisp-edges;"{% endif %} width="96" height="96" loading="lazy">
           <figcaption><small>{{ item.title }}</small></figcaption>
         </figure>
       </a>
