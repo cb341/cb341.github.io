@@ -23,10 +23,12 @@ module TableOfContents
 
     <<~HTML
       <nav class="article-toc" aria-label="Table of contents">
-        <div class="article-toc-title">On this page</div>
-        <ol>
-          #{items.join("\n    ")}
-        </ol>
+        <details>
+          <summary class="article-toc-title">On this page</summary>
+          <ol>
+            #{items.join("\n      ")}
+          </ol>
+        </details>
       </nav>
     HTML
   end
