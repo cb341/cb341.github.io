@@ -14,3 +14,5 @@ Visualization of NAND, a fundamental logic operator, $A \mathbin{\overline{\wedg
 The operation is bitwise: each output bit depends only on the two input bits at the same position, $R_k = \neg(A_k \land B_k)$. That independence produces a repeating, nested tiling pattern. The black and white colour scheme makes the tiles and their sharply defined diagonals especially visible.
 
 More in [Shape of Logic](/blog/shape-of-logic/). [Open this NAND visualization in the viewer](https://cb341.dev/logic-visualizer/index.html?theme=1&image=8&op=NAND).
+
+[Compare all operators and colour schemes in the visualization table](https://cb341.dev/logic-visualizer/table.html).
