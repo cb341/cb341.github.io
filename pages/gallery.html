@@ -9,7 +9,8 @@ permalink: /gallery/
 .gallery-sections {
   width: calc(100% + 14.5rem);
   max-width: calc(100vw - 32px);
-  margin-left: -7.25rem;
+  /* Keep the gallery centered when its viewport limit caps the wider layout. */
+  margin-left: max(-7.25rem, calc(50% - 50vw + 16px));
 }
 
 .gallery-section {
