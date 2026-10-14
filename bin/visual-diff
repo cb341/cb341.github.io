@@ -18,6 +18,12 @@ cd "$(dirname "$0")/.."
 ROOT="$(pwd)"
 BASE_REF="${1:-origin/main}"
 
+# Reuse this checkout's configured gems when building the temporary base worktree.
+CONFIGURED_BUNDLE_PATH="$(bundle exec ruby -e 'require "bundler"; print File.expand_path(Bundler.settings[:path], Bundler.root) if Bundler.settings[:path]')"
+if [[ -n "$CONFIGURED_BUNDLE_PATH" ]]; then
+  export BUNDLE_PATH="$CONFIGURED_BUNDLE_PATH"
+fi
+
 if [[ ! -f _site/sitemap.xml ]]; then
   echo "_site/sitemap.xml not found. Run bin/build first." >&2
   exit 1
