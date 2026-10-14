@@ -24,3 +24,5 @@ jobs:
       - run: bin/build
       - run: bundle exec htmlproofer _site --disable-external
       - run: npx playwright test --grep-invert @visual
+      - name: Lighthouse
+        run: CHROME_PATH="$(node -p 'require("@playwright/test").chromium.executablePath()')" npx lhci autorun
