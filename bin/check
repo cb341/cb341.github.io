@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -euo pipefail
+# Usage: bin/check
+
+for tool in bundle npm npx node; do
+  if ! command -v "$tool" >/dev/null 2>&1; then
+    echo "$tool not found. Install the development tools listed in README.md." >&2
+    exit 1
+  fi
+done
+
+rm -rf playwright-report/checks
+mkdir -p playwright-report
+cp tests/report-index.html playwright-report/index.html
+
+bin/build
+bundle exec htmlproofer _site --disable-external
+PLAYWRIGHT_HTML_OUTPUT_DIR=playwright-report/checks npx playwright test --grep-invert @visual
+CHROME_PATH="$(node -p 'require("@playwright/test").chromium.executablePath()')"
+export CHROME_PATH
+npx lhci autorun

@@ -47,6 +47,19 @@ async function openDetails(page) {
   await waitForImages(page);
 }
 
+async function compareScreenshot(page, name, options, attachmentName) {
+  const info = test.info();
+  const errorsBefore = info.errors.length;
+  await expect.soft(page).toHaveScreenshot(name, options);
+  if (info.errors.length === errorsBefore && info.config.updateSnapshots !== 'all') {
+    // Reuse the matching snapshot; failure images are attached by Playwright.
+    await info.attach(attachmentName, {
+      path: info.snapshotPath(name),
+      contentType: 'image/png',
+    });
+  }
+}
+
 for (const path of pages) {
   for (const cssOn of [true, false]) {
     test.describe(`${path} / CSS ${cssOn ? 'on' : 'off'}`, () => {
@@ -67,17 +80,20 @@ for (const path of pages) {
       });
 
       test('visual', { tag: '@visual' }, async ({ page }) => {
+        // Large CSS-off captures may need a third frame to settle on slow runners.
+        test.setTimeout(240_000);
         await visit(page, path, cssOn);
         const name = `${Buffer.from(path).toString('base64url')}-css-${cssOn ? 'on' : 'off'}`;
         const options = {
+          timeout: 90_000,
           fullPage: true,
           animations: 'disabled',
           mask: [page.locator('video')],
         };
-        await expect.soft(page).toHaveScreenshot(`${name}.png`, options);
+        await compareScreenshot(page, `${name}.png`, options, 'Matching image');
         if (await page.locator('details').count()) {
           await openDetails(page);
-          await expect.soft(page).toHaveScreenshot(`${name}-open.png`, options);
+          await compareScreenshot(page, `${name}-open.png`, options, 'Matching image (details open)');
         }
       });
     });

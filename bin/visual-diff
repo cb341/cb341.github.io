@@ -29,6 +29,10 @@ if [[ ! -f _site/sitemap.xml ]]; then
   exit 1
 fi
 
+rm -rf playwright-report/base playwright-report/visual
+mkdir -p playwright-report
+cp tests/report-index.html playwright-report/index.html
+
 BASE_DIR="$(mktemp -d "${TMPDIR:-/tmp}/site-checks-base.XXXXXX")"
 WORKTREE_ADDED=0
 cleanup() {
@@ -54,8 +58,9 @@ WORKTREE_ADDED=1
   GENERATE_PDFS=0 bundle exec jekyll build
 )
 
-SITE_DIR="$BASE_DIR/_site" npx playwright test --grep @visual --update-snapshots=all
+# Generated reference captures are temporary; only the branch comparison gets an HTML report.
+SITE_DIR="$BASE_DIR/_site" npx playwright test --grep @visual --update-snapshots=all --reporter=list
 
 RESULT=0
-SITE_DIR=_site npx playwright test --grep @visual --update-snapshots=missing || RESULT=$?
+PLAYWRIGHT_HTML_OUTPUT_DIR=playwright-report/visual SITE_DIR=_site npx playwright test --grep @visual --update-snapshots=missing || RESULT=$?
 exit "$RESULT"

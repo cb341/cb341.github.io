@@ -1,28 +1,76 @@
 name: CI
 
 on:
-  push:
-    branches-ignore: ["main"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
-  build:
+  check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.3"
-          bundler-cache: true
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
           cache: npm
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - name: Use Playwright Chromium for article PDFs
         run: echo "BROWSER_PATH=$(node -p 'require("@playwright/test").chromium.executablePath()')" >> "$GITHUB_ENV"
-      - run: bin/build
-      - run: bundle exec htmlproofer _site --disable-external
-      - run: npx playwright test --grep-invert @visual
-      - name: Lighthouse
-        run: CHROME_PATH="$(node -p 'require("@playwright/test").chromium.executablePath()')" npx lhci autorun
+      - name: Required checks
+        id: checks
+        run: bin/check
+      - name: Visual comparison
+        # A fresh sitemap permits visual review after a later required check fails.
+        if: ${{ !cancelled() && hashFiles('_site/sitemap.xml') != '' }}
+        continue-on-error: true
+        run: bin/visual-diff origin/${{ github.base_ref || 'main' }}
+      - name: Upload browser reports and images
+        id: browser_artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Upload Lighthouse HTML and JSON
+        id: lighthouse_artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-report
+          path: .lighthouseci/
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Explain report downloads
+        if: always()
+        run: |
+          cat <<'MARKDOWN' >> "$GITHUB_STEP_SUMMARY"
+          ## Reports
+
+          [Download Playwright reports and images](${{ steps.browser_artifact.outputs.artifact-url }})
+
+          Download `playwright-report.zip`, then run this from a checkout with npm dependencies installed:
+
+          ```sh
+          npx playwright show-report /path/to/playwright-report.zip
+          ```
+
+          Choose browser checks or visual comparison. Keep the complete archive so all screenshot images remain available.
+
+          [Download Lighthouse HTML and JSON](${{ steps.lighthouse_artifact.outputs.artifact-url }})
+
+          Unzip `lighthouse-report.zip` and open any `.html` file in a browser. Reports are uploaded after failures whenever their run produced files.
+          Visual differences do not fail the required check. Build, internal links, browser errors/overflow, and Lighthouse remain required.
+          MARKDOWN

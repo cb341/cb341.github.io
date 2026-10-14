@@ -16,11 +16,11 @@ module.exports = defineConfig({
   testDir: './tests',
   fullyParallel: true,
   workers: 2,
-  // Large CSS-off pages need time to capture and compare their full image dimensions.
+  // Allow eager image loading; visual tests set a separate capture budget.
   timeout: 90_000,
   expect: { timeout: 30_000 },
   metadata: { pages },
-  reporter: [['list'], ['html', { open: 'never' }]],
+  reporter: [['list'], ['html', { open: 'never', outputFolder: 'playwright-report/checks' }]],
   snapshotPathTemplate: '.screenshots/{projectName}/{arg}{ext}',
   use: {
     browserName: 'chromium',
