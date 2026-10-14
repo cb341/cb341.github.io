@@ -9,6 +9,11 @@ vendor/
 # Node.js build dependencies
 node_modules/
 
+# Playwright reports and temporary visual references
+playwright-report/
+test-results/
+.screenshots/
+
 # macOS-specific files
 .DS_Store
 

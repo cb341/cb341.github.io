@@ -17,5 +17,10 @@ jobs:
         with:
           node-version: "22"
           cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Use Playwright Chromium for article PDFs
+        run: echo "BROWSER_PATH=$(node -p 'require("@playwright/test").chromium.executablePath()')" >> "$GITHUB_ENV"
       - run: bin/build
       - run: bundle exec htmlproofer _site --disable-external
+      - run: npx playwright test --grep-invert @visual

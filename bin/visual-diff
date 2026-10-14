@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+set -euo pipefail
+# Usage: bin/visual-diff [base-ref]
+
+if [[ $# -gt 1 ]]; then
+  echo "Usage: bin/visual-diff [base-ref]" >&2
+  exit 1
+fi
+
+for tool in git npm npx bundle; do
+  if ! command -v "$tool" >/dev/null 2>&1; then
+    echo "$tool not found. Install the development tools listed in README.md." >&2
+    exit 1
+  fi
+done
+
+cd "$(dirname "$0")/.."
+ROOT="$(pwd)"
+BASE_REF="${1:-origin/main}"
+
+if [[ ! -f _site/sitemap.xml ]]; then
+  echo "_site/sitemap.xml not found. Run bin/build first." >&2
+  exit 1
+fi
+
+BASE_DIR="$(mktemp -d "${TMPDIR:-/tmp}/site-checks-base.XXXXXX")"
+WORKTREE_ADDED=0
+cleanup() {
+  local result=$?
+  if [[ "$WORKTREE_ADDED" == 1 ]]; then
+    git worktree remove --force "$BASE_DIR" || echo "Could not remove temporary worktree: $BASE_DIR" >&2
+  fi
+  rm -rf "$BASE_DIR" "$ROOT/.screenshots" || echo "Could not remove temporary visual output." >&2
+  echo "Review the visual report: npx playwright show-report"
+  exit "$result"
+}
+trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
+
+# Every run compares against fresh reference images from this base build.
+rm -rf .screenshots
+git worktree add --detach "$BASE_DIR" "$BASE_REF"
+WORKTREE_ADDED=1
+(
+  cd "$BASE_DIR"
+  npm ci
+  GENERATE_PDFS=0 bundle exec jekyll build
+)
+
+SITE_DIR="$BASE_DIR/_site" npx playwright test --grep @visual --update-snapshots=all
+
+RESULT=0
+SITE_DIR=_site npx playwright test --grep @visual --update-snapshots=missing || RESULT=$?
+exit "$RESULT"
