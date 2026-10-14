@@ -18,3 +18,4 @@ jobs:
           node-version: "22"
           cache: npm
       - run: bin/build
+      - run: bundle exec htmlproofer _site --disable-external
