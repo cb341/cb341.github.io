@@ -16,14 +16,17 @@ module.exports = defineConfig({
   testDir: './tests',
   fullyParallel: true,
   workers: 2,
-  timeout: 60_000,
-  expect: { timeout: 10_000 },
+  // Large CSS-off pages need time to capture and compare their full image dimensions.
+  timeout: 90_000,
+  expect: { timeout: 30_000 },
   metadata: { pages },
   reporter: [['list'], ['html', { open: 'never' }]],
   snapshotPathTemplate: '.screenshots/{projectName}/{arg}{ext}',
   use: {
     browserName: 'chromium',
     baseURL: 'http://127.0.0.1:4000',
+    // Freeze animated raster images at their first frame; animations: 'disabled' covers CSS/Web Animations.
+    launchOptions: { args: ['--blink-settings=imageAnimationPolicy=2'] },
   },
   projects: [360, 768, 1280].map((width) => ({
     name: String(width),
