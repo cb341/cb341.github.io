@@ -64,3 +64,8 @@ exclude:
   - bin/
   - design.md
   - tmp/
+  - tests/
+  - playwright.config.js
+  - playwright-report/
+  - test-results/
+  - .screenshots/
