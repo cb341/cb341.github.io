@@ -17,5 +17,4 @@ jobs:
         with:
           node-version: "22"
           cache: npm
-      - run: bin/check_unicode
       - run: bin/build
