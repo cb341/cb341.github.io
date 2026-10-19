@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+set -euo pipefail
+# Usage: bin/check [--prepared] [--skip-audit]
+
+PREPARED=false
+SKIP_AUDIT=false
+for option in "$@"; do
+  case "$option" in
+    --prepared) PREPARED=true ;;
+    --skip-audit) SKIP_AUDIT=true ;;
+    *) echo "Usage: bin/check [--prepared] [--skip-audit]" >&2; exit 2 ;;
+  esac
+done
+
+for tool in bundle npm npx node; do
+  if ! command -v "$tool" >/dev/null 2>&1; then
+    echo "$tool not found. Install the development tools listed in README.md." >&2
+    exit 1
+  fi
+done
+
+cd "$(dirname "$0")/.."
+rm -rf playwright-report/checks
+rm -f playwright-report/checks.html
+mkdir -p playwright-report
+cp tests/report-index.html playwright-report/index.html
+
+if [[ "$PREPARED" == false ]]; then
+  bin/build
+  bin/compare-builds
+fi
+
+node --test tests/*.test.js
+bundle exec htmlproofer _site --disable-external
+PAGE_COUNT="$(node -p 'JSON.parse(require("node:fs").readFileSync("playwright-report/changes.json", "utf8")).pages.length')"
+if [[ "$PAGE_COUNT" -gt 0 ]]; then
+  SITE_PAGES_FILE=playwright-report/changes.json SITE_REPORT_FILE=playwright-report/checks.html \
+    npx playwright test --grep-invert @visual
+else
+  echo "No affected pages; browser checks skipped. See playwright-report/changes.json."
+fi
+
+node tests/visual-summary.js playwright-report/changes.json
+if [[ "$SKIP_AUDIT" == false ]]; then
+  bin/unlighthouse
+fi

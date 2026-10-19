@@ -25,7 +25,8 @@ I still don't really understand the hardware side, the 3D printed case, the sold
 
 Some references:
 
-* [thedarnedestthing.com on planck ortholinear](http://thedarnedestthing.com/planck%20ortholinear)
+<!-- This reference works over HTTP only; its HTTPS endpoint refuses connections. -->
+* [thedarnedestthing.com on planck ortholinear](http://thedarnedestthing.com/planck%20ortholinear){: data-proofer-ignore=""}
 * [Chocofi from beekeeb](https://shop.beekeeb.com/products/presoldered-chocofi-split-keyboard)
 * [monkeytype](https://monkeytype.com/)
 * [akkogear on ortholinear keyboards](https://akkogear.eu/blogs/news/ortholinear-keyboards)
