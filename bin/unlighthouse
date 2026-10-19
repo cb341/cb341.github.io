@@ -1,0 +1,94 @@
+#!/usr/bin/env bash
+set -euo pipefail
+# Usage: bin/unlighthouse
+
+if [[ $# -ne 0 ]]; then
+  echo "Usage: bin/unlighthouse" >&2
+  exit 2
+fi
+
+for tool in node npx; do
+  if ! command -v "$tool" >/dev/null 2>&1; then
+    echo "$tool not found. Install Node.js and run npm ci." >&2
+    exit 1
+  fi
+done
+
+cd "$(dirname "$0")/.."
+if [[ ! -f _site/index.html || ! -f playwright-report/changes.json ]]; then
+  echo "Build and select affected pages first: bin/build && bin/compare-builds" >&2
+  exit 1
+fi
+
+rm -rf .unlighthouse
+PAGE_COUNT="$(node -p 'JSON.parse(require("node:fs").readFileSync("playwright-report/changes.json", "utf8")).pages.length')"
+if [[ "$PAGE_COUNT" -eq 0 ]]; then
+  mkdir -p .unlighthouse
+  cp playwright-report/changes.json .unlighthouse/changes.json
+  cat > .unlighthouse/index.html <<'HTML'
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='.9em' font-size='60'%3EU%3C/text%3E%3C/svg%3E">
+<title>Unlighthouse: no affected pages</title>
+<h1>No affected pages</h1>
+<p>The generated pages and their referenced assets match the base build. No audits were needed.</p>
+<p><a href="changes.json">Build comparison details</a></p>
+</html>
+HTML
+  echo "No affected pages; Unlighthouse skipped. Report: .unlighthouse/index.html"
+  exit 0
+fi
+
+CHROME_PATH="$(node -p 'require("@playwright/test").chromium.executablePath()')"
+export CHROME_PATH
+mkdir -p .ignored/site-checks
+node node_modules/http-server/bin/http-server _site -p 4173 -a 127.0.0.1 --silent \
+  > .ignored/site-checks/unlighthouse-server.log 2>&1 &
+SERVER_PID=$!
+trap 'kill "$SERVER_PID" 2>/dev/null || true; wait "$SERVER_PID" 2>/dev/null || true' EXIT
+SERVER_PID="$SERVER_PID" node <<'JS'
+const { setTimeout: delay } = require('node:timers/promises');
+(async () => {
+  for (let attempt = 0; attempt < 50; attempt++) {
+    try {
+      process.kill(Number(process.env.SERVER_PID), 0);
+    } catch {
+      throw new Error('Site server exited; see .ignored/site-checks/unlighthouse-server.log');
+    }
+    try {
+      const response = await fetch('http://127.0.0.1:4173/');
+      if (response.ok) return;
+    } catch {}
+    await delay(100);
+  }
+  throw new Error('Site server did not start on port 4173; see .ignored/site-checks/unlighthouse-server.log');
+})();
+JS
+
+AUDIT_STATUS=0
+npx unlighthouse-ci --config-file unlighthouse.config.js || AUDIT_STATUS=$?
+# Also reject missing/zero scores: the upstream budget check ignores falsy scores.
+node <<'JS'
+const fs = require('node:fs');
+const pages = JSON.parse(fs.readFileSync('playwright-report/changes.json', 'utf8')).pages;
+const reports = JSON.parse(fs.readFileSync('.unlighthouse/ci-result.json', 'utf8'));
+const categories = ['performance', 'accessibility', 'best-practices', 'seo'];
+const failures = [];
+for (const page of pages) {
+  const report = reports.find((row) => row.path === page);
+  for (const category of categories) {
+    const score = report?.[category];
+    if (typeof score !== 'number' || score < 0.95) {
+      failures.push(`${page}: ${category} ${score ?? 'missing'} (minimum 0.95)`);
+    }
+  }
+}
+if (failures.length) {
+  console.error(failures.join('\n'));
+  process.exit(1);
+}
+JS
+echo "Unlighthouse report: .unlighthouse/ (serve with npx http-server .unlighthouse -p 8080)"
+exit "$AUDIT_STATUS"

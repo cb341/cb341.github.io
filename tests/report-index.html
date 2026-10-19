@@ -3,12 +3,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Site check reports</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23234261'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-size='36' fill='white'%3ECI%3C/text%3E%3C/svg%3E">
 <style>body{font:16px/1.5 system-ui,sans-serif;max-width:44rem;margin:3rem auto;padding:0 1rem}li{margin:1rem 0}code{background:#eee;padding:.1rem .3rem}</style>
 <h1>Site check reports</h1>
 <ul>
+<li><a href="changes.html">Affected pages</a> — selected from changed HTML and asset dependencies.</li>
 <li><a href="checks/index.html">Required browser checks</a> — overflow and JavaScript errors.</li>
 <li><a href="visual/index.html">Visual comparison</a> — screenshots and differences for review.</li>
 </ul>
 <p>A report appears after its browser run finishes. Earlier failures can prevent later reports from being generated.</p>
-<p>Download the separate <code>lighthouse-report</code> artifact and open its HTML files for performance, accessibility, best practices and SEO results.</p>
+<p>Only affected pages are captured at 360, 768 and 1280 pixels. Unchanged builds skip screenshots and audits.</p>
+<p>Download the separate <code>unlighthouse-report</code> artifact for the affected-page audit dashboard.</p>
 </html>

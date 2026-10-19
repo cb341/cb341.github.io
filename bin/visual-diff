@@ -1,46 +1,31 @@
 #!/usr/bin/env bash
 set -euo pipefail
-# Usage: bin/visual-diff [base-ref]
+# Usage: bin/visual-diff [base-ref | --prepared]
 
 if [[ $# -gt 1 ]]; then
-  echo "Usage: bin/visual-diff [base-ref]" >&2
+  echo "Usage: bin/visual-diff [base-ref | --prepared]" >&2
   exit 1
 fi
-
-for tool in git npm npx bundle; do
+for tool in node npx; do
   if ! command -v "$tool" >/dev/null 2>&1; then
     echo "$tool not found. Install the development tools listed in README.md." >&2
     exit 1
   fi
 done
-
 cd "$(dirname "$0")/.."
-ROOT="$(pwd)"
-BASE_REF="${1:-origin/main}"
-
-# Reuse this checkout's configured gems when building the temporary base worktree.
-CONFIGURED_BUNDLE_PATH="$(bundle exec ruby -e 'require "bundler"; print File.expand_path(Bundler.settings[:path], Bundler.root) if Bundler.settings[:path]')"
-if [[ -n "$CONFIGURED_BUNDLE_PATH" ]]; then
-  export BUNDLE_PATH="$CONFIGURED_BUNDLE_PATH"
+if [[ "${1:-}" != --prepared ]]; then
+  bin/compare-builds "${1:-origin/main}"
 fi
-
-if [[ ! -f _site/sitemap.xml ]]; then
-  echo "_site/sitemap.xml not found. Run bin/build first." >&2
+if [[ ! -f playwright-report/changes.json || ! -f .ignored/site-checks/base/sitemap.xml ]]; then
+  echo "Prepared builds not found. Run bin/compare-builds first." >&2
   exit 1
 fi
-
-rm -rf playwright-report/base playwright-report/visual
+rm -rf playwright-report/visual .screenshots
 mkdir -p playwright-report
-cp tests/report-index.html playwright-report/index.html
-
-BASE_DIR="$(mktemp -d "${TMPDIR:-/tmp}/site-checks-base.XXXXXX")"
-WORKTREE_ADDED=0
+node tests/visual-summary.js playwright-report/changes.json
 cleanup() {
   local result=$?
-  if [[ "$WORKTREE_ADDED" == 1 ]]; then
-    git worktree remove --force "$BASE_DIR" || echo "Could not remove temporary worktree: $BASE_DIR" >&2
-  fi
-  rm -rf "$BASE_DIR" "$ROOT/.screenshots" || echo "Could not remove temporary visual output." >&2
+  rm -rf .screenshots
   echo "Review the visual report: npx playwright show-report"
   exit "$result"
 }
@@ -48,19 +33,17 @@ trap cleanup EXIT
 trap 'exit 130' INT
 trap 'exit 143' TERM
 
-# Every run compares against fresh reference images from this base build.
-rm -rf .screenshots
-git worktree add --detach "$BASE_DIR" "$BASE_REF"
-WORKTREE_ADDED=1
-(
-  cd "$BASE_DIR"
-  npm ci
-  GENERATE_PDFS=0 bundle exec jekyll build
-)
-
-# Generated reference captures are temporary; only the branch comparison gets an HTML report.
-SITE_DIR="$BASE_DIR/_site" npx playwright test --grep @visual --update-snapshots=all --reporter=list
-
+PAGE_COUNT="$(node -p 'require("./playwright-report/changes.json").pages.length')"
+BASE_COUNT="$(node -p 'require("./playwright-report/changes.json").basePages.length')"
+if [[ "$PAGE_COUNT" == 0 ]]; then
+  echo "No affected pages; screenshots skipped. See playwright-report/changes.html."
+  exit 0
+fi
+export SITE_PAGES_FILE=playwright-report/changes.json
+# Every selected existing page gets a fresh base capture in this run.
+if [[ "$BASE_COUNT" != 0 ]]; then
+  SITE_PAGES_KEY=basePages SITE_DIR=.ignored/site-checks/base npx playwright test --grep @visual --update-snapshots=all --reporter=list
+fi
 RESULT=0
 PLAYWRIGHT_HTML_OUTPUT_DIR=playwright-report/visual SITE_DIR=_site npx playwright test --grep @visual --update-snapshots=missing || RESULT=$?
 exit "$RESULT"

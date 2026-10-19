@@ -4,16 +4,27 @@ const { resolve } = require('node:path');
 
 // Read the sitemap belonging to the build that webServer will serve.
 const sitemap = readFileSync(resolve(process.env.SITE_DIR || '_site', 'sitemap.xml'), 'utf8');
-const pages = [...new Set(
+let pages = [...new Set(
   [...sitemap.matchAll(/<loc>\s*([^<]+)\s*<\/loc>/g)]
     .map((match) => new URL(match[1].trim().replaceAll('&amp;', '&')).pathname)
     .filter((path) => path.endsWith('/') || path.endsWith('.html')),
 )].sort();
 
 if (!pages.length) throw new Error('No HTML pages found in the served build’s sitemap.xml');
+if (process.env.SITE_PAGES_FILE) {
+  const selection = JSON.parse(readFileSync(resolve(process.env.SITE_PAGES_FILE), 'utf8'));
+  const selected = selection[process.env.SITE_PAGES_KEY || 'pages'];
+  if (!Array.isArray(selected)) throw new Error('Page selection must contain an array of URL paths');
+  const available = new Set(pages);
+  for (const page of selected) {
+    if (!available.has(page)) throw new Error(`Selected page is absent from the served sitemap: ${page}`);
+  }
+  pages = selected;
+}
 
 module.exports = defineConfig({
   testDir: './tests',
+  testMatch: 'site.spec.js',
   fullyParallel: true,
   workers: 2,
   // Allow eager image loading; visual tests set a separate capture budget.

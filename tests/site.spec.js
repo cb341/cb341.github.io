@@ -50,7 +50,10 @@ async function openDetails(page) {
 async function compareScreenshot(page, name, options, attachmentName) {
   const info = test.info();
   const errorsBefore = info.errors.length;
-  await expect.soft(page).toHaveScreenshot(name, options);
+  // One capture per build: loaded images/fonts and disabled animation provide
+  // the settled state without repeatedly rasterizing huge full-page images.
+  const screenshot = await page.screenshot(options);
+  expect.soft(screenshot).toMatchSnapshot(name);
   if (info.errors.length === errorsBefore && info.config.updateSnapshots !== 'all') {
     // Reuse the matching snapshot; failure images are attached by Playwright.
     await info.attach(attachmentName, {
@@ -80,12 +83,10 @@ for (const path of pages) {
       });
 
       test('visual', { tag: '@visual' }, async ({ page }) => {
-        // Large CSS-off captures may need a third frame to settle on slow runners.
-        test.setTimeout(240_000);
         await visit(page, path, cssOn);
         const name = `${Buffer.from(path).toString('base64url')}-css-${cssOn ? 'on' : 'off'}`;
         const options = {
-          timeout: 90_000,
+          timeout: 30_000,
           fullPage: true,
           animations: 'disabled',
           mask: [page.locator('video')],

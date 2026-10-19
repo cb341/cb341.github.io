@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+set -euo pipefail
+# Usage: bin/compare-builds [base-ref]
+
+if [[ $# -gt 1 ]]; then
+  echo "Usage: bin/compare-builds [base-ref]" >&2
+  exit 1
+fi
+for tool in git npm node bundle; do
+  if ! command -v "$tool" >/dev/null 2>&1; then
+    echo "$tool not found. Install the development tools listed in README.md." >&2
+    exit 1
+  fi
+done
+cd "$(dirname "$0")/.."
+if [[ ! -f _site/sitemap.xml ]]; then
+  echo "_site/sitemap.xml not found. Run bin/build first." >&2
+  exit 1
+fi
+
+ROOT="$(pwd)"
+BASE_REF="${1:-origin/main}"
+BASE_SITE="$ROOT/.ignored/site-checks/base"
+CONFIGURED_BUNDLE_PATH="$(bundle exec ruby -e 'require "bundler"; print File.expand_path(Bundler.settings[:path], Bundler.root) if Bundler.settings[:path]')"
+if [[ -n "$CONFIGURED_BUNDLE_PATH" ]]; then
+  export BUNDLE_PATH="$CONFIGURED_BUNDLE_PATH"
+fi
+BASE_DIR="$(mktemp -d "${TMPDIR:-/tmp}/site-checks-base.XXXXXX")"
+WORKTREE_ADDED=0
+cleanup() {
+  local result=$?
+  if [[ "$WORKTREE_ADDED" == 1 ]]; then
+    git worktree remove --force "$BASE_DIR" || echo "Could not remove temporary worktree: $BASE_DIR" >&2
+  fi
+  rm -rf "$BASE_DIR"
+  exit "$result"
+}
+trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
+
+git worktree add --detach "$BASE_DIR" "$BASE_REF"
+WORKTREE_ADDED=1
+(
+  cd "$BASE_DIR"
+  npm ci
+  GENERATE_PDFS=0 bundle exec jekyll build
+)
+mkdir -p .ignored/site-checks playwright-report
+rm -rf playwright-report/visual
+rm -rf "$BASE_SITE"
+mv "$BASE_DIR/_site" "$BASE_SITE"
+node tests/changed-pages.js "$BASE_SITE" _site playwright-report/changes.json
+node tests/visual-summary.js playwright-report/changes.json

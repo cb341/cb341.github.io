@@ -8,8 +8,9 @@ permissions:
   contents: read
 
 jobs:
-  check:
+  prepare:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:
@@ -26,16 +27,120 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - name: Use Playwright Chromium for article PDFs
         run: echo "BROWSER_PATH=$(node -p 'require("@playwright/test").chromium.executablePath()')" >> "$GITHUB_ENV"
-      - name: Required checks
-        id: checks
-        run: bin/check
-      - name: Visual comparison
-        # A fresh sitemap permits visual review after a later required check fails.
-        if: ${{ !cancelled() && hashFiles('_site/sitemap.xml') != '' }}
+      - run: bin/build
+      - name: Build main once and select affected pages
+        run: bin/compare-builds origin/${{ github.base_ref || 'main' }}
+      - name: Share the builds and affected page manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: prepared-site
+          path: |
+            _site/
+            .ignored/site-checks/base/
+            playwright-report/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 1
+
+  site-checks:
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - uses: actions/download-artifact@v4
+        with:
+          name: prepared-site
+          path: .
+      - name: Internal links, affected-page overflow and JavaScript checks
+        run: bin/check --prepared --skip-audit
+      - name: Upload browser check report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-checks-report
+          path: playwright-report/
+          if-no-files-found: warn
+          retention-days: 7
+
+  unlighthouse:
+    needs: prepare
+    runs-on: ubuntu-latest
+    # A shared CSS change can legitimately select the whole site.
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - uses: actions/download-artifact@v4
+        with:
+          name: prepared-site
+          path: .
+      - name: Audit every affected page
+        run: bin/unlighthouse
+      - name: Upload Unlighthouse dashboard and scores
+        id: artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unlighthouse-report
+          path: .unlighthouse/
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Explain audit download
+        if: always()
+        run: |
+          cat <<'MARKDOWN' >> "$GITHUB_STEP_SUMMARY"
+          ## Unlighthouse
+
+          [Download the audit dashboard and scores](${{ steps.artifact.outputs.artifact-url }})
+
+          Unzip `unlighthouse-report.zip`, then serve the complete directory:
+
+          ```sh
+          npx http-server /path/to/unlighthouse-report -p 8080
+          ```
+
+          Open http://localhost:8080. Only affected pages are audited; no affected pages produces a skip report.
+          Audits run in parallel with browser checks and visual review. Scores remain required.
+          MARKDOWN
+
+  visual:
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - uses: actions/download-artifact@v4
+        with:
+          name: prepared-site
+          path: .
+      - name: Screenshot affected pages and compare with main
         continue-on-error: true
-        run: bin/visual-diff origin/${{ github.base_ref || 'main' }}
-      - name: Upload browser reports and images
-        id: browser_artifact
+        run: bin/visual-diff --prepared
+      - name: Upload screenshots and visual differences
+        id: artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -43,23 +148,13 @@ jobs:
           path: playwright-report/
           if-no-files-found: warn
           retention-days: 7
-      - name: Upload Lighthouse HTML and JSON
-        id: lighthouse_artifact
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: lighthouse-report
-          path: .lighthouseci/
-          include-hidden-files: true
-          if-no-files-found: warn
-          retention-days: 7
-      - name: Explain report downloads
+      - name: Explain visual report download
         if: always()
         run: |
           cat <<'MARKDOWN' >> "$GITHUB_STEP_SUMMARY"
-          ## Reports
+          ## Screenshots and differences
 
-          [Download Playwright reports and images](${{ steps.browser_artifact.outputs.artifact-url }})
+          [Download the visual report and images](${{ steps.artifact.outputs.artifact-url }})
 
           Download `playwright-report.zip`, then run this from a checkout with npm dependencies installed:
 
@@ -67,10 +162,22 @@ jobs:
           npx playwright show-report /path/to/playwright-report.zip
           ```
 
-          Choose browser checks or visual comparison. Keep the complete archive so all screenshot images remain available.
-
-          [Download Lighthouse HTML and JSON](${{ steps.lighthouse_artifact.outputs.artifact-url }})
-
-          Unzip `lighthouse-report.zip` and open any `.html` file in a browser. Reports are uploaded after failures whenever their run produced files.
-          Visual differences do not fail the required check. Build, internal links, browser errors/overflow, and Lighthouse remain required.
+          Affected pages are captured at 360, 768 and 1280 pixels wide, with screenshots and image differences.
+          Unchanged pages are omitted. Keep the complete archive so all images remain available.
+          Visual differences do not fail the required check.
           MARKDOWN
+
+  check:
+    if: always()
+    needs: [prepare, site-checks, unlighthouse]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require build, browser checks and audit scores
+        env:
+          PREPARE_RESULT: ${{ needs.prepare.result }}
+          SITE_CHECKS_RESULT: ${{ needs.site-checks.result }}
+          AUDIT_RESULT: ${{ needs.unlighthouse.result }}
+        run: |
+          test "$PREPARE_RESULT" = success
+          test "$SITE_CHECKS_RESULT" = success
+          test "$AUDIT_RESULT" = success

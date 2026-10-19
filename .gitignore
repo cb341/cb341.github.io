@@ -16,6 +16,10 @@ test-results/
 
 # Lighthouse reports
 .lighthouseci/
+.unlighthouse/
+
+# Local check preparation and agent progress
+.ignored/
 
 # macOS-specific files
 .DS_Store

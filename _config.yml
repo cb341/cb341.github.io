@@ -69,5 +69,5 @@ exclude:
   - playwright-report/
   - test-results/
   - .screenshots/
-  - lighthouserc.json
-  - .lighthouseci/
+  - unlighthouse.config.js
+  - .unlighthouse/
