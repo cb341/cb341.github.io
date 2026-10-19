@@ -27,3 +27,11 @@ Also reading *99 Variations on a Proof*.
 {%- for post in site.posts limit: 5 %}
 - {{ post.date | date: site.date_format }}: [{{ post.title }}]({{ post.url }})
 {%- endfor %}
+
+## Links
+
+[Mastodon](https://mastodon.social/deck/@cb341) / [Codewars](https://www.codewars.com/users/cb341) / [LinkedIn](https://www.linkedin.com/in/daniel-bengl) / [Chess.com](https://www.chess.com/member/cuddlybunion341) / [LessWrong](https://www.lesswrong.com/users/cb341)
+
+[Buy me a blahaj](https://buymeacoffee.com/cb341)
+
+[Sitemap](/sitemap/) / [RSS Feed](/rss.xml)
