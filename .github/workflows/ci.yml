@@ -110,13 +110,10 @@ jobs:
 
           [Download the audit dashboard and scores](${{ steps.artifact.outputs.artifact-url }})
 
-          Unzip `unlighthouse-report.zip`, then serve the complete directory:
-
-          ```sh
-          npx http-server /path/to/unlighthouse-report -p 8080
-          ```
-
-          Open http://localhost:8080. Only affected pages are audited; no affected pages produces a skip report.
+          Download and unzip `unlighthouse-report.zip`, then double-click `index.html`.
+          The summary, screenshots and detailed Lighthouse HTML reports open directly in your browser, offline.
+          No commands, installed project dependencies or local server are needed.
+          Only affected pages are audited; no affected pages produces a skip report.
           Audits run in parallel with browser checks and visual review. Scores remain required.
           MARKDOWN
 
@@ -156,14 +153,11 @@ jobs:
 
           [Download the visual report and images](${{ steps.artifact.outputs.artifact-url }})
 
-          Download `playwright-report.zip`, then run this from a checkout with npm dependencies installed:
-
-          ```sh
-          npx playwright show-report /path/to/playwright-report.zip
-          ```
-
+          Download and unzip `playwright-report.zip`, then double-click `index.html`.
+          Screenshots and differences are embedded in the HTML and work offline.
+          No commands, installed project dependencies or local server are needed.
           Affected pages are captured at 360, 768 and 1280 pixels wide, with screenshots and image differences.
-          Unchanged pages are omitted. Keep the complete archive so all images remain available.
+          Unchanged pages are omitted.
           Visual differences do not fail the required check.
           MARKDOWN
 

@@ -48,6 +48,7 @@ WORKTREE_ADDED=1
 )
 mkdir -p .ignored/site-checks playwright-report
 rm -rf playwright-report/visual
+rm -f playwright-report/visual.html
 rm -rf "$BASE_SITE"
 mv "$BASE_DIR/_site" "$BASE_SITE"
 node tests/changed-pages.js "$BASE_SITE" _site playwright-report/changes.json

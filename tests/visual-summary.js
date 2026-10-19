@@ -1,4 +1,4 @@
-const { readFileSync, writeFileSync, mkdirSync, existsSync } = require('node:fs');
+const { readFileSync, writeFileSync, existsSync } = require('node:fs');
 const { dirname, join } = require('node:path');
 
 const file = process.argv[2] || 'playwright-report/changes.json';
@@ -16,13 +16,12 @@ ${items ? `<ul>${items}</ul>` : '<p>No current pages are affected. Screenshots a
 ${changes.removed.length ? `<h2>Removed pages</h2><ul>${changes.removed.map((page) => `<li><code>${escape(page)}</code></li>`).join('')}</ul>` : ''}
 <p><a href="changes.json">Selection manifest</a> · <a href="index.html">Report chooser</a></p></html>`;
 writeFileSync(join(dirname(file), 'changes.html'), html);
+// Empty runs still have a directly openable result page.
+if (!changes.pages.length) writeFileSync(join(dirname(file), 'visual.html'), html);
 let chooser = readFileSync('tests/report-index.html', 'utf8');
-if (!existsSync(join(dirname(file), 'checks/index.html'))) {
-  chooser = chooser.replace(/<li><a href="checks\/index\.html">[^\n]*<\/li>\n/, '');
+for (const report of ['checks', 'visual']) {
+  if (!existsSync(join(dirname(file), `${report}.html`))) {
+    chooser = chooser.replace(new RegExp(`<li><a href="${report}\\.html">[^\\n]*<\\/li>\\n`), '');
+  }
 }
 writeFileSync(join(dirname(file), 'index.html'), chooser);
-// A useful downloadable report also exists when no Playwright tests need to run.
-if (!changes.pages.length) {
-  mkdirSync(join(dirname(file), 'visual'), { recursive: true });
-  writeFileSync(join(dirname(file), 'visual/index.html'), html.replaceAll('href="changes.json"', 'href="../changes.json"').replaceAll('href="index.html"', 'href="../index.html"'));
-}

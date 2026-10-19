@@ -32,27 +32,18 @@ Standalone `bin/visual-diff [base-ref]` expects the current `_site` build to exi
 and builds a fresh base (default `origin/main`). It compares
 generated HTML and referenced assets, then captures only affected pages at 360,
 768 and 1280 pixels wide. Shared CSS or scripts can affect many pages. Screenshots
-and reports stay in ignored directories. View the report locally with
-`npx playwright show-report`.
+and reports stay in ignored directories. Double-click `playwright-report/index.html`
+to view the report in your browser. Screenshots and diffs are embedded in the HTML.
 
 CI builds both refs once, then runs browser checks, visual review and Unlighthouse
 in parallel. The required `check` status waits for browser checks and Unlighthouse;
 visual differences are advisory. Download `playwright-report` from a run's
-**Artifacts** section or visual job summary, then run:
+**Artifacts** section or visual job summary, unzip it, then double-click `index.html`.
+The report works offline without commands, a local server or installed dependencies.
 
-```sh
-npx playwright show-report /path/to/playwright-report.zip
-```
-
-Keep the complete archive so expected, actual and diff images remain available.
-For audits, download and unzip `unlighthouse-report`, then serve its directory:
-
-```sh
-npx http-server /path/to/unlighthouse-report -p 8080
-```
-
-Open `http://localhost:8080` for the audit dashboard. `browser-checks-report` opens
-with the same Playwright command and contains overflow and JavaScript check results.
+For audits, download and unzip `unlighthouse-report`, then double-click `index.html`.
+Its scores, screenshots and detailed Lighthouse reports open directly in your browser.
+`browser-checks-report` opens the same way and contains overflow and JavaScript results.
 
 ## License
 

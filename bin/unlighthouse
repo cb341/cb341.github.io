@@ -69,6 +69,9 @@ JS
 
 AUDIT_STATUS=0
 npx unlighthouse-ci --config-file unlighthouse.config.js || AUDIT_STATUS=$?
+mkdir -p .unlighthouse
+cp playwright-report/changes.json .unlighthouse/changes.json
+node tests/offline-audit.js
 # Also reject missing/zero scores: the upstream budget check ignores falsy scores.
 node <<'JS'
 const fs = require('node:fs');
@@ -90,5 +93,5 @@ if (failures.length) {
   process.exit(1);
 }
 JS
-echo "Unlighthouse report: .unlighthouse/ (serve with npx http-server .unlighthouse -p 8080)"
+echo "Open .unlighthouse/index.html in your browser. No server is needed."
 exit "$AUDIT_STATUS"

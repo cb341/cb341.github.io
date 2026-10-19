@@ -21,6 +21,7 @@ done
 
 cd "$(dirname "$0")/.."
 rm -rf playwright-report/checks
+rm -f playwright-report/checks.html
 mkdir -p playwright-report
 cp tests/report-index.html playwright-report/index.html
 
@@ -29,11 +30,11 @@ if [[ "$PREPARED" == false ]]; then
   bin/compare-builds
 fi
 
-node --test tests/changed-pages.test.js
+node --test tests/*.test.js
 bundle exec htmlproofer _site --disable-external
 PAGE_COUNT="$(node -p 'JSON.parse(require("node:fs").readFileSync("playwright-report/changes.json", "utf8")).pages.length')"
 if [[ "$PAGE_COUNT" -gt 0 ]]; then
-  SITE_PAGES_FILE=playwright-report/changes.json PLAYWRIGHT_HTML_OUTPUT_DIR=playwright-report/checks \
+  SITE_PAGES_FILE=playwright-report/changes.json SITE_REPORT_FILE=playwright-report/checks.html \
     npx playwright test --grep-invert @visual
 else
   echo "No affected pages; browser checks skipped. See playwright-report/changes.json."

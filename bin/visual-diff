@@ -21,12 +21,14 @@ if [[ ! -f playwright-report/changes.json || ! -f .ignored/site-checks/base/site
   exit 1
 fi
 rm -rf playwright-report/visual .screenshots
+rm -f playwright-report/visual.html
 mkdir -p playwright-report
 node tests/visual-summary.js playwright-report/changes.json
 cleanup() {
   local result=$?
   rm -rf .screenshots
-  echo "Review the visual report: npx playwright show-report"
+  node tests/visual-summary.js playwright-report/changes.json
+  echo "Open playwright-report/index.html in your browser. No server is needed."
   exit "$result"
 }
 trap cleanup EXIT
@@ -45,5 +47,5 @@ if [[ "$BASE_COUNT" != 0 ]]; then
   SITE_PAGES_KEY=basePages SITE_DIR=.ignored/site-checks/base npx playwright test --grep @visual --update-snapshots=all --reporter=list
 fi
 RESULT=0
-PLAYWRIGHT_HTML_OUTPUT_DIR=playwright-report/visual SITE_DIR=_site npx playwright test --grep @visual --update-snapshots=missing || RESULT=$?
+SITE_REPORT_FILE=playwright-report/visual.html SITE_DIR=_site npx playwright test --grep @visual --update-snapshots=missing || RESULT=$?
 exit "$RESULT"

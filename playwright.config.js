@@ -31,7 +31,9 @@ module.exports = defineConfig({
   timeout: 90_000,
   expect: { timeout: 30_000 },
   metadata: { pages },
-  reporter: [['list'], ['html', { open: 'never', outputFolder: 'playwright-report/checks' }]],
+  reporter: [['list'], ['./tests/offline-reporter.js', {
+    outputFile: process.env.SITE_REPORT_FILE || 'playwright-report/checks.html',
+  }]],
   snapshotPathTemplate: '.screenshots/{projectName}/{arg}{ext}',
   use: {
     browserName: 'chromium',
