@@ -27,8 +27,10 @@ port = server.listeners.first.addr[1]
 browser = nil
 begin
   browser = Ferrum::Browser.new(
-    dockerize: Process.uid.zero?,
-    process_timeout: 20,
+    # Downloaded Chromium may lack a usable sandbox on GitHub's Linux runners.
+    dockerize: Process.uid.zero? || ENV["GITHUB_ACTIONS"] == "true",
+    # Allow startup headroom on busy runners without relaxing page timeouts.
+    process_timeout: 60,
     timeout: 20
   )
   page = browser.create_page
@@ -61,6 +63,9 @@ begin
     )
     puts "Rendered #{output_route}"
   end
+rescue Ferrum::ProcessTimeoutError => error
+  warn "Chromium startup output:\n#{error.output}" unless error.output.empty?
+  raise
 ensure
   browser&.quit
   server.shutdown

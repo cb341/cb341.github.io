@@ -1,21 +1,177 @@
 name: CI
 
 on:
-  push:
-    branches-ignore: ["main"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
-  build:
+  prepare:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-      - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.3"
-          bundler-cache: true
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
           cache: npm
-      - run: bin/check_unicode
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Use Playwright Chromium for article PDFs
+        run: echo "BROWSER_PATH=$(node -p 'require("@playwright/test").chromium.executablePath()')" >> "$GITHUB_ENV"
       - run: bin/build
+      - name: Build main once and select affected pages
+        run: bin/compare-builds origin/${{ github.base_ref || 'main' }}
+      - name: Share the builds and affected page manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: prepared-site
+          path: |
+            _site/
+            .ignored/site-checks/base/
+            playwright-report/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 1
+
+  site-checks:
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - uses: actions/download-artifact@v4
+        with:
+          name: prepared-site
+          path: .
+      - name: Internal links, affected-page overflow and JavaScript checks
+        run: bin/check --prepared --skip-audit
+      - name: Upload browser check report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-checks-report
+          path: playwright-report/
+          if-no-files-found: warn
+          retention-days: 7
+
+  unlighthouse:
+    needs: prepare
+    runs-on: ubuntu-latest
+    # A shared CSS change can legitimately select the whole site.
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - uses: actions/download-artifact@v4
+        with:
+          name: prepared-site
+          path: .
+      - name: Audit every affected page
+        run: bin/unlighthouse
+      - name: Upload Unlighthouse dashboard and scores
+        id: artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unlighthouse-report
+          path: .unlighthouse/
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Explain audit download
+        if: always()
+        run: |
+          cat <<'MARKDOWN' >> "$GITHUB_STEP_SUMMARY"
+          ## Unlighthouse
+
+          [Download the audit dashboard and scores](${{ steps.artifact.outputs.artifact-url }})
+
+          Download and unzip `unlighthouse-report.zip`, then double-click `index.html`.
+          The summary, screenshots and detailed Lighthouse HTML reports open directly in your browser, offline.
+          No commands, installed project dependencies or local server are needed.
+          Only affected pages are audited; no affected pages produces a skip report.
+          Audits run in parallel with browser checks and visual review. Scores remain required.
+          MARKDOWN
+
+  visual:
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - uses: actions/download-artifact@v4
+        with:
+          name: prepared-site
+          path: .
+      - name: Screenshot affected pages and compare with main
+        continue-on-error: true
+        run: bin/visual-diff --prepared
+      - name: Upload screenshots and visual differences
+        id: artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Explain visual report download
+        if: always()
+        run: |
+          cat <<'MARKDOWN' >> "$GITHUB_STEP_SUMMARY"
+          ## Screenshots and differences
+
+          [Download the visual report and images](${{ steps.artifact.outputs.artifact-url }})
+
+          Download and unzip `playwright-report.zip`, then double-click `index.html`.
+          Screenshots and differences are embedded in the HTML and work offline.
+          No commands, installed project dependencies or local server are needed.
+          Affected pages are captured at 360, 768 and 1280 pixels wide, with screenshots and image differences.
+          Unchanged pages are omitted.
+          Visual differences do not fail the required check.
+          MARKDOWN
+
+  check:
+    if: always()
+    needs: [prepare, site-checks, unlighthouse]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require build, browser checks and audit scores
+        env:
+          PREPARE_RESULT: ${{ needs.prepare.result }}
+          SITE_CHECKS_RESULT: ${{ needs.site-checks.result }}
+          AUDIT_RESULT: ${{ needs.unlighthouse.result }}
+        run: |
+          test "$PREPARE_RESULT" = success
+          test "$SITE_CHECKS_RESULT" = success
+          test "$AUDIT_RESULT" = success
