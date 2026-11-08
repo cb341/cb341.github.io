@@ -150,8 +150,8 @@ Orson Welles on the confidence of ignorance, [remixed for vibe coders](https://w
 
 I see in pure mathematics what pulled me into programming in the first place: the reasoning, the struggle, the moment of insight. except there, the reasoning is the subject, not a byproduct of shipping something. most "people" don't understand theoretical maths and don't care, and now nobody needs to ask me either. so they [leave me alone](https://www.youtube.com/watch?v=kNNyWyxWr7M) to explore. that part I don't mind.
 
-but my CS degree is years away. a PhD, if ever, further. by then, nobody will need me anymore.
-> ["So tell me what a life is for"](https://www.youtube.com/watch?v=zONGVaONKe8&t=214s)
+but my CS degree is years away. a PhD, if ever, further.
+> ["So tell me what a life is for when no one needs us anymore.."](https://www.youtube.com/watch?v=zONGVaONKe8&t=214s)
 
 one must imagine Sisyphus happy. (*il faut imaginer Sisyphe heureux.* Albert Camus, [*Le Mythe de Sisyphe*](https://www.britannica.com/topic/The-Myth-of-Sisyphus), 1942)
 
