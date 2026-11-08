@@ -1,5 +1,5 @@
 ---
-title: "Being Needed"
+title: "Does Anybody Need Me?"
 description: "What I read in late 2026, and what it says about 2027: bloom, gloom, or doom."
 tags: ["ai", "reflection", "work", "future"]
 # Readers know computing; the glossary covers AI research, labour economics and
