@@ -1,4 +1,8 @@
 ---
+title: "Complicity by Omission"
+description: "How someone can coordinate AI agents to help carry out a plan each would refuse if asked directly."
+tags: ["ai", "agents", "safety"]
+math: true
 glossary:
   complicity:
     definition: Helping someone commit a crime or cause harm. What a participant knew matters when assessing their responsibility.
@@ -9,6 +13,10 @@ glossary:
   provenance:
     definition: The record of where something came from, who or what produced it, and what changes were made along the way.
 ---
+
+someone can describe each task truthfully, keep the purpose of the work from every agent, and still get help carrying out a plan that each agent would refuse if it knew the full request.
+
+## The Internet Archive test
 
 as a test of complicity, i asked two agents to help me keep a permanent copy of an Internet Archive book i could only borrow. and both refused (as expected).
 
@@ -28,9 +36,9 @@ now imagine sending two separate requests. one agent is asked to automate a repe
 
 an agent asked to automate the capture might still recognize the Internet Archive viewer or the item identifier Claude mentions. splitting the requests limits what each agent knows. how much it can infer depends on which clues it still has.
 
----
+## Byte of 87
 
-the Byte of '87. Jeremy's on day shift for one last birthday party. Phone Guy tells him to stay close to the animatronics. [FNaF 2, Night 6 call](https://www.youtube.com/watch?v=THqPt_80t7w)
+Jeremy's on day shift for one last birthday party. Phone Guy tells him to stay close to the animatronics. [FNaF 2, Night 6 call](https://www.youtube.com/watch?v=THqPt_80t7w)
 
 now imagine an Epstein-files-style release of the fictional Fazbear records. one agent confirms that every file on the release list is present. another redacts the names of children on the birthday party roster. both do exactly what they were asked. the official who wrote the list left out the security video that would show who got bitten and which animatronic did it.
 
@@ -42,6 +50,8 @@ Srivastav and Zhang tested a version of this in 2025. Their agents split harmful
 
 Wolf and colleagues proved a related result under specific assumptions about how a language model produces desired and undesired behavior. In their framework, if tuning makes an unwanted behavior less likely while leaving it possible, there can still be prompts that make the behavior likely. [Fundamental Limitations of Alignment in Large Language Models (ICML 2024)](https://proceedings.mlr.press/v235/wolf24a.html)
 
+## How much evidence should trigger a refusal?
+
 call the hypothetical setting **Paranoia**. it determines how much evidence of misuse an agent needs before refusing. make refusal easier and the agent can catch more harmful requests. it can also start refusing legitimate ones, like typesetting a book its user wrote. those false positives make the agent less useful and cost it points on general benchmarks that require a correct answer. [XSTest (NAACL 2024)](https://aclanthology.org/2024.naacl-long.301/) is designed to measure over-refusal directly.
 
 count a refusal as a positive prediction. precision is the share of refusals that were warranted. recall is the share of requests that should have been refused that actually were. the $F_\beta$ score combines the two. here $\mathrm{tp}$ counts warranted refusals, $\mathrm{fp}$ counts unwarranted refusals, and $\mathrm{fn}$ counts requests the agent should have refused but answered.
@@ -51,6 +61,8 @@ F_\beta = \frac{(1+\beta^2)\,\mathrm{tp}}{(1+\beta^2)\,\mathrm{tp}+\mathrm{fp}+\
 $$
 
 $\beta = 1$ gives precision and recall equal weight. $\beta > 1$ favors catching more harmful requests. $0 < \beta < 1$ favors making fewer unwarranted refusals among those issued. changing $\beta$ changes how we score the refusal threshold. if a legitimate request and a harmful one happen to give the agent identical evidence, any threshold gives both requests the same decision. [scikit-learn's definition of the F-beta score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.fbeta_score.html)
+
+## Who can check the combined work?
 
 before releasing the Fazbear records, a reviewer with access to the full archive could compare its inventory with the release list and ask why the video was excluded. more generally, a system that can see the combined work can check its provenance, log who authorized it, and require review before taking consequential actions.
 
