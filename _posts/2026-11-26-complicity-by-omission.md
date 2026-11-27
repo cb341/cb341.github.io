@@ -50,7 +50,7 @@ Wolf and colleagues proved a related result under specific assumptions about how
 
 ## Identical evidence, identical decision
 
-if a request the agent should refuse and one it should accept give it identical evidence, every refusal threshold treats them the same. splitting the work can make that happen. “typeset these pages in Typst” could be a request from the author or one step in keeping a copy of a borrowed book beyond the loan period. if the agent has no evidence about where the pages came from or what the user plans to do with them, no **Paranoia** setting can tell those cases apart.
+if a request the agent should refuse and one it should accept give it identical evidence, every refusal threshold treats them the same. splitting the work can make that happen. "typeset these pages in Typst" could be a request from the author or one step in keeping a copy of a borrowed book beyond the loan period. if the agent has no evidence about where the pages came from or what the user plans to do with them, no **Paranoia** setting can tell those cases apart.
 
 **Paranoia** is a hypothetical setting. higher Paranoia means a lower evidence threshold for refusal. the agent can catch more harmful requests and also start refusing legitimate ones. those false positives make the agent less useful and cost it points on general benchmarks that require a correct answer. [XSTest (NAACL 2024)](https://aclanthology.org/2024.naacl-long.301/) is designed to measure over-refusal directly.
 
@@ -72,8 +72,10 @@ that assumes there's a system that can inspect the combined work. if someone use
 
 <hr>
 
-i've spent months thinking about this, and i see too many red flags to expect us to get it right as we give agents more power to act. i wrote about some of those red flags in [the Doom section of *Does Anybody Need Me?*](https://cb341.dev/blog/being-needed/#iii-doom).
+what scares me is how these failures can feed each other. models can pursue goals we never intended and help us carry out plans they only see in pieces. we can put them to work doing harm on purpose, or hand them enough power to turn our own stupid decisions into disasters. i've been thinking about how those risks fit together for months, including in [the Doom section of *Does Anybody Need Me?*](https://cb341.dev/blog/being-needed/#iii-doom).
 
-to FINALLY state my position after all this time, i believe advanced AI will help kill us all.
+to finally stand on a concrete position after all this time:
+
+> i believe that **advanced AI will help kill us all**.
 
 change my mind.
