@@ -1,5 +1,16 @@
 # Agent Notes
 
+## Checks
+
+- Track work in `.ignored/todo.md` using a detailed checklist with subtasks. Keep
+  the current task and a description of the work at the top.
+- Agents MUST run `bin/check` before claiming a change is done.
+- For visual changes, also run `bin/visual-diff` against the existing current site
+  build and point the user to the Playwright report. Only affected generated pages
+  and pages referencing changed assets are captured. Visual differences are advisory.
+- Never commit screenshots or generated report images.
+- Include an identifiable favicon when creating an HTML page; letters are fine.
+
 ## Variants Workflow
 
 When the user asks for variants, proposals, comparisons, or alternatives for a page/component/design:

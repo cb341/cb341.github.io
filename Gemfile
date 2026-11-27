@@ -6,6 +6,10 @@ gem "fastimage"
 gem "ferrum", "~> 0.18"
 gem "nokogiri", "~> 1.19"
 
+group :test do
+  gem "html-proofer"
+end
+
 group :jekyll_plugins do
   gem "jekyll-sitemap"
 end

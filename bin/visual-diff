@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+set -euo pipefail
+# Usage: bin/visual-diff [base-ref | --prepared]
+
+if [[ $# -gt 1 ]]; then
+  echo "Usage: bin/visual-diff [base-ref | --prepared]" >&2
+  exit 1
+fi
+for tool in node npx; do
+  if ! command -v "$tool" >/dev/null 2>&1; then
+    echo "$tool not found. Install the development tools listed in README.md." >&2
+    exit 1
+  fi
+done
+cd "$(dirname "$0")/.."
+if [[ "${1:-}" != --prepared ]]; then
+  bin/compare-builds "${1:-origin/main}"
+fi
+if [[ ! -f playwright-report/changes.json || ! -f .ignored/site-checks/base/sitemap.xml ]]; then
+  echo "Prepared builds not found. Run bin/compare-builds first." >&2
+  exit 1
+fi
+rm -rf playwright-report/visual .screenshots
+rm -f playwright-report/visual.html
+mkdir -p playwright-report
+node tests/visual-summary.js playwright-report/changes.json
+cleanup() {
+  local result=$?
+  rm -rf .screenshots
+  node tests/visual-summary.js playwright-report/changes.json
+  echo "Open playwright-report/index.html in your browser. No server is needed."
+  exit "$result"
+}
+trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
+
+PAGE_COUNT="$(node -p 'require("./playwright-report/changes.json").pages.length')"
+BASE_COUNT="$(node -p 'require("./playwright-report/changes.json").basePages.length')"
+if [[ "$PAGE_COUNT" == 0 ]]; then
+  echo "No affected pages; screenshots skipped. See playwright-report/changes.html."
+  exit 0
+fi
+export SITE_PAGES_FILE=playwright-report/changes.json
+# Every selected existing page gets a fresh base capture in this run.
+if [[ "$BASE_COUNT" != 0 ]]; then
+  SITE_PAGES_KEY=basePages SITE_DIR=.ignored/site-checks/base npx playwright test --grep @visual --update-snapshots=all --reporter=list
+fi
+RESULT=0
+SITE_REPORT_FILE=playwright-report/visual.html SITE_DIR=_site npx playwright test --grep @visual --update-snapshots=missing || RESULT=$?
+exit "$RESULT"
