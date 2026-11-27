@@ -1,7 +1,7 @@
 ---
 title: "Complicity by Omission"
 description: "AI refusals, missing context, and work split across providers."
-tags: ["ai", "agents", "safety"]
+tags: ["ai", "agents", "safety", "philosophy"]
 math: true
 glossary:
   COMPLICITY:
